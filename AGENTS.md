@@ -43,6 +43,63 @@ Your job is to help take the product from idea → plan → implementation → v
    - unresolved question
 8. Do not silently change product direction.
 
+## Tool Execution and Safety
+
+For routine development and verification commands, proceed without asking for conversational approval when the CLI permission system already allows them.
+
+Routine operations include:
+
+- development server commands
+- production builds
+- previews
+- Git status inspection
+- Git diffs
+- Git history inspection
+- project-local read-only checks
+- project-local test and verification commands
+
+Do not repeatedly ask the user whether routine verification commands should be run.
+
+Do not modify Antigravity's global permission configuration yourself.
+
+Require explicit user approval before:
+
+- installing, removing, or upgrading dependencies
+- destructive file deletion
+- destructive Git operations
+- committing or pushing unless explicitly requested
+- deployment
+- modifying external services
+- working with secrets or environment variables
+- using `sudo`
+- writing outside the project workspace
+- performing an operation with meaningful security, privacy, cost, or data-loss risk
+
+Prefer the least-destructive operation that accomplishes the task.
+
+## Cost and External Services
+
+Prefer free, local, browser-native, or already-approved project capabilities.
+
+Do not introduce:
+
+- paid APIs
+- usage-based services
+- subscriptions
+- paid infrastructure
+- recurring external service costs
+
+without explicit user approval.
+
+If an external API or service is genuinely needed:
+
+1. explain why it is needed
+2. state whether a free tier exists
+3. explain its limitations and cost risk
+4. wait for explicit user approval before implementation
+
+Do not assume that a third-party service should be added merely because it makes implementation easier.
+
 ---
 
 # Phase 1 — Understand
@@ -171,6 +228,10 @@ Check where relevant:
 - visual regressions
 
 When possible, test realistic user flows rather than isolated functions only.
+
+Do not claim browser behavior, responsive behavior, sound, persistence, accessibility, or other runtime behavior is verified unless it was actually tested in an appropriate environment.
+
+If a check was only static, build-level, inferred, or delegated to the user for manual inspection, say so explicitly.
 
 ---
 
