@@ -81,8 +81,28 @@ import TimerWorkspace from '../components/TimerWorkspace.astro';
 		</header>
 
 		<!-- Main Workspace Foundation -->
-		<main id="app-workspace" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 flex flex-col items-center justify-center text-center">
-			<TimerWorkspace />
+		<main id="app-workspace" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 flex flex-col lg:flex-row items-center lg:items-stretch justify-center gap-6 lg:gap-12 group-data-[size=full]/body:items-center">
+			
+			<!-- Mini To-do Panel (Left on Desktop, stacked on Mobile) -->
+			<aside id="todo-panel" class="w-full max-w-md lg:w-72 lg:max-w-none flex-col border border-zinc-200 dark:border-zinc-800 rounded-lg bg-white dark:bg-zinc-900 shadow-sm p-4 shrink-0 hidden lg:flex group-data-[size=full]/body:hidden">
+				<h2 class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-4 text-left">
+					To-do
+				</h2>
+				<form id="todo-form" class="relative flex items-center mb-4">
+					<input type="text" id="todo-input" placeholder="Add a task..." class="w-full h-9 px-3 pr-9 text-sm rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors" autocomplete="off" />
+					<button type="submit" class="absolute right-1 w-7 h-7 flex items-center justify-center text-zinc-500 hover:text-blue-600 dark:hover:text-blue-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded" aria-label="Add task">
+						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
+					</button>
+				</form>
+				<div id="todo-list" class="flex flex-col gap-2 overflow-y-auto max-h-[50vh] text-left">
+					<!-- Tasks will be rendered here -->
+				</div>
+			</aside>
+
+			<!-- Central Time Workspace -->
+			<div class="flex-1 flex flex-col items-center justify-center w-full min-w-0">
+				<TimerWorkspace />
+			</div>
 		</main>
 
 		<!-- Base Footer -->

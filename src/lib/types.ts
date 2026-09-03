@@ -32,6 +32,16 @@ export interface ClockState {
 	formatted: string;
 }
 
+export type TaskStatus = 'pending' | 'current' | 'completed';
+
+export interface Task {
+	id: string;
+	text: string;
+	status: TaskStatus;
+	elapsedMs: number;
+	startTime: number | null;
+}
+
 export interface AppState {
 	mode: AppMode;
 	style: DisplayStyle;
@@ -40,6 +50,8 @@ export interface AppState {
 	timer: TimerState;
 	clock: ClockState;
 	stopwatch: StopwatchState;
+	tasks: Task[];
+	activeSessionEngine: 'timer' | 'stopwatch' | null;
 }
 
 export type StateListener<T> = (state: T, prevState: T) => void;
