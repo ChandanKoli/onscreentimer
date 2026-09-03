@@ -558,23 +558,26 @@ export function initWorkspaceController() {
 		const { mode, style, timer, clock, stopwatch, clockFormat } = state;
 
 		// Clock format buttons
+		const selectedClasses = ['bg-zinc-100', 'dark:bg-zinc-700', 'border-zinc-300', 'dark:border-zinc-500', 'text-zinc-900', 'dark:text-zinc-50'];
+		const unselectedClasses = ['bg-white', 'dark:bg-zinc-800', 'border-zinc-200', 'dark:border-zinc-700', 'text-zinc-600', 'dark:text-zinc-400'];
+
 		if (btnClock12h) {
 			if (clockFormat === '12h') {
-				btnClock12h.classList.add('bg-zinc-100', 'dark:bg-zinc-800', 'border-zinc-300', 'dark:border-zinc-600', 'text-zinc-900', 'dark:text-zinc-100');
-				btnClock12h.classList.remove('bg-white', 'dark:bg-zinc-800', 'border-zinc-200', 'dark:border-zinc-700', 'text-zinc-700', 'dark:text-zinc-300');
+				btnClock12h.classList.add(...selectedClasses);
+				btnClock12h.classList.remove(...unselectedClasses);
 			} else {
-				btnClock12h.classList.add('bg-white', 'dark:bg-zinc-800', 'border-zinc-200', 'dark:border-zinc-700', 'text-zinc-700', 'dark:text-zinc-300');
-				btnClock12h.classList.remove('bg-zinc-100', 'dark:bg-zinc-800', 'border-zinc-300', 'dark:border-zinc-600', 'text-zinc-900', 'dark:text-zinc-100');
+				btnClock12h.classList.add(...unselectedClasses);
+				btnClock12h.classList.remove(...selectedClasses);
 			}
 		}
 
 		if (btnClock24h) {
 			if (clockFormat === '24h') {
-				btnClock24h.classList.add('bg-zinc-100', 'dark:bg-zinc-800', 'border-zinc-300', 'dark:border-zinc-600', 'text-zinc-900', 'dark:text-zinc-100');
-				btnClock24h.classList.remove('bg-white', 'dark:bg-zinc-800', 'border-zinc-200', 'dark:border-zinc-700', 'text-zinc-700', 'dark:text-zinc-300');
+				btnClock24h.classList.add(...selectedClasses);
+				btnClock24h.classList.remove(...unselectedClasses);
 			} else {
-				btnClock24h.classList.add('bg-white', 'dark:bg-zinc-800', 'border-zinc-200', 'dark:border-zinc-700', 'text-zinc-700', 'dark:text-zinc-300');
-				btnClock24h.classList.remove('bg-zinc-100', 'dark:bg-zinc-800', 'border-zinc-300', 'dark:border-zinc-600', 'text-zinc-900', 'dark:text-zinc-100');
+				btnClock24h.classList.add(...unselectedClasses);
+				btnClock24h.classList.remove(...selectedClasses);
 			}
 		}
 

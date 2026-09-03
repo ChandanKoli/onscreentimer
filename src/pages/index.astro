@@ -81,7 +81,7 @@ import TimerWorkspace from '../components/TimerWorkspace.astro';
 		</header>
 
 		<!-- Main Workspace Foundation -->
-		<main id="app-workspace" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 flex flex-col lg:flex-row items-center lg:items-stretch justify-center gap-6 lg:gap-12 group-data-[size=full]/body:items-center">
+		<main id="app-workspace" class="flex-1 lg:min-h-[calc(100dvh-3.5rem)] max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 lg:py-12 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-12 group-data-[size=full]/body:items-center">
 			
 			<!-- Reopen Button (Desktop Minimized State) -->
 			<button type="button" id="btn-desktop-todo-reopen" class="hidden fixed left-0 top-1/2 -translate-y-1/2 w-6 h-16 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 border-l-0 rounded-r-md shadow-sm items-center justify-center text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 group-data-[size=full]/body:!hidden transition-colors z-40" aria-label="Reopen To-do" title="To-do">
@@ -169,8 +169,8 @@ import TimerWorkspace from '../components/TimerWorkspace.astro';
 				<div class="mb-6">
 					<h3 class="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-3">Clock Format</h3>
 					<div class="flex items-center gap-2">
-						<button type="button" id="btn-clock-12h" class="flex-1 py-1.5 text-sm rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors font-medium">12-hour</button>
-						<button type="button" id="btn-clock-24h" class="flex-1 py-1.5 text-sm rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors font-medium">24-hour</button>
+						<button type="button" id="btn-clock-12h" class="flex-1 py-1.5 text-sm rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors font-medium">12-hour</button>
+						<button type="button" id="btn-clock-24h" class="flex-1 py-1.5 text-sm rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors font-medium">24-hour</button>
 					</div>
 				</div>
 			</div>
