@@ -103,7 +103,7 @@ export function renderDigitalSvg(text: string, ampm?: string | null): string {
 	const totalWidth = x;
 	const totalHeight = 66;
 
-	return `<svg viewBox="0 0 ${totalWidth} ${totalHeight}" class="w-full max-w-full h-auto max-h-24 sm:max-h-32 select-none" fill="currentColor" aria-hidden="true">${parts.join('')}</svg>`;
+	return `<svg viewBox="0 0 ${totalWidth} ${totalHeight}" class="w-full max-w-full h-auto select-none" fill="currentColor" aria-hidden="true">${parts.join('')}</svg>`;
 }
 
 export interface AnalogAngles {

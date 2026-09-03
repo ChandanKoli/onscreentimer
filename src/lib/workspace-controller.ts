@@ -597,12 +597,21 @@ export function initWorkspaceController() {
 		stopwatchEngine.stop();
 	});
 
-	// 7. Mode & Style Dropdown Management
+	// 7. Mode, Style & Size Dropdown Management
+	const btnSizeDropdown = document.getElementById('btn-size-dropdown') as HTMLButtonElement | null;
+	const sizeDropdownMenu = document.getElementById('size-dropdown-menu');
+	const sizeDropdownContainer = document.getElementById('size-dropdown-container');
+	const btnExitFull = document.getElementById('btn-exit-full') as HTMLButtonElement | null;
+
+	let previousNonFullSize: DisplaySize = store.getState().size === 'full' ? 'mid' : store.getState().size;
+
 	function closeDropdowns() {
 		modeDropdownMenu?.classList.add('hidden');
 		btnModeDropdown?.setAttribute('aria-expanded', 'false');
 		styleDropdownMenu?.classList.add('hidden');
 		btnStyleDropdown?.setAttribute('aria-expanded', 'false');
+		sizeDropdownMenu?.classList.add('hidden');
+		btnSizeDropdown?.setAttribute('aria-expanded', 'false');
 	}
 
 	btnModeDropdown?.addEventListener('click', (e) => {
@@ -622,6 +631,16 @@ export function initWorkspaceController() {
 		if (!isExpanded && styleDropdownMenu) {
 			styleDropdownMenu.classList.remove('hidden');
 			btnStyleDropdown.setAttribute('aria-expanded', 'true');
+		}
+	});
+
+	btnSizeDropdown?.addEventListener('click', (e) => {
+		e.stopPropagation();
+		const isExpanded = btnSizeDropdown.getAttribute('aria-expanded') === 'true';
+		closeDropdowns();
+		if (!isExpanded && sizeDropdownMenu) {
+			sizeDropdownMenu.classList.remove('hidden');
+			btnSizeDropdown.setAttribute('aria-expanded', 'true');
 		}
 	});
 
@@ -651,6 +670,26 @@ export function initWorkspaceController() {
 		});
 	});
 
+	// Size selection
+	document.querySelectorAll('#size-dropdown-menu [data-size]').forEach((btn) => {
+		btn.addEventListener('click', (e) => {
+			e.stopPropagation();
+			const newSize = btn.getAttribute('data-size') as DisplaySize | null;
+			if (newSize) {
+				if (newSize !== 'full') {
+					previousNonFullSize = newSize;
+				}
+				store.setState({ size: newSize });
+			}
+			closeDropdowns();
+			btnSizeDropdown?.focus();
+		});
+	});
+
+	btnExitFull?.addEventListener('click', () => {
+		store.setState({ size: previousNonFullSize });
+	});
+
 	// Close dropdowns on outside click or Escape key
 	document.addEventListener('click', (e) => {
 		const target = e.target as Node | null;
@@ -658,7 +697,9 @@ export function initWorkspaceController() {
 			modeDropdownContainer &&
 			!modeDropdownContainer.contains(target) &&
 			styleDropdownContainer &&
-			!styleDropdownContainer.contains(target)
+			!styleDropdownContainer.contains(target) &&
+			sizeDropdownContainer &&
+			!sizeDropdownContainer.contains(target)
 		) {
 			closeDropdowns();
 		}
@@ -667,7 +708,29 @@ export function initWorkspaceController() {
 	document.addEventListener('keydown', (e) => {
 		if (e.key === 'Escape') {
 			closeDropdowns();
+			if (store.getState().size === 'full') {
+				store.setState({ size: previousNonFullSize });
+			}
 		}
+	});
+
+	// Handle Size UI updates in subscriber
+	store.subscribe((state) => {
+		document.body.dataset.size = state.size;
+
+		document.querySelectorAll('#size-dropdown-menu [data-size]').forEach((btn) => {
+			const btnSize = btn.getAttribute('data-size');
+			const isMatch = btnSize === state.size;
+			btn.setAttribute('aria-checked', isMatch ? 'true' : 'false');
+			const check = btn.querySelector('.size-check');
+			if (check) {
+				if (isMatch) check.classList.remove('hidden');
+				else check.classList.add('hidden');
+			}
+		});
+
+		const sizeCap = state.size.charAt(0).toUpperCase() + state.size.slice(1);
+		btnSizeDropdown?.setAttribute('aria-label', `Select size, currently ${sizeCap}`);
 	});
 
 	// 8. Initial View State Initialization
@@ -677,6 +740,9 @@ export function initWorkspaceController() {
 	btnTimerStop.disabled = true;
 	if (btnStopwatchReset) btnStopwatchReset.disabled = true;
 	if (btnStopwatchStop) btnStopwatchStop.disabled = true;
+
+	// Initial size sync
+	document.body.dataset.size = store.getState().size;
 
 	return {
 		store,

@@ -12,7 +12,7 @@ const ticks = generateDialTicks();
 		<!-- Modern Display Style -->
 		<div
 			id="display-modern"
-			class="flex items-baseline justify-center tabular-nums font-mono font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 select-none text-[clamp(4rem,13vw,9rem)] leading-none transition-colors duration-200"
+			class="flex items-baseline justify-center tabular-nums font-mono font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 select-none text-[clamp(4rem,13vw,9rem)] group-data-[size=tiny]/body:text-[clamp(3rem,8vw,5rem)] group-data-[size=big]/body:text-[clamp(5rem,18vw,13rem)] group-data-[size=full]/body:text-[clamp(6rem,22vw,18rem)] leading-none transition-all duration-300"
 			role="timer"
 			aria-live="off"
 			aria-atomic="true"
@@ -25,7 +25,7 @@ const ticks = generateDialTicks();
 		<!-- Digital Display Style (Segmented SVG) -->
 		<div
 			id="display-digital"
-			class="hidden w-full max-w-lg items-center justify-center px-4 py-2"
+			class="hidden w-full max-w-lg group-data-[size=tiny]/body:max-w-sm group-data-[size=big]/body:max-w-2xl group-data-[size=full]/body:max-w-5xl transition-all duration-300 items-center justify-center px-4 py-2 mx-auto"
 			role="timer"
 			aria-live="off"
 			aria-atomic="true"
@@ -39,13 +39,13 @@ const ticks = generateDialTicks();
 		<!-- Analog Display Style (SVG Clock Dial) -->
 		<div
 			id="display-analog"
-			class="hidden flex-col items-center justify-center"
+			class="hidden flex-col items-center justify-center transition-all duration-300"
 			role="timer"
 			aria-live="off"
 			aria-atomic="true"
 			aria-label="Analog Display"
 		>
-			<div class="relative w-64 h-64 sm:w-72 sm:h-72 select-none">
+			<div class="relative w-64 h-64 sm:w-72 sm:h-72 group-data-[size=tiny]/body:w-48 group-data-[size=tiny]/body:h-48 group-data-[size=tiny]/body:sm:w-48 group-data-[size=tiny]/body:sm:h-48 group-data-[size=big]/body:w-96 group-data-[size=big]/body:h-96 group-data-[size=big]/body:sm:w-96 group-data-[size=big]/body:sm:h-96 group-data-[size=full]/body:w-[350px] group-data-[size=full]/body:h-[350px] group-data-[size=full]/body:sm:w-[500px] group-data-[size=full]/body:sm:h-[500px] select-none transition-all duration-300">
 				<svg
 					id="analog-svg"
 					viewBox="0 0 300 300"
@@ -245,8 +245,18 @@ const ticks = generateDialTicks();
 
 		<!-- Right: Mode, Style, and Size Control Group -->
 		<div class="flex items-center gap-2">
+			<!-- Exit Full Button -->
+			<button
+				type="button"
+				id="btn-exit-full"
+				class="hidden group-data-[size=full]/body:flex fixed bottom-6 left-6 z-50 h-8 px-3 text-xs font-medium rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none items-center gap-1.5 cursor-pointer shadow-lg"
+				aria-label="Exit full size mode"
+			>
+				<span>Exit Full</span>
+			</button>
+
 			<!-- MODE Dropdown -->
-			<div class="relative inline-block text-left" id="mode-dropdown-container">
+			<div class="relative inline-block text-left group-data-[size=full]/body:hidden" id="mode-dropdown-container">
 				<button
 					type="button"
 					id="btn-mode-dropdown"
@@ -300,7 +310,7 @@ const ticks = generateDialTicks();
 			</div>
 
 			<!-- STYLE Dropdown -->
-			<div class="relative inline-block text-left" id="style-dropdown-container">
+			<div class="relative inline-block text-left group-data-[size=full]/body:hidden" id="style-dropdown-container">
 				<button
 					type="button"
 					id="btn-style-dropdown"
@@ -353,18 +363,70 @@ const ticks = generateDialTicks();
 				</div>
 			</div>
 
-			<!-- SIZE Placeholder (Inert for layout continuity per Phase 3 scope) -->
-			<button
-				type="button"
-				id="btn-size-selector"
-				disabled
-				aria-disabled="true"
-				class="h-8 px-2.5 sm:px-3 text-xs font-medium rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 text-zinc-400 dark:text-zinc-600 cursor-not-allowed flex items-center gap-1 select-none"
-				aria-label="Size selector unavailable"
-			>
-				<span>SIZE</span>
-				<span class="text-[10px] text-zinc-400 dark:text-zinc-600">^</span>
-			</button>
+			<!-- SIZE Dropdown -->
+			<div class="relative inline-block text-left group-data-[size=full]/body:fixed group-data-[size=full]/body:bottom-6 group-data-[size=full]/body:right-6 group-data-[size=full]/body:z-50" id="size-dropdown-container">
+				<button
+					type="button"
+					id="btn-size-dropdown"
+					aria-haspopup="true"
+					aria-expanded="false"
+					class="h-8 px-2.5 sm:px-3 text-xs font-medium rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none flex items-center gap-1.5 cursor-pointer shadow-2xs group-data-[size=full]/body:shadow-lg"
+					aria-label="Select size, currently Mid"
+				>
+					<span class="text-zinc-500 dark:text-zinc-400 font-normal">SIZE</span>
+					<span class="text-zinc-400 text-[10px] group-data-[size=full]/body:hidden">▾</span>
+					<span class="text-zinc-400 text-[10px] hidden group-data-[size=full]/body:inline">^</span>
+				</button>
+
+				<!-- Size Menu (Context-aware positioning: downward normally, upward in Full mode) -->
+				<div
+					id="size-dropdown-menu"
+					role="menu"
+					aria-orientation="vertical"
+					class="hidden absolute right-0 top-full mt-1 group-data-[size=full]/body:top-auto group-data-[size=full]/body:bottom-full group-data-[size=full]/body:mt-0 group-data-[size=full]/body:mb-1 w-32 rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 py-1 shadow-lg z-50 focus:outline-none"
+				>
+					<button
+						type="button"
+						role="menuitemradio"
+						aria-checked="false"
+						data-size="full"
+						class="w-full text-left px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center justify-between cursor-pointer focus-visible:bg-zinc-100 dark:focus-visible:bg-zinc-800 focus-visible:outline-none"
+					>
+						<span>Full</span>
+						<span class="size-check text-blue-600 dark:text-blue-400 hidden">●</span>
+					</button>
+					<button
+						type="button"
+						role="menuitemradio"
+						aria-checked="false"
+						data-size="big"
+						class="w-full text-left px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center justify-between cursor-pointer focus-visible:bg-zinc-100 dark:focus-visible:bg-zinc-800 focus-visible:outline-none"
+					>
+						<span>Big</span>
+						<span class="size-check text-blue-600 dark:text-blue-400 hidden">●</span>
+					</button>
+					<button
+						type="button"
+						role="menuitemradio"
+						aria-checked="true"
+						data-size="mid"
+						class="w-full text-left px-3 py-1.5 text-xs font-medium text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center justify-between cursor-pointer focus-visible:bg-zinc-100 dark:focus-visible:bg-zinc-800 focus-visible:outline-none"
+					>
+						<span>Mid</span>
+						<span class="size-check text-blue-600 dark:text-blue-400">●</span>
+					</button>
+					<button
+						type="button"
+						role="menuitemradio"
+						aria-checked="false"
+						data-size="tiny"
+						class="w-full text-left px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center justify-between cursor-pointer focus-visible:bg-zinc-100 dark:focus-visible:bg-zinc-800 focus-visible:outline-none"
+					>
+						<span>Tiny</span>
+						<span class="size-check text-blue-600 dark:text-blue-400 hidden">●</span>
+					</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
