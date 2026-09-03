@@ -245,6 +245,49 @@ export class TimerEngine {
 		}
 	}
 
+	public getSnapshot(): import('./persistence').PersistedTimer {
+		return {
+			status: this.status,
+			initialDurationSeconds: this.initialDurationSeconds,
+			remainingMs: this.pausedRemainingMs !== null ? this.pausedRemainingMs : this.remainingMs,
+			targetEndTime: this.targetEndTime,
+		};
+	}
+
+	public hydrate(data: import('./persistence').PersistedTimer): void {
+		this.stopTicker();
+		this.initialDurationSeconds = data.initialDurationSeconds;
+		this.status = data.status;
+		
+		if (data.status === 'running' && data.targetEndTime !== null) {
+			this.targetEndTime = data.targetEndTime;
+			this.remainingMs = Math.max(0, this.targetEndTime - Date.now());
+			this.pausedRemainingMs = null;
+			this.notifyStatus();
+			this.notifyTick();
+			this.startTicker();
+		} else if (data.status === 'paused') {
+			this.targetEndTime = null;
+			this.remainingMs = data.remainingMs;
+			this.pausedRemainingMs = data.remainingMs;
+			this.notifyStatus();
+			this.notifyTick();
+		} else if (data.status === 'completed') {
+			this.targetEndTime = null;
+			this.remainingMs = 0;
+			this.pausedRemainingMs = null;
+			this.notifyStatus();
+			this.notifyTick();
+		} else {
+			// idle
+			this.targetEndTime = null;
+			this.remainingMs = this.initialDurationSeconds * 1000;
+			this.pausedRemainingMs = null;
+			this.notifyStatus();
+			this.notifyTick();
+		}
+	}
+
 	public destroy(): void {
 		this.stopTicker();
 		if (typeof document !== 'undefined') {

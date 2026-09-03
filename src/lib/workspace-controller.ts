@@ -10,6 +10,8 @@ import {
 	calculateStopwatchAngles
 } from './renderers';
 import { taskActionReducer, engineStatusReducer } from './task-logic';
+import { serializeState, hydrateState } from './persistence';
+import { AudioSystem } from './audio';
 import type { AppState, AppMode, DisplayStyle, TimerStatus, StopwatchStatus, Task } from './types';
 
 export function initWorkspaceController() {
@@ -68,18 +70,27 @@ export function initWorkspaceController() {
 		return;
 	}
 
-	// 1. Unified State Store
-	const store = createStore<AppState>({
-		mode: 'timer',
-		style: 'modern',
-		size: 'mid',
-		soundEnabled: true,
+	// 1. Unified State Store & Hydration
+	const audioSystem = new AudioSystem();
+	const now = Date.now();
+	let hydratedState = null;
+	try {
+		hydratedState = hydrateState(localStorage.getItem('ost_state'), now);
+	} catch (e) {
+		// Ignore storage access errors
+	}
+
+	const initialState: AppState = {
+		mode: hydratedState?.mode ?? 'timer',
+		style: hydratedState?.style ?? 'modern',
+		size: hydratedState?.size ?? 'mid',
+		soundEnabled: hydratedState?.soundEnabled ?? true,
 		timer: {
-			status: 'idle',
-			initialDurationSeconds: 0,
-			remainingSeconds: 0,
-			remainingMs: 0,
-			rawInput: '',
+			status: hydratedState?.timer.status ?? 'idle',
+			initialDurationSeconds: hydratedState?.timer.initialDurationSeconds ?? 0,
+			remainingSeconds: Math.ceil((hydratedState?.timer.remainingMs ?? 0) / 1000),
+			remainingMs: hydratedState?.timer.remainingMs ?? 0,
+			rawInput: hydratedState?.timer.initialDurationSeconds ? String(hydratedState.timer.initialDurationSeconds) : '',
 			inputError: null
 		},
 		clock: {
@@ -91,13 +102,39 @@ export function initWorkspaceController() {
 			formatted: '12:00:00 AM'
 		},
 		stopwatch: {
-			status: 'idle',
-			elapsedSeconds: 0,
-			elapsedMs: 0
+			status: hydratedState?.stopwatch.status ?? 'idle',
+			elapsedSeconds: Math.floor((hydratedState?.stopwatch.accumulatedMs ?? 0) / 1000),
+			elapsedMs: hydratedState?.stopwatch.accumulatedMs ?? 0
 		},
-		tasks: [],
-		activeSessionEngine: null
-	});
+		tasks: hydratedState?.tasks ?? [],
+		activeSessionEngine: hydratedState?.activeSessionEngine ?? null
+	};
+
+	let previousNonFullSize: import('./types').DisplaySize = hydratedState?.previousNonFullSize ?? (initialState.size === 'full' ? 'mid' : initialState.size);
+
+	const store = createStore<AppState>(initialState);
+
+	function persistState() {
+		try {
+			const state = store.getState();
+			const serialized = serializeState({
+				mode: state.mode,
+				style: state.style,
+				size: state.size,
+				previousNonFullSize,
+				soundEnabled: state.soundEnabled,
+				timer: timerEngine.getSnapshot(),
+				stopwatch: stopwatchEngine.getSnapshot(),
+				tasks: state.tasks,
+				activeSessionEngine: state.activeSessionEngine
+			});
+			localStorage.setItem('ost_state', serialized);
+		} catch (e) {
+			// ignore
+		}
+	}
+
+	window.addEventListener('pagehide', persistState);
 
 	// 2. Task Engine Ownership & Lifecycle
 	function handleEngineStatusChange(engine: 'timer' | 'stopwatch', status: TimerStatus | StopwatchStatus) {
@@ -119,14 +156,19 @@ export function initWorkspaceController() {
 				...prev,
 				timer: { ...prev.timer, status }
 			}));
+			persistState();
 		},
 		onComplete: () => {
 			modernTimeText?.classList.add('text-blue-600', 'dark:text-blue-400');
 			setTimeout(() => {
 				modernTimeText?.classList.remove('text-blue-600', 'dark:text-blue-400');
 			}, 1500);
+			audioSystem.playCompletionSound(!store.getState().soundEnabled);
 		}
 	});
+	if (hydratedState) {
+		timerEngine.hydrate(hydratedState.timer);
+	}
 
 	const stopwatchEngine = new StopwatchEngine({
 		onTick: (elapsedSeconds, elapsedMs) => {
@@ -141,8 +183,12 @@ export function initWorkspaceController() {
 				...prev,
 				stopwatch: { ...prev.stopwatch, status }
 			}));
+			persistState();
 		}
 	});
+	if (hydratedState) {
+		stopwatchEngine.hydrate(hydratedState.stopwatch);
+	}
 
 	const clockEngine = new ClockEngine({
 		initialFormat: '12h',
@@ -167,12 +213,14 @@ export function initWorkspaceController() {
 
 		const state = store.getState();
 		if (action === 'complete' && state.tasks.length > 0 && state.tasks.every(t => t.status === 'completed')) {
+			audioSystem.playCompletionSound(!state.soundEnabled);
 			if (state.activeSessionEngine === 'timer') {
 				timerEngine.stop();
 			} else if (state.activeSessionEngine === 'stopwatch') {
 				stopwatchEngine.stop();
 			}
 		}
+		persistState();
 	}
 
 	todoForm?.addEventListener('submit', (e) => {
@@ -190,6 +238,7 @@ export function initWorkspaceController() {
 		
 		store.setState(prev => ({ tasks: [...prev.tasks, newTask] }));
 		if (todoInput) todoInput.value = '';
+		persistState();
 	});
 
 	// Task action delegation
@@ -333,9 +382,9 @@ export function initWorkspaceController() {
 		if (currentTaskIds !== existingIds) {
 			currentTaskContainer.setAttribute('data-task-ids', currentTaskIds);
 			currentTaskContainer.innerHTML = currentTasks.map((t: any) => `
-				<div class="group flex items-center justify-between py-1.5 px-3 rounded-md bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 w-full max-w-sm text-sm shadow-sm transition-all">
+				<div class="group flex items-center justify-between py-1.5 px-3 rounded-md bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 w-full max-w-sm text-sm shadow-sm transition-all motion-reduce:transition-none">
 					<div class="flex items-center gap-2 overflow-hidden">
-						<span class="w-2 h-2 rounded-full shrink-0 bg-amber-400 ${t.startTime ? 'animate-pulse' : ''}" aria-hidden="true"></span>
+						<span class="w-2 h-2 rounded-full shrink-0 bg-amber-400 ${t.startTime ? 'animate-pulse motion-reduce:animate-none' : ''}" aria-hidden="true"></span>
 						<span class="truncate text-zinc-900 dark:text-zinc-100 font-medium">${t.text}</span>
 					</div>
 					<div class="flex items-center gap-3 shrink-0 ml-3">
@@ -364,8 +413,11 @@ export function initWorkspaceController() {
 			// Optional: sync pulse state if engine pauses/resumes without changing task id list
 			const dot = el?.parentElement?.parentElement?.querySelector('.bg-amber-400');
 			if (dot) {
-				if (t.startTime) dot.classList.add('animate-pulse');
-				else dot.classList.remove('animate-pulse');
+				if (t.startTime) {
+					dot.classList.add('animate-pulse', 'motion-reduce:animate-none');
+				} else {
+					dot.classList.remove('animate-pulse', 'motion-reduce:animate-none');
+				}
 			}
 		});
 	}
@@ -796,7 +848,6 @@ export function initWorkspaceController() {
 	const sizeDropdownContainer = document.getElementById('size-dropdown-container');
 	const btnExitFull = document.getElementById('btn-exit-full') as HTMLButtonElement | null;
 
-	let previousNonFullSize: DisplaySize = store.getState().size === 'full' ? 'mid' : store.getState().size;
 
 	function closeDropdowns() {
 		modeDropdownMenu?.classList.add('hidden');
@@ -844,6 +895,7 @@ export function initWorkspaceController() {
 			const newMode = btn.getAttribute('data-mode') as AppMode | null;
 			if (newMode) {
 				store.setState({ mode: newMode });
+				persistState();
 			}
 			closeDropdowns();
 			btnModeDropdown?.focus();
@@ -857,6 +909,7 @@ export function initWorkspaceController() {
 			const newStyle = btn.getAttribute('data-style') as DisplayStyle | null;
 			if (newStyle) {
 				store.setState({ style: newStyle });
+				persistState();
 			}
 			closeDropdowns();
 			btnStyleDropdown?.focus();
@@ -873,6 +926,7 @@ export function initWorkspaceController() {
 					previousNonFullSize = newSize;
 				}
 				store.setState({ size: newSize });
+				persistState();
 			}
 			closeDropdowns();
 			btnSizeDropdown?.focus();
@@ -881,6 +935,7 @@ export function initWorkspaceController() {
 
 	btnExitFull?.addEventListener('click', () => {
 		store.setState({ size: previousNonFullSize });
+		persistState();
 	});
 
 	// Close dropdowns on outside click or Escape key
@@ -924,6 +979,86 @@ export function initWorkspaceController() {
 
 		const sizeCap = state.size.charAt(0).toUpperCase() + state.size.slice(1);
 		btnSizeDropdown?.setAttribute('aria-label', `Select size, currently ${sizeCap}`);
+	});
+
+	// 7.5 Sound Toggle & Keyboard Interactions
+	const btnSound = document.getElementById('btn-sound') as HTMLButtonElement | null;
+	if (btnSound) {
+		btnSound.addEventListener('click', async () => {
+			const current = store.getState().soundEnabled;
+			store.setState({ soundEnabled: !current });
+			persistState();
+			await audioSystem.init(); // Initialize audio context on user gesture
+		});
+	}
+	
+	// Apply initial sound state UI immediately
+	store.subscribe((state) => {
+		if (btnSound) {
+			if (state.soundEnabled) {
+				btnSound.setAttribute('aria-label', 'Sound enabled, click to mute');
+				btnSound.title = 'Mute sound';
+				btnSound.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>`;
+			} else {
+				btnSound.setAttribute('aria-label', 'Sound muted, click to enable');
+				btnSound.title = 'Enable sound';
+				btnSound.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /><line x1="17" y1="9" x2="23" y2="15" stroke-linecap="round" stroke-linejoin="round" /><line x1="23" y1="9" x2="17" y2="15" stroke-linecap="round" stroke-linejoin="round" /></svg>`;
+			}
+		}
+	});
+	// Force initial state update for sound button
+	store.setState({});
+
+	// Initialize audio system on user gesture
+	document.addEventListener('click', () => {
+		audioSystem.init();
+	}, { once: true });
+
+	// Keyboard Shortcuts
+	document.addEventListener('keydown', (e) => {
+		const target = e.target as HTMLElement;
+		const isEditable = target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT' || target.isContentEditable;
+		
+		if (e.key === 'Escape') {
+			let dropdownOpen = false;
+			if (btnModeDropdown?.getAttribute('aria-expanded') === 'true') dropdownOpen = true;
+			if (btnStyleDropdown?.getAttribute('aria-expanded') === 'true') dropdownOpen = true;
+			if (btnSizeDropdown?.getAttribute('aria-expanded') === 'true') dropdownOpen = true;
+			
+			if (dropdownOpen) {
+				closeDropdowns();
+				return;
+			}
+			
+			if (store.getState().size === 'full') {
+				store.setState({ size: previousNonFullSize });
+				persistState();
+			}
+			return;
+		}
+
+		if (e.key === ' ' && !isEditable) {
+			if (target.tagName === 'BUTTON') {
+				return;
+			}
+			
+			e.preventDefault();
+			const { mode } = store.getState();
+			if (mode === 'timer') {
+				const status = timerEngine.getStatus();
+				if (status === 'running') timerEngine.pause();
+				else if (status === 'paused') timerEngine.resume();
+				else {
+					const ok = handleTimerDurationInput(true);
+					if (!ok && timerInput) timerInput.focus();
+				}
+			} else if (mode === 'stopwatch') {
+				const status = stopwatchEngine.getStatus();
+				if (status === 'running') stopwatchEngine.pause();
+				else if (status === 'paused') stopwatchEngine.resume();
+				else stopwatchEngine.start();
+			}
+		}
 	});
 
 	// 8. Initial View State Initialization

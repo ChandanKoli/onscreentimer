@@ -12,7 +12,7 @@ const ticks = generateDialTicks();
 		<!-- Modern Display Style -->
 		<div
 			id="display-modern"
-			class="flex items-baseline justify-center tabular-nums font-mono font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 select-none text-[clamp(4rem,13vw,9rem)] group-data-[size=tiny]/body:text-[clamp(3rem,8vw,5rem)] group-data-[size=big]/body:text-[clamp(5rem,18vw,13rem)] group-data-[size=full]/body:text-[clamp(6rem,22vw,18rem)] leading-none transition-all duration-300"
+			class="flex items-baseline justify-center tabular-nums font-mono font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 select-none text-[clamp(4rem,13vw,9rem)] group-data-[size=tiny]/body:text-[clamp(3rem,8vw,5rem)] group-data-[size=big]/body:text-[clamp(5rem,18vw,13rem)] group-data-[size=full]/body:text-[clamp(6rem,22vw,18rem)] leading-none transition-all duration-300 motion-reduce:transition-none"
 			role="timer"
 			aria-live="off"
 			aria-atomic="true"
@@ -25,7 +25,7 @@ const ticks = generateDialTicks();
 		<!-- Digital Display Style (Segmented SVG) -->
 		<div
 			id="display-digital"
-			class="hidden w-full max-w-lg group-data-[size=tiny]/body:max-w-sm group-data-[size=big]/body:max-w-2xl group-data-[size=full]/body:max-w-5xl transition-all duration-300 items-center justify-center px-4 py-2 mx-auto"
+			class="hidden w-full max-w-lg group-data-[size=tiny]/body:max-w-sm group-data-[size=big]/body:max-w-2xl group-data-[size=full]/body:max-w-5xl transition-all duration-300 motion-reduce:transition-none items-center justify-center px-4 py-2 mx-auto"
 			role="timer"
 			aria-live="off"
 			aria-atomic="true"
@@ -39,13 +39,13 @@ const ticks = generateDialTicks();
 		<!-- Analog Display Style (SVG Clock Dial) -->
 		<div
 			id="display-analog"
-			class="hidden flex-col items-center justify-center transition-all duration-300"
+			class="hidden flex-col items-center justify-center transition-all duration-300 motion-reduce:transition-none"
 			role="timer"
 			aria-live="off"
 			aria-atomic="true"
 			aria-label="Analog Display"
 		>
-			<div class="relative w-64 h-64 sm:w-72 sm:h-72 group-data-[size=tiny]/body:w-48 group-data-[size=tiny]/body:h-48 group-data-[size=tiny]/body:sm:w-48 group-data-[size=tiny]/body:sm:h-48 group-data-[size=big]/body:w-96 group-data-[size=big]/body:h-96 group-data-[size=big]/body:sm:w-96 group-data-[size=big]/body:sm:h-96 group-data-[size=full]/body:w-[350px] group-data-[size=full]/body:h-[350px] group-data-[size=full]/body:sm:w-[500px] group-data-[size=full]/body:sm:h-[500px] select-none transition-all duration-300">
+			<div class="relative w-64 h-64 sm:w-72 sm:h-72 group-data-[size=tiny]/body:w-48 group-data-[size=tiny]/body:h-48 group-data-[size=tiny]/body:sm:w-48 group-data-[size=tiny]/body:sm:h-48 group-data-[size=big]/body:w-96 group-data-[size=big]/body:h-96 group-data-[size=big]/body:sm:w-96 group-data-[size=big]/body:sm:h-96 group-data-[size=full]/body:w-[350px] group-data-[size=full]/body:h-[350px] group-data-[size=full]/body:sm:w-[500px] group-data-[size=full]/body:sm:h-[500px] select-none transition-all duration-300 motion-reduce:transition-none">
 				<svg
 					id="analog-svg"
 					viewBox="0 0 300 300"

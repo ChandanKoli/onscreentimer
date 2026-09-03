@@ -166,6 +166,32 @@ export class StopwatchEngine {
 		}
 	}
 
+	public getSnapshot(): import('./persistence').PersistedStopwatch {
+		return {
+			status: this.status,
+			accumulatedMs: this.accumulatedMs,
+			startTime: this.startTime,
+		};
+	}
+
+	public hydrate(data: import('./persistence').PersistedStopwatch): void {
+		this.stopTicker();
+		this.status = data.status;
+		
+		if (data.status === 'running' && data.startTime !== null) {
+			this.startTime = data.startTime;
+			this.accumulatedMs = data.accumulatedMs;
+			this.notifyStatus();
+			this.notifyTick();
+			this.startTicker();
+		} else {
+			this.startTime = null;
+			this.accumulatedMs = data.accumulatedMs;
+			this.notifyStatus();
+			this.notifyTick();
+		}
+	}
+
 	public destroy(): void {
 		this.stopTicker();
 		if (typeof document !== 'undefined') {
