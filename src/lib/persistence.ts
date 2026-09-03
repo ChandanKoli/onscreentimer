@@ -1,4 +1,4 @@
-import type { AppMode, DisplayStyle, DisplaySize, TimerStatus, StopwatchStatus, Task } from './types';
+import type { AppMode, DisplayStyle, DisplaySize, TimerStatus, StopwatchStatus, Task, ClockFormat } from './types';
 
 export const SCHEMA_VERSION = 1;
 
@@ -26,6 +26,8 @@ export interface PersistedState {
 	stopwatch: PersistedStopwatch;
 	tasks: Task[];
 	activeSessionEngine: 'timer' | 'stopwatch' | null;
+	todoMinimized: boolean;
+	clockFormat: ClockFormat;
 }
 
 export function serializeState(state: Omit<PersistedState, 'version'>): string {
@@ -51,6 +53,8 @@ export function hydrateState(json: string | null, now: number): Omit<PersistedSt
 		const size = ['tiny', 'mid', 'big', 'full'].includes(parsed.size) ? parsed.size : 'mid';
 		const previousNonFullSize = ['tiny', 'mid', 'big'].includes(parsed.previousNonFullSize) ? parsed.previousNonFullSize : 'mid';
 		const soundEnabled = typeof parsed.soundEnabled === 'boolean' ? parsed.soundEnabled : false;
+		const todoMinimized = typeof parsed.todoMinimized === 'boolean' ? parsed.todoMinimized : false;
+		const clockFormat = parsed.clockFormat === '12h' || parsed.clockFormat === '24h' ? parsed.clockFormat : '24h';
 		
 		let activeSessionEngine = ['timer', 'stopwatch'].includes(parsed.activeSessionEngine) ? parsed.activeSessionEngine : null;
 
@@ -155,7 +159,9 @@ export function hydrateState(json: string | null, now: number): Omit<PersistedSt
 			timer,
 			stopwatch,
 			tasks,
-			activeSessionEngine
+			activeSessionEngine,
+			todoMinimized,
+			clockFormat
 		};
 	} catch {
 		return null; // Fallback safely if JSON is corrupt

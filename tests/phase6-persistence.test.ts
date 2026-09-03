@@ -5,7 +5,7 @@ import type { AppState } from '../src/lib/types.ts';
 
 test('Valid current schema serializes and hydrates', () => {
 	const now = 10000;
-	const state = {
+	const state: AppState = {
 		mode: 'timer' as const,
 		style: 'modern' as const,
 		size: 'mid' as const,
@@ -25,7 +25,9 @@ test('Valid current schema serializes and hydrates', () => {
 		tasks: [
 			{ id: '1', text: 'Task 1', status: 'pending' as const, elapsedMs: 0, startTime: null }
 		],
-		activeSessionEngine: null
+		activeSessionEngine: null,
+		todoMinimized: false,
+		clockFormat: '24h'
 	};
 
 	const serialized = serializeState(state);

@@ -64,6 +64,24 @@ export function initWorkspaceController() {
 	const todoInput = document.getElementById('todo-input') as HTMLInputElement | null;
 	const todoList = document.getElementById('todo-list');
 	const currentTaskContainer = document.getElementById('current-task-container');
+	const btnDesktopTodoReopen = document.getElementById('btn-desktop-todo-reopen');
+	const btnDesktopTodoMinimize = document.getElementById('btn-desktop-todo-minimize');
+	const btnMobileTodoToggle = document.getElementById('btn-mobile-todo-toggle');
+	const todoMobileChevron = document.getElementById('todo-mobile-chevron');
+	const todoMobileCount = document.getElementById('todo-mobile-count');
+	const todoPanel = document.getElementById('todo-panel');
+	const todoContent = document.getElementById('todo-content');
+	const todoSummary = document.getElementById('todo-summary');
+	const countDone = document.getElementById('count-done');
+	const countRemaining = document.getElementById('count-remaining');
+	
+	// Burger Menu Elements
+	const burgerMenuOverlay = document.getElementById('burger-menu-overlay');
+	const burgerMenuPanel = document.getElementById('burger-menu-panel');
+	const btnMenu = document.getElementById('btn-menu');
+	const btnCloseMenu = document.getElementById('btn-close-menu');
+	const btnClock12h = document.getElementById('btn-clock-12h');
+	const btnClock24h = document.getElementById('btn-clock-24h');
 
 	if (!displayModern || !btnTimerPrimary || !btnTimerReset || !btnTimerStop || !timerInput) {
 		// Elements not yet in DOM
@@ -94,12 +112,12 @@ export function initWorkspaceController() {
 			inputError: null
 		},
 		clock: {
-			format: '12h',
+			format: hydratedState?.clockFormat ?? '24h',
 			hours: 12,
 			minutes: 0,
 			seconds: 0,
 			isAm: true,
-			formatted: '12:00:00 AM'
+			formatted: '12:00:00'
 		},
 		stopwatch: {
 			status: hydratedState?.stopwatch.status ?? 'idle',
@@ -107,7 +125,9 @@ export function initWorkspaceController() {
 			elapsedMs: hydratedState?.stopwatch.accumulatedMs ?? 0
 		},
 		tasks: hydratedState?.tasks ?? [],
-		activeSessionEngine: hydratedState?.activeSessionEngine ?? null
+		activeSessionEngine: hydratedState?.activeSessionEngine ?? null,
+		todoMinimized: hydratedState?.todoMinimized ?? (typeof window !== 'undefined' ? window.innerWidth < 1024 : false),
+		clockFormat: hydratedState?.clockFormat ?? '24h'
 	};
 
 	let previousNonFullSize: import('./types').DisplaySize = hydratedState?.previousNonFullSize ?? (initialState.size === 'full' ? 'mid' : initialState.size);
@@ -126,7 +146,9 @@ export function initWorkspaceController() {
 				timer: timerEngine.getSnapshot(),
 				stopwatch: stopwatchEngine.getSnapshot(),
 				tasks: state.tasks,
-				activeSessionEngine: state.activeSessionEngine
+				activeSessionEngine: state.activeSessionEngine,
+				todoMinimized: state.todoMinimized,
+				clockFormat: state.clockFormat
 			});
 			localStorage.setItem('ost_state', serialized);
 		} catch (e) {
@@ -191,7 +213,7 @@ export function initWorkspaceController() {
 	}
 
 	const clockEngine = new ClockEngine({
-		initialFormat: '12h',
+		initialFormat: initialState.clockFormat,
 		onTick: (clockState) => {
 			store.setState((prev) => ({
 				...prev,
@@ -260,6 +282,82 @@ export function initWorkspaceController() {
 		}
 	});
 
+	// 4b. Burger Menu & Settings
+	function openMenu() {
+		burgerMenuOverlay?.classList.remove('hidden');
+		burgerMenuPanel?.classList.remove('translate-x-full');
+		void burgerMenuPanel?.offsetWidth; // reflow
+		burgerMenuOverlay?.classList.remove('opacity-0');
+	}
+	
+	function closeMenu() {
+		burgerMenuOverlay?.classList.add('opacity-0');
+		burgerMenuPanel?.classList.add('translate-x-full');
+		setTimeout(() => {
+			burgerMenuOverlay?.classList.add('hidden');
+		}, 300);
+	}
+	
+	btnMenu?.addEventListener('click', openMenu);
+	btnCloseMenu?.addEventListener('click', closeMenu);
+	burgerMenuOverlay?.addEventListener('click', closeMenu);
+
+	btnClock12h?.addEventListener('click', () => {
+		store.setState(prev => ({ ...prev, clockFormat: '12h' }));
+		clockEngine.setFormat('12h');
+		persistState();
+	});
+	btnClock24h?.addEventListener('click', () => {
+		store.setState(prev => ({ ...prev, clockFormat: '24h' }));
+		clockEngine.setFormat('24h');
+		persistState();
+	});
+
+	// 4c. To-do Panel Toggles (Mobile & Desktop)
+	function syncTodoMinimizedState(state: AppState) {
+		// Desktop minimization
+		if (state.todoMinimized) {
+			todoContent?.classList.add('hidden');
+			todoContent?.classList.remove('lg:flex');
+			todoPanel?.classList.remove('lg:flex');
+			todoPanel?.classList.add('lg:hidden');
+			btnDesktopTodoReopen?.classList.remove('hidden');
+			btnDesktopTodoReopen?.classList.add('flex');
+		} else {
+			todoContent?.classList.remove('hidden');
+			todoContent?.classList.add('lg:flex');
+			todoPanel?.classList.add('lg:flex');
+			todoPanel?.classList.remove('lg:hidden');
+			btnDesktopTodoReopen?.classList.add('hidden');
+			btnDesktopTodoReopen?.classList.remove('flex');
+		}
+
+		// Mobile expand/collapse (uses the same minimized state concept, but applies to mobile view)
+		if (state.todoMinimized) {
+			todoContent?.classList.add('hidden');
+			todoMobileChevron?.classList.remove('rotate-180');
+		} else {
+			todoContent?.classList.remove('hidden');
+			todoMobileChevron?.classList.add('rotate-180');
+		}
+	}
+
+	btnDesktopTodoMinimize?.addEventListener('click', () => {
+		store.setState(prev => ({ ...prev, todoMinimized: true }));
+		persistState();
+	});
+
+	btnDesktopTodoReopen?.addEventListener('click', () => {
+		store.setState(prev => ({ ...prev, todoMinimized: false }));
+		persistState();
+	});
+
+	btnMobileTodoToggle?.addEventListener('click', () => {
+		const isMin = store.getState().todoMinimized;
+		store.setState(prev => ({ ...prev, todoMinimized: !isMin }));
+		persistState();
+	});
+
 	// 5. Helper: Timer validation errors
 	function setTimerInputError(msg: string | null) {
 		store.setState((prev) => ({
@@ -304,12 +402,34 @@ export function initWorkspaceController() {
 
 	function renderTodoList(tasks: typeof store.getState extends () => { tasks: infer T } ? T : any[]) {
 		if (!todoList) return;
-		todoList.innerHTML = tasks.map(t => {
+		
+		const unfinished = tasks.filter(t => t.status !== 'completed');
+		const completed = tasks.filter(t => t.status === 'completed');
+		const displayTasks = [...unfinished, ...completed];
+		
+		// Update summary counts
+		const countDoneVal = completed.length;
+		const countRemVal = unfinished.length;
+		if (countDone) countDone.textContent = String(countDoneVal);
+		if (countRemaining) countRemaining.textContent = String(countRemVal);
+		if (todoMobileCount) {
+			todoMobileCount.textContent = countRemVal > 0 ? `(${countRemVal})` : '';
+		}
+		
+		if (todoSummary) {
+			if (tasks.length === 0) {
+				todoSummary.classList.add('hidden');
+			} else {
+				todoSummary.classList.remove('hidden');
+			}
+		}
+
+		todoList.innerHTML = displayTasks.map(t => {
 			const isCurrent = t.status === 'current';
 			const isCompleted = t.status === 'completed';
 			const isPending = t.status === 'pending';
 			
-			let rowClass = "group flex items-center justify-between p-2 rounded-md border text-sm transition-colors ";
+			let rowClass = "group flex items-center justify-between p-2 rounded-lg border text-sm transition-colors ";
 			if (isCurrent) {
 				rowClass += "bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 border-transparent shadow-sm";
 			} else if (isCompleted) {
@@ -382,7 +502,7 @@ export function initWorkspaceController() {
 		if (currentTaskIds !== existingIds) {
 			currentTaskContainer.setAttribute('data-task-ids', currentTaskIds);
 			currentTaskContainer.innerHTML = currentTasks.map((t: any) => `
-				<div class="group flex items-center justify-between py-1.5 px-3 rounded-md bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 w-full max-w-sm text-sm shadow-sm transition-all motion-reduce:transition-none">
+				<div class="group flex items-center justify-between py-1.5 px-3 rounded-lg bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 w-full max-w-sm text-sm shadow-sm transition-all motion-reduce:transition-none">
 					<div class="flex items-center gap-2 overflow-hidden">
 						<span class="w-2 h-2 rounded-full shrink-0 bg-amber-400 ${t.startTime ? 'animate-pulse motion-reduce:animate-none' : ''}" aria-hidden="true"></span>
 						<span class="truncate text-zinc-900 dark:text-zinc-100 font-medium">${t.text}</span>
@@ -433,7 +553,30 @@ export function initWorkspaceController() {
 			renderTodoList(state.tasks);
 		}
 		updateCurrentTasks(state);
-		const { mode, style, timer, clock, stopwatch } = state;
+		syncTodoMinimizedState(state);
+
+		const { mode, style, timer, clock, stopwatch, clockFormat } = state;
+
+		// Clock format buttons
+		if (btnClock12h) {
+			if (clockFormat === '12h') {
+				btnClock12h.classList.add('bg-zinc-100', 'dark:bg-zinc-800', 'border-zinc-300', 'dark:border-zinc-600', 'text-zinc-900', 'dark:text-zinc-100');
+				btnClock12h.classList.remove('bg-white', 'dark:bg-zinc-800', 'border-zinc-200', 'dark:border-zinc-700', 'text-zinc-700', 'dark:text-zinc-300');
+			} else {
+				btnClock12h.classList.add('bg-white', 'dark:bg-zinc-800', 'border-zinc-200', 'dark:border-zinc-700', 'text-zinc-700', 'dark:text-zinc-300');
+				btnClock12h.classList.remove('bg-zinc-100', 'dark:bg-zinc-800', 'border-zinc-300', 'dark:border-zinc-600', 'text-zinc-900', 'dark:text-zinc-100');
+			}
+		}
+
+		if (btnClock24h) {
+			if (clockFormat === '24h') {
+				btnClock24h.classList.add('bg-zinc-100', 'dark:bg-zinc-800', 'border-zinc-300', 'dark:border-zinc-600', 'text-zinc-900', 'dark:text-zinc-100');
+				btnClock24h.classList.remove('bg-white', 'dark:bg-zinc-800', 'border-zinc-200', 'dark:border-zinc-700', 'text-zinc-700', 'dark:text-zinc-300');
+			} else {
+				btnClock24h.classList.add('bg-white', 'dark:bg-zinc-800', 'border-zinc-200', 'dark:border-zinc-700', 'text-zinc-700', 'dark:text-zinc-300');
+				btnClock24h.classList.remove('bg-zinc-100', 'dark:bg-zinc-800', 'border-zinc-300', 'dark:border-zinc-600', 'text-zinc-900', 'dark:text-zinc-100');
+			}
+		}
 
 		// --- A. Controls Row Visibility ---
 		if (controlsTimer) {
