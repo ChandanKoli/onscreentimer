@@ -336,9 +336,11 @@ export function initWorkspaceController() {
 		if (state.todoMinimized) {
 			todoContent?.classList.add('hidden');
 			todoMobileChevron?.classList.remove('rotate-180');
+			btnMobileTodoToggle?.setAttribute('aria-expanded', 'false');
 		} else {
 			todoContent?.classList.remove('hidden');
 			todoMobileChevron?.classList.add('rotate-180');
+			btnMobileTodoToggle?.setAttribute('aria-expanded', 'true');
 		}
 	}
 
@@ -463,11 +465,14 @@ export function initWorkspaceController() {
 
 			const durationStr = isCompleted ? formatTaskTime(t.elapsedMs) : '';
 
+			// Basic HTML escaping for task text
+			const escapedText = t.text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
 			return `
 				<div class="${rowClass}">
 					<div class="flex items-center gap-2 overflow-hidden">
 						<span class="w-2 h-2 rounded-full shrink-0 ${indicatorColor}" aria-hidden="true"></span>
-						<span class="truncate ${isCompleted ? 'line-through' : ''}">${t.text}</span>
+						<span class="truncate ${isCompleted ? 'line-through' : ''}">${escapedText}</span>
 					</div>
 					<div class="flex items-center gap-1 shrink-0 ml-2">
 						${durationStr ? `<span class="text-xs font-mono opacity-60 mr-1">${durationStr}</span>` : ''}
@@ -501,11 +506,13 @@ export function initWorkspaceController() {
 		
 		if (currentTaskIds !== existingIds) {
 			currentTaskContainer.setAttribute('data-task-ids', currentTaskIds);
-			currentTaskContainer.innerHTML = currentTasks.map((t: any) => `
+			currentTaskContainer.innerHTML = currentTasks.map((t: any) => {
+				const escapedText = t.text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+				return `
 				<div class="group flex items-center justify-between py-1.5 px-3 rounded-lg bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 w-full max-w-sm text-sm shadow-sm transition-all motion-reduce:transition-none">
 					<div class="flex items-center gap-2 overflow-hidden">
 						<span class="w-2 h-2 rounded-full shrink-0 bg-amber-400 ${t.startTime ? 'animate-pulse motion-reduce:animate-none' : ''}" aria-hidden="true"></span>
-						<span class="truncate text-zinc-900 dark:text-zinc-100 font-medium">${t.text}</span>
+						<span class="truncate text-zinc-900 dark:text-zinc-100 font-medium">${escapedText}</span>
 					</div>
 					<div class="flex items-center gap-3 shrink-0 ml-3">
 						<span id="current-time-${t.id}" class="text-xs font-mono text-zinc-600 dark:text-zinc-400 tabular-nums"></span>
@@ -519,7 +526,8 @@ export function initWorkspaceController() {
 						</div>
 					</div>
 				</div>
-			`).join('');
+				`;
+			}).join('');
 		}
 
 		const now = Date.now();
