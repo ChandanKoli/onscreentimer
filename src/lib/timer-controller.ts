@@ -19,9 +19,7 @@ export function initTimerController() {
 		return;
 	}
 
-	const DEFAULT_DURATION_SECONDS = 300; // 5 minutes default
-
-	// Application State Store
+	// Application State Store - Initially empty duration (00:00) on fresh load
 	const store = createStore<AppState>({
 		mode: 'timer',
 		style: 'modern',
@@ -29,17 +27,17 @@ export function initTimerController() {
 		soundEnabled: true,
 		timer: {
 			status: 'idle',
-			initialDurationSeconds: DEFAULT_DURATION_SECONDS,
-			remainingSeconds: DEFAULT_DURATION_SECONDS,
-			remainingMs: DEFAULT_DURATION_SECONDS * 1000,
-			rawInput: '5',
+			initialDurationSeconds: 0,
+			remainingSeconds: 0,
+			remainingMs: 0,
+			rawInput: '',
 			inputError: null
 		}
 	});
 
 	// Timer Engine instance
 	const engine = new TimerEngine({
-		initialDurationSeconds: DEFAULT_DURATION_SECONDS,
+		initialDurationSeconds: 0,
 		onTick: (remainingSeconds, remainingMs) => {
 			store.setState((prev) => ({
 				...prev,
@@ -148,6 +146,22 @@ export function initTimerController() {
 	// Handle input changes from idle / completed state
 	function handleDurationInput(shouldStart: boolean = false) {
 		const raw = inputEl?.value.trim() ?? '';
+		if (!raw) {
+			setInputError(shouldStart ? 'Please enter a duration (e.g. 5, 2mins, 02:00, 90s)' : null);
+			store.setState((prev) => ({
+				...prev,
+				timer: {
+					...prev.timer,
+					initialDurationSeconds: 0,
+					remainingSeconds: 0,
+					remainingMs: 0,
+					rawInput: ''
+				}
+			}));
+			engine.setDuration(0);
+			return false;
+		}
+
 		const parsed = parseDuration(raw);
 
 		if (!parsed.ok) {
@@ -178,15 +192,34 @@ export function initTimerController() {
 	inputEl.addEventListener('input', () => {
 		const status = engine.getStatus();
 		if (status === 'idle' || status === 'completed') {
-			// Validate as user types, update display if valid
+			// Validate as user types, update display if valid or return to 00:00 if cleared
 			const raw = inputEl.value.trim();
 			if (!raw) {
 				setInputError(null);
+				store.setState((prev) => ({
+					...prev,
+					timer: {
+						...prev.timer,
+						initialDurationSeconds: 0,
+						remainingSeconds: 0,
+						remainingMs: 0,
+						rawInput: ''
+					}
+				}));
+				engine.setDuration(0);
 				return;
 			}
 			const parsed = parseDuration(raw);
 			if (parsed.ok) {
 				setInputError(null);
+				store.setState((prev) => ({
+					...prev,
+					timer: {
+						...prev.timer,
+						initialDurationSeconds: parsed.seconds,
+						rawInput: raw
+					}
+				}));
 				engine.setDuration(parsed.seconds);
 			}
 		}
@@ -240,8 +273,10 @@ export function initTimerController() {
 		engine.stop();
 	});
 
-	// Initialize UI with initial duration
-	displayEl.textContent = formatDuration(DEFAULT_DURATION_SECONDS);
+	// Initialize UI with empty/zero state on fresh load
+	inputEl.value = '';
+	displayEl.textContent = '00:00';
+	displayEl.setAttribute('aria-label', 'Timer: 00:00');
 	btnReset.disabled = true;
 	btnStop.disabled = true;
 

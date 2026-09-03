@@ -24,7 +24,7 @@ export class TimerEngine {
 	private onSessionStop?: () => void;
 
 	constructor(options: TimerEngineOptions = {}) {
-		this.initialDurationSeconds = Math.max(1, options.initialDurationSeconds ?? 300);
+		this.initialDurationSeconds = Math.max(0, options.initialDurationSeconds ?? 0);
 		this.remainingMs = this.initialDurationSeconds * 1000;
 		this.onTick = options.onTick;
 		this.onStatusChange = options.onStatusChange;
@@ -57,7 +57,7 @@ export class TimerEngine {
 	}
 
 	public setDuration(seconds: number): void {
-		const validSeconds = Math.max(1, Math.floor(seconds));
+		const validSeconds = Math.max(0, Math.floor(seconds));
 		this.initialDurationSeconds = validSeconds;
 
 		if (this.status === 'idle' || this.status === 'completed') {
@@ -83,7 +83,14 @@ export class TimerEngine {
 		}
 
 		if (this.status === 'idle' || this.status === 'completed') {
+			if (this.initialDurationSeconds <= 0 && this.remainingMs <= 0) {
+				return;
+			}
 			this.remainingMs = this.initialDurationSeconds * 1000;
+		}
+
+		if (this.remainingMs <= 0) {
+			return;
 		}
 
 		this.targetEndTime = Date.now() + this.remainingMs;
