@@ -53,6 +53,9 @@ export class TimerEngine {
 	}
 
 	public getRemainingMs(): number {
+		if (this.status === 'running' && this.targetEndTime !== null) {
+			return Math.max(0, this.targetEndTime - Date.now());
+		}
 		return Math.max(0, this.remainingMs);
 	}
 
@@ -209,9 +212,13 @@ export class TimerEngine {
 
 		// Fallback interval for background tab execution (since rAF pauses in background)
 		if (typeof setInterval !== 'undefined') {
-			this.backupIntervalId = setInterval(() => {
+			const interval = setInterval(() => {
 				this.tick();
 			}, 250);
+			if (typeof (interval as any)?.unref === 'function') {
+				(interval as any).unref();
+			}
+			this.backupIntervalId = interval;
 		}
 	}
 

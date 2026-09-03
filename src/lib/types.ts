@@ -13,12 +13,33 @@ export interface TimerState {
 	inputError: string | null;
 }
 
+export type StopwatchStatus = 'idle' | 'running' | 'paused' | 'stopped';
+
+export interface StopwatchState {
+	status: StopwatchStatus;
+	elapsedSeconds: number;
+	elapsedMs: number;
+}
+
+export type ClockFormat = '12h' | '24h';
+
+export interface ClockState {
+	format: ClockFormat;
+	hours: number;
+	minutes: number;
+	seconds: number;
+	isAm: boolean;
+	formatted: string;
+}
+
 export interface AppState {
 	mode: AppMode;
 	style: DisplayStyle;
 	size: DisplaySize;
 	soundEnabled: boolean;
 	timer: TimerState;
+	clock: ClockState;
+	stopwatch: StopwatchState;
 }
 
 export type StateListener<T> = (state: T, prevState: T) => void;
