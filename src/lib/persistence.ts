@@ -50,7 +50,7 @@ export function hydrateState(json: string | null, now: number): Omit<PersistedSt
 		const style = ['modern', 'digital', 'analog'].includes(parsed.style) ? parsed.style : 'modern';
 		const size = ['tiny', 'mid', 'big', 'full'].includes(parsed.size) ? parsed.size : 'mid';
 		const previousNonFullSize = ['tiny', 'mid', 'big'].includes(parsed.previousNonFullSize) ? parsed.previousNonFullSize : 'mid';
-		const soundEnabled = typeof parsed.soundEnabled === 'boolean' ? parsed.soundEnabled : true;
+		const soundEnabled = typeof parsed.soundEnabled === 'boolean' ? parsed.soundEnabled : false;
 		
 		let activeSessionEngine = ['timer', 'stopwatch'].includes(parsed.activeSessionEngine) ? parsed.activeSessionEngine : null;
 

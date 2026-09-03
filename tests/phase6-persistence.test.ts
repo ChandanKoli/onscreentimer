@@ -208,3 +208,24 @@ test('Current tasks under Stopwatch owner gain the correct unavailable duration'
 	assert.strictEqual(hydrated.tasks[0].elapsedMs, 7000);
 	assert.strictEqual(hydrated.tasks[0].startTime, 15000); // Updated to now
 });
+
+test('Missing sound preference defaults to OFF', () => {
+	const state = { version: SCHEMA_VERSION, mode: 'timer' }; // soundEnabled omitted
+	const hydrated = hydrateState(JSON.stringify(state), 10000);
+	assert.ok(hydrated);
+	assert.strictEqual(hydrated.soundEnabled, false);
+});
+
+test('Persisted sound ON restores ON', () => {
+	const state = { version: SCHEMA_VERSION, mode: 'timer', soundEnabled: true };
+	const hydrated = hydrateState(JSON.stringify(state), 10000);
+	assert.ok(hydrated);
+	assert.strictEqual(hydrated.soundEnabled, true);
+});
+
+test('Persisted sound OFF restores OFF', () => {
+	const state = { version: SCHEMA_VERSION, mode: 'timer', soundEnabled: false };
+	const hydrated = hydrateState(JSON.stringify(state), 10000);
+	assert.ok(hydrated);
+	assert.strictEqual(hydrated.soundEnabled, false);
+});

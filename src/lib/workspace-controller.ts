@@ -84,7 +84,7 @@ export function initWorkspaceController() {
 		mode: hydratedState?.mode ?? 'timer',
 		style: hydratedState?.style ?? 'modern',
 		size: hydratedState?.size ?? 'mid',
-		soundEnabled: hydratedState?.soundEnabled ?? true,
+		soundEnabled: hydratedState?.soundEnabled ?? false,
 		timer: {
 			status: hydratedState?.timer.status ?? 'idle',
 			initialDurationSeconds: hydratedState?.timer.initialDurationSeconds ?? 0,

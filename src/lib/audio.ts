@@ -36,7 +36,7 @@ export class AudioSystem {
 			osc.frequency.exponentialRampToValueAtTime(783.99, t + 0.2); // G5
 			
 			gain.gain.setValueAtTime(0, t);
-			gain.gain.linearRampToValueAtTime(0.5, t + 0.05);
+			gain.gain.linearRampToValueAtTime(0.2, t + 0.05);
 			gain.gain.exponentialRampToValueAtTime(0.01, t + 1.2);
 			
 			osc.connect(gain);
