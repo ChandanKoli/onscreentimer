@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+interface Props {
+    error?: unknown;
+}
+
+const { error } = Astro.props;
+---
+
+<Layout title="500: Server Error — On Screen Timer" description="Something went wrong on our end.">
+	<div class="min-h-dvh flex flex-col">
+		<SiteHeader />
+
+		<main class="flex-1 w-full flex flex-col items-center justify-center px-4 sm:px-6 py-20 text-center text-zinc-800 dark:text-zinc-200">
+			<div class="mb-4">
+				<span class="text-6xl sm:text-7xl font-bold text-zinc-950 dark:text-zinc-50 tracking-tight">500</span>
+			</div>
+			
+			<h1 class="text-2xl sm:text-3xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight mb-4">
+				Something went wrong on our end.
+			</h1>
+			
+			<p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-md mx-auto mb-10">
+				We're having trouble completing your request right now. Please try again later.
+			</p>
+
+			<a href="/" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-base font-medium shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 mb-12">
+				Back to On Screen Timer
+			</a>
+			
+			<div class="flex items-center gap-6 text-sm">
+				<a href="/guide" class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+					Guide
+				</a>
+				<span class="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-700" aria-hidden="true"></span>
+				<a href="/faq" class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+					FAQ
+				</a>
+			</div>
+		</main>
+		<SiteFooter />
+	</div>
+</Layout>
