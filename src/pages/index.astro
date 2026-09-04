@@ -8,15 +8,20 @@ import TimerWorkspace from '../components/TimerWorkspace.astro';
 		<!-- Header -->
 		<header id="site-header" class="w-full border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 group-data-[size=full]/body:hidden">
 			<div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-				<!-- Brand / Home -->
-				<a
-					href="/"
-					class="flex items-center gap-2 text-zinc-950 dark:text-zinc-50 font-semibold tracking-tight hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded-sm px-1 py-0.5"
-					aria-label="OnScreenTimer Home"
-				>
-					<span class="w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-blue-500" aria-hidden="true"></span>
-					<span class="text-base font-medium">OnScreenTimer</span>
-				</a>
+				<!-- Brand / Home and Nav -->
+				<div class="flex items-center gap-6">
+					<a
+						href="/"
+						class="flex items-center gap-2 text-zinc-950 dark:text-zinc-50 font-semibold tracking-tight hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded-sm px-1 py-0.5"
+						aria-label="OnScreenTimer Home"
+					>
+						<span class="w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-blue-500" aria-hidden="true"></span>
+						<span class="text-base font-medium">OnScreenTimer</span>
+					</a>
+					<nav>
+						<a href="/guide" class="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm px-1 py-0.5">Guide</a>
+					</nav>
+				</div>
 
 				<!-- Header Controls -->
 				<div class="flex items-center gap-2 sm:gap-3">
@@ -130,22 +135,66 @@ import TimerWorkspace from '../components/TimerWorkspace.astro';
 			</aside>
 		</main>
 
-		<!-- Supporting Content (SEO / Documentation) -->
-		<section id="supporting-content" class="w-full max-w-3xl mx-auto px-4 sm:px-6 py-12 border-t border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 text-sm group-data-[size=full]/body:hidden">
-			<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-6">About OnScreenTimer</h2>
-			<div class="space-y-6">
-				<div>
-					<h3 class="font-medium text-zinc-900 dark:text-zinc-100 mb-2">How It Works</h3>
-					<p class="leading-relaxed">OnScreenTimer is a lightweight browser utility offering a Timer, Clock, and Stopwatch. It works directly in your browser without requiring an account. You can set the timer by typing natural durations like <code>10mins</code> or <code>1:30</code>.</p>
+		<!-- How It Works Section -->
+		<section id="how-it-works" class="w-full max-w-5xl mx-auto px-4 sm:px-6 py-12 lg:py-16 border-t border-zinc-200 dark:border-zinc-800 group-data-[size=full]/body:hidden">
+			<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-8 text-center sm:text-left">How It Works</h2>
+			
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+				<!-- Card 1 -->
+				<div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm flex flex-col">
+					<div class="text-xs font-semibold text-blue-600 dark:text-blue-400 tracking-wider mb-2">01</div>
+					<h3 class="text-base font-medium text-zinc-900 dark:text-zinc-100 mb-3">Choose a mode</h3>
+					<p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Use Timer, Clock, or Stopwatch depending on whether you want to count down, see the current time, or measure elapsed time.
+					</p>
 				</div>
-				<div>
-					<h3 class="font-medium text-zinc-900 dark:text-zinc-100 mb-2">Mini To-do & Tasks</h3>
-					<p class="leading-relaxed">Use the To-do panel to track your current tasks alongside the main timer. Tasks track their own active durations independently. Completed tasks naturally move to the bottom, and your state is securely saved in your browser's local storage.</p>
+				<!-- Card 2 -->
+				<div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm flex flex-col">
+					<div class="text-xs font-semibold text-blue-600 dark:text-blue-400 tracking-wider mb-2">02</div>
+					<h3 class="text-base font-medium text-zinc-900 dark:text-zinc-100 mb-3">Set and start</h3>
+					<p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Enter a duration such as <code>5</code>, <code>2mins</code>, <code>02:00</code>, <code>1hr 30mins</code>, or <code>90s</code> then press Start.
+					</p>
 				</div>
-				<div>
-					<h3 class="font-medium text-zinc-900 dark:text-zinc-100 mb-2">Display Modes</h3>
-					<p class="leading-relaxed">Switch between Modern, Digital, and Analog display styles. Use Full size mode for a distraction-free, screen-filling timer or clock, perfect for studying or tracking time from across the room.</p>
+				<!-- Card 3 -->
+				<div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm flex flex-col">
+					<div class="text-xs font-semibold text-blue-600 dark:text-blue-400 tracking-wider mb-2">03</div>
+					<h3 class="text-base font-medium text-zinc-900 dark:text-zinc-100 mb-3">Add your tasks</h3>
+					<p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Use the Mini To-do to add what you are working on. Tasks move through Pending, Current, and Completed.
+					</p>
 				</div>
+				<!-- Card 4 -->
+				<div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm flex flex-col">
+					<div class="text-xs font-semibold text-blue-600 dark:text-blue-400 tracking-wider mb-2">04</div>
+					<h3 class="text-base font-medium text-zinc-900 dark:text-zinc-100 mb-3">Track your current work</h3>
+					<p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Keep up to two Current Tasks at once. Each records its own active work duration while a Timer or Stopwatch session runs.
+					</p>
+				</div>
+				<!-- Card 5 -->
+				<div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm flex flex-col">
+					<div class="text-xs font-semibold text-blue-600 dark:text-blue-400 tracking-wider mb-2">05</div>
+					<h3 class="text-base font-medium text-zinc-900 dark:text-zinc-100 mb-3">Change the view</h3>
+					<p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Switch between Modern, Digital, and Analog, and choose Tiny, Mid, Big, or Full depending on how large or focused you want the display.
+					</p>
+				</div>
+				<!-- Card 6 -->
+				<div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm flex flex-col">
+					<div class="text-xs font-semibold text-blue-600 dark:text-blue-400 tracking-wider mb-2">06</div>
+					<h3 class="text-base font-medium text-zinc-900 dark:text-zinc-100 mb-3">Pick up where you left off</h3>
+					<p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						OnScreenTimer stores supported session state and preferences locally in the browser so refreshing does not automatically erase your work.
+					</p>
+				</div>
+			</div>
+
+			<div class="flex justify-center sm:justify-start">
+				<a href="/guide" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-sm font-medium text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+					Read the full Guide
+					<svg class="w-4 h-4 text-zinc-400 dark:text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+				</a>
 			</div>
 		</section>
 
