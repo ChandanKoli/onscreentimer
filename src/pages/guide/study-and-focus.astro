@@ -4,52 +4,131 @@ import GuideArticleLayout from '../../layouts/GuideArticleLayout.astro';
 
 <GuideArticleLayout 
 	title="Using OnScreenTimer for Study & Focus" 
-	description="Practical tips on using the timer, tasks, and presets for focused study sessions."
+	description="Practical ways to use the timer, tasks, and presets to structure your study sessions."
 >
-	<section class="space-y-4">
-		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Focusing with the Timer</h2>
+	<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+		A visible timer can help you structure a study session, separate different types of work, and stay aware of elapsed or remaining time. 
+	</p>
+
+	<section class="space-y-4 mt-8">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Simple Focus Timer</h2>
 		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			A visible countdown is a simple but effective way to maintain focus. By setting a specific boundary for your work session, you can encourage yourself to stay on task until the timer reaches zero.
+			A common approach is a simple focused session, such as 25 minutes of focused work followed by a short break or review period. 
 		</p>
 		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			A popular approach is the 25-minute focused session. Simply enter <code class="font-mono text-zinc-800 dark:text-zinc-200">25</code>, press Start, and work continuously until the chime sounds. Afterwards, take a short break before starting another session.
+			To do this, you can simply set <code class="font-mono text-zinc-800 dark:text-zinc-200">25</code> or <code class="font-mono text-zinc-800 dark:text-zinc-200">25mins</code> inside Timer mode. Once the timer finishes, you can manually decide whether to take a break or start another session.
 		</p>
 	</section>
 
-	<section class="space-y-4">
-		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Managing Distractions with Full Mode</h2>
+	<section class="space-y-4 mt-8">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">One-Hour Learn / Recall / Solve / Review Block</h2>
 		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			When you need maximum concentration, switch the display size to <strong class="font-medium text-zinc-900 dark:text-zinc-100">Full</strong>. This mode removes the header, footer, and side panels, leaving only the essential timer controls on screen. 
+			This study block divides an hour into specific, manageable steps. This example structure may suit someone who wants a structured routine:
 		</p>
-		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			Combined with your browser's native fullscreen feature, this creates a highly distraction-free environment.
-		</p>
-		<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2">
-			<a href="/guide/display-modes" class="text-blue-600 dark:text-blue-400 hover:underline">Learn more about Display Modes &rarr;</a>
+		<ul class="list-none space-y-3 mt-4 text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300">
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">25 minutes &mdash; Learn:</strong> Read, watch, understand or work through new material.</li>
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">5 minutes &mdash; Recall:</strong> Close notes where practical and try to remember the key ideas.</li>
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">25 minutes &mdash; Solve:</strong> Use the material by solving problems, answering questions or practicing.</li>
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">5 minutes &mdash; Review:</strong> Check mistakes, identify unclear areas and decide what needs another pass.</li>
+		</ul>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed mt-4">
+			Since 25 + 5 + 25 + 5 = 60 minutes, this fills an hour cleanly. This optional study routine is available as a Study Block Preset in OnScreenTimer.
 		</p>
 	</section>
 
-	<section class="space-y-4">
-		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Using Current Tasks</h2>
+	<section class="space-y-4 mt-8">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Longer Study Blocks</h2>
 		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			The Mini To-do allows you to record exactly what you are working on. Promoting a task to <strong class="font-medium text-zinc-900 dark:text-zinc-100">Current</strong> while a Timer or Stopwatch is running acts as an active commitment. 
+			For different needs, OnScreenTimer provides other preset structures. These are options that could be useful depending on the type of work you are doing:
+		</p>
+		<div class="space-y-4 mt-4">
+			<div class="border border-zinc-200 dark:border-zinc-800 rounded-lg p-4 bg-white dark:bg-zinc-900">
+				<h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Deep Study &rarr; Practice</h3>
+				<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">60 minutes / 30 minutes</p>
+				<p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2">May suit someone who wants a long reading/learning period followed by a dedicated practice period.</p>
+			</div>
+			<div class="border border-zinc-200 dark:border-zinc-800 rounded-lg p-4 bg-white dark:bg-zinc-900">
+				<h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Learn &rarr; Solve</h3>
+				<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">30 minutes / 30 minutes</p>
+				<p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2">Could be useful when you want equal time for understanding and application.</p>
+			</div>
+			<div class="border border-zinc-200 dark:border-zinc-800 rounded-lg p-4 bg-white dark:bg-zinc-900">
+				<h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Study &rarr; Solve &rarr; Review</h3>
+				<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">45 minutes / 45 minutes / 30 minutes</p>
+				<p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2">One option for an extended multi-stage session when you have a lot of material to cover.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="space-y-4 mt-8">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Using Current Tasks While Studying</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			While using a timer or preset, you can track what you are specifically working on using the Mini To-do.
 		</p>
 		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			OnScreenTimer tracks the elapsed time for each active task, giving you a clear record of how much time you spent on a specific assignment or problem when it's marked as Completed.
+			For example, you could have:
+		</p>
+		<ul class="list-disc pl-5 space-y-1 text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300">
+			<li>Current Task: <em>Chapter 3 &mdash; Complex Numbers</em></li>
+			<li>Timer: <em>25 minutes</em></li>
+		</ul>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed mt-4">
+			A student can see both the remaining session time on the main display and the accumulated Current Task work time below it. Current Task labels and Study Block phase labels are completely separate.
 		</p>
 	</section>
 
-	<section class="space-y-4">
-		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Structuring with Study Block Presets</h2>
+	<section class="space-y-4 mt-8">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Full Mode</h2>
 		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			If you find a single long timer daunting, try breaking your study session into structured phases using a <strong class="font-medium text-zinc-900 dark:text-zinc-100">Study Block Preset</strong>.
+			Switching the display size to <strong class="font-medium text-zinc-900 dark:text-zinc-100">Big</strong> or <strong class="font-medium text-zinc-900 dark:text-zinc-100">Full</strong> can make the remaining time easier to keep visible from a distance. 
 		</p>
 		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			For example, the <em class="text-zinc-900 dark:text-zinc-100">Learn &rarr; Recall &rarr; Solve &rarr; Review</em> sequence divides an hour of study into specific, manageable steps. By moving from reading to active recall and problem-solving, you can maintain engagement and improve retention.
+			Note that Full mode changes OnScreenTimer's own layout to be larger and more focused. It does not block websites, apps, notifications or device distractions.
 		</p>
-		<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2">
-			<a href="/guide/study-block-presets" class="text-blue-600 dark:text-blue-400 hover:underline">Explore all available Study Block Presets &rarr;</a>
+	</section>
+
+	<section class="space-y-4 mt-8">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Choosing a Study Block</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Here is a practical comparison to help you choose an option that may suit your session:
 		</p>
+		<div class="space-y-4 mt-4">
+			<div class="border border-zinc-200 dark:border-zinc-800 rounded-lg p-4 bg-white dark:bg-zinc-900">
+				<h3 class="font-semibold text-zinc-900 dark:text-zinc-100 text-sm uppercase tracking-wider">Short Focus Session</h3>
+				<p class="text-zinc-600 dark:text-zinc-400 mt-1">25 minutes</p>
+				<p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2"><strong>Useful when:</strong> you want one contained piece of work.</p>
+			</div>
+			<div class="border border-zinc-200 dark:border-zinc-800 rounded-lg p-4 bg-white dark:bg-zinc-900">
+				<h3 class="font-semibold text-zinc-900 dark:text-zinc-100 text-sm uppercase tracking-wider">One-Hour Structured Session</h3>
+				<p class="text-zinc-600 dark:text-zinc-400 mt-1">25 / 5 / 25 / 5</p>
+				<p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2"><strong>Useful when:</strong> you want separate learning, recall, practice and review periods.</p>
+			</div>
+			<div class="border border-zinc-200 dark:border-zinc-800 rounded-lg p-4 bg-white dark:bg-zinc-900">
+				<h3 class="font-semibold text-zinc-900 dark:text-zinc-100 text-sm uppercase tracking-wider">Learn + Solve</h3>
+				<p class="text-zinc-600 dark:text-zinc-400 mt-1">30 / 30</p>
+				<p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2"><strong>Useful when:</strong> you want equal time for understanding and application.</p>
+			</div>
+			<div class="border border-zinc-200 dark:border-zinc-800 rounded-lg p-4 bg-white dark:bg-zinc-900">
+				<h3 class="font-semibold text-zinc-900 dark:text-zinc-100 text-sm uppercase tracking-wider">Deep Study + Practice</h3>
+				<p class="text-zinc-600 dark:text-zinc-400 mt-1">60 / 30</p>
+				<p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2"><strong>Useful when:</strong> you want a longer learning block followed by practice.</p>
+			</div>
+			<div class="border border-zinc-200 dark:border-zinc-800 rounded-lg p-4 bg-white dark:bg-zinc-900">
+				<h3 class="font-semibold text-zinc-900 dark:text-zinc-100 text-sm uppercase tracking-wider">Long Session</h3>
+				<p class="text-zinc-600 dark:text-zinc-400 mt-1">45 / 45 / 30</p>
+				<p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2"><strong>Useful when:</strong> you want an extended multi-stage session.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800">
+		<h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-4">Related Guides</h2>
+		<ul class="space-y-3">
+			<li><a href="/guide/study-block-presets" class="text-blue-600 dark:text-blue-400 hover:underline">Study Block Presets</a></li>
+			<li><a href="/guide/timer-inputs-and-controls" class="text-blue-600 dark:text-blue-400 hover:underline">Timer Inputs &amp; Controls</a></li>
+			<li><a href="/guide/tasks" class="text-blue-600 dark:text-blue-400 hover:underline">Mini To-do &amp; Current Task Timing</a></li>
+			<li><a href="/guide/display-modes" class="text-blue-600 dark:text-blue-400 hover:underline">Display Styles, Sizes &amp; Full Mode</a></li>
+		</ul>
 	</section>
 
 </GuideArticleLayout>
