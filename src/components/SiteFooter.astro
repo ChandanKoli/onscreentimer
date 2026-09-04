@@ -1,5 +1,9 @@
 ---
-// src/components/SiteFooter.astro
+import { getLocaleFromUrl } from '../i18n/utils.ts';
+import { useTranslations } from '../i18n/ui.ts';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
 ---
 
 <footer class="w-full mt-auto border-t border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 py-8 md:py-12 group-data-[size=full]/body:hidden">
@@ -7,7 +11,7 @@
 		<div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
 			<!-- Brand & Description -->
 			<div class="md:col-span-1">
-				<a href="/" class="flex items-center gap-2 text-zinc-950 dark:text-zinc-50 font-semibold tracking-tight hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded-sm px-1 py-0.5 -ml-1 mb-3 w-fit" aria-label="On Screen Timer Home">
+				<a href="/" class="flex items-center gap-2 text-zinc-950 dark:text-zinc-50 font-semibold tracking-tight hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded-sm px-1 py-0.5 -ml-1 mb-3 w-fit" aria-label={t("aria.home")}>
 					<span class="w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-blue-500" aria-hidden="true"></span>
 					<span class="text-base font-medium">On Screen Timer</span>
 				</a>

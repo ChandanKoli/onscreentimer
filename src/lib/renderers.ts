@@ -65,7 +65,7 @@ function renderColon(xOffset: number, yOffset: number = 0): string {
 /**
  * Renders complete Digital 7-Segment SVG string from formatted text (e.g. "05:00", "01:25:30", "10:30:00 AM").
  */
-export function renderDigitalSvg(text: string, ampm?: string | null): string {
+export function renderDigitalSvg(text: string): string {
 	let x = 0;
 	const parts: string[] = [];
 
@@ -83,22 +83,7 @@ export function renderDigitalSvg(text: string, ampm?: string | null): string {
 		}
 	}
 
-	// Render AM/PM indicator if provided
-	if (ampm) {
-		const cleanAmpm = ampm.toUpperCase().trim();
-		x += 10;
-		if (cleanAmpm.startsWith('A')) {
-			parts.push(renderSegmentDigit('A', x, 14, 0.7));
-			x += 30;
-			parts.push(renderSegmentDigit('M', x, 14, 0.7));
-			x += 30;
-		} else if (cleanAmpm.startsWith('P')) {
-			parts.push(renderSegmentDigit('P', x, 14, 0.7));
-			x += 30;
-			parts.push(renderSegmentDigit('M', x, 14, 0.7));
-			x += 30;
-		}
-	}
+	// Removed 7-segment AM/PM rendering; now handled via HTML text badge
 
 	const totalWidth = x;
 	const totalHeight = 66;

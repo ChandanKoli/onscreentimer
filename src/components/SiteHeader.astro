@@ -1,6 +1,7 @@
 ---
-import { getLocaleFromUrl } from '../i18n/utils';
-import { LOCALES } from '../i18n/config';
+import { getLocaleFromUrl } from '../i18n/utils.ts';
+import { LOCALES } from '../i18n/config.ts';
+import { useTranslations } from '../i18n/ui.ts';
 
 const pathname = Astro.url.pathname;
 const isHome = pathname === '/';
@@ -8,6 +9,7 @@ const isGuide = pathname.startsWith('/guide');
 
 const currentLocaleId = getLocaleFromUrl(Astro.url);
 const currentLocale = LOCALES[currentLocaleId];
+const t = useTranslations(currentLocaleId);
 ---
 
 <header id="site-header" class="w-full border-b border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-sm sticky top-0 z-40 group-data-[size=full]/body:hidden">
@@ -19,7 +21,7 @@ const currentLocale = LOCALES[currentLocaleId];
 			<a
 				href="/"
 				class="flex items-center gap-2 text-zinc-950 dark:text-zinc-50 font-semibold tracking-tight hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded-sm px-1 py-0.5 "
-				aria-label="On Screen Timer Home"
+				aria-label={t("aria.home")}
 			>
 				<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 					<line x1="10" x2="14" y1="2" y2="2" />
@@ -36,8 +38,8 @@ const currentLocale = LOCALES[currentLocaleId];
 					type="button"
 					id="btn-sound"
 					class="w-8 h-8 rounded-full border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-					aria-label="Sound enabled"
-					title="Sound enabled"
+					aria-label={t("aria.soundEnabled")}
+					title={t("aria.soundEnabled")}
 				>
 					<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
@@ -62,8 +64,8 @@ const currentLocale = LOCALES[currentLocaleId];
 					type="button"
 					id="btn-theme"
 					class="w-8 h-8 rounded-full border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-					aria-label="Toggle theme"
-					title="Toggle theme"
+					aria-label={t("aria.toggleTheme")}
+					title={t("aria.toggleTheme")}
 				>
 					<svg id="theme-icon-sun" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -78,8 +80,8 @@ const currentLocale = LOCALES[currentLocaleId];
 					type="button"
 					id="btn-menu"
 					class="w-8 h-8 rounded-md border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-					aria-label="Settings and menu"
-					title="Menu"
+					aria-label={t("aria.menu")}
+					title={t("aria.menuTitle")}
 				>
 					<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -89,7 +91,7 @@ const currentLocale = LOCALES[currentLocaleId];
 		</div>
 
 		<!-- ROW 2: Nav -->
-		<nav aria-label="Primary" class="flex items-center gap-4 sm:gap-6">
+		<nav aria-label={t("aria.primaryNav")} class="flex items-center gap-4 sm:gap-6">
 			<a
 				href="/#tool"
 				class={`text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm px-1 py-0.5 ${
@@ -99,7 +101,7 @@ const currentLocale = LOCALES[currentLocaleId];
 				}`}
 				aria-current={isHome ? 'page' : undefined}
 			>
-				Tool
+				{t('nav.tool')}
 			</a>
 			<a
 				href="/guide"
@@ -110,7 +112,7 @@ const currentLocale = LOCALES[currentLocaleId];
 				}`}
 				aria-current={isGuide ? 'page' : undefined}
 			>
-				Guide
+				{t('nav.guide')}
 			</a>
 			<a
 				href="/faq"
@@ -121,7 +123,7 @@ const currentLocale = LOCALES[currentLocaleId];
 				}`}
 				aria-current={pathname === '/faq' ? 'page' : undefined}
 			>
-				FAQ
+				{t('nav.faq')}
 			</a>
 		</nav>
 	</div>

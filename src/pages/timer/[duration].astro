@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getLocaleFromUrl } from '../../i18n/utils.ts';
+import { useTranslations } from '../../i18n/ui.ts';
 import TimerWorkspace from '../../components/TimerWorkspace.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -66,6 +68,8 @@ if (minutes === 1) {
 	];
 }
 
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
 ---
 <Layout title={title} description={description}>
 	<div class="min-h-dvh flex flex-col justify-between">
@@ -76,7 +80,7 @@ if (minutes === 1) {
 		<main id="tool" class="scroll-mt-28 flex-1 lg:min-h-[calc(100dvh-3.5rem)] max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 lg:py-12 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-12 group-data-[size=full]/body:items-center">
 			
 			<!-- Reopen Button (Desktop Minimized State) -->
-			<button type="button" id="btn-desktop-todo-reopen" class="hidden fixed left-0 top-1/2 -translate-y-1/2 w-6 h-16 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 border-l-0 rounded-r-md shadow-sm items-center justify-center text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 group-data-[size=full]/body:!hidden transition-colors z-40" aria-label="Reopen To-do" title="To-do">
+			<button type="button" id="btn-desktop-todo-reopen" class="hidden fixed left-0 top-1/2 -translate-y-1/2 w-6 h-16 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 border-l-0 rounded-r-md shadow-sm items-center justify-center text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 group-data-[size=full]/body:!hidden transition-colors z-40" aria-label={t("aria.reopenTodo")} title={t("tasks.todo")}>
 				<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
 			</button>
 
@@ -98,7 +102,7 @@ if (minutes === 1) {
 					<h2 class="text-sm font-medium text-zinc-900 dark:text-zinc-100 text-left">
 						To-do
 					</h2>
-					<button type="button" id="btn-desktop-todo-minimize" class="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 rounded p-0.5" aria-label="Minimize To-do" title="Minimize">
+					<button type="button" id="btn-desktop-todo-minimize" class="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 rounded p-0.5" aria-label={t("aria.minimizeTodo")} title={t("aria.minimize")}>
 						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
 					</button>
 				</div>
@@ -106,8 +110,8 @@ if (minutes === 1) {
 				<!-- Expandable Content -->
 				<div id="todo-content" class="hidden lg:flex flex-col mt-4 lg:mt-0">
 					<form id="todo-form" class="relative flex items-center mb-4">
-						<input type="text" id="todo-input" placeholder="Add a task..." class="w-full h-9 px-3 pr-9 text-sm rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors" autocomplete="off" />
-						<button type="submit" class="absolute right-1 w-7 h-7 flex items-center justify-center text-zinc-500 hover:text-blue-600 dark:hover:text-blue-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded" aria-label="Add task">
+						<input type="text" id="todo-input" placeholder={t("tasks.addPlaceholder")} class="w-full h-9 px-3 pr-9 text-sm rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors" autocomplete="off" />
+						<button type="submit" class="absolute right-1 w-7 h-7 flex items-center justify-center text-zinc-500 hover:text-blue-600 dark:hover:text-blue-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded" aria-label={t("aria.addTask")}>
 							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
 						</button>
 					</form>
@@ -179,7 +183,7 @@ if (minutes === 1) {
 		<!-- Burger Menu Panel -->
 		<div id="burger-menu-panel" class="fixed right-0 top-0 bottom-0 w-64 bg-white dark:bg-zinc-900 border-l border-zinc-200 dark:border-zinc-800 shadow-xl z-50 transform translate-x-full transition-transform duration-300 group-data-[size=full]/body:hidden flex flex-col">
 			<div class="h-14 flex items-center justify-between px-4 border-b border-zinc-200 dark:border-zinc-800">
-				<span class="font-medium text-zinc-900 dark:text-zinc-100 text-sm">Settings</span>
+				<span class="font-medium text-zinc-900 dark:text-zinc-100 text-sm">{t('menu.settings')}</span>
 				<button type="button" id="btn-close-menu" class="p-1 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
 					<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
 				</button>

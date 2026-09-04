@@ -14,8 +14,14 @@ import { serializeState, hydrateState } from './persistence.ts';
 import { AudioSystem } from './audio.ts';
 import type { AppState, AppMode, DisplayStyle, TimerStatus, StopwatchStatus, Task } from './types.ts';
 import { STUDY_PRESETS } from './presets.ts';
+import { getLocaleFromUrl } from '../i18n/utils.ts';
+import { useTranslations } from '../i18n/ui.ts';
 
 export function initWorkspaceController(config?: { overrideTimerDuration?: number }) {
+	const currentLocale = (typeof window !== 'undefined' && window.location && window.location.href)
+		? getLocaleFromUrl(new URL(window.location.href))
+		: 'en';
+	const tMsg = useTranslations(currentLocale as string);
 	// Root DOM Elements
 	const originalTitle = document.title;
 
@@ -26,6 +32,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 
 	const displayDigital = document.getElementById('display-digital');
 	const digitalSvgContainer = document.getElementById('digital-svg-container');
+	const digitalAmPmBadge = document.getElementById('digital-ampm-badge');
 
 	const displayAnalog = document.getElementById('display-analog');
 	const handHour = document.getElementById('hand-hour') as SVGLineElement | null;
@@ -275,7 +282,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 					store.setState(prev => ({ ...prev, activePresetId: null, activeSegmentIndex: 0 }));
 					const presetPhaseLabel = document.getElementById('preset-phase-label');
 					if (presetPhaseLabel) {
-						presetPhaseLabel.textContent = 'Block complete';
+						presetPhaseLabel.textContent = tMsg('preset.blockComplete');
 						presetPhaseLabel.classList.remove('hidden');
 						setTimeout(() => {
 							updatePresetLabel(store.getState());
@@ -542,19 +549,19 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			let actions = '';
 			if (isPending) {
 				actions = `
-					<button type="button" data-task-action="make-current" data-task-id="${t.id}" class="hidden group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-amber-500 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-500" aria-label="Make current" title="Make current">
+					<button type="button" data-task-action="make-current" data-task-id="${t.id}" class="hidden group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-amber-500 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-500" aria-label="${tMsg('tasks.makeCurrent')}" title="${tMsg('tasks.makeCurrent')}">
 						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
 					</button>
-					<button type="button" data-task-action="delete" data-task-id="${t.id}" class="hidden group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-rose-500 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-rose-500" aria-label="Delete task" title="Delete">
+					<button type="button" data-task-action="delete" data-task-id="${t.id}" class="hidden group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-rose-500 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-rose-500" aria-label="${tMsg('tasks.delete')}" title="${tMsg('tasks.delete')}">
 						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
 					</button>
 				`;
 			} else if (isCompleted) {
 				actions = `
-					<button type="button" data-task-action="restart" data-task-id="${t.id}" class="hidden group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-500" aria-label="Restart task" title="Restart">
+					<button type="button" data-task-action="restart" data-task-id="${t.id}" class="hidden group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-500" aria-label="${tMsg('tasks.restart')}" title="${tMsg('tasks.restart')}">
 						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
 					</button>
-					<button type="button" data-task-action="delete" data-task-id="${t.id}" class="hidden group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-rose-500 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-rose-500" aria-label="Delete task" title="Delete">
+					<button type="button" data-task-action="delete" data-task-id="${t.id}" class="hidden group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-rose-500 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-rose-500" aria-label="${tMsg('tasks.delete')}" title="${tMsg('tasks.delete')}">
 						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
 					</button>
 				`;
@@ -586,7 +593,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 		if (state.tasks.length > 0 && state.tasks.every((t: any) => t.status === 'completed')) {
 			currentTaskContainer.innerHTML = `
 				<div class="text-sm font-medium text-emerald-600 dark:text-emerald-500 text-left py-1">
-					✓ All tasks completed
+					${tMsg('tasks.allCompleted')}
 				</div>
 			`;
 			return;
@@ -614,10 +621,10 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 					<div class="flex items-center gap-3 shrink-0 ml-3">
 						<span id="current-time-${t.id}" class="text-xs font-mono text-zinc-600 dark:text-zinc-400 tabular-nums"></span>
 						<div class="flex items-center gap-1">
-							<button type="button" data-task-action="complete" data-task-id="${t.id}" class="w-6 h-6 rounded flex items-center justify-center text-zinc-500 hover:text-emerald-600 dark:hover:text-emerald-500 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500" aria-label="Complete task" title="Complete task">
+							<button type="button" data-task-action="complete" data-task-id="${t.id}" class="w-6 h-6 rounded flex items-center justify-center text-zinc-500 hover:text-emerald-600 dark:hover:text-emerald-500 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500" aria-label="${tMsg('tasks.completeTask')}" title="${tMsg('tasks.completeTask')}">
 								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
 							</button>
-							<button type="button" data-task-action="return-pending" data-task-id="${t.id}" class="w-6 h-6 rounded flex items-center justify-center text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-500" aria-label="Return to pending" title="Return to pending">
+							<button type="button" data-task-action="return-pending" data-task-id="${t.id}" class="w-6 h-6 rounded flex items-center justify-center text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-500" aria-label="${tMsg('tasks.returnPending')}" title="${tMsg('tasks.returnPending')}">
 								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
 							</button>
 						</div>
@@ -662,7 +669,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			const segmentsStr = preset.segments.map(s => s.durationSeconds / 60).join(' · ');
 			return `
 				<button type="button" data-preset-id="${preset.id}" class="w-full text-left p-3 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
-					<div class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-1">${preset.name}</div>
+					<div class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-1">${tMsg(`preset.${preset.id}.name` as any) || preset.name}</div>
 					<div class="text-xs text-zinc-500 dark:text-zinc-400">${totalMins} min (${segmentsStr})</div>
 				</button>
 			`;
@@ -695,7 +702,8 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			if (state.mode === 'timer' && state.activePresetId) {
 				const preset = STUDY_PRESETS.find(p => p.id === state.activePresetId);
 				if (preset && preset.segments[state.activeSegmentIndex]) {
-					presetPhaseLabel.textContent = preset.segments[state.activeSegmentIndex].phase;
+					const rawPhase = preset.segments[state.activeSegmentIndex].phase;
+					presetPhaseLabel.textContent = tMsg(`preset.phase.${rawPhase}` as any) || rawPhase;
 					presetPhaseLabel.classList.remove('hidden');
 				} else {
 					presetPhaseLabel.classList.add('hidden');
@@ -819,9 +827,10 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			// Modern
 			if (modernTimeText) modernTimeText.textContent = formatted;
 			if (modernTimePeriod) modernTimePeriod.classList.add('hidden');
-			displayModern?.setAttribute('aria-label', `Timer: ${formatted}`);
+			displayModern?.setAttribute('aria-label', `${tMsg('aria.timerDisplay')}: ${formatted}`);
 
 			// Digital
+			if (digitalAmPmBadge) digitalAmPmBadge.classList.add('hidden');
 			if (digitalSvgContainer && style === 'digital') {
 				digitalSvgContainer.innerHTML = renderDigitalSvg(formatted);
 			}
@@ -855,9 +864,10 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			// Modern
 			if (modernTimeText) modernTimeText.textContent = formatted;
 			if (modernTimePeriod) modernTimePeriod.classList.add('hidden');
-			displayModern?.setAttribute('aria-label', `Stopwatch: ${formatted}`);
+			displayModern?.setAttribute('aria-label', `${tMsg('mode.stopwatch')}: ${formatted}`);
 
 			// Digital
+			if (digitalAmPmBadge) digitalAmPmBadge.classList.add('hidden');
 			if (digitalSvgContainer && style === 'digital') {
 				digitalSvgContainer.innerHTML = renderDigitalSvg(formatted);
 			}
@@ -889,18 +899,25 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			if (modernTimeText) modernTimeText.textContent = timeFormatted;
 			if (modernTimePeriod) {
 				if (clock.format === '12h') {
-					modernTimePeriod.textContent = clock.isAm ? 'AM' : 'PM';
+					modernTimePeriod.textContent = clock.isAm ? tMsg('clock.am') : tMsg('clock.pm');
 					modernTimePeriod.classList.remove('hidden');
 				} else {
 					modernTimePeriod.classList.add('hidden');
 				}
 			}
-			displayModern?.setAttribute('aria-label', `Clock: ${clock.formatted}`);
+			displayModern?.setAttribute('aria-label', `${tMsg('mode.clock')}: ${clock.formatted}`);
 
 			// Digital
+			if (digitalAmPmBadge) {
+				if (style === 'digital' && clock.format === '12h') {
+					digitalAmPmBadge.textContent = clock.isAm ? tMsg('clock.am') : tMsg('clock.pm');
+					digitalAmPmBadge.classList.remove('hidden');
+				} else {
+					digitalAmPmBadge.classList.add('hidden');
+				}
+			}
 			if (digitalSvgContainer && style === 'digital') {
-				const ampm = clock.format === '12h' ? (clock.isAm ? 'AM' : 'PM') : null;
-				digitalSvgContainer.innerHTML = renderDigitalSvg(timeFormatted, ampm);
+				digitalSvgContainer.innerHTML = renderDigitalSvg(timeFormatted);
 			}
 
 			// Analog (Clock hands advance clockwise with local time)
@@ -912,7 +929,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 
 				if (analogAmPmBadge) {
 					if (clock.format === '12h') {
-						analogAmPmBadge.textContent = clock.isAm ? 'AM' : 'PM';
+						analogAmPmBadge.textContent = clock.isAm ? tMsg('clock.am') : tMsg('clock.pm');
 						analogAmPmBadge.classList.remove('hidden');
 					} else {
 						analogAmPmBadge.classList.add('hidden');
@@ -929,17 +946,17 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 		// --- D. Timer Primary Button (Start / Pause / Resume) ---
 		if (btnTimerPrimary) {
 			if (timer.status === 'running') {
-				btnTimerPrimary.textContent = 'Pause';
+				btnTimerPrimary.textContent = tMsg('timer.pause');
 				btnTimerPrimary.setAttribute('aria-label', 'Pause timer');
 				btnTimerPrimary.classList.remove('bg-blue-600', 'dark:bg-blue-500');
 				btnTimerPrimary.classList.add('bg-zinc-800', 'dark:bg-zinc-200', 'text-white', 'dark:text-zinc-950');
 			} else if (timer.status === 'paused') {
-				btnTimerPrimary.textContent = 'Resume';
+				btnTimerPrimary.textContent = tMsg('timer.resume');
 				btnTimerPrimary.setAttribute('aria-label', 'Resume timer');
 				btnTimerPrimary.classList.remove('bg-zinc-800', 'dark:bg-zinc-200', 'text-white', 'dark:text-zinc-950');
 				btnTimerPrimary.classList.add('bg-blue-600', 'dark:bg-blue-500', 'text-white');
 			} else {
-				btnTimerPrimary.textContent = 'Start';
+				btnTimerPrimary.textContent = tMsg('timer.start');
 				btnTimerPrimary.setAttribute('aria-label', 'Start timer');
 				btnTimerPrimary.classList.remove('bg-zinc-800', 'dark:bg-zinc-200', 'text-white', 'dark:text-zinc-950');
 				btnTimerPrimary.classList.add('bg-blue-600', 'dark:bg-blue-500', 'text-white');
@@ -964,17 +981,17 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 		// --- F. Stopwatch Primary Button (Start / Pause / Resume) ---
 		if (btnStopwatchPrimary) {
 			if (stopwatch.status === 'running') {
-				btnStopwatchPrimary.textContent = 'Pause';
+				btnStopwatchPrimary.textContent = tMsg('stopwatch.pause');
 				btnStopwatchPrimary.setAttribute('aria-label', 'Pause stopwatch');
 				btnStopwatchPrimary.classList.remove('bg-blue-600', 'dark:bg-blue-500');
 				btnStopwatchPrimary.classList.add('bg-zinc-800', 'dark:bg-zinc-200', 'text-white', 'dark:text-zinc-950');
 			} else if (stopwatch.status === 'paused') {
-				btnStopwatchPrimary.textContent = 'Resume';
+				btnStopwatchPrimary.textContent = tMsg('stopwatch.resume');
 				btnStopwatchPrimary.setAttribute('aria-label', 'Resume stopwatch');
 				btnStopwatchPrimary.classList.remove('bg-zinc-800', 'dark:bg-zinc-200', 'text-white', 'dark:text-zinc-950');
 				btnStopwatchPrimary.classList.add('bg-blue-600', 'dark:bg-blue-500', 'text-white');
 			} else {
-				btnStopwatchPrimary.textContent = 'Start';
+				btnStopwatchPrimary.textContent = tMsg('stopwatch.start');
 				btnStopwatchPrimary.setAttribute('aria-label', 'Start stopwatch');
 				btnStopwatchPrimary.classList.remove('bg-zinc-800', 'dark:bg-zinc-200', 'text-white', 'dark:text-zinc-950');
 				btnStopwatchPrimary.classList.add('bg-blue-600', 'dark:bg-blue-500', 'text-white');
@@ -1015,8 +1032,8 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 
 		const modeCap = mode.charAt(0).toUpperCase() + mode.slice(1);
 		const styleCap = style.charAt(0).toUpperCase() + style.slice(1);
-		btnModeDropdown?.setAttribute('aria-label', `Select mode, currently ${modeCap}`);
-		btnStyleDropdown?.setAttribute('aria-label', `Select style, currently ${styleCap}`);
+		btnModeDropdown?.setAttribute('aria-label', `${tMsg('aria.selectMode')}, ${tMsg('aria.currently')} ${tMsg(`mode.${state.mode}` as any)}`);
+		btnStyleDropdown?.setAttribute('aria-label', `${tMsg('aria.selectStyle')}, ${tMsg('aria.currently')} ${tMsg(`style.${state.style}` as any)}`);
 	});
 
 	// 5. Timer Input Handling (Preserving Phase 2 behavior)
@@ -1309,7 +1326,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 		});
 
 		const sizeCap = state.size.charAt(0).toUpperCase() + state.size.slice(1);
-		btnSizeDropdown?.setAttribute('aria-label', `Select size, currently ${sizeCap}`);
+		btnSizeDropdown?.setAttribute('aria-label', `${tMsg('aria.selectSize')}, ${tMsg('aria.currently')} ${tMsg(`size.${state.size}` as any)}`);
 	});
 
 	// 7.5 Sound Toggle & Keyboard Interactions
@@ -1327,11 +1344,11 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 	store.subscribe((state) => {
 		if (btnSound) {
 			if (state.soundEnabled) {
-				btnSound.setAttribute('aria-label', 'Sound enabled, click to mute');
+				btnSound.setAttribute('aria-label', tMsg('aria.soundEnabledMute'));
 				btnSound.title = 'Mute sound';
 				btnSound.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>`;
 			} else {
-				btnSound.setAttribute('aria-label', 'Sound muted, click to enable');
+				btnSound.setAttribute('aria-label', tMsg('aria.soundMutedEnable'));
 				btnSound.title = 'Enable sound';
 				btnSound.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /><line x1="17" y1="9" x2="23" y2="15" stroke-linecap="round" stroke-linejoin="round" /><line x1="23" y1="9" x2="17" y2="15" stroke-linecap="round" stroke-linejoin="round" /></svg>`;
 			}

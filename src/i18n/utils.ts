@@ -1,4 +1,4 @@
-import { LOCALES, DEFAULT_LOCALE, type LocaleId } from './config';
+import { LOCALES, DEFAULT_LOCALE, type LocaleId } from './config.ts';
 
 /**
  * Identify the locale from the current URL pathname.

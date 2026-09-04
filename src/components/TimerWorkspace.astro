@@ -2,6 +2,11 @@
 // TimerWorkspace.astro - Core Workspace supporting Timer, Clock, and Stopwatch with Modern, Digital, and Analog styles
 import { generateHourNumerals, generateDialTicks } from '../lib/renderers';
 
+import { getLocaleFromUrl } from '../i18n/utils.ts';
+import { useTranslations } from '../i18n/ui.ts';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
 const numerals = generateHourNumerals();
 const ticks = generateDialTicks();
 ---
@@ -17,10 +22,10 @@ const ticks = generateDialTicks();
 			role="timer"
 			aria-live="off"
 			aria-atomic="true"
-			aria-label="Timer: 00:00"
+			aria-label={`${t("aria.timerDisplay")}: 00:00`}
 		>
 			<span id="modern-time-text">00:00</span>
-			<span id="modern-time-period" class="hidden text-xl sm:text-2xl ml-2 sm:ml-3 font-sans font-medium text-zinc-500 dark:text-zinc-400 select-none"></span>
+			<span id="modern-time-period" class="hidden text-xl sm:text-2xl ml-2 sm:ml-3 font-sans font-medium tracking-widest text-zinc-500 dark:text-zinc-400 select-none"></span>
 		</div>
 
 		<!-- Digital Display Style (Segmented SVG) -->
@@ -30,10 +35,18 @@ const ticks = generateDialTicks();
 			role="timer"
 			aria-live="off"
 			aria-atomic="true"
-			aria-label="Digital Display"
+			aria-label={t("aria.digitalDisplay")}
 		>
-			<div id="digital-svg-container" class="w-full flex justify-center items-center">
+			<div id="digital-svg-container" class="flex justify-center items-center grow">
 				<!-- Injected by renderDigitalSvg -->
+			</div>
+			<!-- Digital AM/PM Badge -->
+			<div
+				id="digital-ampm-badge"
+				class="hidden ml-2 sm:ml-4 px-1.5 py-0.5 sm:px-2 sm:py-1 text-xs sm:text-sm font-semibold tracking-widest rounded border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 shadow-sm shrink-0"
+				aria-hidden="true"
+			>
+				AM
 			</div>
 		</div>
 
@@ -44,7 +57,7 @@ const ticks = generateDialTicks();
 			role="timer"
 			aria-live="off"
 			aria-atomic="true"
-			aria-label="Analog Display"
+			aria-label={t("aria.analogDisplay")}
 		>
 			<div class="relative w-64 h-64 sm:w-72 sm:h-72 group-data-[size=tiny]/body:w-48 group-data-[size=tiny]/body:h-48 group-data-[size=tiny]/body:sm:w-48 group-data-[size=tiny]/body:sm:h-48 group-data-[size=big]/body:w-96 group-data-[size=big]/body:h-96 group-data-[size=big]/body:sm:w-96 group-data-[size=big]/body:sm:h-96 group-data-[size=full]/body:w-[350px] group-data-[size=full]/body:h-[350px] group-data-[size=full]/body:sm:w-[500px] group-data-[size=full]/body:sm:h-[500px] select-none transition-all duration-300 motion-reduce:transition-none">
 				<!-- Analog AM/PM Badge -->
@@ -159,12 +172,12 @@ const ticks = generateDialTicks();
 		<div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 w-full">
 			<!-- Set Timer Input -->
 			<form id="timer-form" class="relative flex items-center m-0 p-0" novalidate>
-				<label for="timer-input" class="sr-only">Set timer duration</label>
+				<label for="timer-input" class="sr-only">{t('aria.setTimerDuration')}</label>
 				<input
 					id="timer-input"
 					type="text"
 					value=""
-					placeholder="eg: 2mins, 02:00, 1hr 30mins, 90s"
+					placeholder={t("timer.placeholder")}
 					class="h-10 sm:h-11 px-3 py-2 text-sm rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 focus-visible:border-transparent transition-colors w-48 sm:w-56 disabled:opacity-50 disabled:cursor-not-allowed"
 					autocomplete="off"
 					spellcheck="false"
@@ -177,9 +190,9 @@ const ticks = generateDialTicks();
 				type="button"
 				id="btn-timer-primary"
 				class="h-10 sm:h-11 px-5 sm:px-6 rounded-md bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-medium text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-950 flex items-center justify-center cursor-pointer shadow-xs disabled:opacity-50 disabled:cursor-not-allowed"
-				aria-label="Start timer"
+				aria-label={t("aria.startTimer")}
 			>
-				Start
+				{t("timer.start")}
 			</button>
 
 			<!-- Reset Button -->
@@ -187,10 +200,10 @@ const ticks = generateDialTicks();
 				type="button"
 				id="btn-timer-reset"
 				class="h-10 sm:h-11 px-3.5 sm:px-4 rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-950 flex items-center justify-center cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white dark:disabled:hover:bg-zinc-900"
-				aria-label="Reset timer"
+				aria-label={t("aria.resetTimer")}
 				disabled
 			>
-				Reset
+				{t("timer.reset")}
 			</button>
 
 			<!-- Stop Button -->
@@ -198,10 +211,10 @@ const ticks = generateDialTicks();
 				type="button"
 				id="btn-timer-stop"
 				class="h-10 sm:h-11 px-3.5 sm:px-4 rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-950 flex items-center justify-center cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white dark:disabled:hover:bg-zinc-900"
-				aria-label="Stop timer"
+				aria-label={t("aria.stopTimer")}
 				disabled
 			>
-				Stop
+				{t("timer.stop")}
 			</button>
 		</div>
 
@@ -223,9 +236,9 @@ const ticks = generateDialTicks();
 				type="button"
 				id="btn-stopwatch-primary"
 				class="h-10 sm:h-11 px-5 sm:px-6 rounded-md bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-medium text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-950 flex items-center justify-center cursor-pointer shadow-xs disabled:opacity-50 disabled:cursor-not-allowed"
-				aria-label="Start stopwatch"
+				aria-label={t("aria.startStopwatch")}
 			>
-				Start
+				{t("stopwatch.start")}
 			</button>
 
 			<!-- Reset Button -->
@@ -233,10 +246,10 @@ const ticks = generateDialTicks();
 				type="button"
 				id="btn-stopwatch-reset"
 				class="h-10 sm:h-11 px-3.5 sm:px-4 rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-950 flex items-center justify-center cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white dark:disabled:hover:bg-zinc-900"
-				aria-label="Reset stopwatch"
+				aria-label={t("aria.resetStopwatch")}
 				disabled
 			>
-				Reset
+				{t("stopwatch.reset")}
 			</button>
 
 			<!-- Stop Button (Preserves final elapsed duration) -->
@@ -244,10 +257,10 @@ const ticks = generateDialTicks();
 				type="button"
 				id="btn-stopwatch-stop"
 				class="h-10 sm:h-11 px-3.5 sm:px-4 rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-950 flex items-center justify-center cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white dark:disabled:hover:bg-zinc-900"
-				aria-label="Stop stopwatch"
+				aria-label={t("aria.stopStopwatch")}
 				disabled
 			>
-				Stop
+				{t("stopwatch.stop")}
 			</button>
 		</div>
 	</div>
@@ -269,9 +282,9 @@ const ticks = generateDialTicks();
 				type="button"
 				id="btn-exit-full"
 				class="hidden group-data-[size=full]/body:flex fixed bottom-6 left-6 z-50 h-8 px-3 text-xs font-medium rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none items-center gap-1.5 cursor-pointer shadow-lg"
-				aria-label="Exit full size mode"
+				aria-label={t("aria.exitFull")}
 			>
-				<span>Exit Full</span>
+				<span>{t("workspace.exitFull")}</span>
 			</button>
 
 			<!-- MODE Dropdown -->
@@ -282,7 +295,7 @@ const ticks = generateDialTicks();
 					aria-haspopup="true"
 					aria-expanded="false"
 					class="h-8 px-2.5 sm:px-3 text-xs font-medium rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none flex items-center gap-1.5 cursor-pointer shadow-2xs"
-					aria-label="Select mode, currently Timer"
+					aria-label={`${t("aria.selectMode")}, ${t("aria.currently")} ${t("mode.timer")}`}
 				>
 					<span class="text-zinc-500 dark:text-zinc-400 font-normal">MODE</span>
 					<span class="text-zinc-400 text-[10px]">▾</span>
@@ -302,7 +315,7 @@ const ticks = generateDialTicks();
 						data-mode="timer"
 						class="w-full text-left px-3 py-1.5 text-xs font-medium text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center justify-between cursor-pointer focus-visible:bg-zinc-100 dark:focus-visible:bg-zinc-800 focus-visible:outline-none"
 					>
-						<span>Timer</span>
+						<span>{t("mode.timer")}</span>
 						<span class="mode-check text-blue-600 dark:text-blue-400">✓</span>
 					</button>
 					<button
@@ -312,7 +325,7 @@ const ticks = generateDialTicks();
 						data-mode="clock"
 						class="w-full text-left px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center justify-between cursor-pointer focus-visible:bg-zinc-100 dark:focus-visible:bg-zinc-800 focus-visible:outline-none"
 					>
-						<span>Clock</span>
+						<span>{t("mode.clock")}</span>
 						<span class="mode-check text-blue-600 dark:text-blue-400 hidden">✓</span>
 					</button>
 					<button
@@ -322,7 +335,7 @@ const ticks = generateDialTicks();
 						data-mode="stopwatch"
 						class="w-full text-left px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center justify-between cursor-pointer focus-visible:bg-zinc-100 dark:focus-visible:bg-zinc-800 focus-visible:outline-none"
 					>
-						<span>Stopwatch</span>
+						<span>{t("mode.stopwatch")}</span>
 						<span class="mode-check text-blue-600 dark:text-blue-400 hidden">✓</span>
 					</button>
 				</div>
@@ -336,7 +349,7 @@ const ticks = generateDialTicks();
 					aria-haspopup="true"
 					aria-expanded="false"
 					class="h-8 px-2.5 sm:px-3 text-xs font-medium rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none flex items-center gap-1.5 cursor-pointer shadow-2xs"
-					aria-label="Select style, currently Modern"
+					aria-label={`${t("aria.selectStyle")}, ${t("aria.currently")} ${t("style.modern")}`}
 				>
 					<span class="text-zinc-500 dark:text-zinc-400 font-normal">STYLE</span>
 					<span class="text-zinc-400 text-[10px]">▾</span>
@@ -356,7 +369,7 @@ const ticks = generateDialTicks();
 						data-style="modern"
 						class="w-full text-left px-3 py-1.5 text-xs font-medium text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center justify-between cursor-pointer focus-visible:bg-zinc-100 dark:focus-visible:bg-zinc-800 focus-visible:outline-none"
 					>
-						<span>Modern</span>
+						<span>{t("style.modern")}</span>
 						<span class="style-check text-blue-600 dark:text-blue-400">✓</span>
 					</button>
 					<button
@@ -366,7 +379,7 @@ const ticks = generateDialTicks();
 						data-style="digital"
 						class="w-full text-left px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center justify-between cursor-pointer focus-visible:bg-zinc-100 dark:focus-visible:bg-zinc-800 focus-visible:outline-none"
 					>
-						<span>Digital</span>
+						<span>{t("style.digital")}</span>
 						<span class="style-check text-blue-600 dark:text-blue-400 hidden">✓</span>
 					</button>
 					<button
@@ -376,7 +389,7 @@ const ticks = generateDialTicks();
 						data-style="analog"
 						class="w-full text-left px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center justify-between cursor-pointer focus-visible:bg-zinc-100 dark:focus-visible:bg-zinc-800 focus-visible:outline-none"
 					>
-						<span>Analog</span>
+						<span>{t("style.analog")}</span>
 						<span class="style-check text-blue-600 dark:text-blue-400 hidden">✓</span>
 					</button>
 				</div>
@@ -390,7 +403,7 @@ const ticks = generateDialTicks();
 					aria-haspopup="true"
 					aria-expanded="false"
 					class="h-8 px-2.5 sm:px-3 text-xs font-medium rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none flex items-center gap-1.5 cursor-pointer shadow-2xs group-data-[size=full]/body:shadow-lg"
-					aria-label="Select size, currently Mid"
+					aria-label={`${t("aria.selectSize")}, ${t("aria.currently")} ${t("size.mid")}`}
 				>
 					<span class="text-zinc-500 dark:text-zinc-400 font-normal">SIZE</span>
 					<span class="text-zinc-400 text-[10px] group-data-[size=full]/body:hidden">▾</span>
@@ -411,7 +424,7 @@ const ticks = generateDialTicks();
 						data-size="full"
 						class="w-full text-left px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center justify-between cursor-pointer focus-visible:bg-zinc-100 dark:focus-visible:bg-zinc-800 focus-visible:outline-none"
 					>
-						<span>Full</span>
+						<span>{t("size.full")}</span>
 						<span class="size-check text-blue-600 dark:text-blue-400 hidden">●</span>
 					</button>
 					<button
@@ -421,7 +434,7 @@ const ticks = generateDialTicks();
 						data-size="big"
 						class="w-full text-left px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center justify-between cursor-pointer focus-visible:bg-zinc-100 dark:focus-visible:bg-zinc-800 focus-visible:outline-none"
 					>
-						<span>Big</span>
+						<span>{t("size.big")}</span>
 						<span class="size-check text-blue-600 dark:text-blue-400 hidden">●</span>
 					</button>
 					<button
@@ -431,7 +444,7 @@ const ticks = generateDialTicks();
 						data-size="mid"
 						class="w-full text-left px-3 py-1.5 text-xs font-medium text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center justify-between cursor-pointer focus-visible:bg-zinc-100 dark:focus-visible:bg-zinc-800 focus-visible:outline-none"
 					>
-						<span>Mid</span>
+						<span>{t("size.mid")}</span>
 						<span class="size-check text-blue-600 dark:text-blue-400">●</span>
 					</button>
 					<button
@@ -441,7 +454,7 @@ const ticks = generateDialTicks();
 						data-size="tiny"
 						class="w-full text-left px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center justify-between cursor-pointer focus-visible:bg-zinc-100 dark:focus-visible:bg-zinc-800 focus-visible:outline-none"
 					>
-						<span>Tiny</span>
+						<span>{t("size.tiny")}</span>
 						<span class="size-check text-blue-600 dark:text-blue-400 hidden">●</span>
 					</button>
 				</div>
