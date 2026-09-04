@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import { SITE_CONFIG } from '../site.config';
+import { getLocaleFromUrl } from '../i18n/utils';
+import { LOCALES, ACTIVE_LOCALES } from '../i18n/config';
 
 interface Props {
 	title?: string;
@@ -14,12 +16,35 @@ const {
 	ogType = 'website'
 } = Astro.props;
 
+const currentLocaleId = getLocaleFromUrl(Astro.url);
+const localeConfig = LOCALES[currentLocaleId];
+
+// Extract base path without locale prefix
+let basePath = Astro.url.pathname;
+if (localeConfig.prefix && basePath.startsWith(localeConfig.prefix)) {
+    basePath = basePath.slice(localeConfig.prefix.length);
+}
+if (!basePath.startsWith('/')) basePath = '/' + basePath;
+const cleanPath = basePath.startsWith('/') ? basePath.slice(1) : basePath;
+
 // Ensure trailing slash logic is consistent or just rely on Astro's pathname
 // Astro.url.pathname often has a trailing slash for the root, e.g. '/'
-const canonicalURL = new URL(Astro.url.pathname, SITE_CONFIG.url).href;
+const canonicalPath = localeConfig.prefix === '' ? `/${cleanPath}` : `${localeConfig.prefix}/${cleanPath}`;
+const canonicalURL = new URL(canonicalPath.replace(/\/{2,}/g, '/'), SITE_CONFIG.url).href;
+
+const activeHreflangs = ACTIVE_LOCALES.map(loc => {
+    const altPath = loc.prefix === '' ? `/${cleanPath}` : `${loc.prefix}/${cleanPath}`;
+    return {
+        lang: loc.lang,
+        url: new URL(altPath.replace(/\/{2,}/g, '/'), SITE_CONFIG.url).href
+    };
+});
+
+const xDefaultPath = LOCALES['en'].prefix === '' ? `/${cleanPath}` : `${LOCALES['en'].prefix}/${cleanPath}`;
+const xDefaultUrl = new URL(xDefaultPath.replace(/\/{2,}/g, '/'), SITE_CONFIG.url).href;
 ---
 <!doctype html>
-<html lang="en">
+<html lang={localeConfig.lang}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -34,6 +59,11 @@ const canonicalURL = new URL(Astro.url.pathname, SITE_CONFIG.url).href;
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonicalURL} />
 		
+		{activeHreflangs.map(({ lang, url }) => (
+			<link rel="alternate" hreflang={lang} href={url} />
+		))}
+		<link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
+
 		<!-- Open Graph -->
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
