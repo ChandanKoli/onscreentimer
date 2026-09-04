@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 ---
 
 <Layout title="Guides — OnScreenTimer" description="Practical explanations for using OnScreenTimer effectively.">
@@ -145,11 +146,7 @@ import SiteHeader from '../components/SiteHeader.astro';
 
 			</div>
 		</main>
-
-		<!-- Footer -->
-		<footer id="site-footer" class="w-full border-t border-zinc-200 dark:border-zinc-800 py-6 text-center text-xs text-zinc-500 dark:text-zinc-400 mt-auto">
-			<p>OnScreenTimer &mdash; Browser Utility</p>
-		</footer>
+		<SiteFooter />
 	</div>
 </Layout>
 

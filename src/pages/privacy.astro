@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+---
+
+<Layout title="Privacy Policy — OnScreenTimer" description="Privacy Policy for OnScreenTimer">
+	<div class="min-h-dvh flex flex-col">
+		<SiteHeader />
+
+		<main class="flex-1 w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 text-zinc-800 dark:text-zinc-200">
+			<div class="mb-12">
+				<h1 class="text-3xl sm:text-4xl font-bold text-zinc-950 dark:text-zinc-50 tracking-tight mb-4">
+					Privacy Policy
+				</h1>
+			</div>
+
+			<article class="prose prose-zinc dark:prose-invert prose-blue max-w-none space-y-8">
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">1. Overview</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						OnScreenTimer is a browser-based utility. We prioritize keeping the application lightweight and keeping your data where it belongs: in your browser.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">2. Information stored in your browser</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed mb-3">
+						To provide a seamless experience, supported application state may be stored using your browser's local storage mechanism (localStorage). This allows you to refresh the page without instantly losing your current session.
+					</p>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						This stored information includes:
+					</p>
+					<ul class="list-disc pl-5 mt-2 space-y-1 text-zinc-600 dark:text-zinc-400">
+						<li>Timer and Stopwatch state</li>
+						<li>Tasks, task statuses, and task elapsed durations</li>
+						<li>Display mode, style, and size preferences</li>
+						<li>Clock format preferences</li>
+						<li>Theme (light/dark) selection</li>
+						<li>Sound preferences</li>
+						<li>Study Block preset state</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">3. Accounts</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						No account or registration is currently required for normal use of OnScreenTimer.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">4. Server / cloud storage</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						OnScreenTimer currently stores Timer, task, and preference state locally in your browser rather than sending that saved application state to an OnScreenTimer account or cloud-sync service. When you load the site, standard network requests are naturally made to fetch the website's files.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">5. Clearing local data</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Because your application data is stored in your browser, you can remove this locally stored state at any time by clearing your browser's local storage or site data for OnScreenTimer.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">6. Analytics / advertising / third parties</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2">
+						OnScreenTimer does not currently include an advertising or analytics integration in the application.
+					</p>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						If analytics, advertising, or other data-handling services are introduced, this policy will be updated.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">7. Changes to this policy</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						This privacy policy may be updated as the service changes, adds features, or as regulatory requirements evolve.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">8. Contact</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						If you have any questions or feedback, please visit our <a href="/contact" class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 underline underline-offset-4">Contact page</a>.
+					</p>
+				</section>
+			</article>
+		</main>
+		<SiteFooter />
+	</div>
+</Layout>
