@@ -1,0 +1,79 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout
+	title="Clavier, son et paramètres"
+	description="Découvrez les raccourcis clavier utiles, les paramètres audio et les préférences générales."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Raccourcis clavier</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Sur les appareils de bureau, vous pouvez contrôler les fonctions principales rapidement avec des raccourcis clavier :
+		</p>
+
+		<div class="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50 my-4">
+			<table class="w-full text-left text-sm">
+				<thead>
+					<tr class="border-b border-zinc-200 dark:border-zinc-800 text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-100/75 dark:bg-zinc-800/60">
+						<th class="py-3 px-4 font-semibold">Raccourci</th>
+						<th class="py-3 px-4 font-semibold">Action</th>
+						<th class="py-3 px-4 font-semibold">Comportement</th>
+					</tr>
+				</thead>
+				<tbody class="divide-y divide-zinc-200/70 dark:divide-zinc-800/70">
+					<tr class="hover:bg-zinc-100/40 dark:hover:bg-zinc-800/30 transition-colors">
+						<td class="py-3 px-4 whitespace-nowrap">
+							<kbd class="px-2.5 py-1 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded shadow-2xs">Espace</kbd>
+						</td>
+						<td class="py-3 px-4 font-medium text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Démarrer / Pause / Reprendre</td>
+						<td class="py-3 px-4 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">Contrôle la session active du Minuteur ou du Chronomètre lorsque le curseur n'est pas dans un champ de texte.</td>
+					</tr>
+					<tr class="hover:bg-zinc-100/40 dark:hover:bg-zinc-800/30 transition-colors">
+						<td class="py-3 px-4 whitespace-nowrap">
+							<kbd class="px-2.5 py-1 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded shadow-2xs">Entrée</kbd>
+						</td>
+						<td class="py-3 px-4 font-medium text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Valider la saisie</td>
+						<td class="py-3 px-4 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">Confirme la durée saisie pour démarrer le compte à rebours ou ajoute un nouvel élément à la liste des Tâches.</td>
+					</tr>
+					<tr class="hover:bg-zinc-100/40 dark:hover:bg-zinc-800/30 transition-colors">
+						<td class="py-3 px-4 whitespace-nowrap">
+							<kbd class="px-2.5 py-1 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded shadow-2xs">Échap</kbd>
+						</td>
+						<td class="py-3 px-4 font-medium text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Fermer / Quitter plein écran</td>
+						<td class="py-3 px-4 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">Quitte le mode Plein écran ou ferme les panneaux et menus ouverts.</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<p class="text-xs text-zinc-500 dark:text-zinc-400">
+			Les raccourcis clavier sont conçus pour les claviers physiques et n'interfèrent pas avec la saisie dans les champs texte.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Options sonores</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Le son de fin est désactivé par défaut. Vous pouvez activer le son à tout moment via la bascule haut-parleur en haut de l'en-tête.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Lorsqu'il est activé, un son doux est joué lorsqu'un compte à rebours du Minuteur se termine et lors des transitions entre les segments d'un Modèle de bloc d'étude. Votre préférence sonore est stockée localement sur votre appareil.
+		</p>
+		<p class="text-sm text-zinc-500 dark:text-zinc-400">
+			Remarque : La lecture sonore repose sur l'audio local du navigateur et n'envoie pas de notifications push système.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Paramètres généraux</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Vous pouvez accéder aux préférences supplémentaires en cliquant sur l'icône Menu en haut à droite.
+		</p>
+		<ul class="list-disc pl-5 space-y-2 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Format de l'horloge :</strong> Basculez entre les formats 12 heures et 24 heures pour le mode Horloge.</li>
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Modèles de blocs d'étude :</strong> Choisissez un modèle structuré pour guider votre session d'étude.</li>
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Styles et tailles d'affichage :</strong> Ajustez la présentation visuelle de votre Minuteur.</li>
+		</ul>
+	</section>
+
+</GuideArticleLayout>

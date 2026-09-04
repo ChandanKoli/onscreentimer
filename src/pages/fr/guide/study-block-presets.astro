@@ -1,0 +1,75 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout
+	title="Modèles de blocs d'étude"
+	description="Découvrez comment les séquences d'étude prédéfinies de On Screen Timer divisent une session du Minuteur en phases nommées."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Fonctionnement des modèles</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Les Modèles de blocs d'étude sont des séquences de minuteur prédéfinies et optionnelles destinées à structurer une session d'étude. La sélection d'un modèle depuis le menu Paramètres bascule en mode Minuteur et démarre automatiquement le premier segment.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Chaque segment affiche une étiquette de phase active (comme <em class="text-zinc-900 dark:text-zinc-100">Apprendre</em>, <em class="text-zinc-900 dark:text-zinc-100">Mémoriser</em>, <em class="text-zinc-900 dark:text-zinc-100">Résoudre</em>, <em class="text-zinc-900 dark:text-zinc-100">Réviser</em>, <em class="text-zinc-900 dark:text-zinc-100">Étudier</em> ou <em class="text-zinc-900 dark:text-zinc-100">Pratiquer</em>) directement sous l'affichage du Minuteur.
+		</p>
+		<ul class="list-disc pl-5 space-y-2 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li>L'étiquette de phase indique le segment actuel du bloc d'étude ; ce n'est pas une Tâche en cours et elle n'est pas ajoutée au panneau Tâches.</li>
+			<li>Les segments passent automatiquement à la phase suivante lorsque le compte à rebours se termine.</li>
+			<li>Le Minuteur se termine et s'arrête après la fin du dernier segment du modèle (les modèles ne bouclent pas).</li>
+			<li>Les commandes Pause, Reprendre, Réinitialiser et Arrêter fonctionnent normalement tout au long d'une session de modèle.</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Modèles disponibles</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			On Screen Timer propose les structures d'étude optionnelles suivantes :
+		</p>
+
+		<!-- Grille des modèles -->
+		<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 my-4">
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Apprendre &rarr; Mémoriser &rarr; Résoudre &rarr; Réviser</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">60 min total</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					25m Apprendre &rarr; 5m Mémoriser &rarr; 25m Résoudre &rarr; 5m Réviser
+				</p>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Étude approfondie &rarr; Pratiquer</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">90 min total</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					60m Étudier &rarr; 30m Pratiquer
+				</p>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Apprendre &rarr; Résoudre</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">60 min total</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					30m Apprendre &rarr; 30m Résoudre
+				</p>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Étudier &rarr; Résoudre &rarr; Réviser</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">120 min total</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					45m Étudier &rarr; 45m Résoudre &rarr; 30m Réviser
+				</p>
+			</div>
+		</div>
+
+		<p class="text-xs text-zinc-500 dark:text-zinc-400">
+			Les Modèles de blocs d'étude sont de simples structures d'étude optionnelles. Ils n'offrent aucune garantie médicale ou de productivité.
+		</p>
+	</section>
+</GuideArticleLayout>

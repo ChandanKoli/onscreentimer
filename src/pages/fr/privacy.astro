@@ -1,0 +1,93 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+---
+
+<Layout title="Politique de confidentialité — On Screen Timer" description="Politique de confidentialité de On Screen Timer">
+	<div class="min-h-dvh flex flex-col">
+		<SiteHeader />
+
+		<main class="flex-1 w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 text-zinc-800 dark:text-zinc-200">
+			<div class="mb-12">
+				<h1 class="text-3xl sm:text-4xl font-bold text-zinc-950 dark:text-zinc-50 tracking-tight mb-4">
+					Politique de confidentialité
+				</h1>
+			</div>
+
+			<article class="prose prose-zinc dark:prose-invert prose-blue max-w-none space-y-8">
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">1. Présentation générale</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						On Screen Timer est un utilitaire fonctionnant dans votre navigateur. Notre priorité est de maintenir l'application légère et de garder vos données là où elles vous appartiennent : dans votre navigateur.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">2. Informations stockées dans votre navigateur</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed mb-3">
+						Pour offrir une expérience continue, l'état pris en charge de l'application peut être enregistré via le mécanisme de stockage local de votre navigateur (localStorage). Cela vous permet de recharger la page sans perdre immédiatement votre session en cours.
+					</p>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Ces informations stockées comprennent :
+					</p>
+					<ul class="list-disc pl-5 mt-2 space-y-1 text-zinc-600 dark:text-zinc-400">
+						<li>L'état du Minuteur et du Chronomètre</li>
+						<li>Les tâches, leur statut et les durées de travail enregistrées</li>
+						<li>Les préférences de mode d'affichage, de style et de taille</li>
+						<li>Les préférences de format de l'Horloge</li>
+						<li>La sélection du thème (clair/sombre)</li>
+						<li>Les préférences sonores</li>
+						<li>L'état des modèles de Bloc d'étude</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">3. Comptes</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Aucun compte ni inscription n'est actuellement nécessaire pour l'utilisation normale de On Screen Timer.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">4. Serveur / stockage en nuage</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						On Screen Timer enregistre actuellement l'état du Minuteur, les tâches et les préférences localement dans votre navigateur, sans envoyer ces données à un compte On Screen Timer ou à un service de synchronisation en nuage. Lors du chargement du site, des requêtes réseau standard sont effectuées pour récupérer les fichiers du site.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">5. Suppression des données locales</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Comme les données de l'application sont stockées dans votre navigateur, vous pouvez supprimer cet état local à tout moment en effaçant le stockage local de votre navigateur ou les données du site pour On Screen Timer.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">6. Analyses / publicité / tiers</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2">
+						On Screen Timer n'inclut actuellement aucune intégration publicitaire ou analytique dans l'application.
+					</p>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Si des services d'analyse, de publicité ou d'autres services de traitement de données venaient à être introduits, cette politique serait mise à jour.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">7. Modifications de cette politique</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Cette politique de confidentialité peut être mise à jour au fil de l'évolution du service, de l'ajout de fonctionnalités ou des exigences réglementaires.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">8. Contact</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Pour toute question ou suggestion, consultez notre <a href="/fr/contact" class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 underline underline-offset-4">page de contact</a>.
+					</p>
+				</section>
+			</article>
+		</main>
+		<SiteFooter />
+	</div>
+</Layout>

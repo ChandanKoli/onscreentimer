@@ -21,6 +21,10 @@ export const ui = {
     'size.mid': 'Mid',
     'size.tiny': 'Tiny',
 
+    'label.mode': 'MODE',
+    'label.style': 'STYLE',
+    'label.size': 'SIZE',
+
     // Controls
     'timer.start': 'Start',
     'timer.pause': 'Pause',
@@ -66,12 +70,14 @@ export const ui = {
     'aria.selectStyle': 'Select style',
     'aria.selectSize': 'Select size',
     'aria.currently': 'currently',
-        'aria.setTimerDuration': 'Set timer duration',
+    'aria.setTimerDuration': 'Set timer duration',
 
     'aria.reopenTodo': 'Reopen To-do',
     'aria.minimizeTodo': 'Minimize To-do',
     'aria.minimize': 'Minimize',
-    'aria.setTimerDuration': 'Set timer duration',
+    'aria.addTask': 'Add task',
+
+    'menu.settings': 'Settings',
 
     'error.invalidFormat': 'Invalid timer duration format.',
     'error.empty': 'Timer duration cannot be empty.',
@@ -101,16 +107,12 @@ export const ui = {
     'preset.phase.Practice': 'Practice',
     'preset.blockComplete': 'Block complete',
 
-            // Guide Layout
+    // Guide Layout
     'guide.allGuides': 'All Guides',
     'guide.breadcrumb': 'Guides / ',
     'guide.titleSuffix': ' — On Screen Timer Guide',
     'guide.openTimer': 'Open On Screen Timer &rarr;',
-        // Guide Layout
-    'guide.allGuides': 'Todos os Guias',
-    'guide.breadcrumb': 'Guias / ',
-    'guide.titleSuffix': ' — Guia do On Screen Timer',
-    'guide.openTimer': 'Abrir On Screen Timer &rarr;',
+
     // Footer
     'footer.description': 'A simple browser timer, clock, stopwatch, task timer, and study utility.',
     'footer.product': 'Product',
@@ -128,7 +130,8 @@ export const ui = {
     'footer.20min': '20 Minute Timer',
     'footer.25min': '25 Minute Timer',
     'footer.free': 'Free to use. No account required.',
-        // Parser Errors
+
+    // Parser Errors
     'parser.empty': 'Please enter a duration (e.g. 5, 2mins, 02:00, 90s)',
     'parser.invalidFormat': 'Invalid duration. Try "5", "2mins", "02:00", or "90s"',
     'parser.greaterThanZero': 'Duration must be greater than 0',
@@ -163,6 +166,10 @@ export const ui = {
     'size.big': 'Grande',
     'size.mid': 'Médio',
     'size.tiny': 'Pequeno',
+
+    'label.mode': 'MODE',
+    'label.style': 'STYLE',
+    'label.size': 'SIZE',
 
     // Controls
     'timer.start': 'Iniciar',
@@ -214,6 +221,9 @@ export const ui = {
     'aria.reopenTodo': 'Reabrir Tarefas',
     'aria.minimizeTodo': 'Minimizar Tarefas',
     'aria.minimize': 'Minimizar',
+    'aria.addTask': 'Adicionar tarefa',
+
+    'menu.settings': 'Configurações',
 
     'error.invalidFormat': 'Formato de duração inválido.',
     'error.empty': 'A duração não pode estar vazia.',
@@ -243,11 +253,12 @@ export const ui = {
     'preset.phase.Practice': 'Praticar',
     'preset.blockComplete': 'Bloco concluído',
 
-            // Guide Layout
+    // Guide Layout
     'guide.allGuides': 'Todos os Guias',
     'guide.breadcrumb': 'Guias / ',
     'guide.titleSuffix': ' — Guia do On Screen Timer',
     'guide.openTimer': 'Abrir On Screen Timer &rarr;',
+
     // Footer
     'footer.description': 'Um simples utilitário de navegador com temporizador, relógio, cronômetro, tarefas e foco.',
     'footer.product': 'Produto',
@@ -265,7 +276,8 @@ export const ui = {
     'footer.20min': 'Temporizador de 20 Minutos',
     'footer.25min': 'Temporizador de 25 Minutos',
     'footer.free': 'Gratuito para usar. Nenhuma conta é necessária.',
-        // Parser Errors
+
+    // Parser Errors
     'parser.empty': 'Insira uma duração (ex.: 5, 02:00, 90s)',
     'parser.invalidFormat': 'Duração inválida. Tente "5", "02:00" ou "90s"',
     'parser.greaterThanZero': 'A duração deve ser maior que 0',
@@ -280,7 +292,153 @@ export const ui = {
     // Timer Error / Validation
     'timer.error.blank': 'Por favor, insira uma duração',
     'timer.error.invalid': 'Formato inválido',
-  }
+  },
+  fr: {
+    // Nav / Header
+    'nav.tool': 'Outil',
+    'nav.guide': 'Guide',
+    'nav.faq': 'FAQ',
+
+    // Workspace - Modes, Styles, Sizes
+    'mode.timer': 'Minuteur',
+    'mode.clock': 'Horloge',
+    'mode.stopwatch': 'Chronomètre',
+
+    'style.modern': 'Moderne',
+    'style.digital': 'Numérique',
+    'style.analog': 'Analogique',
+
+    'size.full': 'Plein écran',
+    'size.big': 'Grand',
+    'size.mid': 'Moyen',
+    'size.tiny': 'Petit',
+
+    'label.mode': 'MODE',
+    'label.style': 'STYLE',
+    'label.size': 'TAILLE',
+
+    // Controls
+    'timer.start': 'Démarrer',
+    'timer.pause': 'Pause',
+    'timer.resume': 'Reprendre',
+    'timer.reset': 'Réinitialiser',
+    'timer.stop': 'Arrêter',
+    'timer.placeholder': 'ex : 5, 02:00, 01:30:00, 90s',
+
+    'stopwatch.start': 'Démarrer',
+    'stopwatch.pause': 'Pause',
+    'stopwatch.resume': 'Reprendre',
+    'stopwatch.reset': 'Réinitialiser',
+    'stopwatch.stop': 'Arrêter',
+
+    'workspace.exitFull': 'Quitter plein écran',
+
+    // Tasks
+    'tasks.todo': 'Tâches',
+    'tasks.done': 'Terminé',
+    'tasks.remaining': 'Restantes',
+    'tasks.addPlaceholder': 'Ajouter une tâche…',
+
+    // Accessibility / ARIA
+    'aria.home': 'On Screen Timer — Accueil',
+    'aria.soundEnabled': 'Son activé',
+    'aria.soundEnabledMute': 'Son activé, cliquer pour couper',
+    'aria.soundMutedEnable': 'Son coupé, cliquer pour activer',
+    'aria.toggleTheme': 'Changer de thème',
+    'aria.menu': 'Paramètres et menu',
+    'aria.menuTitle': 'Menu',
+    'aria.primaryNav': 'Principal',
+    'aria.timerDisplay': 'Minuteur',
+    'aria.digitalDisplay': 'Affichage numérique',
+    'aria.analogDisplay': 'Affichage analogique',
+    'aria.startTimer': 'Démarrer le minuteur',
+    'aria.resetTimer': 'Réinitialiser le minuteur',
+    'aria.stopTimer': 'Arrêter le minuteur',
+    'aria.startStopwatch': 'Démarrer le chronomètre',
+    'aria.resetStopwatch': 'Réinitialiser le chronomètre',
+    'aria.stopStopwatch': 'Arrêter le chronomètre',
+    'aria.exitFull': 'Quitter le mode plein écran',
+    'aria.selectMode': 'Sélectionner le mode',
+    'aria.selectStyle': 'Sélectionner le style',
+    'aria.selectSize': 'Sélectionner la taille',
+    'aria.currently': 'actuellement',
+    'aria.setTimerDuration': 'Définir la durée du minuteur',
+
+    'aria.reopenTodo': 'Rouvrir les tâches',
+    'aria.minimizeTodo': 'Réduire les tâches',
+    'aria.minimize': 'Réduire',
+    'aria.addTask': 'Ajouter une tâche',
+
+    'menu.settings': 'Paramètres',
+
+    'error.invalidFormat': 'Format de durée invalide.',
+    'error.empty': 'La durée ne peut pas être vide.',
+
+    'tasks.allCompleted': '✓ Toutes les tâches terminées',
+    'tasks.makeCurrent': 'Rendre actuelle',
+    'tasks.delete': 'Supprimer',
+    'tasks.restart': 'Recommencer',
+    'tasks.completeTask': 'Terminer la tâche',
+    'tasks.returnPending': 'Remettre en attente',
+
+    // Clock
+    'clock.am': 'AM',
+    'clock.pm': 'PM',
+
+    // Study Blocks
+    'preset.preset-1.name': 'Apprendre → Mémoriser → Résoudre → Réviser',
+    'preset.preset-2.name': 'Étude approfondie → Pratiquer',
+    'preset.preset-3.name': 'Apprendre → Résoudre',
+    'preset.preset-4.name': 'Étudier → Résoudre → Réviser',
+
+    'preset.phase.Learn': 'Apprendre',
+    'preset.phase.Recall': 'Mémoriser',
+    'preset.phase.Solve': 'Résoudre',
+    'preset.phase.Review': 'Réviser',
+    'preset.phase.Study': 'Étudier',
+    'preset.phase.Practice': 'Pratiquer',
+    'preset.blockComplete': 'Bloc terminé',
+
+    // Guide Layout
+    'guide.allGuides': 'Tous les guides',
+    'guide.breadcrumb': 'Guides / ',
+    'guide.titleSuffix': ' — Guide On Screen Timer',
+    'guide.openTimer': 'Ouvrir On Screen Timer &rarr;',
+
+    // Footer
+    'footer.description': 'Un minuteur en ligne gratuit, une horloge, un chronomètre et un outil de gestion des tâches — directement dans votre navigateur.',
+    'footer.product': 'Produit',
+    'footer.learn': 'Apprendre',
+    'footer.common': 'Minuteurs fréquents',
+    'footer.legal': 'Légal',
+    'footer.guide': 'Guide',
+    'footer.faq': 'FAQ',
+    'footer.howItWorks': 'Comment ça marche',
+    'footer.privacy': 'Confidentialité',
+    'footer.terms': 'Conditions',
+    'footer.contact': 'Contact',
+    'footer.5min': 'Minuteur 5 minutes',
+    'footer.10min': 'Minuteur 10 minutes',
+    'footer.20min': 'Minuteur 20 minutes',
+    'footer.25min': 'Minuteur 25 minutes',
+    'footer.free': 'Gratuit. Aucun compte requis.',
+
+    // Parser Errors
+    'parser.empty': 'Veuillez saisir une durée (ex. : 5, 02:00, 90s)',
+    'parser.invalidFormat': 'Durée invalide. Essayez « 5 », « 02:00 » ou « 90s »',
+    'parser.greaterThanZero': 'La durée doit être supérieure à 0',
+    'parser.exceedsMax': 'La durée ne peut pas dépasser 99 heures',
+    'parser.invalidMmSs': 'Format invalide. Utilisez MM:SS (ex. : 02:00)',
+    'parser.invalidSeconds': 'Les secondes doivent être comprises entre 0 et 59 au format MM:SS',
+    'parser.invalidHhMmSs': 'Format invalide. Utilisez HH:MM:SS (ex. : 01:30:00)',
+    'parser.invalidMinSec': 'Les minutes et secondes doivent être entre 0 et 59 au format HH:MM:SS',
+    'parser.invalidColon': 'Format invalide. Utilisez MM:SS ou HH:MM:SS',
+    'parser.unrecognizedUnit': 'Unité « {unit} » non reconnue. Utilisez h, m ou s (ex. : 2m, 90s)',
+
+    // Timer Error / Validation
+    'timer.error.blank': 'Veuillez saisir une durée',
+    'timer.error.invalid': 'Format invalide',
+  },
 } as const;
 
 export function useTranslations(locale: string) {

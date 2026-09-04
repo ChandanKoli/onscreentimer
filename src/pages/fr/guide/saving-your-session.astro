@@ -1,0 +1,50 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout
+	title="Enregistrement de votre session"
+	description="Découvrez comment On Screen Timer enregistre vos préférences et tâches actives localement dans votre navigateur."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Stockage local du navigateur</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			On Screen Timer enregistre l'état pris en charge localement dans votre navigateur en utilisant <code class="font-mono text-zinc-800 dark:text-zinc-200 text-xs sm:text-sm bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-700">localStorage</code>.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Comme l'état est stocké directement dans votre navigateur, votre session peut survivre à un rechargement accidentel de la page ou à la fermeture temporaire de l'onglet. Aucun compte ni inscription n'est requis.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Qu'est-ce qui est enregistré ?</h2>
+		<ul class="list-disc pl-5 space-y-1.5 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li>L'état actif du Minuteur et la durée restante</li>
+			<li>L'état du Chronomètre et le temps écoulé cumulé</li>
+			<li>Les tâches, leur statut et les durées de travail enregistrées dans le panneau Tâches</li>
+			<li>Le style visuel sélectionné (Moderne, Numérique, Analogique)</li>
+			<li>La taille d'affichage sélectionnée (Petit, Moyen, Grand, Plein écran)</li>
+			<li>La préférence de format de l'Horloge (12 heures ou 24 heures)</li>
+			<li>Les préférences sonores et de thème</li>
+			<li>La progression du Modèle de bloc d'étude actif</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Confidentialité et limitations</h2>
+		<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50 text-sm text-zinc-700 dark:text-zinc-300 space-y-3">
+			<p>
+				L'état de votre Minuteur, de vos tâches et de vos préférences est strictement stocké localement sur votre appareil. On Screen Timer n'envoie pas ces données à un serveur d'application.
+			</p>
+			<p class="font-medium">
+				Limitations importantes du stockage local :
+			</p>
+			<ul class="list-disc pl-5 space-y-1 text-zinc-600 dark:text-zinc-400">
+				<li>Il n'y a pas de synchronisation dans le nuage ni entre appareils. Vos tâches sur ordinateur ne seront pas visibles sur votre téléphone.</li>
+				<li>Il n'y a pas de sauvegarde sur serveur.</li>
+				<li>Effacer les données du site ou le stockage local de votre navigateur supprimera vos tâches et réinitialisera vos préférences.</li>
+			</ul>
+		</div>
+	</section>
+
+</GuideArticleLayout>

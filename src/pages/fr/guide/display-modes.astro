@@ -1,0 +1,73 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout
+	title="Styles d'affichage, tailles et mode Plein écran"
+	description="Découvrez les styles visuels, le redimensionnement du minuteur et l'utilisation du mode Plein écran focalisé."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Styles d'affichage</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Vous pouvez choisir parmi trois styles visuels pour le Minuteur, l'Horloge et le Chronomètre depuis le menu Paramètres en haut à droite :
+		</p>
+
+		<dl class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 my-4">
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Moderne</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Typographie numérique propre et large, conçue pour une lisibilité immédiate et proéminente.</dd>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Numérique</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Mise en page à sept segments rétro offrant un cadran d'horloge numérique classique.</dd>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Analogique</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Cadran circulaire traditionnel avec aiguilles. Affiche un badge AM/PM en mode Horloge 12 heures.</dd>
+			</div>
+		</dl>
+
+		<p class="text-sm text-zinc-600 dark:text-zinc-400">
+			Changer le style d'affichage modifie uniquement la représentation du temps ; cela ne réinitialise ni n'interrompt jamais votre session active.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Tailles d'affichage</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Adaptez l'espace de travail du minuteur à votre configuration ou à votre environnement de concentration en sélectionnant une option de taille en bas à droite :
+		</p>
+
+		<dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 my-4">
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Petit</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Encombrement compact pour garder le minuteur à côté d'autres fenêtres.</dd>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Moyen <span class="text-xs font-normal text-zinc-400 dark:text-zinc-500">(Défaut)</span></dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Vue équilibrée standard pour les distances de travail habituelles à un bureau ou un ordinateur portable.</dd>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Grand</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Échelle étendue facilement lisible depuis l'autre côté de la pièce.</dd>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Plein écran</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Vue focalisée masquant l'en-tête, le pied de page et les panneaux latéraux. Quittez avec Échap ou le sélecteur de taille.</dd>
+			</div>
+		</dl>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Comprendre le mode Plein écran</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Le mode Plein écran est une disposition focalisée dans l'application conçue pour éliminer les distractions visuelles telles que la barre de navigation et le pied de page. Les commandes essentielles du minuteur restent accessibles à l'écran.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			<strong class="font-medium text-zinc-900 dark:text-zinc-100">Remarque :</strong> Le mode Plein écran est un paramètre de disposition dans On Screen Timer. Ce n'est <em>pas</em> l'API Plein écran natif du navigateur (F11 sur la plupart des plateformes). Vous pouvez combiner les deux pour une expérience sans distraction maximale.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Pour quitter le mode Plein écran, appuyez simplement sur <kbd class="px-1.5 py-0.5 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded">Échap</kbd> sur votre clavier ou sélectionnez une taille différente dans les options d'affichage.
+		</p>
+	</section>
+</GuideArticleLayout>

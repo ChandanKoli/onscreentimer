@@ -1,0 +1,82 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout
+	title="Tâches et chronométrage de la tâche en cours"
+	description="Découvrez comment les tâches En attente, En cours et Terminées fonctionnent avec votre minuteur."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Tâches</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Le panneau Tâches vous permet de gérer des éléments de travail en parallèle du minuteur actif. Les tâches progressent par trois états distincts :
+		</p>
+
+		<!-- Grille des états de tâche -->
+		<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
+			<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center gap-2 mb-1.5">
+					<span class="w-2 h-2 rounded-full bg-rose-400 shrink-0" aria-hidden="true"></span>
+					<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">En attente</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">Tâches en file d'attente.</p>
+			</div>
+			<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center gap-2 mb-1.5">
+					<span class="w-2 h-2 rounded-full bg-amber-400 shrink-0" aria-hidden="true"></span>
+					<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">En cours</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">Éléments actifs en cours de chronométrage (jusqu'à 2 simultanément).</p>
+			</div>
+			<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center gap-2 mb-1.5">
+					<span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0" aria-hidden="true"></span>
+					<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Terminée</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">Éléments finalisés classés sous les tâches actives.</p>
+			</div>
+		</div>
+
+		<ul class="space-y-3 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300 mt-6">
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Ajouter des tâches :</span>
+				<span>Saisissez le titre d'une tâche dans le champ et appuyez sur Entrée. Les nouvelles tâches sont ajoutées à l'état En attente.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Tâches en cours :</span>
+				<span>Vous pouvez promouvoir jusqu'à deux tâches simultanément à l'état En cours en cliquant sur l'icône lecture de tout élément En attente.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Terminer des tâches :</span>
+				<span>Cliquez sur la coche d'une tâche active pour la marquer comme terminée. Les tâches terminées se déplacent automatiquement sous les tâches non finalisées, avec la durée de travail enregistrée préservée.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Remettre des tâches :</span>
+				<span>Une tâche En cours peut être remise En attente via le bouton de retour sans perdre le temps enregistré.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Recommencer et supprimer :</span>
+				<span>Les tâches terminées peuvent être recommencées En attente ou complètement supprimées. Les tâches en attente peuvent également être retirées si elles ne sont plus nécessaires.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Compteur récapitulatif :</span>
+				<span>La barre récapitulative en bas affiche le total <strong class="font-medium text-zinc-900 dark:text-zinc-100">Terminé X &middot; Restantes Y</strong>.</span>
+			</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Chronométrage de la tâche en cours</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Chaque tâche En cours enregistre sa propre durée de travail écoulée. Si deux tâches En cours sont actives simultanément, elles enregistrent toutes deux le temps actif en même temps, mais chacune conserve sa propre durée indépendante selon le moment où elle a été promue.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Le chronométrage des tâches reflète strictement la session active :
+		</p>
+		<ul class="list-disc pl-5 space-y-2 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li>Les tâches accumulent du temps uniquement lorsqu'une session de Minuteur ou de Chronomètre est activement en cours.</li>
+			<li>Mettre en pause un Minuteur ou un Chronomètre interrompt immédiatement l'accumulation de la durée de la tâche.</li>
+			<li>Modifier les styles ou tailles d'affichage visuel n'interrompt ni ne réinitialise le chronométrage des tâches.</li>
+		</ul>
+	</section>
+</GuideArticleLayout>

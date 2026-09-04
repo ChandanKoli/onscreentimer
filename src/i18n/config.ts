@@ -28,7 +28,7 @@ export const LOCALES = {
     lang: 'fr',
     prefix: '/fr',
     name: 'Français',
-    isActive: false,
+    isActive: true,
     isDefault: false,
   },
   de: {
