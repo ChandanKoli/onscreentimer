@@ -1,0 +1,59 @@
+---
+import GuideArticleLayout from '../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="Getting Started with OnScreenTimer" 
+	description="Learn the basics of Timer, Clock, Stopwatch and the main controls."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">The Basics</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			OnScreenTimer is a lightweight, distraction-free utility designed to work directly in your browser. It provides three primary modes: Timer, Clock, and Stopwatch.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Timer</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			The Timer counts down from a duration you provide. Simply enter a duration (like <code class="font-mono text-zinc-800 dark:text-zinc-200">25</code> or <code class="font-mono text-zinc-800 dark:text-zinc-200">30mins</code>) and press <strong class="font-medium text-zinc-900 dark:text-zinc-100">Start</strong>.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			You can control the active session using the <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Pause</span>, <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Resume</span>, <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Reset</span>, and <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Stop</span> controls. 
+		</p>
+		<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2">
+			<a href="/guide/timer-inputs-and-controls" class="text-blue-600 dark:text-blue-400 hover:underline">Read the detailed guide on Timer Inputs & Controls &rarr;</a>
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Clock</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Clock displays the current local time reported by your device. It runs independently from the Timer and Stopwatch.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Stopwatch</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Stopwatch measures elapsed time upwards from zero. You can use it to track how long a specific activity takes.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Mode Switching, Settings & Tasks</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Use the primary tabs to switch between Timer, Clock, and Stopwatch modes at any time.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Click the Menu button (hamburger icon) in the top right to access <strong class="font-medium text-zinc-900 dark:text-zinc-100">Settings</strong>. From here, you can choose a display style (Modern, Digital, Analog) or select a Study Block Preset.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			The <strong class="font-medium text-zinc-900 dark:text-zinc-100">Mini To-do</strong> section is located below the timer display. It allows you to manage tasks alongside your active timing session.
+		</p>
+		<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2">
+			<a href="/guide/tasks" class="text-blue-600 dark:text-blue-400 hover:underline">Read the detailed guide on Mini To-do & Tasks &rarr;</a>
+		</p>
+	</section>
+
+</GuideArticleLayout>

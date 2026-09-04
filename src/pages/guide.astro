@@ -1,465 +1,153 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 ---
 
-<Layout title="How to Use OnScreenTimer — Guide" description="Learn how to use OnScreenTimer, a distraction-free browser timer, clock, stopwatch, and task-timing utility.">
+<Layout title="Guides — OnScreenTimer" description="Practical explanations for using OnScreenTimer effectively.">
 	<div class="min-h-dvh flex flex-col">
 		<!-- Header -->
-		<header id="site-header" class="w-full border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 sticky top-0 z-30">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-				<!-- Brand / Home and Nav -->
-				<div class="flex items-center gap-6">
-					<a
-						href="/"
-						class="flex items-center gap-2 text-zinc-950 dark:text-zinc-50 font-semibold tracking-tight hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded-sm px-1 py-0.5"
-						aria-label="OnScreenTimer Home"
-					>
-						<span class="w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-blue-500" aria-hidden="true"></span>
-						<span class="text-base font-medium">OnScreenTimer</span>
-					</a>
-					<nav>
-						<a href="/guide" class="text-sm font-medium text-blue-600 dark:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm px-1 py-0.5" aria-current="page">Guide</a>
-					</nav>
-				</div>
+		<SiteHeader />
 
-				<!-- Header Controls -->
-				<div class="flex items-center gap-2 sm:gap-3">
-					<!-- Theme Toggle Button -->
-					<button
-						type="button"
-						id="btn-theme"
-						class="w-8 h-8 rounded-full border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-						aria-label="Toggle theme"
-						title="Toggle theme"
-					>
-						<!-- Sun icon (shown in dark mode) -->
-						<svg id="theme-icon-sun" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-						</svg>
-						<!-- Moon icon (shown in light mode) -->
-						<svg id="theme-icon-moon" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-						</svg>
-					</button>
-				</div>
-			</div>
-		</header>
-
-		<!-- Guide Content -->
-		<main class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 text-zinc-800 dark:text-zinc-200">
-			<!-- Back Navigation Breadcrumb -->
-			<div class="mb-6">
-				<a
-					href="/"
-					class="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm"
-				>
-					<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-					</svg>
-					Back to Timer
-				</a>
-			</div>
-
+		<!-- Hub Content -->
+		<main class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 text-zinc-800 dark:text-zinc-200">
 			<!-- Introductory Hero -->
-			<div class="mb-10 sm:mb-12">
+			<div class="mb-16 sm:mb-20">
 				<h1 class="text-3xl sm:text-4xl lg:text-[2.6rem] font-bold text-zinc-950 dark:text-zinc-50 tracking-tight leading-[1.15] mb-4">
-					How to Use OnScreenTimer
+					Guides
 				</h1>
-				<p class="text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-3xl">
-					Learn how to use the Timer, Clock, Stopwatch, Mini To-do, Study Block Presets, display modes, and saved browser state.
-				</p>
-				<p class="text-sm text-zinc-500 dark:text-zinc-400 mt-2 leading-relaxed">
-					OnScreenTimer is a lightweight utility designed to work directly in your browser. No account is required.
+				<p class="text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl">
+					Practical explanations for using OnScreenTimer and getting more from its timer, tasks, study blocks, and display controls.
 				</p>
 			</div>
 
-			<!-- On this page quick navigation -->
-			<nav aria-label="On this page" class="flex flex-wrap items-center gap-1.5 pb-8 mb-12 border-b border-zinc-200 dark:border-zinc-800">
-				<span class="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mr-1.5">Jump to:</span>
-				<a href="#timer" class="px-2.5 py-1 rounded-md text-xs font-medium bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors">Timer</a>
-				<a href="#clock" class="px-2.5 py-1 rounded-md text-xs font-medium bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors">Clock</a>
-				<a href="#stopwatch" class="px-2.5 py-1 rounded-md text-xs font-medium bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors">Stopwatch</a>
-				<a href="#todo" class="px-2.5 py-1 rounded-md text-xs font-medium bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors">To-do</a>
-				<a href="#task-timing" class="px-2.5 py-1 rounded-md text-xs font-medium bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors">Task Timing</a>
-				<a href="#presets" class="px-2.5 py-1 rounded-md text-xs font-medium bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors">Study Presets</a>
-				<a href="#display-styles" class="px-2.5 py-1 rounded-md text-xs font-medium bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors">Display Styles</a>
-				<a href="#display-sizes" class="px-2.5 py-1 rounded-md text-xs font-medium bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors">Display Sizes</a>
-				<a href="#sound" class="px-2.5 py-1 rounded-md text-xs font-medium bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors">Sound</a>
-				<a href="#keyboard" class="px-2.5 py-1 rounded-md text-xs font-medium bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors">Keyboard</a>
-				<a href="#saving" class="px-2.5 py-1 rounded-md text-xs font-medium bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors">Saving</a>
-			</nav>
-
+			<!-- Guides List -->
 			<div class="space-y-12 sm:space-y-16">
-				<!-- Timer Section -->
-				<section id="timer" class="scroll-mt-20 space-y-4">
-					<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Timer</h2>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						Timer counts down from a duration selected by the user. You can enter durations using standard digits or natural time expressions.
+				
+				<!-- Guide: Getting Started -->
+				<article class="flex flex-col items-start pb-12 sm:pb-16 border-b border-zinc-200 dark:border-zinc-800/80 last:border-0 last:pb-0">
+					<h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2 sm:mb-3">
+						<a href="/guide/getting-started" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							Getting Started with OnScreenTimer
+						</a>
+					</h2>
+					<p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 sm:mb-5 max-w-3xl">
+						Learn the basics of Timer, Clock, Stopwatch and the main controls.
 					</p>
+					<a href="/guide/getting-started" class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+						Read guide &rarr;
+					</a>
+				</article>
 
-					<!-- Supported Duration Formats -->
-					<div class="p-4 rounded-xl bg-zinc-50/90 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 my-4">
-						<div class="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2.5">Supported Duration Formats</div>
-						<div class="flex flex-wrap items-center gap-2">
-							<span class="inline-flex items-baseline gap-1 px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
-								<code>5</code> <span class="font-sans text-xs text-zinc-400 dark:text-zinc-500">(5 minutes)</span>
-							</span>
-							<span class="inline-flex items-center px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
-								<code>2mins</code>
-							</span>
-							<span class="inline-flex items-center px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
-								<code>02:00</code>
-							</span>
-							<span class="inline-flex items-center px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
-								<code>1hr 30mins</code>
-							</span>
-							<span class="inline-flex items-center px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
-								<code>90s</code>
-							</span>
-						</div>
-						<p class="text-xs text-zinc-500 dark:text-zinc-400 mt-2.5 leading-relaxed">
-							Entering a plain number like <code class="font-mono text-zinc-700 dark:text-zinc-300">5</code> defaults to five minutes according to current product behavior.
-						</p>
-					</div>
+				<!-- Guide: Timer Inputs & Controls -->
+				<article class="flex flex-col items-start pb-12 sm:pb-16 border-b border-zinc-200 dark:border-zinc-800/80 last:border-0 last:pb-0">
+					<h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2 sm:mb-3">
+						<a href="/guide/timer-inputs-and-controls" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							Timer Inputs &amp; Controls
+						</a>
+					</h2>
+					<p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 sm:mb-5 max-w-3xl">
+						Learn how to enter durations and control the active Timer countdown.
+					</p>
+					<a href="/guide/timer-inputs-and-controls" class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+						Read guide &rarr;
+					</a>
+				</article>
 
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						Control the countdown using <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Start</span>, <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Pause</span>, <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Resume</span>, <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Reset</span>, and <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Stop</span>.
+				<!-- Guide: Mini To-do & Current Task Timing -->
+				<article class="flex flex-col items-start pb-12 sm:pb-16 border-b border-zinc-200 dark:border-zinc-800/80 last:border-0 last:pb-0">
+					<h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2 sm:mb-3">
+						<a href="/guide/tasks" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							Mini To-do &amp; Current Task Timing
+						</a>
+					</h2>
+					<p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 sm:mb-5 max-w-3xl">
+						Learn how Pending, Current and Completed tasks work alongside your timer.
 					</p>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						Pressing <strong class="font-medium text-zinc-900 dark:text-zinc-100">Reset</strong> restores the countdown back to your initial configured duration. Pressing <strong class="font-medium text-zinc-900 dark:text-zinc-100">Stop</strong> ends the active timer immediately and marks the session completed.
-					</p>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						When Timer reaches <code class="font-mono text-zinc-800 dark:text-zinc-200">00:00</code>, an optional soft completion sound plays if enabled in the header settings.
-					</p>
-				</section>
+					<a href="/guide/tasks" class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+						Read guide &rarr;
+					</a>
+				</article>
 
-				<!-- Clock Section -->
-				<section id="clock" class="scroll-mt-20 pt-10 sm:pt-14 border-t border-zinc-200 dark:border-zinc-800 space-y-4">
-					<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Clock</h2>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						Clock displays the current local time reported by your device. You can toggle between 12-hour and 24-hour formats inside the Settings menu.
+				<!-- Guide: Study Block Presets -->
+				<article class="flex flex-col items-start pb-12 sm:pb-16 border-b border-zinc-200 dark:border-zinc-800/80 last:border-0 last:pb-0">
+					<h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2 sm:mb-3">
+						<a href="/guide/study-block-presets" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							Study Block Presets
+						</a>
+					</h2>
+					<p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 sm:mb-5 max-w-3xl">
+						Learn how OnScreenTimer's preset study sequences divide a Timer session into named phases.
 					</p>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						Clock mode works across all three visual styles (Modern, Digital, Analog). In Analog style, a small <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-semibold bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">AM</span> or <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-semibold bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">PM</span> badge is shown on the dial face when 12-hour mode is selected.
-					</p>
-					<p class="text-sm text-zinc-500 dark:text-zinc-400">
-						Note: Clock mode runs independently and does not drive Current Task timing.
-					</p>
-				</section>
+					<a href="/guide/study-block-presets" class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+						Read guide &rarr;
+					</a>
+				</article>
 
-				<!-- Stopwatch Section -->
-				<section id="stopwatch" class="scroll-mt-20 pt-10 sm:pt-14 border-t border-zinc-200 dark:border-zinc-800 space-y-4">
-					<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Stopwatch</h2>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						Stopwatch measures elapsed time upwards from zero.
+				<!-- Guide: Display Styles, Sizes & Full Mode -->
+				<article class="flex flex-col items-start pb-12 sm:pb-16 border-b border-zinc-200 dark:border-zinc-800/80 last:border-0 last:pb-0">
+					<h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2 sm:mb-3">
+						<a href="/guide/display-modes" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							Display Styles, Sizes &amp; Full Mode
+						</a>
+					</h2>
+					<p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 sm:mb-5 max-w-3xl">
+						Learn about visual styling, resizing the timer, and utilizing focused Full mode.
 					</p>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						Controls include <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Start</span>, <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Pause</span>, <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Resume</span>, <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Reset</span>, and <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">Stop</span>.
-					</p>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						Pressing <strong class="font-medium text-zinc-900 dark:text-zinc-100">Stop</strong> halts timing while preserving the final elapsed Stopwatch value on screen. Pressing <strong class="font-medium text-zinc-900 dark:text-zinc-100">Reset</strong> returns the elapsed time back to zero.
-					</p>
-				</section>
+					<a href="/guide/display-modes" class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+						Read guide &rarr;
+					</a>
+				</article>
 
-				<!-- Mini To-do Section -->
-				<section id="todo" class="scroll-mt-20 pt-10 sm:pt-14 border-t border-zinc-200 dark:border-zinc-800 space-y-4">
-					<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Mini To-do</h2>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						The To-do panel lets you manage work items alongside the active timer. Tasks progress through three distinct states:
+				<!-- Guide: Saving Your Session -->
+				<article class="flex flex-col items-start pb-12 sm:pb-16 border-b border-zinc-200 dark:border-zinc-800/80 last:border-0 last:pb-0">
+					<h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2 sm:mb-3">
+						<a href="/guide/saving-your-session" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							Saving Your Session
+						</a>
+					</h2>
+					<p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 sm:mb-5 max-w-3xl">
+						Learn how OnScreenTimer saves your preferences and active tasks locally in your browser.
 					</p>
+					<a href="/guide/saving-your-session" class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+						Read guide &rarr;
+					</a>
+				</article>
 
-					<!-- Task States Grid -->
-					<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
-						<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-							<div class="flex items-center gap-2 mb-1.5">
-								<span class="w-2 h-2 rounded-full bg-rose-400 shrink-0" aria-hidden="true"></span>
-								<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Pending</span>
-							</div>
-							<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">Queued tasks awaiting work.</p>
-						</div>
-						<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-							<div class="flex items-center gap-2 mb-1.5">
-								<span class="w-2 h-2 rounded-full bg-amber-400 shrink-0" aria-hidden="true"></span>
-								<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Current</span>
-							</div>
-							<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">Active work items being timed (up to 2 at once).</p>
-						</div>
-						<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-							<div class="flex items-center gap-2 mb-1.5">
-								<span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0" aria-hidden="true"></span>
-								<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Completed</span>
-							</div>
-							<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">Finished items sorted below active tasks.</p>
-						</div>
-					</div>
-
-					<ul class="space-y-2.5 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
-						<li class="flex items-start gap-2">
-							<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0">Creating tasks:</span>
-							<span>Type a task title in the input box and press Enter. New tasks are added as Pending.</span>
-						</li>
-						<li class="flex items-start gap-2">
-							<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0">Current tasks:</span>
-							<span>You can promote up to two tasks simultaneously to Current by clicking the play icon on any Pending item.</span>
-						</li>
-						<li class="flex items-start gap-2">
-							<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0">Completing tasks:</span>
-							<span>Click the checkmark on an active task to mark it done. Completed tasks automatically move below unfinished tasks with their recorded work duration preserved.</span>
-						</li>
-						<li class="flex items-start gap-2">
-							<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0">Returning tasks:</span>
-							<span>A Current Task can be returned to Pending using the return button without losing its logged time.</span>
-						</li>
-						<li class="flex items-start gap-2">
-							<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0">Restarting & deleting:</span>
-							<span>Completed tasks can be restarted back to Pending or deleted entirely. Pending tasks can also be removed when no longer needed.</span>
-						</li>
-						<li class="flex items-start gap-2">
-							<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0">Summary counter:</span>
-							<span>The summary bar at the bottom tracks total <strong class="font-medium text-zinc-900 dark:text-zinc-100">Done X &middot; Remaining Y</strong> items.</span>
-						</li>
-					</ul>
-				</section>
-
-				<!-- Current Task Timing Section -->
-				<section id="task-timing" class="scroll-mt-20 pt-10 sm:pt-14 border-t border-zinc-200 dark:border-zinc-800 space-y-4">
-					<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Current Task Timing</h2>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						Each Current Task records its own elapsed work duration. If two Current Tasks are active at the same time, both record active time simultaneously, though each keeps its own independent duration based on when it was promoted.
+				<!-- Guide: Keyboard, Sound & Settings -->
+				<article class="flex flex-col items-start pb-12 sm:pb-16 border-b border-zinc-200 dark:border-zinc-800/80 last:border-0 last:pb-0">
+					<h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2 sm:mb-3">
+						<a href="/guide/controls-and-settings" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							Keyboard, Sound &amp; Settings
+						</a>
+					</h2>
+					<p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 sm:mb-5 max-w-3xl">
+						Learn about handy keyboard shortcuts, audio settings, and general preferences.
 					</p>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						Task timing strictly mirrors the active session:
-					</p>
-					<ul class="list-disc pl-5 space-y-2 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
-						<li>Tasks accumulate time only while a Timer or Stopwatch session is actively running.</li>
-						<li>Pausing a Timer or Stopwatch pauses task duration accumulation immediately.</li>
-						<li>Changing visual display styles (Modern, Digital, Analog) or display sizes (Tiny, Mid, Big, Full) does not interrupt or reset task timing.</li>
-					</ul>
-				</section>
+					<a href="/guide/controls-and-settings" class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+						Read guide &rarr;
+					</a>
+				</article>
 
-				<!-- Study Block Presets Section -->
-				<section id="presets" class="scroll-mt-20 pt-10 sm:pt-14 border-t border-zinc-200 dark:border-zinc-800 space-y-4">
-					<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Study Block Presets</h2>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						Study Block Presets are optional predefined Timer sequences intended to help structure a study session. Selecting a preset from the Settings menu switches to Timer mode and starts the first segment automatically.
+				<!-- Guide: Using OnScreenTimer for Study & Focus -->
+				<article class="flex flex-col items-start pb-12 sm:pb-16 border-b border-zinc-200 dark:border-zinc-800/80 last:border-0 last:pb-0">
+					<h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2 sm:mb-3">
+						<a href="/guide/study-and-focus" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							Using OnScreenTimer for Study &amp; Focus
+						</a>
+					</h2>
+					<p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 sm:mb-5 max-w-3xl">
+						Practical tips on using the timer, tasks, and presets for focused study sessions.
 					</p>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						Each segment displays an active phase label (such as <em class="text-zinc-900 dark:text-zinc-100">Learn</em>, <em class="text-zinc-900 dark:text-zinc-100">Recall</em>, <em class="text-zinc-900 dark:text-zinc-100">Solve</em>, <em class="text-zinc-900 dark:text-zinc-100">Review</em>, <em class="text-zinc-900 dark:text-zinc-100">Study</em>, or <em class="text-zinc-900 dark:text-zinc-100">Practice</em>) directly underneath the Timer display.
-					</p>
-					<ul class="list-disc pl-5 space-y-2 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
-						<li>The phase label indicates the current study block segment; it is not a Current Task and is not added to the Mini To-do.</li>
-						<li>Segments automatically advance to the next phase when the countdown finishes.</li>
-						<li>The Timer completes and stops after the final preset segment finishes (presets do not loop).</li>
-						<li>Pause, Resume, Reset, and Stop controls work normally throughout a preset session.</li>
-					</ul>
+					<a href="/guide/study-and-focus" class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+						Read guide &rarr;
+					</a>
+				</article>
 
-					<!-- Existing Presets Grid -->
-					<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 my-4">
-						<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-							<div class="flex items-center justify-between gap-2 mb-1.5">
-								<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Learn &rarr; Recall &rarr; Solve &rarr; Review</h3>
-								<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">60m total</span>
-							</div>
-							<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
-								25m Learn &rarr; 5m Recall &rarr; 25m Solve &rarr; 5m Review
-							</p>
-						</div>
-						<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-							<div class="flex items-center justify-between gap-2 mb-1.5">
-								<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Deep Study &rarr; Practice</h3>
-								<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">90m total</span>
-							</div>
-							<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
-								60m Study &rarr; 30m Practice
-							</p>
-						</div>
-						<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-							<div class="flex items-center justify-between gap-2 mb-1.5">
-								<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Learn &rarr; Solve</h3>
-								<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">60m total</span>
-							</div>
-							<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
-								30m Learn &rarr; 30m Solve
-							</p>
-						</div>
-						<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-							<div class="flex items-center justify-between gap-2 mb-1.5">
-								<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Study &rarr; Solve &rarr; Review</h3>
-								<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">120m total</span>
-							</div>
-							<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
-								45m Study &rarr; 45m Solve &rarr; 30m Review
-							</p>
-						</div>
-					</div>
-
-					<p class="text-xs text-zinc-500 dark:text-zinc-400">
-						Study Block Presets are simply optional study structures. They do not claim medical or productivity guarantees.
-					</p>
-				</section>
-
-				<!-- Display Styles Section -->
-				<section id="display-styles" class="scroll-mt-20 pt-10 sm:pt-14 border-t border-zinc-200 dark:border-zinc-800 space-y-4">
-					<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Display Styles</h2>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						You can switch between three visual styles for Timer, Clock, and Stopwatch:
-					</p>
-
-					<dl class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 my-4">
-						<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-							<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Modern</dt>
-							<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Clean, large numeric typography designed for immediate, prominent legibility.</dd>
-						</div>
-						<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-							<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Digital</dt>
-							<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Retro seven-segment inspired layout providing a classic digital clock face.</dd>
-						</div>
-						<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-							<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Analog</dt>
-							<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Traditional circular dial with sweeping hands. Shows an AM/PM badge in 12-hour Clock mode.</dd>
-						</div>
-					</dl>
-
-					<p class="text-sm text-zinc-600 dark:text-zinc-400">
-						Changing the display style modifies only how the time is shown; it never resets or interrupts your active session.
-					</p>
-				</section>
-
-				<!-- Display Sizes Section -->
-				<section id="display-sizes" class="scroll-mt-20 pt-10 sm:pt-14 border-t border-zinc-200 dark:border-zinc-800 space-y-4">
-					<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Display Sizes</h2>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						Scale the timer workspace to match your setup or focus environment:
-					</p>
-
-					<dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 my-4">
-						<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-							<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Tiny</dt>
-							<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Compact footprint when keeping the timer alongside other windows.</dd>
-						</div>
-						<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-							<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Mid <span class="text-xs font-normal text-zinc-400 dark:text-zinc-500">(Default)</span></dt>
-							<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Standard balanced view for normal desk and laptop working distances.</dd>
-						</div>
-						<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-							<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Big</dt>
-							<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Expanded scale that remains easily readable from across the room.</dd>
-						</div>
-						<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-							<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Full</dt>
-							<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">App-level focused view hiding header, footer, and side panels. Exit with Esc or size toggle.</dd>
-						</div>
-					</dl>
-
-					<p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-						<strong class="font-medium text-zinc-900 dark:text-zinc-100">About Full mode:</strong> Full mode is an in-app focused layout designed to eliminate visual distractions. It is not the browser&rsquo;s native Fullscreen API. Essential controls remain readily accessible.
-					</p>
-				</section>
-
-				<!-- Sound Section -->
-				<section id="sound" class="scroll-mt-20 pt-10 sm:pt-14 border-t border-zinc-200 dark:border-zinc-800 space-y-4">
-					<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Sound</h2>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						The completion chime is muted by default. You can enable sound at any time using the speaker toggle in the top header.
-					</p>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						When enabled, a soft sound plays when a Timer countdown finishes and when transitioning between segments in a Study Block Preset. Your sound preference is stored locally on your device.
-					</p>
-					<p class="text-sm text-zinc-500 dark:text-zinc-400">
-						Note: Sound playback relies on local browser audio and does not send system push notifications.
-					</p>
-				</section>
-
-				<!-- Keyboard Shortcuts Section -->
-				<section id="keyboard" class="scroll-mt-20 pt-10 sm:pt-14 border-t border-zinc-200 dark:border-zinc-800 space-y-4">
-					<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Keyboard Shortcuts</h2>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						On desktop devices, you can control primary functions quickly using keyboard shortcuts:
-					</p>
-
-					<div class="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50 my-4">
-						<table class="w-full text-left text-sm">
-							<thead>
-								<tr class="border-b border-zinc-200 dark:border-zinc-800 text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-100/75 dark:bg-zinc-800/60">
-									<th class="py-3 px-4 font-semibold">Shortcut</th>
-									<th class="py-3 px-4 font-semibold">Action</th>
-									<th class="py-3 px-4 font-semibold">Behavior</th>
-								</tr>
-							</thead>
-							<tbody class="divide-y divide-zinc-200/70 dark:divide-zinc-800/70">
-								<tr class="hover:bg-zinc-100/40 dark:hover:bg-zinc-800/30 transition-colors">
-									<td class="py-3 px-4 whitespace-nowrap">
-										<kbd class="px-2.5 py-1 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded shadow-2xs">Space</kbd>
-									</td>
-									<td class="py-3 px-4 font-medium text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Start / Pause / Resume</td>
-									<td class="py-3 px-4 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">Controls the active Timer or Stopwatch session when not actively focused in a text input.</td>
-								</tr>
-								<tr class="hover:bg-zinc-100/40 dark:hover:bg-zinc-800/30 transition-colors">
-									<td class="py-3 px-4 whitespace-nowrap">
-										<kbd class="px-2.5 py-1 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded shadow-2xs">Enter</kbd>
-									</td>
-									<td class="py-3 px-4 font-medium text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Submit input</td>
-									<td class="py-3 px-4 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">Confirms timer duration input to start countdown, or adds a new item to the To-do list.</td>
-								</tr>
-								<tr class="hover:bg-zinc-100/40 dark:hover:bg-zinc-800/30 transition-colors">
-									<td class="py-3 px-4 whitespace-nowrap">
-										<kbd class="px-2.5 py-1 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded shadow-2xs">Esc</kbd>
-									</td>
-									<td class="py-3 px-4 font-medium text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Close UI / Exit Full</td>
-									<td class="py-3 px-4 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">Exits Full display mode or closes open modal drawers and menus.</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-
-					<p class="text-xs text-zinc-500 dark:text-zinc-400">
-						Keyboard shortcuts are designed for physical keyboards and do not interfere with typing inside text inputs.
-					</p>
-				</section>
-
-				<!-- Saving / Persistence Section -->
-				<section id="saving" class="scroll-mt-20 pt-10 sm:pt-14 border-t border-zinc-200 dark:border-zinc-800 space-y-4">
-					<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Saving / Persistence</h2>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						OnScreenTimer saves supported state locally inside your browser using <code class="font-mono text-zinc-800 dark:text-zinc-200 text-xs sm:text-sm bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-700">localStorage</code>. This includes:
-					</p>
-					<ul class="list-disc pl-5 space-y-1.5 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
-						<li>Active Timer state and remaining duration</li>
-						<li>Stopwatch state and accumulated elapsed time</li>
-						<li>Mini To-do tasks, statuses, and logged work durations</li>
-						<li>Selected visual style (Modern, Digital, Analog)</li>
-						<li>Selected display size (Tiny, Mid, Big, Full)</li>
-						<li>Clock format preference (12-hour or 24-hour)</li>
-						<li>Sound and theme preferences</li>
-						<li>Active Study Block Preset progression</li>
-					</ul>
-					<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-						Because state is stored directly in your browser, your session can survive a page refresh. No account or registration is required.
-					</p>
-					<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 space-y-2">
-						<p>Your Timer, task, and preference state is stored locally in your browser. OnScreenTimer does not currently send this saved state to an application server.</p>
-						<p class="text-zinc-500 dark:text-zinc-400">There is currently no account, cloud sync, cross-device sync, or server backup.</p>
-					</div>
-				</section>
-			</div>
-
-			<!-- Bottom CTA -->
-			<div class="pt-12 sm:pt-16 mt-12 sm:mt-16 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-				<div>
-					<h3 class="text-base font-semibold text-zinc-950 dark:text-zinc-50">Ready to get started?</h3>
-					<p class="text-sm text-zinc-600 dark:text-zinc-400">Launch OnScreenTimer and start timing your work session.</p>
-				</div>
-				<a
-					href="/"
-					class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 shrink-0"
-				>
-					Open OnScreenTimer &rarr;
-				</a>
 			</div>
 		</main>
 
 		<!-- Footer -->
-		<footer id="site-footer" class="w-full border-t border-zinc-200 dark:border-zinc-800 py-6 text-center text-xs text-zinc-500 dark:text-zinc-400">
+		<footer id="site-footer" class="w-full border-t border-zinc-200 dark:border-zinc-800 py-6 text-center text-xs text-zinc-500 dark:text-zinc-400 mt-auto">
 			<p>OnScreenTimer &mdash; Browser Utility</p>
 		</footer>
 	</div>

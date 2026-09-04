@@ -1,0 +1,81 @@
+---
+import GuideArticleLayout from '../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="Timer Inputs & Controls" 
+	description="Learn how to enter durations and control the active Timer countdown."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Entering Durations</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Timer counts down from a duration selected by you. You can enter durations using standard digits or natural time expressions.
+		</p>
+
+		<!-- Supported Duration Formats -->
+		<div class="p-4 rounded-xl bg-zinc-50/90 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 my-4">
+			<div class="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2.5">Supported Duration Formats</div>
+			<div class="flex flex-wrap items-center gap-2">
+				<span class="inline-flex items-baseline gap-1 px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
+					<code>5</code> <span class="font-sans text-xs text-zinc-400 dark:text-zinc-500">(5 minutes)</span>
+				</span>
+				<span class="inline-flex items-center px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
+					<code>2mins</code>
+				</span>
+				<span class="inline-flex items-center px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
+					<code>02:00</code>
+				</span>
+				<span class="inline-flex items-center px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
+					<code>1hr 30mins</code>
+				</span>
+				<span class="inline-flex items-center px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
+					<code>90s</code>
+				</span>
+			</div>
+			<p class="text-xs text-zinc-500 dark:text-zinc-400 mt-2.5 leading-relaxed">
+				Entering a plain number like <code class="font-mono text-zinc-700 dark:text-zinc-300">5</code> defaults to five minutes according to current product behavior.
+			</p>
+		</div>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Controls</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Once a duration is set, control the countdown using the on-screen buttons:
+		</p>
+		
+		<ul class="space-y-3 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li class="flex items-start gap-2">
+				<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shrink-0 mt-0.5">Start</span>
+				<span>Begins the countdown from the entered duration.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shrink-0 mt-0.5">Pause</span>
+				<span>Temporarily halts the active timer or stopwatch session.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shrink-0 mt-0.5">Resume</span>
+				<span>Continues the paused session from where it left off.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shrink-0 mt-0.5">Reset</span>
+				<span>Restores the countdown back to your initial configured duration.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shrink-0 mt-0.5">Stop</span>
+				<span>Ends the active timer immediately and marks the session as completed.</span>
+			</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Completion & Sound</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			When Timer reaches <code class="font-mono text-zinc-800 dark:text-zinc-200">00:00</code>, an optional soft completion sound plays if it is enabled.
+		</p>
+		<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2">
+			<a href="/guide/controls-and-settings" class="text-blue-600 dark:text-blue-400 hover:underline">Learn more about Keyboard, Sound & Settings &rarr;</a>
+		</p>
+	</section>
+
+</GuideArticleLayout>

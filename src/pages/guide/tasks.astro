@@ -1,0 +1,82 @@
+---
+import GuideArticleLayout from '../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="Mini To-do & Current Task Timing" 
+	description="Learn how Pending, Current and Completed tasks work alongside your timer."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Mini To-do</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			The To-do panel lets you manage work items alongside the active timer. Tasks progress through three distinct states:
+		</p>
+
+		<!-- Task States Grid -->
+		<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
+			<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center gap-2 mb-1.5">
+					<span class="w-2 h-2 rounded-full bg-rose-400 shrink-0" aria-hidden="true"></span>
+					<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Pending</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">Queued tasks awaiting work.</p>
+			</div>
+			<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center gap-2 mb-1.5">
+					<span class="w-2 h-2 rounded-full bg-amber-400 shrink-0" aria-hidden="true"></span>
+					<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Current</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">Active work items being timed (up to 2 at once).</p>
+			</div>
+			<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center gap-2 mb-1.5">
+					<span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0" aria-hidden="true"></span>
+					<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Completed</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">Finished items sorted below active tasks.</p>
+			</div>
+		</div>
+
+		<ul class="space-y-3 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300 mt-6">
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Adding tasks:</span>
+				<span>Type a task title in the input box and press Enter. New tasks are added as Pending.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Current tasks:</span>
+				<span>You can promote up to two tasks simultaneously to Current by clicking the play icon on any Pending item.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Completing tasks:</span>
+				<span>Click the checkmark on an active task to mark it done. Completed tasks automatically move below unfinished tasks with their recorded work duration preserved.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Returning tasks:</span>
+				<span>A Current Task can be returned to Pending using the return button without losing its logged time.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Restarting & deleting:</span>
+				<span>Completed tasks can be restarted back to Pending or deleted entirely. Pending tasks can also be removed when no longer needed.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Summary counter:</span>
+				<span>The summary bar at the bottom tracks total <strong class="font-medium text-zinc-900 dark:text-zinc-100">Done X &middot; Remaining Y</strong> items.</span>
+			</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Current Task Timing</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Each Current Task records its own elapsed work duration. If two Current Tasks are active at the same time, both record active time simultaneously, though each keeps its own independent duration based on when it was promoted.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Task timing strictly mirrors the active session:
+		</p>
+		<ul class="list-disc pl-5 space-y-2 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li>Tasks accumulate time only while a Timer or Stopwatch session is actively running.</li>
+			<li>Pausing a Timer or Stopwatch pauses task duration accumulation immediately.</li>
+			<li>Changing visual display styles or display sizes does not interrupt or reset task timing.</li>
+		</ul>
+	</section>
+</GuideArticleLayout>

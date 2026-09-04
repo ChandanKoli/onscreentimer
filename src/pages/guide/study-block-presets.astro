@@ -1,0 +1,75 @@
+---
+import GuideArticleLayout from '../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="Study Block Presets" 
+	description="Learn how OnScreenTimer's preset study sequences divide a Timer session into named phases."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">How Presets Work</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Study Block Presets are optional predefined Timer sequences intended to help structure a study session. Selecting a preset from the Settings menu switches to Timer mode and starts the first segment automatically.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Each segment displays an active phase label (such as <em class="text-zinc-900 dark:text-zinc-100">Learn</em>, <em class="text-zinc-900 dark:text-zinc-100">Recall</em>, <em class="text-zinc-900 dark:text-zinc-100">Solve</em>, <em class="text-zinc-900 dark:text-zinc-100">Review</em>, <em class="text-zinc-900 dark:text-zinc-100">Study</em>, or <em class="text-zinc-900 dark:text-zinc-100">Practice</em>) directly underneath the Timer display.
+		</p>
+		<ul class="list-disc pl-5 space-y-2 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li>The phase label indicates the current study block segment; it is not a Current Task and is not added to the Mini To-do.</li>
+			<li>Segments automatically advance to the next phase when the countdown finishes.</li>
+			<li>The Timer completes and stops after the final preset segment finishes (presets do not loop).</li>
+			<li>Pause, Resume, Reset, and Stop controls work normally throughout a preset session.</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Current Presets</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			OnScreenTimer provides the following optional study structures:
+		</p>
+
+		<!-- Existing Presets Grid -->
+		<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 my-4">
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Learn &rarr; Recall &rarr; Solve &rarr; Review</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">60m total</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					25m Learn &rarr; 5m Recall &rarr; 25m Solve &rarr; 5m Review
+				</p>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Deep Study &rarr; Practice</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">90m total</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					60m Study &rarr; 30m Practice
+				</p>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Learn &rarr; Solve</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">60m total</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					30m Learn &rarr; 30m Solve
+				</p>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Study &rarr; Solve &rarr; Review</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">120m total</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					45m Study &rarr; 45m Solve &rarr; 30m Review
+				</p>
+			</div>
+		</div>
+
+		<p class="text-xs text-zinc-500 dark:text-zinc-400">
+			Study Block Presets are simply optional study structures. They do not claim medical or productivity guarantees.
+		</p>
+	</section>
+</GuideArticleLayout>
