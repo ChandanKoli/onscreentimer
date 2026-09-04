@@ -6,6 +6,15 @@ import SiteFooter from '../components/SiteFooter.astro';
 ---
 
 <Layout>
+	<Fragment slot="head">
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "WebSite",
+			"name": "OnScreenTimer",
+			"url": "https://onscreentimer.com/"
+		})} />
+	</Fragment>
+
 	<div class="min-h-dvh flex flex-col justify-between">
 		<!-- Header -->
 		<SiteHeader />

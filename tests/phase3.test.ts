@@ -223,10 +223,10 @@ test('TimerEngine lifecycle: start, pause, resume, reset, stop', async () => {
 	assert.equal(timer.getRemainingSeconds(), 0);
 	assert.equal(timer.getRemainingMs(), 0);
 
-	// Reset - returns to initial duration
+	// Reset - returns to initial duration (now 0 per new stop semantics)
 	timer.reset();
 	assert.equal(timer.getStatus(), 'idle');
-	assert.equal(timer.getRemainingSeconds(), 10);
+	assert.equal(timer.getRemainingSeconds(), 0);
 
 	timer.destroy();
 });

@@ -1,15 +1,22 @@
 ---
 import '../styles/global.css';
+import { SITE_CONFIG } from '../site.config';
 
 interface Props {
 	title?: string;
 	description?: string;
+	ogType?: string;
 }
 
 const {
-	title = 'OnScreenTimer — Minimal Online Timer, Clock & Stopwatch',
-	description = 'A clean, distraction-free browser timer, clock, stopwatch, and task-timing utility.'
+	title = 'Online Timer, Clock & Stopwatch — OnScreenTimer',
+	description = 'A free, full-screen online timer, clock, and stopwatch with built-in task tracking. Distraction-free, easy to use, and works directly in your browser.',
+	ogType = 'website'
 } = Astro.props;
+
+// Ensure trailing slash logic is consistent or just rely on Astro's pathname
+// Astro.url.pathname often has a trailing slash for the root, e.g. '/'
+const canonicalURL = new URL(Astro.url.pathname, SITE_CONFIG.url).href;
 ---
 <!doctype html>
 <html lang="en">
@@ -19,8 +26,19 @@ const {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description} />
 		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+		
+		<!-- Open Graph -->
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:type" content={ogType} />
+		<meta property="og:site_name" content={SITE_CONFIG.name} />
+
+		<slot name="head" />
+
 		<script is:inline>
 			(function () {
 				try {
@@ -40,4 +58,3 @@ const {
 		<slot />
 	</body>
 </html>
-

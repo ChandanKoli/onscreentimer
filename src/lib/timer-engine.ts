@@ -149,6 +149,7 @@ export class TimerEngine {
 		this.status = 'completed';
 		this.targetEndTime = null;
 		this.pausedRemainingMs = null;
+		this.initialDurationSeconds = 0;
 		this.remainingMs = 0;
 		this.notifyStatus();
 		this.notifyTick();

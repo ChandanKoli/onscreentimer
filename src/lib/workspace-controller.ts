@@ -1,21 +1,21 @@
-import { createStore } from './store';
-import { TimerEngine } from './timer-engine';
-import { StopwatchEngine } from './stopwatch-engine';
-import { ClockEngine } from './clock-engine';
-import { parseDuration, formatDuration } from './parser';
+import { createStore } from './store.ts';
+import { TimerEngine } from './timer-engine.ts';
+import { StopwatchEngine } from './stopwatch-engine.ts';
+import { ClockEngine } from './clock-engine.ts';
+import { parseDuration, formatDuration } from './parser.ts';
 import {
 	renderDigitalSvg,
 	calculateClockAngles,
 	calculateDurationAngles,
 	calculateStopwatchAngles
-} from './renderers';
-import { taskActionReducer, engineStatusReducer } from './task-logic';
-import { serializeState, hydrateState } from './persistence';
-import { AudioSystem } from './audio';
-import type { AppState, AppMode, DisplayStyle, TimerStatus, StopwatchStatus, Task } from './types';
+} from './renderers.ts';
+import { taskActionReducer, engineStatusReducer } from './task-logic.ts';
+import { serializeState, hydrateState } from './persistence.ts';
+import { AudioSystem } from './audio.ts';
+import type { AppState, AppMode, DisplayStyle, TimerStatus, StopwatchStatus, Task } from './types.ts';
 import { STUDY_PRESETS } from './presets.ts';
 
-export function initWorkspaceController() {
+export function initWorkspaceController(config?: { overrideTimerDuration?: number }) {
 	// Root DOM Elements
 	const originalTitle = document.title;
 
@@ -100,6 +100,69 @@ export function initWorkspaceController() {
 		// Ignore storage access errors
 	}
 
+	if (config?.overrideTimerDuration) {
+		const isStrongTimerState = hydratedState && (hydratedState.timer.status === 'running' || hydratedState.timer.status === 'paused');
+		if (!isStrongTimerState) {
+			if (!hydratedState) {
+				hydratedState = {
+					mode: 'timer',
+					style: 'modern',
+					size: 'mid',
+					soundEnabled: false,
+					timer: {
+						status: 'idle',
+						initialDurationSeconds: 0,
+						remainingSeconds: 0,
+						remainingMs: 0,
+						rawInput: '',
+						inputError: null
+					},
+					clock: {
+						format: '24h',
+						hours: 12,
+						minutes: 0,
+						seconds: 0,
+						isAm: true,
+						formatted: '12:00:00'
+					},
+					stopwatch: {
+						status: 'idle',
+						elapsedSeconds: 0,
+						elapsedMs: 0
+					},
+					tasks: [],
+					activeSessionEngine: null,
+					todoMinimized: typeof window !== 'undefined' ? window.innerWidth < 1024 : false,
+					clockFormat: '24h',
+					activePresetId: null,
+					activeSegmentIndex: 0
+				};
+			}
+			hydratedState.mode = 'timer';
+			hydratedState.timer = {
+				status: 'idle',
+				initialDurationSeconds: config.overrideTimerDuration,
+				remainingSeconds: config.overrideTimerDuration,
+				remainingMs: config.overrideTimerDuration * 1000,
+				rawInput: '', // Clear the visual input so they don't see raw text
+				inputError: null
+			};
+			hydratedState.activePresetId = null;
+			hydratedState.activeSegmentIndex = 0;
+		}
+	} else if (hydratedState) {
+		// We are on a normal page (e.g. homepage).
+		// Prevent idle/completed route-supplied timers from contaminating the global default.
+		const isStrongTimerState = hydratedState.timer.status === 'running' || hydratedState.timer.status === 'paused';
+		if (!isStrongTimerState) {
+			hydratedState.timer.status = 'idle';
+			hydratedState.timer.initialDurationSeconds = 0;
+			hydratedState.timer.remainingMs = 0;
+			hydratedState.timer.rawInput = '';
+			hydratedState.timer.inputError = null;
+		}
+	}
+
 	const initialState: AppState = {
 		mode: hydratedState?.mode ?? 'timer',
 		style: hydratedState?.style ?? 'modern',
@@ -182,7 +245,11 @@ export function initWorkspaceController() {
 			handleEngineStatusChange('timer', status);
 			store.setState((prev) => ({
 				...prev,
-				timer: { ...prev.timer, status }
+				timer: { 
+					...prev.timer, 
+					status, 
+					initialDurationSeconds: timerEngine.getInitialDurationSeconds() 
+				}
 			}));
 			persistState();
 		},
@@ -957,6 +1024,14 @@ export function initWorkspaceController() {
 		store.setState(prev => ({ ...prev, activePresetId: null, activeSegmentIndex: 0 }));
 		const raw = timerInput?.value.trim() ?? '';
 		if (!raw) {
+			const currentInitial = store.getState().timer.initialDurationSeconds;
+			// Allow Start if a valid duration is already configured (e.g. via duration route)
+			if (shouldStart && currentInitial > 0) {
+				setTimerInputError(null);
+				timerEngine.start(currentInitial);
+				return true;
+			}
+
 			setTimerInputError(shouldStart ? 'Please enter a duration (e.g. 5, 2mins, 02:00, 90s)' : null);
 			store.setState((prev) => ({
 				...prev,
@@ -1318,14 +1393,11 @@ export function initWorkspaceController() {
 	});
 
 	// 8. Initial View State Initialization
-	if (timerInput) timerInput.value = '';
-	if (modernTimeText) modernTimeText.textContent = '00:00';
-	btnTimerReset.disabled = true;
-	btnTimerStop.disabled = true;
-	if (btnStopwatchReset) btnStopwatchReset.disabled = true;
-	if (btnStopwatchStop) btnStopwatchStop.disabled = true;
+	// Force a synchronous render pass using the actual state
+	// so the DOM matches the store immediately.
+	store.setState(store.getState());
 
-	// Initial size sync
+	// Initial size sync (handled by subscriber now, but kept for safety if needed before paint)
 	document.body.dataset.size = store.getState().size;
 
 	return {
