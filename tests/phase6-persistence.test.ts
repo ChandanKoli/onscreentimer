@@ -27,7 +27,7 @@ test('Valid current schema serializes and hydrates', () => {
 		],
 		activeSessionEngine: null,
 		todoMinimized: false,
-		clockFormat: '24h'
+		clockFormat: '24h', activePresetId: null, activeSegmentIndex: 0
 	};
 
 	const serialized = serializeState(state);

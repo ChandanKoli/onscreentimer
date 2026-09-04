@@ -54,6 +54,8 @@ export interface AppState {
 	activeSessionEngine: 'timer' | 'stopwatch' | null;
 	todoMinimized: boolean;
 	clockFormat: ClockFormat;
+	activePresetId: string | null;
+	activeSegmentIndex: number;
 }
 
 export type StateListener<T> = (state: T, prevState: T) => void;

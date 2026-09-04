@@ -13,6 +13,7 @@ import { taskActionReducer, engineStatusReducer } from './task-logic';
 import { serializeState, hydrateState } from './persistence';
 import { AudioSystem } from './audio';
 import type { AppState, AppMode, DisplayStyle, TimerStatus, StopwatchStatus, Task } from './types';
+import { STUDY_PRESETS } from './presets.ts';
 
 export function initWorkspaceController() {
 	// Root DOM Elements
@@ -31,6 +32,7 @@ export function initWorkspaceController() {
 	const handMinute = document.getElementById('hand-minute') as SVGLineElement | null;
 	const handSecondGroup = document.getElementById('hand-second-group') as SVGGElement | null;
 	const analogNumericalReadout = document.getElementById('analog-numerical-readout');
+	const analogAmPmBadge = document.getElementById('analog-ampm-badge');
 
 	// Controls Rows
 	const controlsTimer = document.getElementById('controls-timer');
@@ -127,7 +129,9 @@ export function initWorkspaceController() {
 		tasks: hydratedState?.tasks ?? [],
 		activeSessionEngine: hydratedState?.activeSessionEngine ?? null,
 		todoMinimized: hydratedState?.todoMinimized ?? (typeof window !== 'undefined' ? window.innerWidth < 1024 : false),
-		clockFormat: hydratedState?.clockFormat ?? '24h'
+		clockFormat: hydratedState?.clockFormat ?? '24h',
+		activePresetId: hydratedState?.activePresetId ?? null,
+		activeSegmentIndex: hydratedState?.activeSegmentIndex ?? 0
 	};
 
 	let previousNonFullSize: import('./types').DisplaySize = hydratedState?.previousNonFullSize ?? (initialState.size === 'full' ? 'mid' : initialState.size);
@@ -148,7 +152,9 @@ export function initWorkspaceController() {
 				tasks: state.tasks,
 				activeSessionEngine: state.activeSessionEngine,
 				todoMinimized: state.todoMinimized,
-				clockFormat: state.clockFormat
+				clockFormat: state.clockFormat,
+				activePresetId: state.activePresetId,
+				activeSegmentIndex: state.activeSegmentIndex
 			});
 			localStorage.setItem('ost_state', serialized);
 		} catch (e) {
@@ -186,6 +192,30 @@ export function initWorkspaceController() {
 				modernTimeText?.classList.remove('text-blue-600', 'dark:text-blue-400');
 			}, 1500);
 			audioSystem.playCompletionSound(!store.getState().soundEnabled);
+			
+			// Preset Progression
+			const state = store.getState();
+			if (state.activePresetId) {
+				const preset = STUDY_PRESETS.find(p => p.id === state.activePresetId);
+				if (preset && state.activeSegmentIndex < preset.segments.length - 1) {
+					// Advance to next segment immediately
+					const nextIndex = state.activeSegmentIndex + 1;
+					store.setState(prev => ({ ...prev, activeSegmentIndex: nextIndex }));
+					timerEngine.setDuration(preset.segments[nextIndex].durationSeconds);
+					timerEngine.start();
+				} else if (preset && state.activeSegmentIndex === preset.segments.length - 1) {
+					// Final segment reached zero
+					store.setState(prev => ({ ...prev, activePresetId: null, activeSegmentIndex: 0 }));
+					const presetPhaseLabel = document.getElementById('preset-phase-label');
+					if (presetPhaseLabel) {
+						presetPhaseLabel.textContent = 'Block complete';
+						presetPhaseLabel.classList.remove('hidden');
+						setTimeout(() => {
+							updatePresetLabel(store.getState());
+						}, 3000);
+					}
+				}
+			}
 		}
 	});
 	if (hydratedState) {
@@ -554,6 +584,62 @@ export function initWorkspaceController() {
 	renderTodoList(prevTasksRef);
 	updateCurrentTasks(store.getState());
 
+
+	// --- Preset UI Logic ---
+	const presetChooserContainer = document.getElementById('preset-chooser-container');
+	const presetPhaseLabel = document.getElementById('preset-phase-label');
+
+	if (presetChooserContainer) {
+		presetChooserContainer.innerHTML = STUDY_PRESETS.map(preset => {
+			const totalMins = preset.segments.reduce((acc, s) => acc + s.durationSeconds / 60, 0);
+			const segmentsStr = preset.segments.map(s => s.durationSeconds / 60).join(' · ');
+			return `
+				<button type="button" data-preset-id="${preset.id}" class="w-full text-left p-3 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+					<div class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-1">${preset.name}</div>
+					<div class="text-xs text-zinc-500 dark:text-zinc-400">${totalMins} min (${segmentsStr})</div>
+				</button>
+			`;
+		}).join('');
+
+		presetChooserContainer.addEventListener('click', (e) => {
+			const target = e.target.closest('button[data-preset-id]');
+			if (target) {
+				const presetId = target.getAttribute('data-preset-id');
+				const preset = STUDY_PRESETS.find(p => p.id === presetId);
+				if (preset) {
+					closeMenu();
+					
+					store.setState(prev => ({
+						...prev,
+						mode: 'timer',
+						activePresetId: presetId,
+						activeSegmentIndex: 0
+					}));
+					
+					timerEngine.setDuration(preset.segments[0].durationSeconds);
+					timerEngine.start();
+				}
+			}
+		});
+	}
+
+	function updatePresetLabel(state) {
+		if (presetPhaseLabel) {
+			if (state.mode === 'timer' && state.activePresetId) {
+				const preset = STUDY_PRESETS.find(p => p.id === state.activePresetId);
+				if (preset && preset.segments[state.activeSegmentIndex]) {
+					presetPhaseLabel.textContent = preset.segments[state.activeSegmentIndex].phase;
+					presetPhaseLabel.classList.remove('hidden');
+				} else {
+					presetPhaseLabel.classList.add('hidden');
+				}
+			} else {
+				presetPhaseLabel.classList.add('hidden');
+			}
+		}
+	}
+
+
 	// 6. Subscriber: DOM Updates
 	store.subscribe((state) => {
 		if (state.tasks !== prevTasksRef) {
@@ -562,6 +648,7 @@ export function initWorkspaceController() {
 		}
 		updateCurrentTasks(state);
 		syncTodoMinimizedState(state);
+		updatePresetLabel(state);
 
 		const { mode, style, timer, clock, stopwatch, clockFormat } = state;
 
@@ -679,6 +766,8 @@ export function initWorkspaceController() {
 				setHandRotation(handMinute, angles.minuteAngle);
 				setHandRotation(handSecondGroup, angles.secondAngle);
 
+				if (analogAmPmBadge) analogAmPmBadge.classList.add('hidden');
+
 				if (analogNumericalReadout) {
 					analogNumericalReadout.textContent = formatted;
 					analogNumericalReadout.classList.remove('hidden');
@@ -712,6 +801,8 @@ export function initWorkspaceController() {
 				setHandRotation(handHour, angles.hourAngle);
 				setHandRotation(handMinute, angles.minuteAngle);
 				setHandRotation(handSecondGroup, angles.secondAngle);
+
+				if (analogAmPmBadge) analogAmPmBadge.classList.add('hidden');
 
 				if (analogNumericalReadout) {
 					analogNumericalReadout.textContent = formatted;
@@ -751,6 +842,15 @@ export function initWorkspaceController() {
 				setHandRotation(handHour, angles.hourAngle);
 				setHandRotation(handMinute, angles.minuteAngle);
 				setHandRotation(handSecondGroup, angles.secondAngle);
+
+				if (analogAmPmBadge) {
+					if (clock.format === '12h') {
+						analogAmPmBadge.textContent = clock.isAm ? 'AM' : 'PM';
+						analogAmPmBadge.classList.remove('hidden');
+					} else {
+						analogAmPmBadge.classList.add('hidden');
+					}
+				}
 
 				// Standard analog clock has no redundant digital sub-readout
 				if (analogNumericalReadout) {
@@ -854,6 +954,7 @@ export function initWorkspaceController() {
 
 	// 5. Timer Input Handling (Preserving Phase 2 behavior)
 	function handleTimerDurationInput(shouldStart: boolean = false) {
+		store.setState(prev => ({ ...prev, activePresetId: null, activeSegmentIndex: 0 }));
 		const raw = timerInput?.value.trim() ?? '';
 		if (!raw) {
 			setTimerInputError(shouldStart ? 'Please enter a duration (e.g. 5, 2mins, 02:00, 90s)' : null);
@@ -973,6 +1074,7 @@ export function initWorkspaceController() {
 
 	btnTimerStop?.addEventListener('click', () => {
 		setTimerInputError(null);
+		store.setState(prev => ({ ...prev, activePresetId: null, activeSegmentIndex: 0 }));
 		timerEngine.stop();
 	});
 

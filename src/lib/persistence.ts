@@ -1,3 +1,4 @@
+import { STUDY_PRESETS } from './presets.ts';
 import type { AppMode, DisplayStyle, DisplaySize, TimerStatus, StopwatchStatus, Task, ClockFormat } from './types';
 
 export const SCHEMA_VERSION = 1;
@@ -28,6 +29,8 @@ export interface PersistedState {
 	activeSessionEngine: 'timer' | 'stopwatch' | null;
 	todoMinimized: boolean;
 	clockFormat: ClockFormat;
+	activePresetId: string | null;
+	activeSegmentIndex: number;
 }
 
 export function serializeState(state: Omit<PersistedState, 'version'>): string {
@@ -58,7 +61,10 @@ export function hydrateState(json: string | null, now: number): Omit<PersistedSt
 		
 		let activeSessionEngine = ['timer', 'stopwatch'].includes(parsed.activeSessionEngine) ? parsed.activeSessionEngine : null;
 
-		// Timer hydration logic
+				// Timer hydration logic
+		let activePresetId = typeof parsed.activePresetId === 'string' ? parsed.activePresetId : null;
+		let activeSegmentIndex = typeof parsed.activeSegmentIndex === 'number' ? parsed.activeSegmentIndex : 0;
+		
 		let timer: PersistedTimer = {
 			status: 'idle',
 			initialDurationSeconds: 0,
@@ -66,6 +72,8 @@ export function hydrateState(json: string | null, now: number): Omit<PersistedSt
 			targetEndTime: null
 		};
 		
+		let timerEffectiveEnd = now;
+
 		if (parsed.timer && typeof parsed.timer === 'object') {
 			timer.initialDurationSeconds = Math.max(0, Number(parsed.timer.initialDurationSeconds) || 0);
 			timer.remainingMs = Math.max(0, Number(parsed.timer.remainingMs) || 0);
@@ -75,12 +83,56 @@ export function hydrateState(json: string | null, now: number): Omit<PersistedSt
 			if (timer.status === 'running' && timer.targetEndTime !== null) {
 				const diff = timer.targetEndTime - now;
 				if (diff <= 0) {
-					timer.status = 'completed';
-					timer.targetEndTime = null;
-					timer.remainingMs = 0;
-					// If timer expired, it releases ownership
-					if (activeSessionEngine === 'timer') {
-						activeSessionEngine = null;
+					if (activePresetId) {
+						const preset = STUDY_PRESETS.find(p => p.id === activePresetId);
+						if (preset) {
+							let extraTimeMs = Math.abs(diff);
+							let currentIndex = activeSegmentIndex;
+							let originalTargetEndTime = timer.targetEndTime;
+							
+							while (currentIndex < preset.segments.length - 1) {
+								currentIndex++;
+								const nextSegDurationMs = preset.segments[currentIndex].durationSeconds * 1000;
+								if (extraTimeMs >= nextSegDurationMs) {
+									extraTimeMs -= nextSegDurationMs;
+								} else {
+									// Still running in a later segment
+									activeSegmentIndex = currentIndex;
+									timer.status = 'running';
+									timer.initialDurationSeconds = preset.segments[currentIndex].durationSeconds;
+									timer.targetEndTime = now + (nextSegDurationMs - extraTimeMs);
+									timer.remainingMs = nextSegDurationMs - extraTimeMs;
+									break;
+								}
+							}
+							
+							if (currentIndex === preset.segments.length - 1 && timer.status !== 'running') {
+								// Completely finished the preset offline
+								activeSegmentIndex = preset.segments.length - 1;
+								timer.status = 'completed';
+								timer.initialDurationSeconds = preset.segments[currentIndex].durationSeconds;
+								timer.targetEndTime = null;
+								timer.remainingMs = 0;
+								
+								let totalAddedMs = 0;
+								for (let i = activeSegmentIndex + 1; i < preset.segments.length; i++) {
+									totalAddedMs += preset.segments[i].durationSeconds * 1000;
+								}
+								timerEffectiveEnd = originalTargetEndTime + totalAddedMs;
+								
+								if (activeSessionEngine === 'timer') {
+									activeSessionEngine = null;
+								}
+							}
+						}
+					} else {
+						timerEffectiveEnd = timer.targetEndTime;
+						timer.status = 'completed';
+						timer.targetEndTime = null;
+						timer.remainingMs = 0;
+						if (activeSessionEngine === 'timer') {
+							activeSessionEngine = null;
+						}
 					}
 				}
 			}
@@ -114,7 +166,7 @@ export function hydrateState(json: string | null, now: number): Omit<PersistedSt
 					if (parsed.activeSessionEngine === 'timer') {
 						// Previous state had timer running
 						// We capped it earlier if timer expired
-						const endCap = parsed.timer.targetEndTime ? Number(parsed.timer.targetEndTime) : now;
+						const endCap = timerEffectiveEnd;
 						const effectiveEnd = Math.min(now, endCap);
 						const addedMs = Math.max(0, effectiveEnd - startTime);
 						elapsedMs += addedMs;
@@ -161,7 +213,9 @@ export function hydrateState(json: string | null, now: number): Omit<PersistedSt
 			tasks,
 			activeSessionEngine,
 			todoMinimized,
-			clockFormat
+			clockFormat,
+			activePresetId,
+			activeSegmentIndex
 		};
 	} catch {
 		return null; // Fallback safely if JSON is corrupt

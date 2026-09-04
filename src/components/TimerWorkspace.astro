@@ -47,6 +47,14 @@ const ticks = generateDialTicks();
 			aria-label="Analog Display"
 		>
 			<div class="relative w-64 h-64 sm:w-72 sm:h-72 group-data-[size=tiny]/body:w-48 group-data-[size=tiny]/body:h-48 group-data-[size=tiny]/body:sm:w-48 group-data-[size=tiny]/body:sm:h-48 group-data-[size=big]/body:w-96 group-data-[size=big]/body:h-96 group-data-[size=big]/body:sm:w-96 group-data-[size=big]/body:sm:h-96 group-data-[size=full]/body:w-[350px] group-data-[size=full]/body:h-[350px] group-data-[size=full]/body:sm:w-[500px] group-data-[size=full]/body:sm:h-[500px] select-none transition-all duration-300 motion-reduce:transition-none">
+				<!-- Analog AM/PM Badge -->
+				<div
+					id="analog-ampm-badge"
+					class="hidden absolute top-1/2 right-full mr-3 sm:mr-4 -translate-y-1/2 px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-semibold tracking-wider rounded border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 shadow-sm"
+					aria-hidden="true"
+				>
+					AM
+				</div>
 				<svg
 					id="analog-svg"
 					viewBox="0 0 300 300"
@@ -134,6 +142,15 @@ const ticks = generateDialTicks();
 				00:00
 			</div>
 		</div>
+	</div>
+
+	<!-- Study Block Preset Phase Label -->
+	<div
+		id="preset-phase-label"
+		class="hidden mb-4 px-4 py-1 text-sm font-medium text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/50 rounded-full select-none"
+		aria-live="polite"
+	>
+		<!-- Injected via workspace-controller -->
 	</div>
 
 	<!-- Primary Controls Area -->
