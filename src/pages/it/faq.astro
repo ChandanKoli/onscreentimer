@@ -1,0 +1,97 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+---
+
+<Layout title="Domande frequenti — On Screen Timer" description="Domande frequenti su On Screen Timer: timer online, gestione delle attività, modalità Schermo intero e salvataggio della sessione.">
+	<div class="min-h-dvh flex flex-col justify-between">
+		<SiteHeader />
+		<main class="flex-1 w-full max-w-3xl mx-auto px-4 sm:px-6 py-12 lg:py-16">
+			<h1 class="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-8">Domande frequenti</h1>
+
+			<div class="space-y-4">
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900" open>
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+					Come si imposta un timer online?
+					<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>Assicurati di aver prima selezionato la modalità Timer. Inserisci la durata desiderata nel campo utilizzando formati come <code>5</code>, <code>02:00</code> o <code>01:30:00</code>. Quindi premi Avvia.</p>
+					</div>
+				</details>
+
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+					Ho bisogno di un account per usare On Screen Timer?
+					<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>Nessun account è necessario per il normale utilizzo. È pronto da usare immediatamente senza iscrizione.</p>
+					</div>
+				</details>
+
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+					Cosa succede se ricarico la pagina?
+					<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>Il tuo Timer, Cronometro, attività, preferenze e lo stato del Blocco di Studio possono essere ripristinati al ritorno o al ricaricamento della pagina, in quanto vengono salvati localmente nel tuo browser.</p>
+					</div>
+				</details>
+
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+					Cos'è la modalità a schermo intero?
+					<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>La modalità a schermo intero fornisce una vista focalizzata dell'app nascondendo il disordine della pagina pur mantenendo accessibili i controlli importanti. Non attiva la funzione schermo intero del browser vero e proprio.</p>
+					</div>
+				</details>
+
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+					Come funzionano i Blocchi di Studio?
+					<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>Scegli un preset in Impostazioni. Il timer utilizzerà fasi nominate (indipendenti dall'Attività attuale) ed avanzerà automaticamente attraverso ogni segmento fino alla fine dell'ultimo.</p>
+					</div>
+				</details>
+
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+					Posso usare On Screen Timer come timer Pomodoro?
+					<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>Sì, puoi usarlo manualmente per sessioni in stile Pomodoro (es. 25 minuti di lavoro, breve pausa) impostando il timer, oppure utilizzare i Blocchi di Studio per seguire sequenze strutturate.</p>
+					</div>
+				</details>
+
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+					Il timer continua a funzionare se cambio scheda?
+					<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>Il Timer effettua un conto alla rovescia basato sul tempo reale: se passi a un'altra scheda, il tempo continua a scorrere. La precisione esatta dipende dal comportamento di limitazione del browser per le schede in background.</p>
+					</div>
+				</details>
+
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+					Posso usare On Screen Timer sul mio telefono?
+					<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>Sì. On Screen Timer è progettato per funzionare nei browser moderni, che sia su computer, tablet o smartphone.</p>
+					</div>
+				</details>
+			</div>
+		</main>
+		<SiteFooter />
+	</div>
+</Layout>

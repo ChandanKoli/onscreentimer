@@ -1,0 +1,82 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout
+	title="Attività e tracciamento del tempo dell'attività attuale"
+	description="Scopri come le attività In sospeso, In corso e Completate funzionano col tuo timer."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Attività</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Il pannello Attività ti consente di gestire voci di lavoro parallelamente al timer attivo. Le attività progrediscono attraverso tre stati distinti:
+		</p>
+
+		<!-- Griglia degli stati delle attività -->
+		<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
+			<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center gap-2 mb-1.5">
+					<span class="w-2 h-2 rounded-full bg-rose-400 shrink-0" aria-hidden="true"></span>
+					<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">In sospeso</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">Attività in coda.</p>
+			</div>
+			<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center gap-2 mb-1.5">
+					<span class="w-2 h-2 rounded-full bg-amber-400 shrink-0" aria-hidden="true"></span>
+					<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">In corso</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">Voci attive attualmente tracciate dal timer (fino a 2 contemporaneamente).</p>
+			</div>
+			<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center gap-2 mb-1.5">
+					<span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0" aria-hidden="true"></span>
+					<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Completata</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">Voci finalizzate raggruppate sotto le attività attive.</p>
+			</div>
+		</div>
+
+		<ul class="space-y-3 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300 mt-6">
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Aggiungere attività:</span>
+				<span>Digita un titolo per l'attività nel campo e premi Invio. Le nuove attività vengono aggiunte allo stato In sospeso.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Attività in corso:</span>
+				<span>Puoi promuovere fino a due attività contemporaneamente allo stato In corso cliccando sull'icona di riproduzione di qualsiasi voce In sospeso.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Completare le attività:</span>
+				<span>Fai clic sul segno di spunta di un'attività attiva per contrassegnarla come Completata. Le attività completate si spostano automaticamente sotto le attività non finalizzate, conservando il tempo di lavoro registrato.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Riportare le attività allo stato precedente:</span>
+				<span>Un'attività In corso può essere riportata a In sospeso tramite il pulsante indietro senza perdere il tempo registrato.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Riavviare ed eliminare:</span>
+				<span>Le attività Completate possono essere riavviate come In sospeso o completamente rimosse. Le attività In sospeso possono anche essere rimosse se non più necessarie.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Conteggio riepilogativo:</span>
+				<span>La barra di riepilogo in basso visualizza il totale di <strong class="font-medium text-zinc-900 dark:text-zinc-100">X Completate &middot; Y Rimanenti</strong>.</span>
+			</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Tracciamento del tempo dell'attività attuale</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Ogni attività In corso registra il proprio tempo di lavoro trascorso indipendente. Se due attività In corso sono attive contemporaneamente, entrambe registrano il tempo attivo allo stesso tempo, ma ciascuna mantiene la propria durata indipendente in base a quando è stata promossa.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Il tempo dell'attività riflette rigorosamente la sessione attiva:
+		</p>
+		<ul class="list-disc pl-5 space-y-2 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li>Le attività accumulano tempo solo quando una sessione del Timer o del Cronometro è attivamente in esecuzione.</li>
+			<li>Mettendo in pausa un Timer o Cronometro si ferma immediatamente l'accumulo del tempo per l'attività.</li>
+			<li>La modifica di stili o dimensioni di visualizzazione non mette in pausa o reimposta il tempo dell'attività.</li>
+		</ul>
+	</section>
+</GuideArticleLayout>

@@ -1,0 +1,50 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout
+	title="Salvare la tua sessione"
+	description="Scopri come On Screen Timer salva le tue preferenze e le attività attive localmente nel tuo browser."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Archiviazione locale del browser</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			On Screen Timer salva lo stato supportato localmente nel tuo browser utilizzando <code class="font-mono text-zinc-800 dark:text-zinc-200 text-xs sm:text-sm bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-700">localStorage</code>.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Poiché lo stato viene memorizzato direttamente nel tuo browser, la tua sessione può sopravvivere a un ricaricamento accidentale della pagina o alla chiusura temporanea della scheda. Non è richiesto alcun account o registrazione.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Cosa viene salvato?</h2>
+		<ul class="list-disc pl-5 space-y-1.5 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li>Lo stato attivo del Timer e il tempo rimanente</li>
+			<li>Lo stato del Cronometro e il tempo trascorso accumulato</li>
+			<li>Le attività, il loro stato e i tempi di lavoro registrati nel pannello Attività</li>
+			<li>Lo stile visivo selezionato (Moderno, Digitale, Analogico)</li>
+			<li>La dimensione del display selezionata (Piccolo, Medio, Grande, Schermo intero)</li>
+			<li>La preferenza del formato Orologio (12 ore o 24 ore)</li>
+			<li>Preferenze del suono e del tema</li>
+			<li>La progressione del preset del Blocco di Studio attivo</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Privacy e limitazioni</h2>
+		<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50 text-sm text-zinc-700 dark:text-zinc-300 space-y-3">
+			<p>
+				Lo stato del tuo Timer, le tue attività e le tue preferenze sono archiviati rigorosamente in locale sul tuo dispositivo. On Screen Timer non invia questi dati a un server dell'applicazione.
+			</p>
+			<p class="font-medium">
+				Importanti limitazioni dell'archiviazione locale:
+			</p>
+			<ul class="list-disc pl-5 space-y-1 text-zinc-600 dark:text-zinc-400">
+				<li>Non c'è sincronizzazione cloud o multi-dispositivo. Le tue attività sul desktop non saranno visibili sul tuo telefono.</li>
+				<li>Non c'è alcun backup sul server.</li>
+				<li>Cancellare i dati del sito del tuo browser o l'archiviazione locale rimuoverà le tue attività e ripristinerà le tue preferenze.</li>
+			</ul>
+		</div>
+	</section>
+
+</GuideArticleLayout>

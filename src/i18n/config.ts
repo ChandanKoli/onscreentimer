@@ -60,7 +60,7 @@ export const LOCALES = {
     lang: 'it',
     prefix: '/it',
     name: 'Italiano',
-    isActive: false,
+    isActive: true,
     isDefault: false,
   },
 } as const;

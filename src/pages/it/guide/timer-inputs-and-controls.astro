@@ -1,0 +1,79 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout
+	title="Inserimento della durata e controlli del timer"
+	description="Scopri come inserire durate e controllare il conto alla rovescia attivo del Timer."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Inserire durate</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Il Timer effettua un conto alla rovescia a partire da una durata da te scelta. Puoi inserire durate con numeri standard o espressioni temporali universali.
+		</p>
+
+		<!-- Formats de durée pris en charge -->
+		<div class="p-4 rounded-xl bg-zinc-50/90 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 my-4">
+			<div class="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2.5">Formati di durata accettati</div>
+			<div class="flex flex-wrap items-center gap-2">
+				<span class="inline-flex items-baseline gap-1 px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
+					<code>5</code> <span class="font-sans text-xs text-zinc-400 dark:text-zinc-500">(5 minuti)</span>
+				</span>
+				<span class="inline-flex items-center px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
+					<code>02:00</code>
+				</span>
+				<span class="inline-flex items-center px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
+					<code>01:30:00</code>
+				</span>
+				<span class="inline-flex items-center px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
+					<code>90s</code>
+				</span>
+			</div>
+			<p class="text-xs text-zinc-500 dark:text-zinc-400 mt-2.5 leading-relaxed">
+				Inserire un semplice numero come <code class="font-mono text-zinc-700 dark:text-zinc-300">5</code> imposta cinque minuti per impostazione predefinita, coerentemente col comportamento attuale del prodotto.
+			</p>
+		</div>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Comandi</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Una volta impostata la durata, controlla il conto alla rovescia coi pulsanti a schermo:
+		</p>
+
+		<ul class="space-y-3 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li class="flex items-start gap-2">
+				<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shrink-0 mt-0.5">Avvia</span>
+				<span>Avvia il conto alla rovescia a partire dalla durata inserita.</span>
+			</li>
+
+			<li class="flex items-start gap-2">
+				<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shrink-0 mt-0.5">Pausa</span>
+				<span>Mette temporaneamente in pausa la sessione attiva del timer o del cronometro.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shrink-0 mt-0.5">Riprendi</span>
+				<span>Riprende la sessione in pausa da dove si era interrotta.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shrink-0 mt-0.5">Azzera</span>
+				<span>Reimposta il conto alla rovescia alla sua durata iniziale configurata.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shrink-0 mt-0.5">Interrompi</span>
+				<span>Pone fine immediatamente al timer attivo e contrassegna la sessione come completata.</span>
+			</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Fine e suoni</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Quando il Timer raggiunge <code class="font-mono text-zinc-800 dark:text-zinc-200">00:00</code>, viene riprodotto un suono di completamento opzionale e delicato, se abilitato.
+		</p>
+		<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2">
+			<a href="/it/guide/controls-and-settings" class="text-blue-600 dark:text-blue-400 hover:underline">Scopri di più su tastiera, audio e impostazioni &rarr;</a>
+		</p>
+	</section>
+
+</GuideArticleLayout>

@@ -1,0 +1,79 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout
+	title="Tastiera, audio e impostazioni"
+	description="Scopri le scorciatoie da tastiera utili, le impostazioni audio e le preferenze generali."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Scorciatoie da tastiera</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Sui dispositivi desktop, puoi controllare rapidamente le funzioni principali con le scorciatoie da tastiera:
+		</p>
+
+		<div class="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50 my-4">
+			<table class="w-full text-left text-sm">
+				<thead>
+					<tr class="border-b border-zinc-200 dark:border-zinc-800 text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-100/75 dark:bg-zinc-800/60">
+						<th class="py-3 px-4 font-semibold">Scorciatoia</th>
+						<th class="py-3 px-4 font-semibold">Azione</th>
+						<th class="py-3 px-4 font-semibold">Comportamento</th>
+					</tr>
+				</thead>
+				<tbody class="divide-y divide-zinc-200/70 dark:divide-zinc-800/70">
+					<tr class="hover:bg-zinc-100/40 dark:hover:bg-zinc-800/30 transition-colors">
+						<td class="py-3 px-4 whitespace-nowrap">
+							<kbd class="px-2.5 py-1 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded shadow-2xs">Spazio</kbd>
+						</td>
+						<td class="py-3 px-4 font-medium text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Avvia / Pausa / Riprendi</td>
+						<td class="py-3 px-4 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">Controlla la sessione attiva del Timer o Cronometro quando il cursore non è in un campo di testo.</td>
+					</tr>
+					<tr class="hover:bg-zinc-100/40 dark:hover:bg-zinc-800/30 transition-colors">
+						<td class="py-3 px-4 whitespace-nowrap">
+							<kbd class="px-2.5 py-1 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded shadow-2xs">Invio</kbd>
+						</td>
+						<td class="py-3 px-4 font-medium text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Conferma inserimento</td>
+						<td class="py-3 px-4 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">Conferma la durata inserita per avviare il conto alla rovescia o aggiunge un nuovo elemento all'elenco delle Attività.</td>
+					</tr>
+					<tr class="hover:bg-zinc-100/40 dark:hover:bg-zinc-800/30 transition-colors">
+						<td class="py-3 px-4 whitespace-nowrap">
+							<kbd class="px-2.5 py-1 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded shadow-2xs">Esc</kbd>
+						</td>
+						<td class="py-3 px-4 font-medium text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Chiudi / Esci schermo intero</td>
+						<td class="py-3 px-4 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">Esce dalla modalità Schermo intero o chiude i pannelli e menu aperti.</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<p class="text-xs text-zinc-500 dark:text-zinc-400">
+			Le scorciatoie da tastiera sono progettate per le tastiere fisiche e non interferiscono con la digitazione nei campi di testo.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Opzioni audio</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			L'audio di completamento è disattivato per impostazione predefinita. Puoi attivarlo in qualsiasi momento tramite il pulsante con l'altoparlante in cima all'intestazione.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Quando attivato, verrà riprodotto un suono delicato al termine del conto alla rovescia di un Timer e durante i passaggi tra i segmenti di un Blocco di Studio. Le preferenze audio vengono salvate localmente sul tuo dispositivo.
+		</p>
+		<p class="text-sm text-zinc-500 dark:text-zinc-400">
+			Nota: la riproduzione audio si basa sull'audio locale del browser e non invia notifiche push di sistema.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Impostazioni generali</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Puoi accedere a preferenze aggiuntive facendo clic sull'icona Menu in alto a destra.
+		</p>
+		<ul class="list-disc pl-5 space-y-2 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Formato orologio:</strong> Passa dal formato a 12 ore a quello a 24 ore per la modalità Orologio.</li>
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Preset dei Blocchi di Studio:</strong> Scegli un preset strutturato per guidare la tua sessione di studio.</li>
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Stili di visualizzazione e dimensioni:</strong> Regola la presentazione visiva del tuo Timer.</li>
+		</ul>
+	</section>
+
+</GuideArticleLayout>

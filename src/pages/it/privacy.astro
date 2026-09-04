@@ -1,0 +1,93 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+---
+
+<Layout title="Informativa sulla privacy — On Screen Timer" description="Informativa sulla privacy di On Screen Timer">
+	<div class="min-h-dvh flex flex-col">
+		<SiteHeader />
+
+		<main class="flex-1 w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 text-zinc-800 dark:text-zinc-200">
+			<div class="mb-12">
+				<h1 class="text-3xl sm:text-4xl font-bold text-zinc-950 dark:text-zinc-50 tracking-tight mb-4">
+					Informativa sulla privacy
+				</h1>
+			</div>
+
+			<article class="prose prose-zinc dark:prose-invert prose-blue max-w-none space-y-8">
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">1. Panoramica</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						On Screen Timer è un'utility basata sul browser. La nostra priorità è mantenere l'applicazione leggera e conservare i tuoi dati dove ti appartengono: nel tuo browser.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">2. Informazioni memorizzate nel tuo browser</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed mb-3">
+						Per offrire un'esperienza continua, lo stato supportato dell'app può essere salvato tramite il meccanismo di archiviazione locale del tuo browser (localStorage). Questo ti permette di ricaricare la pagina senza perdere immediatamente la tua sessione di lavoro.
+					</p>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Queste informazioni memorizzate includono:
+					</p>
+					<ul class="list-disc pl-5 mt-2 space-y-1 text-zinc-600 dark:text-zinc-400">
+						<li>Stato del Timer e del Cronometro</li>
+						<li>Attività, il loro stato e i tempi di lavoro registrati</li>
+						<li>Preferenze su modalità di visualizzazione, stile e dimensioni</li>
+						<li>Preferenze sul formato dell'orologio</li>
+						<li>Selezione del tema (chiaro/scuro)</li>
+						<li>Preferenze audio</li>
+						<li>Stato dei preset dei Blocchi di Studio</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">3. Account</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Al momento non è richiesto alcun account o registrazione per il normale utilizzo di On Screen Timer.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">4. Server e Cloud Storage</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Al momento On Screen Timer salva lo stato del Timer, le attività e le preferenze localmente nel tuo browser, senza inviare questi dati a un account On Screen Timer o a un servizio di sincronizzazione cloud. Al caricamento del sito, vengono effettuate normali richieste di rete per recuperare i file del sito.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">5. Rimozione dei dati locali</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Poiché i dati dell'applicazione sono memorizzati nel tuo browser, puoi rimuovere questo stato locale in qualsiasi momento cancellando la memoria locale del tuo browser o i dati del sito per On Screen Timer.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">6. Analisi, Pubblicità e Terze Parti</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2">
+						On Screen Timer non include attualmente integrazioni pubblicitarie o di analisi all'interno dell'applicazione.
+					</p>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Qualora venissero introdotti servizi di analisi, pubblicità o altre elaborazioni di dati di terze parti, la presente informativa verrebbe aggiornata.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">7. Modifiche alla presente Informativa</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Questa informativa sulla privacy può essere aggiornata man mano che il servizio si evolve, vengono aggiunte nuove funzionalità o cambiano i requisiti normativi.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">8. Contatti</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Per domande o feedback, consulta la nostra <a href="/it/contact" class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 underline underline-offset-4">pagina contatti</a>.
+					</p>
+				</section>
+			</article>
+		</main>
+		<SiteFooter />
+	</div>
+</Layout>

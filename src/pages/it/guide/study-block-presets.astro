@@ -1,0 +1,75 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout
+	title="Preset dei Blocchi di Studio"
+	description="Scopri come le sequenze di studio predefinite di On Screen Timer dividono una sessione del Timer in fasi nominate."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Funzionamento dei preset</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			I preset dei Blocchi di Studio sono sequenze del timer predefinite e facoltative, pensate per strutturare una sessione di studio. Selezionare un preset dal menu Impostazioni fa passare alla modalità Timer ed avvia automaticamente il primo segmento.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Ogni segmento mostra un'etichetta di fase attiva (come <em class="text-zinc-900 dark:text-zinc-100">Imparare</em>, <em class="text-zinc-900 dark:text-zinc-100">Memorizzare</em>, <em class="text-zinc-900 dark:text-zinc-100">Risolvere</em>, <em class="text-zinc-900 dark:text-zinc-100">Ripassare</em>, <em class="text-zinc-900 dark:text-zinc-100">Studiare</em> o <em class="text-zinc-900 dark:text-zinc-100">Esercitarsi</em>) direttamente sotto il display del Timer.
+		</p>
+		<ul class="list-disc pl-5 space-y-2 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li>L'etichetta della fase indica il segmento di studio in corso; non è un'Attività in corso e non viene aggiunta al pannello delle Attività.</li>
+			<li>I segmenti passano automaticamente alla fase successiva allo scadere del conto alla rovescia.</li>
+			<li>Il Timer finisce e si ferma dopo il completamento dell'ultimo segmento (i preset non si ripetono a ciclo continuo).</li>
+			<li>I controlli Pausa, Riprendi, Azzera e Interrompi funzionano regolarmente durante l'esecuzione di un preset.</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Preset disponibili</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			On Screen Timer offre le seguenti strutture di studio opzionali:
+		</p>
+
+		<!-- Griglia dei preset -->
+		<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 my-4">
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Imparare &rarr; Memorizzare &rarr; Risolvere &rarr; Ripassare</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">60 min totali</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					25m Imparare &rarr; 5m Memorizzare &rarr; 25m Risolvere &rarr; 5m Ripassare
+				</p>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Studio intenso &rarr; Esercitarsi</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">90 min totali</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					60m Studiare &rarr; 30m Esercitarsi
+				</p>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Imparare &rarr; Risolvere</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">60 min totali</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					30m Imparare &rarr; 30m Risolvere
+				</p>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Studiare &rarr; Risolvere &rarr; Ripassare</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">120 min totali</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					45m Studiare &rarr; 45m Risolvere &rarr; 30m Ripassare
+				</p>
+			</div>
+		</div>
+
+		<p class="text-xs text-zinc-500 dark:text-zinc-400">
+			I preset dei Blocchi di Studio sono semplici strutture di studio opzionali. Non offrono alcuna garanzia medica o di produttività.
+		</p>
+	</section>
+</GuideArticleLayout>

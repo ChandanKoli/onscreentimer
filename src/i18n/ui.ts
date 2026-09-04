@@ -439,6 +439,152 @@ export const ui = {
     'timer.error.blank': 'Veuillez saisir une durée',
     'timer.error.invalid': 'Format invalide',
   },
+  it: {
+    // Nav / Header
+    'nav.tool': 'Strumento',
+    'nav.guide': 'Guida',
+    'nav.faq': 'FAQ',
+
+    // Workspace - Modes, Styles, Sizes
+    'mode.timer': 'Timer',
+    'mode.clock': 'Orologio',
+    'mode.stopwatch': 'Cronometro',
+
+    'style.modern': 'Moderno',
+    'style.digital': 'Digitale',
+    'style.analog': 'Analogico',
+
+    'size.full': 'Schermo intero',
+    'size.big': 'Grande',
+    'size.mid': 'Medio',
+    'size.tiny': 'Piccolo',
+
+    'label.mode': 'MODALITÀ',
+    'label.style': 'STILE',
+    'label.size': 'DIMENSIONE',
+
+    // Controls
+    'timer.start': 'Avvia',
+    'timer.pause': 'Pausa',
+    'timer.resume': 'Riprendi',
+    'timer.reset': 'Azzera',
+    'timer.stop': 'Ferma',
+    'timer.placeholder': 'es: 5, 02:00, 01:30:00, 90s',
+
+    'stopwatch.start': 'Avvia',
+    'stopwatch.pause': 'Pausa',
+    'stopwatch.resume': 'Riprendi',
+    'stopwatch.reset': 'Azzera',
+    'stopwatch.stop': 'Ferma',
+
+    'workspace.exitFull': 'Esci da schermo intero',
+
+    // Tasks
+    'tasks.todo': 'Da fare',
+    'tasks.done': 'Completate',
+    'tasks.remaining': 'Rimanenti',
+    'tasks.addPlaceholder': 'Aggiungi un\'attività...',
+
+    // Accessibility / ARIA
+    'aria.home': 'On Screen Timer — Home',
+    'aria.soundEnabled': 'Audio attivato',
+    'aria.soundEnabledMute': 'Audio attivato, fai clic per disattivarlo',
+    'aria.soundMutedEnable': 'Audio disattivato, fai clic per attivarlo',
+    'aria.toggleTheme': 'Cambia tema',
+    'aria.menu': 'Impostazioni e menu',
+    'aria.menuTitle': 'Menu',
+    'aria.primaryNav': 'Principale',
+    'aria.timerDisplay': 'Timer',
+    'aria.digitalDisplay': 'Display digitale',
+    'aria.analogDisplay': 'Display analogico',
+    'aria.startTimer': 'Avvia timer',
+    'aria.resetTimer': 'Azzera timer',
+    'aria.stopTimer': 'Ferma timer',
+    'aria.startStopwatch': 'Avvia cronometro',
+    'aria.resetStopwatch': 'Azzera cronometro',
+    'aria.stopStopwatch': 'Ferma cronometro',
+    'aria.exitFull': 'Esci dalla modalità a schermo intero',
+    'aria.selectMode': 'Seleziona modalità',
+    'aria.selectStyle': 'Seleziona stile',
+    'aria.selectSize': 'Seleziona dimensione',
+    'aria.currently': 'attualmente',
+    'aria.setTimerDuration': 'Imposta durata timer',
+
+    'aria.reopenTodo': 'Riapri attività da fare',
+    'aria.minimizeTodo': 'Riduci attività da fare',
+    'aria.minimize': 'Riduci',
+    'aria.addTask': 'Aggiungi attività',
+
+    'menu.settings': 'Impostazioni',
+
+    'error.invalidFormat': 'Formato di durata non valido.',
+    'error.empty': 'La durata non può essere vuota.',
+
+    'tasks.allCompleted': '✓ Tutte le attività completate',
+    'tasks.makeCurrent': 'Rendi attuale',
+    'tasks.delete': 'Elimina',
+    'tasks.restart': 'Riavvia',
+    'tasks.completeTask': 'Completa attività',
+    'tasks.returnPending': 'Rimetti in sospeso',
+
+    // Clock
+    'clock.am': 'AM',
+    'clock.pm': 'PM',
+
+    // Study Blocks
+    'preset.preset-1.name': 'Impara → Ricorda → Risolvi → Ripassa',
+    'preset.preset-2.name': 'Studio profondo → Pratica',
+    'preset.preset-3.name': 'Impara → Risolvi',
+    'preset.preset-4.name': 'Studia → Risolvi → Ripassa',
+
+    'preset.phase.Learn': 'Impara',
+    'preset.phase.Recall': 'Ricorda',
+    'preset.phase.Solve': 'Risolvi',
+    'preset.phase.Review': 'Ripassa',
+    'preset.phase.Study': 'Studia',
+    'preset.phase.Practice': 'Pratica',
+    'preset.blockComplete': 'Blocco completato',
+
+    // Guide Layout
+    'guide.allGuides': 'Tutte le guide',
+    'guide.breadcrumb': 'Guide / ',
+    'guide.titleSuffix': ' — Guida di On Screen Timer',
+    'guide.openTimer': 'Apri On Screen Timer &rarr;',
+
+    // Footer
+    'footer.description': 'Un timer online, orologio, cronometro e strumento per la gestione delle attività, direttamente nel tuo browser.',
+    'footer.product': 'Prodotto',
+    'footer.learn': 'Impara',
+    'footer.common': 'Più usati',
+    'footer.legal': 'Note legali',
+    'footer.guide': 'Guida',
+    'footer.faq': 'FAQ',
+    'footer.howItWorks': 'Come funziona',
+    'footer.privacy': 'Privacy',
+    'footer.terms': 'Condizioni',
+    'footer.contact': 'Contatti',
+    'footer.5min': 'Timer da 5 minuti',
+    'footer.10min': 'Timer da 10 minuti',
+    'footer.20min': 'Timer da 20 minuti',
+    'footer.25min': 'Timer da 25 minuti',
+    'footer.free': 'Gratuito. Nessun account richiesto.',
+
+    // Parser Errors
+    'parser.empty': 'Inserisci una durata (es: 5, 02:00, 90s)',
+    'parser.invalidFormat': 'Durata non valida. Prova "5", "02:00" o "90s"',
+    'parser.greaterThanZero': 'La durata deve essere maggiore di 0',
+    'parser.exceedsMax': 'La durata non può superare 99 ore',
+    'parser.invalidMmSs': 'Formato non valido. Usa MM:SS (es: 02:00)',
+    'parser.invalidSeconds': 'I secondi devono essere compresi tra 0 e 59 nel formato MM:SS',
+    'parser.invalidHhMmSs': 'Formato non valido. Usa HH:MM:SS (es: 01:30:00)',
+    'parser.invalidMinSec': 'Minuti e secondi devono essere compresi tra 0 e 59 nel formato HH:MM:SS',
+    'parser.invalidColon': 'Formato non valido. Usa MM:SS o HH:MM:SS',
+    'parser.unrecognizedUnit': 'Unità "{unit}" non riconosciuta. Usa h, m o s (es: 2m, 90s)',
+
+    // Timer Error / Validation
+    'timer.error.blank': 'Inserisci una durata',
+    'timer.error.invalid': 'Formato non valido',
+  },
 } as const;
 
 export function useTranslations(locale: string) {

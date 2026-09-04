@@ -1,0 +1,73 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout
+	title="Stili di visualizzazione, dimensioni e modalità Schermo intero"
+	description="Scopri gli stili visivi, come ridimensionare il timer e l'uso della modalità Schermo intero senza distrazioni."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Stili di visualizzazione</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Puoi scegliere tra tre stili visivi per Timer, Orologio e Cronometro dal menu Impostazioni in alto a destra:
+		</p>
+
+		<dl class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 my-4">
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Moderno</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Tipografia numerica pulita e grande progettata per una leggibilità immediata e prominente.</dd>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Digitale</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Layout retro a sette segmenti che offre il quadrante classico di un orologio digitale.</dd>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Analogico</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Quadrante circolare tradizionale con lancette. Mostra il badge AM/PM in modalità Orologio a 12 ore.</dd>
+			</div>
+		</dl>
+
+		<p class="text-sm text-zinc-600 dark:text-zinc-400">
+			Modificare lo stile di visualizzazione cambia solo la rappresentazione del tempo; non ripristinerà o metterà mai in pausa la sessione attiva.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Dimensioni del display</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Adatta lo spazio di lavoro del timer al tuo setup o all'ambiente di concentrazione selezionando un'opzione di ridimensionamento in basso a destra:
+		</p>
+
+		<dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 my-4">
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Piccolo</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Ingombro compatto per mantenere il timer insieme ad altre finestre.</dd>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Medio <span class="text-xs font-normal text-zinc-400 dark:text-zinc-500">(Predefinito)</span></dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Vista bilanciata standard per distanze di lavoro tipiche da scrivania/laptop.</dd>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Grande</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Scala estesa per leggere comodamente dal lato opposto della stanza.</dd>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Schermo intero</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Vista focalizzata che nasconde intestazione, piè di pagina e pannelli laterali. Esci con Esc o col selettore taglia.</dd>
+			</div>
+		</dl>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Capire il layout Schermo intero</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			La modalità Schermo intero è un layout in-app focalizzato progettato per rimuovere distrazioni visive come la barra di navigazione e il piè di pagina. I controlli essenziali del timer rimangono disponibili sullo schermo.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			<strong class="font-medium text-zinc-900 dark:text-zinc-100">Nota:</strong> La modalità Schermo intero è un'impostazione di layout all'interno di On Screen Timer. <em>Non</em> è l'API a schermo intero nativa del browser web (F11 nella maggior parte delle piattaforme). Puoi combinare i due per la massima esperienza senza distrazioni.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Per uscire dal layout a Schermo intero, premi semplicemente <kbd class="px-1.5 py-0.5 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded">Esc</kbd> sulla tastiera o seleziona una dimensione diversa nelle opzioni del display.
+		</p>
+	</section>
+</GuideArticleLayout>
