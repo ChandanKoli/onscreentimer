@@ -1,0 +1,77 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+---
+
+<Layout title="Perguntas Frequentes sobre o On Screen Timer — Temporizador, Tarefas e Configurações" description="Perguntas frequentes sobre o On Screen Timer, incluindo como usar o temporizador online, gerenciar tarefas, usar o modo Tela cheia e salvar o estado da sua sessão.">
+	<div class="min-h-dvh flex flex-col justify-between">
+		<SiteHeader />
+		<main class="flex-1 w-full max-w-3xl mx-auto px-4 sm:px-6 py-12 lg:py-16">
+			<h1 class="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-8">Perguntas Frequentes</h1>
+			
+			<div class="space-y-4">
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900" open>
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+						Como configuro um temporizador online?
+						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>Primeiro, certifique-se de que selecionou o modo Temporizador. Insira a duração desejada no campo usando formatos como <code>5</code>, <code>25mins</code> ou <code>1h 30m</code>. Depois, pressione Iniciar.</p>
+					</div>
+				</details>
+				
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+						Preciso de uma conta para usar o On Screen Timer?
+						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>Nenhuma conta é necessária para o uso normal. Ele está pronto para uso imediato sem precisar de cadastro.</p>
+					</div>
+				</details>
+
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+						O que acontece se eu atualizar a página?
+						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>Seu Temporizador, Cronômetro, tarefas, preferências e o estado do Bloco de Estudo podem ser restaurados quando você retorna ou atualiza a página, pois são salvos localmente no seu navegador.</p>
+					</div>
+				</details>
+
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+						O que é o modo Tela cheia?
+						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>O modo Tela cheia oferece uma visão focada no aplicativo, escondendo elementos não essenciais da página e mantendo apenas os controles importantes disponíveis. Não se trata da API de Tela Cheia do navegador.</p>
+					</div>
+				</details>
+
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+						Como funcionam os Blocos de Estudo?
+						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>Escolha um modelo nas Configurações. O Temporizador usará fases nomeadas (independentes da sua Tarefa Atual) e progredirá automaticamente por cada segmento até o fim do último.</p>
+					</div>
+				</details>
+
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+						Posso usar o On Screen Timer como um temporizador Pomodoro?
+						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>Sim, você pode usá-lo manualmente para sessões no estilo Pomodoro (como 25 minutos de trabalho, pausa curta) configurando o temporizador, ou usar os Blocos de Estudo para seguir sequências estruturadas.</p>
+					</div>
+				</details>
+			</div>
+		</main>
+		<SiteFooter />
+	</div>
+</Layout>

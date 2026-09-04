@@ -44,7 +44,7 @@ export const LOCALES = {
     lang: 'pt-BR',
     prefix: '/pt-br',
     name: 'Português',
-    isActive: false,
+    isActive: true,
     isDefault: false,
   },
   ko: {

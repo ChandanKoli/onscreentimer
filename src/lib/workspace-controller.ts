@@ -466,17 +466,43 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 
 	// 5. Helper: Timer validation errors
 	function setTimerInputError(msg: string | null) {
+		let displayMsg = msg;
+		if (msg === 'Please enter a duration (e.g. 5, 2mins, 02:00, 90s)') {
+			displayMsg = tMsg('parser.empty' as any);
+		} else if (msg === 'Invalid duration. Try "5", "2mins", "02:00", or "90s"') {
+			displayMsg = tMsg('parser.invalidFormat' as any);
+		} else if (msg === 'Duration must be greater than 0') {
+			displayMsg = tMsg('parser.greaterThanZero' as any);
+		} else if (msg === 'Duration cannot exceed 99 hours') {
+			displayMsg = tMsg('parser.exceedsMax' as any);
+		} else if (msg === 'Invalid time format. Use MM:SS (e.g. 02:00)') {
+			displayMsg = tMsg('parser.invalidMmSs' as any);
+		} else if (msg === 'Seconds must be between 0 and 59 in MM:SS format') {
+			displayMsg = tMsg('parser.invalidSeconds' as any);
+		} else if (msg === 'Invalid time format. Use HH:MM:SS (e.g. 01:30:00)') {
+			displayMsg = tMsg('parser.invalidHhMmSs' as any);
+		} else if (msg === 'Minutes and seconds must be between 0 and 59 in HH:MM:SS format') {
+			displayMsg = tMsg('parser.invalidMinSec' as any);
+		} else if (msg === 'Invalid colon format. Use MM:SS or HH:MM:SS') {
+			displayMsg = tMsg('parser.invalidColon' as any);
+		} else if (msg && msg.startsWith('Unrecognized unit')) {
+			const match = msg.match(/"([^"]+)"/);
+			if (match) {
+				displayMsg = tMsg('parser.unrecognizedUnit' as any).replace('{unit}', match[1]);
+			}
+		}
+
 		store.setState((prev) => ({
 			...prev,
 			timer: {
 				...prev.timer,
-				inputError: msg
+				inputError: displayMsg
 			}
 		}));
 
 		if (timerError) {
-			if (msg) {
-				timerError.textContent = msg;
+			if (displayMsg) {
+				timerError.textContent = displayMsg;
 				timerError.classList.remove('hidden');
 				timerInput?.setAttribute('aria-invalid', 'true');
 			} else {

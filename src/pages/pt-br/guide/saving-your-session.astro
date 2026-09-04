@@ -1,0 +1,50 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="Salvando Sua Sessão" 
+	description="Learn how On Screen Timer saves your preferences and active tasks locally in your browser."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Local Browser Storage</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			On Screen Timer saves supported state locally inside your browser using <code class="font-mono text-zinc-800 dark:text-zinc-200 text-xs sm:text-sm bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-700">localStorage</code>.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Because state is stored directly in your browser, your session can survive an accidental page refresh or closing the tab briefly. No account or registration is required.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">O que é salvo?</h2>
+		<ul class="list-disc pl-5 space-y-1.5 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li>Active Timer state and remaining duration</li>
+			<li>Stopwatch state and accumulated elapsed time</li>
+			<li>Tarefas, status e durações de trabalho registradas no painel de Tarefas</li>
+			<li>Selected visual style (Modern, Digital, Analog)</li>
+			<li>Selected display size (Tiny, Mid, Big, Full)</li>
+			<li>Clock format preference (12-hour or 24-hour)</li>
+			<li>Sound and theme preferences</li>
+			<li>Active Study Block Preset progression</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Data Privacy & Limitations</h2>
+		<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50 text-sm text-zinc-700 dark:text-zinc-300 space-y-3">
+			<p>
+				Your Timer, task, and preference state is strictly stored locally on your device. On Screen Timer does not send this saved state to any application server.
+			</p>
+			<p class="font-medium">
+				Important limitations of local storage:
+			</p>
+			<ul class="list-disc pl-5 space-y-1 text-zinc-600 dark:text-zinc-400">
+				<li>There is no cloud sync or cross-device sync. You won't see your desktop tasks on your mobile device.</li>
+				<li>There is no server backup.</li>
+				<li>Clearing your browser's site data or local storage will delete your tasks and reset your preferences.</li>
+			</ul>
+		</div>
+	</section>
+
+</GuideArticleLayout>

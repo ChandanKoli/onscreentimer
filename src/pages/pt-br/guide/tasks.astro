@@ -1,0 +1,82 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="Tarefas e Cronometragem da Tarefa Atual" 
+	description="Aprenda como as tarefas Pendentes, Atuais e Concluídas funcionam junto com o seu temporizador."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Tarefas</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			O painel de Tarefas permite que você gerencie itens de trabalho junto com o temporizador ativo. As tarefas progridem por três estados distintos:
+		</p>
+
+		<!-- Task States Grid -->
+		<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
+			<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center gap-2 mb-1.5">
+					<span class="w-2 h-2 rounded-full bg-rose-400 shrink-0" aria-hidden="true"></span>
+					<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Pendente</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">Tarefas na fila aguardando trabalho.</p>
+			</div>
+			<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center gap-2 mb-1.5">
+					<span class="w-2 h-2 rounded-full bg-amber-400 shrink-0" aria-hidden="true"></span>
+					<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Atual</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">Itens de trabalho ativos sendo cronometrados (até 2 ao mesmo tempo).</p>
+			</div>
+			<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center gap-2 mb-1.5">
+					<span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0" aria-hidden="true"></span>
+					<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Concluída</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">Itens finalizados classificados abaixo das tarefas ativas.</p>
+			</div>
+		</div>
+
+		<ul class="space-y-3 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300 mt-6">
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Adicionando tarefas:</span>
+				<span>Digite o título de uma tarefa na caixa de entrada e pressione Enter. Novas tarefas são adicionadas como Pendentes.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Tarefas atuais:</span>
+				<span>Você pode promover até duas tarefas simultaneamente para Atual clicando no ícone de reprodução em qualquer item Pendente.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Concluindo tarefas:</span>
+				<span>Clique na marca de seleção em uma tarefa ativa para marcá-la como concluída. As tarefas concluídas movem-se automaticamente para baixo das tarefas não finalizadas, com a duração do trabalho registrada preservada.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Retornando tarefas:</span>
+				<span>Uma Tarefa Atual pode ser retornada para Pendente usando o botão de retorno sem perder o tempo registrado.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Reiniciando e excluindo:</span>
+				<span>Tarefas concluídas podem ser reiniciadas para Pendentes ou totalmente excluídas. Tarefas pendentes também podem ser removidas quando não forem mais necessárias.</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">Contador de resumo:</span>
+				<span>A barra de resumo na parte inferior rastreia o total de itens <strong class="font-medium text-zinc-900 dark:text-zinc-100">Concluído X &middot; Restantes Y</strong>.</span>
+			</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Cronometragem da Tarefa Atual</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Cada Tarefa Atual registra sua própria duração de trabalho decorrida. Se duas Tarefas Atuais estiverem ativas ao mesmo tempo, ambas registrarão o tempo ativo simultaneamente, embora cada uma mantenha sua própria duração independente com base em quando foi promovida.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			A cronometragem da tarefa reflete estritamente a sessão ativa:
+		</p>
+		<ul class="list-disc pl-5 space-y-2 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li>As tarefas acumulam tempo apenas enquanto uma sessão de Temporizador ou Cronômetro estiver ativamente em execução.</li>
+			<li>Pausar um Temporizador ou Cronômetro pausa imediatamente o acúmulo da duração da tarefa.</li>
+			<li>Alterar os estilos ou tamanhos de exibição visual não interrompe nem reinicia a cronometragem da tarefa.</li>
+		</ul>
+	</section>
+</GuideArticleLayout>

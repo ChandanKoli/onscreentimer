@@ -1,6 +1,6 @@
 ---
-import { getLocaleFromUrl } from '../i18n/utils.ts';
-import { LOCALES } from '../i18n/config.ts';
+import { getLocaleFromUrl, getRelativeLocaleUrl } from '../i18n/utils.ts';
+import { LOCALES, ACTIVE_LOCALES } from '../i18n/config.ts';
 import { useTranslations } from '../i18n/ui.ts';
 
 const pathname = Astro.url.pathname;
@@ -10,16 +10,17 @@ const isGuide = pathname.startsWith('/guide');
 const currentLocaleId = getLocaleFromUrl(Astro.url);
 const currentLocale = LOCALES[currentLocaleId];
 const t = useTranslations(currentLocaleId);
+const prefixPath = (path: string) => getRelativeLocaleUrl(currentLocaleId, path);
 ---
 
 <header id="site-header" class="w-full border-b border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-sm sticky top-0 z-40 group-data-[size=full]/body:hidden">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col gap-3 sm:gap-2.5">
-		
+
 		<!-- ROW 1: Brand and Controls -->
 		<div class="flex items-center justify-between w-full">
 			<!-- Brand -->
 			<a
-				href="/"
+				href={prefixPath("/")}
 				class="flex items-center gap-2 text-zinc-950 dark:text-zinc-50 font-semibold tracking-tight hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded-sm px-1 py-0.5 "
 				aria-label={t("aria.home")}
 			>
@@ -47,17 +48,30 @@ const t = useTranslations(currentLocaleId);
 				</button>
 
 				<!-- Language Selector -->
-				<button
-					type="button"
-					id="btn-language"
-					class="h-8 px-2.5 text-xs font-medium rounded-md border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none flex items-center gap-1"
-					aria-label={`Language: ${currentLocale.name}`}
-				>
-					<span>{currentLocale.name}</span>
-					<svg class="w-3 h-3 text-zinc-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-					</svg>
-				</button>
+				<div class="relative group">
+					<button
+						type="button"
+						id="btn-language"
+						class="h-8 px-2.5 text-xs font-medium rounded-md border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none flex items-center gap-1"
+						aria-label={`Language: ${currentLocale.name}`}
+						aria-expanded="false"
+					>
+						<span>{currentLocale.name}</span>
+						<svg class="w-3 h-3 text-zinc-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+						</svg>
+					</button>
+					<div id="language-menu" class="hidden absolute right-0 mt-1 w-32 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-md shadow-lg overflow-hidden z-50">
+						{ACTIVE_LOCALES.map(loc => (
+							<a
+								href={getRelativeLocaleUrl(loc.id as any, pathname.replace(currentLocale.prefix, '') || '/')}
+								class={`block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors ${loc.id === currentLocaleId ? 'font-medium text-blue-600 dark:text-blue-400 bg-zinc-50 dark:bg-zinc-800/50' : 'text-zinc-700 dark:text-zinc-300'}`}
+							>
+								{loc.name}
+							</a>
+						))}
+					</div>
+				</div>
 
 				<!-- Theme Toggle Button -->
 				<button
@@ -93,10 +107,10 @@ const t = useTranslations(currentLocaleId);
 		<!-- ROW 2: Nav -->
 		<nav aria-label={t("aria.primaryNav")} class="flex items-center gap-4 sm:gap-6">
 			<a
-				href="/#tool"
+				href={prefixPath("/") + "#tool"}
 				class={`text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm px-1 py-0.5 ${
-					isHome 
-					? 'text-blue-600 dark:text-blue-400' 
+					isHome
+					? 'text-blue-600 dark:text-blue-400'
 					: 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100'
 				}`}
 				aria-current={isHome ? 'page' : undefined}
@@ -104,10 +118,10 @@ const t = useTranslations(currentLocaleId);
 				{t('nav.tool')}
 			</a>
 			<a
-				href="/guide"
+				href={prefixPath("/guide")}
 				class={`text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm px-1 py-0.5 ${
-					isGuide 
-					? 'text-blue-600 dark:text-blue-400' 
+					isGuide
+					? 'text-blue-600 dark:text-blue-400'
 					: 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100'
 				}`}
 				aria-current={isGuide ? 'page' : undefined}
@@ -115,10 +129,10 @@ const t = useTranslations(currentLocaleId);
 				{t('nav.guide')}
 			</a>
 			<a
-				href="/faq"
+				href={prefixPath("/faq")}
 				class={`text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm px-1 py-0.5 ${
-					pathname === '/faq' 
-					? 'text-blue-600 dark:text-blue-400' 
+					pathname === '/faq'
+					? 'text-blue-600 dark:text-blue-400'
 					: 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100'
 				}`}
 				aria-current={pathname === '/faq' ? 'page' : undefined}
@@ -128,3 +142,23 @@ const t = useTranslations(currentLocaleId);
 		</nav>
 	</div>
 </header>
+
+<script>
+	const btn = document.getElementById('btn-language');
+	const menu = document.getElementById('language-menu');
+	if (btn && menu) {
+		btn.addEventListener('click', (e) => {
+			e.stopPropagation();
+			const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+			btn.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
+			menu.classList.toggle('hidden');
+		});
+
+		document.addEventListener('click', (e) => {
+			if (!menu.contains(e.target as Node)) {
+				btn.setAttribute('aria-expanded', 'false');
+				menu.classList.add('hidden');
+			}
+		});
+	}
+</script>

@@ -1,10 +1,9 @@
 import { SITE_CONFIG } from '../site.config';
-import fs from 'fs';
-import path from 'path';
+import { ACTIVE_LOCALES } from '../i18n/config';
 
 export async function GET() {
 	// Discover guide pages by reading the directory during build/runtime
-	// For Astro endpoint, we can use import.meta.glob
+	// We'll discover the English guide pages and then replicate them across locales
 	const guideModules = import.meta.glob('./guide/*.astro');
 	const guideSlugs = Object.keys(guideModules).map(filePath => {
 		const basename = filePath.split('/').pop()?.replace('.astro', '');
@@ -34,8 +33,27 @@ export async function GET() {
 	];
 	const durationPages = durations.map(d => `timer/${d}`);
 
-	// Combine all paths
-	const allPaths = [...staticPages, ...guideSlugs, ...durationPages];
+	// Combine all paths for English base
+	const basePaths = [...staticPages, ...guideSlugs, ...durationPages];
+
+	// Generate all localized paths
+	const allPaths: string[] = [];
+	for (const locale of ACTIVE_LOCALES) {
+		for (const pagePath of basePaths) {
+			const prefix = locale.prefix;
+			// Combine prefix and pagePath appropriately
+			let fullPath = prefix;
+			if (pagePath !== '') {
+				fullPath = prefix === '' ? pagePath : `${prefix}/${pagePath}`;
+			}
+
+			// Remove leading slash for URL constructor
+			if (fullPath.startsWith('/')) {
+				fullPath = fullPath.slice(1);
+			}
+			allPaths.push(fullPath);
+		}
+	}
 
 	// Generate XML
 	const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

@@ -1,0 +1,79 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="Teclado, Som e Configurações" 
+	description="Learn about handy keyboard shortcuts, audio settings, and general preferences."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Atalhos de Teclado</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			On desktop devices, you can control primary functions quickly using keyboard shortcuts:
+		</p>
+
+		<div class="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50 my-4">
+			<table class="w-full text-left text-sm">
+				<thead>
+					<tr class="border-b border-zinc-200 dark:border-zinc-800 text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-100/75 dark:bg-zinc-800/60">
+						<th class="py-3 px-4 font-semibold">Shortcut</th>
+						<th class="py-3 px-4 font-semibold">Action</th>
+						<th class="py-3 px-4 font-semibold">Behavior</th>
+					</tr>
+				</thead>
+				<tbody class="divide-y divide-zinc-200/70 dark:divide-zinc-800/70">
+					<tr class="hover:bg-zinc-100/40 dark:hover:bg-zinc-800/30 transition-colors">
+						<td class="py-3 px-4 whitespace-nowrap">
+							<kbd class="px-2.5 py-1 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded shadow-2xs">Space</kbd>
+						</td>
+						<td class="py-3 px-4 font-medium text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Start / Pause / Resume</td>
+						<td class="py-3 px-4 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">Controles the active Timer or Stopwatch session when not actively focused in a text input.</td>
+					</tr>
+					<tr class="hover:bg-zinc-100/40 dark:hover:bg-zinc-800/30 transition-colors">
+						<td class="py-3 px-4 whitespace-nowrap">
+							<kbd class="px-2.5 py-1 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded shadow-2xs">Enter</kbd>
+						</td>
+						<td class="py-3 px-4 font-medium text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Submit input</td>
+						<td class="py-3 px-4 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">Confirma a entrada de duração do temporizador para iniciar a contagem regressiva ou adiciona um novo item à lista de Tarefas.</td>
+					</tr>
+					<tr class="hover:bg-zinc-100/40 dark:hover:bg-zinc-800/30 transition-colors">
+						<td class="py-3 px-4 whitespace-nowrap">
+							<kbd class="px-2.5 py-1 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded shadow-2xs">Esc</kbd>
+						</td>
+						<td class="py-3 px-4 font-medium text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Close UI / Exit Full</td>
+						<td class="py-3 px-4 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">Exits Full display mode or closes open modal drawers and menus.</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<p class="text-xs text-zinc-500 dark:text-zinc-400">
+			Keyboard shortcuts are designed for physical keyboards and do not interfere with typing inside text inputs.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Sound Options</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			The completion chime is muted by default. You can enable sound at any time using the speaker toggle located in the top header.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			When enabled, a soft sound plays when a Timer countdown finishes and when transitioning between segments in a Study Block Preset. Your sound preference is stored locally on your device.
+		</p>
+		<p class="text-sm text-zinc-500 dark:text-zinc-400">
+			Note: Sound playback relies on local browser audio and does not send system-level push notifications.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">General Settings</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			You can access additional preferences by clicking the Menu icon in the top right corner.
+		</p>
+		<ul class="list-disc pl-5 space-y-2 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Clock format:</strong> Toggle between 12-hour and 24-hour formats for Clock mode.</li>
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Modelos de Bloco de Estudo:</strong> Choose a structured preset to guide your study session.</li>
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Display styles & sizes:</strong> Adjust the visual presentation of your Timer.</li>
+		</ul>
+	</section>
+
+</GuideArticleLayout>
