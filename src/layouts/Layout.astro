@@ -9,7 +9,7 @@ interface Props {
 }
 
 const {
-	title = 'Online Timer, Clock & Stopwatch — OnScreenTimer',
+	title = 'Online Timer, Clock & Stopwatch — On Screen Timer',
 	description = 'A free, full-screen online timer, clock, and stopwatch with built-in task tracking. Distraction-free, easy to use, and works directly in your browser.',
 	ogType = 'website'
 } = Astro.props;
@@ -25,6 +25,7 @@ const canonicalURL = new URL(Astro.url.pathname, SITE_CONFIG.url).href;
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+		<!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> -->
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
@@ -36,6 +37,7 @@ const canonicalURL = new URL(Astro.url.pathname, SITE_CONFIG.url).href;
 		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:type" content={ogType} />
 		<meta property="og:site_name" content={SITE_CONFIG.name} />
+		<!-- <meta property="og:image" content={new URL("/og-image.png", SITE_CONFIG.url)} /> -->
 
 		<slot name="head" />
 

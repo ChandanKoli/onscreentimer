@@ -20,7 +20,7 @@ export function getStaticPaths() {
 const { duration } = Astro.params;
 const { seconds, minutes } = Astro.props;
 
-const title = `${minutes} Minute Timer — OnScreenTimer`;
+const title = `${minutes} Minute Timer — On Screen Timer`;
 const description = `A free online ${minutes} minute timer. Works directly in your browser.`;
 
 let content = [];
@@ -52,7 +52,7 @@ if (minutes === 1) {
 } else if (minutes === 25) {
 	content = [
 		"A 25 minute timer is a common duration for Pomodoro-style focus blocks.",
-		"When you press Start, the timer will count down from 25 minutes. Note that OnScreenTimer does not automatically run a Pomodoro break after this timer unless you configure it using Study Block Presets."
+		"When you press Start, the timer will count down from 25 minutes. Note that On Screen Timer does not automatically run a Pomodoro break after this timer unless you configure it using Study Block Presets."
 	];
 } else if (minutes === 30) {
 	content = [

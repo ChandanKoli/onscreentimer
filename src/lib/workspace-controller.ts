@@ -809,9 +809,9 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 
 			// Browser Tab Title (Timer)
 			if (timer.status === 'running') {
-				document.title = `(${formatted}) OnScreenTimer`;
+				document.title = `(${formatted}) On Screen Timer`;
 			} else if (timer.status === 'paused') {
-				document.title = `(Paused ${formatted}) OnScreenTimer`;
+				document.title = `(Paused ${formatted}) On Screen Timer`;
 			} else {
 				document.title = originalTitle;
 			}
@@ -845,9 +845,9 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 
 			// Browser Tab Title (Stopwatch)
 			if (stopwatch.status === 'running') {
-				document.title = `(${formatted}) OnScreenTimer`;
+				document.title = `(${formatted}) On Screen Timer`;
 			} else if (stopwatch.status === 'paused') {
-				document.title = `(Paused ${formatted}) OnScreenTimer`;
+				document.title = `(Paused ${formatted}) On Screen Timer`;
 			} else {
 				document.title = originalTitle;
 			}
