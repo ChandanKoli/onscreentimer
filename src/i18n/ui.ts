@@ -147,6 +147,152 @@ export const ui = {
     'timer.error.blank': 'Please enter a duration',
     'timer.error.invalid': 'Invalid format',
   },
+  es: {
+    // Nav / Header
+    'nav.tool': 'Herramienta',
+    'nav.guide': 'Guía',
+    'nav.faq': 'Preguntas frecuentes',
+
+    // Workspace - Modes, Styles, Sizes
+    'mode.timer': 'Temporizador',
+    'mode.clock': 'Reloj',
+    'mode.stopwatch': 'Cronómetro',
+
+    'style.modern': 'Moderno',
+    'style.digital': 'Digital',
+    'style.analog': 'Analógico',
+
+    'size.full': 'Pantalla completa',
+    'size.big': 'Grande',
+    'size.mid': 'Medio',
+    'size.tiny': 'Pequeño',
+
+    'label.mode': 'MODO',
+    'label.style': 'ESTILO',
+    'label.size': 'TAMAÑO',
+
+    // Controls
+    'timer.start': 'Iniciar',
+    'timer.pause': 'Pausar',
+    'timer.resume': 'Reanudar',
+    'timer.reset': 'Reiniciar',
+    'timer.stop': 'Detener',
+    'timer.placeholder': 'ej: 5, 02:00, 01:30:00, 90s',
+
+    'stopwatch.start': 'Iniciar',
+    'stopwatch.pause': 'Pausar',
+    'stopwatch.resume': 'Reanudar',
+    'stopwatch.reset': 'Reiniciar',
+    'stopwatch.stop': 'Detener',
+
+    'workspace.exitFull': 'Salir de pantalla completa',
+
+    // Tasks
+    'tasks.todo': 'Tareas',
+    'tasks.done': 'Completadas',
+    'tasks.remaining': 'Restantes',
+    'tasks.addPlaceholder': 'Añadir una tarea...',
+
+    // Accessibility / ARIA
+    'aria.home': 'On Screen Timer — Inicio',
+    'aria.soundEnabled': 'Sonido activado',
+    'aria.soundEnabledMute': 'Sonido activado, haz clic para silenciar',
+    'aria.soundMutedEnable': 'Sonido silenciado, haz clic para activar',
+    'aria.toggleTheme': 'Cambiar tema',
+    'aria.menu': 'Configuración y menú',
+    'aria.menuTitle': 'Menú',
+    'aria.primaryNav': 'Principal',
+    'aria.timerDisplay': 'Temporizador',
+    'aria.digitalDisplay': 'Pantalla digital',
+    'aria.analogDisplay': 'Pantalla analógica',
+    'aria.startTimer': 'Iniciar temporizador',
+    'aria.resetTimer': 'Reiniciar temporizador',
+    'aria.stopTimer': 'Detener temporizador',
+    'aria.startStopwatch': 'Iniciar cronómetro',
+    'aria.resetStopwatch': 'Reiniciar cronómetro',
+    'aria.stopStopwatch': 'Detener cronómetro',
+    'aria.exitFull': 'Salir del modo de pantalla completa',
+    'aria.selectMode': 'Seleccionar modo',
+    'aria.selectStyle': 'Seleccionar estilo',
+    'aria.selectSize': 'Seleccionar tamaño',
+    'aria.currently': 'actualmente',
+    'aria.setTimerDuration': 'Establecer duración del temporizador',
+
+    'aria.reopenTodo': 'Reabrir tareas',
+    'aria.minimizeTodo': 'Minimizar tareas',
+    'aria.minimize': 'Minimizar',
+    'aria.addTask': 'Añadir tarea',
+
+    'menu.settings': 'Configuración',
+
+    'error.invalidFormat': 'Formato de duración no válido.',
+    'error.empty': 'La duración no puede estar vacía.',
+
+    'tasks.allCompleted': '✓ Todas las tareas completadas',
+    'tasks.makeCurrent': 'Hacer actual',
+    'tasks.delete': 'Eliminar',
+    'tasks.restart': 'Reiniciar',
+    'tasks.completeTask': 'Completar tarea',
+    'tasks.returnPending': 'Devolver a pendientes',
+
+    // Clock
+    'clock.am': 'AM',
+    'clock.pm': 'PM',
+
+    // Study Blocks
+    'preset.preset-1.name': 'Aprender → Recordar → Resolver → Repasar',
+    'preset.preset-2.name': 'Estudio profundo → Practicar',
+    'preset.preset-3.name': 'Aprender → Resolver',
+    'preset.preset-4.name': 'Estudiar → Resolver → Repasar',
+
+    'preset.phase.Learn': 'Aprender',
+    'preset.phase.Recall': 'Recordar',
+    'preset.phase.Solve': 'Resolver',
+    'preset.phase.Review': 'Repasar',
+    'preset.phase.Study': 'Estudiar',
+    'preset.phase.Practice': 'Practicar',
+    'preset.blockComplete': 'Bloque completado',
+
+    // Guide Layout
+    'guide.allGuides': 'Todas las guías',
+    'guide.breadcrumb': 'Guías / ',
+    'guide.titleSuffix': ' — Guía de On Screen Timer',
+    'guide.openTimer': 'Abrir On Screen Timer &rarr;',
+
+    // Footer
+    'footer.description': 'Un temporizador, reloj, cronómetro y herramienta de tareas online, directamente en tu navegador.',
+    'footer.product': 'Producto',
+    'footer.learn': 'Aprender',
+    'footer.common': 'Comunes',
+    'footer.legal': 'Legal',
+    'footer.guide': 'Guía',
+    'footer.faq': 'Preguntas frecuentes',
+    'footer.howItWorks': 'Cómo funciona',
+    'footer.privacy': 'Privacidad',
+    'footer.terms': 'Términos',
+    'footer.contact': 'Contacto',
+    'footer.5min': 'Temporizador de 5 minutos',
+    'footer.10min': 'Temporizador de 10 minutos',
+    'footer.20min': 'Temporizador de 20 minutos',
+    'footer.25min': 'Temporizador de 25 minutos',
+    'footer.free': 'Uso gratuito. No se requiere cuenta.',
+
+    // Parser Errors
+    'parser.empty': 'Introduce una duración (ej. 5, 02:00, 90s)',
+    'parser.invalidFormat': 'Duración no válida. Prueba "5", "02:00" o "90s"',
+    'parser.greaterThanZero': 'La duración debe ser mayor que 0',
+    'parser.exceedsMax': 'La duración no puede superar las 99 horas',
+    'parser.invalidMmSs': 'Formato de tiempo no válido. Usa MM:SS (ej. 02:00)',
+    'parser.invalidSeconds': 'Los segundos deben estar entre 0 y 59 en formato MM:SS',
+    'parser.invalidHhMmSs': 'Formato de tiempo no válido. Usa HH:MM:SS (ej. 01:30:00)',
+    'parser.invalidMinSec': 'Los minutos y segundos deben estar entre 0 y 59 en formato HH:MM:SS',
+    'parser.invalidColon': 'Formato no válido. Usa MM:SS o HH:MM:SS',
+    'parser.unrecognizedUnit': 'Unidad no reconocida "{unit}". Usa h, m o s (ej. 2m, 90s)',
+
+    // Timer Error / Validation
+    'timer.error.blank': 'Por favor, introduce una duración',
+    'timer.error.invalid': 'Formato no válido',
+  },
   'pt-br': {
     // Nav / Header
     'nav.tool': 'Ferramenta',

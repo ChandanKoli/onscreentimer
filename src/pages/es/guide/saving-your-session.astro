@@ -1,0 +1,50 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout
+	title="Guardado de tu sesión"
+	description="Descubre cómo On Screen Timer guarda tus preferencias y tareas activas localmente en tu navegador."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Almacenamiento local del navegador</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			On Screen Timer guarda el estado soportado localmente en tu navegador utilizando <code class="font-mono text-zinc-800 dark:text-zinc-200 text-xs sm:text-sm bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-700">localStorage</code>.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Como el estado se almacena directamente en tu navegador, tu sesión puede sobrevivir a una recarga accidental de la página o si cierras temporalmente la pestaña. No se requiere cuenta ni registro.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">¿Qué se guarda?</h2>
+		<ul class="list-disc pl-5 space-y-1.5 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li>El estado activo del Temporizador y el tiempo restante</li>
+			<li>El estado del Cronómetro y el tiempo transcurrido acumulado</li>
+			<li>Las tareas, su estado y los tiempos de trabajo registrados en el panel de Tareas</li>
+			<li>El estilo visual seleccionado (Moderno, Digital, Analógico)</li>
+			<li>El tamaño de visualización seleccionado (Pequeño, Medio, Grande, Pantalla completa)</li>
+			<li>La preferencia de formato del Reloj (12 horas o 24 horas)</li>
+			<li>Las preferencias de sonido y de tema (claro/oscuro)</li>
+			<li>El progreso de la Plantilla de bloque de estudio activa</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Privacidad y limitaciones</h2>
+		<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50 text-sm text-zinc-700 dark:text-zinc-300 space-y-3">
+			<p>
+				El estado de tu Temporizador, tareas y preferencias se almacena de forma estrictamente local en tu dispositivo. On Screen Timer no envía estos datos a ningún servidor de aplicaciones.
+			</p>
+			<p class="font-medium">
+				Limitaciones importantes del almacenamiento local:
+			</p>
+			<ul class="list-disc pl-5 space-y-1 text-zinc-600 dark:text-zinc-400">
+				<li>No hay sincronización en la nube ni entre dispositivos. Las tareas de tu ordenador no aparecerán en tu teléfono.</li>
+				<li>No hay copias de seguridad en el servidor.</li>
+				<li>Si borras los datos del sitio web o el almacenamiento local de tu navegador, tus tareas se eliminarán y se restablecerán tus preferencias.</li>
+			</ul>
+		</div>
+	</section>
+
+</GuideArticleLayout>

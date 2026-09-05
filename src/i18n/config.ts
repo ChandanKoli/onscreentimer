@@ -12,7 +12,7 @@ export const LOCALES = {
     lang: 'es',
     prefix: '/es',
     name: 'Español',
-    isActive: false,
+    isActive: true,
     isDefault: false,
   },
   ja: {

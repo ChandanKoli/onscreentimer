@@ -1,0 +1,78 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+---
+
+<Layout title="Privacidad — On Screen Timer" description="Política de privacidad de On Screen Timer">
+	<div class="min-h-dvh flex flex-col">
+		<SiteHeader />
+
+		<main class="flex-1 w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 text-zinc-800 dark:text-zinc-200">
+			<div class="mb-12">
+				<h1 class="text-3xl sm:text-4xl font-bold text-zinc-950 dark:text-zinc-50 tracking-tight mb-4">
+					Política de privacidad
+				</h1>
+			</div>
+
+			<article class="prose prose-zinc dark:prose-invert prose-blue max-w-none space-y-8">
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">1. Recopilación de datos mínima</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						On Screen Timer está diseñado para funcionar principalmente en tu navegador. No requerimos que crees una cuenta y no solicitamos información personal para el uso básico del temporizador.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">2. Almacenamiento local</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Guardamos el estado de tu sesión (temporizador activo, tareas y preferencias de configuración) en el almacenamiento local de tu navegador. Esto asegura que tu trabajo se recupere si recargas la página accidentalmente. Estos datos de la sesión permanecen en tu dispositivo y no se transmiten a nuestros servidores.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">3. Uso del sitio web y análisis</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Podemos utilizar análisis estándar o datos básicos de registro del servidor (como el tipo de navegador, las páginas visitadas y las marcas de tiempo) para comprender el uso del sitio, diagnosticar problemas técnicos y mejorar el servicio. Esto se hace de forma agregada sin rastrear a los usuarios individualmente a través de la web.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">4. Cookies</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						El servicio puede usar cookies (o tecnologías equivalentes como <code>localStorage</code>) estrictamente para recordar el estado, las configuraciones o las preferencias de tu aplicación.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">5. Servicios de terceros</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Podemos confiar en servicios de alojamiento de terceros e infraestructura estándar. Esos proveedores pueden recopilar análisis de red estándar y métricas de rendimiento propios del servicio.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">6. Interacciones por correo electrónico</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Si nos contactas a través del correo electrónico de soporte u opciones de retroalimentación, utilizaremos tu mensaje y tu dirección de correo electrónico solo para responder a tu consulta.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">7. Cambios</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Esta política de privacidad puede actualizarse a medida que el servicio evolucione, se añadan características o surjan requisitos reglamentarios.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">8. Contacto</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Para cualquier pregunta o sugerencia, consulta nuestra <a href="/es/contact" class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 underline underline-offset-4">página de contacto</a>.
+					</p>
+				</section>
+			</article>
+		</main>
+		<SiteFooter />
+	</div>
+</Layout>

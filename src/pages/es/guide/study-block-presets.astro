@@ -1,0 +1,75 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout
+	title="Plantillas de bloques de estudio"
+	description="Aprende cómo las secuencias de estudio predefinidas de On Screen Timer dividen una sesión del Temporizador en fases con nombre."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Cómo funcionan las plantillas</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Las Plantillas de bloques de estudio son secuencias de temporizador predefinidas y opcionales diseñadas para estructurar una sesión de estudio. Seleccionar una plantilla desde el menú de Configuración cambia al modo Temporizador e inicia automáticamente el primer segmento.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Cada segmento muestra una etiqueta de fase activa (como <em class="text-zinc-900 dark:text-zinc-100">Aprender</em>, <em class="text-zinc-900 dark:text-zinc-100">Recordar</em>, <em class="text-zinc-900 dark:text-zinc-100">Resolver</em>, <em class="text-zinc-900 dark:text-zinc-100">Repasar</em>, <em class="text-zinc-900 dark:text-zinc-100">Estudiar</em> o <em class="text-zinc-900 dark:text-zinc-100">Practicar</em>) directamente debajo de la pantalla del Temporizador.
+		</p>
+		<ul class="list-disc pl-5 space-y-2 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li>La etiqueta de fase indica el segmento actual del bloque de estudio; no es una Tarea en curso y no se añade al panel de Tareas.</li>
+			<li>Los segmentos avanzan automáticamente a la siguiente fase cuando finaliza la cuenta regresiva.</li>
+			<li>El Temporizador termina y se detiene tras completar el último segmento de la plantilla (las plantillas no se repiten en bucle).</li>
+			<li>Los controles Pausar, Reanudar, Reiniciar y Detener funcionan normalmente durante una sesión de plantilla.</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Plantillas disponibles</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			On Screen Timer proporciona las siguientes estructuras de estudio opcionales:
+		</p>
+
+		<!-- Grille des modèles -->
+		<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 my-4">
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Aprender &rarr; Recordar &rarr; Resolver &rarr; Repasar</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">60 min total</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					25m Aprender &rarr; 5m Recordar &rarr; 25m Resolver &rarr; 5m Repasar
+				</p>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Estudio profundo &rarr; Practicar</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">90 min total</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					60m Estudiar &rarr; 30m Practicar
+				</p>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Aprender &rarr; Resolver</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">60 min total</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					30m Aprender &rarr; 30m Resolver
+				</p>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Estudiar &rarr; Resolver &rarr; Repasar</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">120 min total</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					45m Estudiar &rarr; 45m Resolver &rarr; 30m Repasar
+				</p>
+			</div>
+		</div>
+
+		<p class="text-xs text-zinc-500 dark:text-zinc-400">
+			Las Plantillas de bloques de estudio son simples estructuras de estudio opcionales. No ofrecen ninguna garantía médica ni de productividad.
+		</p>
+	</section>
+</GuideArticleLayout>

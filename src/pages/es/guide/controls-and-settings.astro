@@ -1,0 +1,79 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout
+	title="Teclado, sonido y configuración"
+	description="Descubre atajos de teclado útiles, ajustes de sonido y preferencias generales."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Atajos de teclado</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			En dispositivos de escritorio, puedes controlar rápidamente las funciones principales con atajos de teclado:
+		</p>
+
+		<div class="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50 my-4">
+			<table class="w-full text-left text-sm">
+				<thead>
+					<tr class="border-b border-zinc-200 dark:border-zinc-800 text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-100/75 dark:bg-zinc-800/60">
+						<th class="py-3 px-4 font-semibold">Atajo</th>
+						<th class="py-3 px-4 font-semibold">Acción</th>
+						<th class="py-3 px-4 font-semibold">Comportamiento</th>
+					</tr>
+				</thead>
+				<tbody class="divide-y divide-zinc-200/70 dark:divide-zinc-800/70">
+					<tr class="hover:bg-zinc-100/40 dark:hover:bg-zinc-800/30 transition-colors">
+						<td class="py-3 px-4 whitespace-nowrap">
+							<kbd class="px-2.5 py-1 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded shadow-2xs">Espacio</kbd>
+						</td>
+						<td class="py-3 px-4 font-medium text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Iniciar / Pausar / Reanudar</td>
+						<td class="py-3 px-4 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">Controla la sesión activa del Temporizador o Cronómetro cuando el cursor no está en un campo de texto.</td>
+					</tr>
+					<tr class="hover:bg-zinc-100/40 dark:hover:bg-zinc-800/30 transition-colors">
+						<td class="py-3 px-4 whitespace-nowrap">
+							<kbd class="px-2.5 py-1 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded shadow-2xs">Intro</kbd>
+						</td>
+						<td class="py-3 px-4 font-medium text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Confirmar entrada</td>
+						<td class="py-3 px-4 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">Confirma la duración introducida para iniciar la cuenta regresiva o añade un nuevo elemento a la lista de Tareas.</td>
+					</tr>
+					<tr class="hover:bg-zinc-100/40 dark:hover:bg-zinc-800/30 transition-colors">
+						<td class="py-3 px-4 whitespace-nowrap">
+							<kbd class="px-2.5 py-1 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded shadow-2xs">Esc</kbd>
+						</td>
+						<td class="py-3 px-4 font-medium text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Cerrar / Salir de pantalla completa</td>
+						<td class="py-3 px-4 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">Sale del modo de Pantalla completa o cierra paneles y menús abiertos.</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<p class="text-xs text-zinc-500 dark:text-zinc-400">
+			Los atajos de teclado están diseñados para teclados físicos y no interfieren al escribir en campos de texto.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Opciones de sonido</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			El sonido de finalización está silenciado por defecto. Puedes activar el sonido en cualquier momento usando el botón del altavoz en la parte superior de la cabecera.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Cuando está activado, se reproducirá un sonido suave cuando finalice la cuenta regresiva del Temporizador y durante las transiciones entre segmentos de una Plantilla de bloque de estudio. Tu preferencia de sonido se guarda localmente en tu dispositivo.
+		</p>
+		<p class="text-sm text-zinc-500 dark:text-zinc-400">
+			Nota: La reproducción de sonido se basa en el audio local del navegador y no envía notificaciones push del sistema.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Configuración general</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Puedes acceder a preferencias adicionales haciendo clic en el icono de Menú en la esquina superior derecha.
+		</p>
+		<ul class="list-disc pl-5 space-y-2 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Formato del reloj:</strong> Alterna entre formato de 12 horas y 24 horas para el modo Reloj.</li>
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Plantillas de bloques de estudio:</strong> Elige una plantilla estructurada para guiar tu sesión de estudio.</li>
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Estilos y tamaños de visualización:</strong> Ajusta la presentación visual de tu Temporizador.</li>
+		</ul>
+	</section>
+
+</GuideArticleLayout>
