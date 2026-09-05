@@ -1,0 +1,81 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="タイマーの入力とコントロール" 
+	description="時間の入力方法と、実行中のタイマーカウントダウンの操作方法を学びます。"
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">時間の入力</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			タイマーは、選択した時間からカウントダウンします。標準的な数字や自然な時間の表現を使用して時間を入力できます。
+		</p>
+
+		<!-- Supported Duration Formats -->
+		<div class="p-4 rounded-xl bg-zinc-50/90 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 my-4">
+			<div class="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2.5">サポートされている時間のフォーマット</div>
+			<div class="flex flex-wrap items-center gap-2">
+				<span class="inline-flex items-baseline gap-1 px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
+					<code>5</code> <span class="font-sans text-xs text-zinc-400 dark:text-zinc-500">(5分)</span>
+				</span>
+				<span class="inline-flex items-center px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
+					<code>2mins</code>
+				</span>
+				<span class="inline-flex items-center px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
+					<code>02:00</code>
+				</span>
+				<span class="inline-flex items-center px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
+					<code>1hr 30mins</code>
+				</span>
+				<span class="inline-flex items-center px-2.5 py-1 rounded-md text-sm font-mono bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-2xs">
+					<code>90s</code>
+				</span>
+			</div>
+			<p class="text-xs text-zinc-500 dark:text-zinc-400 mt-2.5 leading-relaxed">
+				現在の製品の動作では、<code class="font-mono text-zinc-700 dark:text-zinc-300">5</code> のような単純な数値を入力すると、デフォルトで5分になります。
+			</p>
+		</div>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">コントロール</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			時間を設定したら、画面上のボタンを使用してカウントダウンを操作します：
+		</p>
+		
+		<ul class="space-y-3 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li class="flex items-start gap-2">
+				<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shrink-0 mt-0.5">スタート</span>
+				<span>入力された時間からカウントダウンを開始します。</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shrink-0 mt-0.5">一時停止</span>
+				<span>実行中のタイマーまたはストップウォッチのセッションを一時的に停止します。</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shrink-0 mt-0.5">再開</span>
+				<span>一時停止したセッションをその時点から再開します。</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shrink-0 mt-0.5">リセット</span>
+				<span>カウントダウンを最初に設定した時間に戻します。</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shrink-0 mt-0.5">停止</span>
+				<span>実行中のタイマーをすぐに終了し、セッションを完了としてマークします。</span>
+			</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">完了とサウンド</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			タイマーが <code class="font-mono text-zinc-800 dark:text-zinc-200">00:00</code> に達すると、有効になっている場合は任意の優しい完了音が鳴ります。
+		</p>
+		<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2">
+			<a href="/ja/guide/controls-and-settings" class="text-blue-600 dark:text-blue-400 hover:underline">キーボード、サウンド、設定に関する詳細を学ぶ &rarr;</a>
+		</p>
+	</section>
+
+</GuideArticleLayout>

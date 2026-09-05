@@ -1,0 +1,75 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="学習ブロックプリセット" 
+	description="On Screen Timerのプリセット学習シーケンスがタイマーセッションを名前付きのフェーズに分割する仕組みを学びます。"
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">プリセットの仕組み</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			学習ブロックプリセットは、学習セッションの構成を支援するための、オプションの定義済みタイマーシーケンスです。設定メニューからプリセットを選択すると、タイマーモードに切り替わり、最初のセグメントが自動的に開始されます。
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			各セグメントでは、タイマー表示の真下にアクティブなフェーズのラベル（<em class="text-zinc-900 dark:text-zinc-100">学ぶ</em>、<em class="text-zinc-900 dark:text-zinc-100">思い出す</em>、<em class="text-zinc-900 dark:text-zinc-100">解く</em>、<em class="text-zinc-900 dark:text-zinc-100">復習する</em>、<em class="text-zinc-900 dark:text-zinc-100">学習</em>、<em class="text-zinc-900 dark:text-zinc-100">練習</em> など）が表示されます。
+		</p>
+		<ul class="list-disc pl-5 space-y-2 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li>フェーズラベルは、現在の学習ブロックのセグメントを示します。これは現在のタスクではなく、ミニToDoには追加されません。</li>
+			<li>カウントダウンが終了すると、セグメントは自動的に次のフェーズに進みます。</li>
+			<li>最後のプリセットセグメントが終了すると、タイマーは完了して停止します（プリセットはループしません）。</li>
+			<li>プリセットセッション中も、一時停止、再開、リセット、および停止のコントロールは通常通り機能します。</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">現在のプリセット</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			On Screen Timerでは、以下のオプションの学習構造を提供しています：
+		</p>
+
+		<!-- Existing Presets Grid -->
+		<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 my-4">
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">学ぶ &rarr; 思い出す &rarr; 解く &rarr; 復習する</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">合計60分</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					25分 学ぶ &rarr; 5分 思い出す &rarr; 25分 解く &rarr; 5分 復習
+				</p>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">集中学習 &rarr; 練習</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">合計90分</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					60分 学習 &rarr; 30分 練習
+				</p>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">学ぶ &rarr; 解く</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">合計60分</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					30分 学ぶ &rarr; 30分 解く
+				</p>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center justify-between gap-2 mb-1.5">
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">学習 &rarr; 解く &rarr; 復習</h3>
+					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">合計120分</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
+					45分 学習 &rarr; 45分 解く &rarr; 30分 復習
+				</p>
+			</div>
+		</div>
+
+		<p class="text-xs text-zinc-500 dark:text-zinc-400">
+			学習ブロックプリセットは、単なるオプションの学習構造です。医学的効果や生産性を保証するものではありません。
+		</p>
+	</section>
+</GuideArticleLayout>

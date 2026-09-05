@@ -1,0 +1,59 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="On Screen Timerをはじめよう" 
+	description="タイマー、時計、ストップウォッチの基本と主な操作方法を学びます。"
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">基本</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			On Screen Timerは、ブラウザ上で直接動作するように設計された、軽量で集中を妨げないユーティリティです。タイマー、時計、ストップウォッチの3つの主要なモードを提供します。
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">タイマー</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			タイマーは、指定した時間からカウントダウンします。時間を入力し（例：<code class="font-mono text-zinc-800 dark:text-zinc-200">25</code> または <code class="font-mono text-zinc-800 dark:text-zinc-200">30mins</code>）、<strong class="font-medium text-zinc-900 dark:text-zinc-100">スタート</strong>を押すだけです。
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			実行中のセッションは、<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">一時停止</span>、<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">再開</span>、<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">リセット</span>、および <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">停止</span> のコントロールを使用して操作できます。 
+		</p>
+		<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2">
+			<a href="/ja/guide/timer-inputs-and-controls" class="text-blue-600 dark:text-blue-400 hover:underline">タイマーの入力とコントロールに関する詳細なガイドを読む &rarr;</a>
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">時計</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			時計は、デバイスから報告された現在のローカル時間を表示します。タイマーやストップウォッチとは独立して動作します。
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">ストップウォッチ</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			ストップウォッチは、ゼロからの経過時間を測定します。特定のアクティビティにかかる時間を記録するために使用できます。
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">モード切り替え、設定、タスク</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			上部のプライマリタブを使用して、タイマー、時計、ストップウォッチのモードをいつでも切り替えることができます。
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			右上のメニューボタン（ハンバーガーアイコン）をクリックすると、<strong class="font-medium text-zinc-900 dark:text-zinc-100">設定</strong>にアクセスできます。ここから、表示スタイル（モダン、デジタル、アナログ）を選択したり、学習ブロックのプリセットを選択したりできます。
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			<strong class="font-medium text-zinc-900 dark:text-zinc-100">ミニToDo</strong>セクションは、タイマー表示の下にあります。ここでは、実行中のタイマーセッションと並行してタスクを管理できます。
+		</p>
+		<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2">
+			<a href="/ja/guide/tasks" class="text-blue-600 dark:text-blue-400 hover:underline">ミニToDoとタスクに関する詳細なガイドを読む &rarr;</a>
+		</p>
+	</section>
+
+</GuideArticleLayout>

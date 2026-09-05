@@ -1,0 +1,93 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+---
+
+<Layout title="プライバシーポリシー — On Screen Timer" description="On Screen Timerのプライバシーポリシー">
+	<div class="min-h-dvh flex flex-col">
+		<SiteHeader />
+
+		<main class="flex-1 w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 text-zinc-800 dark:text-zinc-200">
+			<div class="mb-12">
+				<h1 class="text-3xl sm:text-4xl font-bold text-zinc-950 dark:text-zinc-50 tracking-tight mb-4">
+					プライバシーポリシー
+				</h1>
+			</div>
+
+			<article class="prose prose-zinc dark:prose-invert prose-blue max-w-none space-y-8">
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">1. 概要</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						On Screen Timerはブラウザベースのユーティリティです。私たちはアプリケーションを軽量に保ち、データをあるべき場所、つまりお客様のブラウザ内に保持することを最優先しています。
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">2. ブラウザに保存される情報</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed mb-3">
+						シームレスな体験を提供するため、サポートされているアプリケーションの状態はブラウザのローカルストレージメカニズム（localStorage）を使用して保存される場合があります。これにより、ページをリフレッシュしても現在のセッションがすぐに失われることはありません。
+					</p>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						この保存される情報には以下が含まれます：
+					</p>
+					<ul class="list-disc pl-5 mt-2 space-y-1 text-zinc-600 dark:text-zinc-400">
+						<li>タイマーとストップウォッチの状態</li>
+						<li>タスク、タスクのステータス、およびタスクの経過時間</li>
+						<li>表示モード、スタイル、およびサイズの設定</li>
+						<li>時計の表示形式の設定</li>
+						<li>テーマ（ライト/ダーク）の選択</li>
+						<li>音声の設定</li>
+						<li>学習ブロックのプリセット状態</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">3. アカウント</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						On Screen Timerの通常の使用において、現在アカウントや登録は必要ありません。
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">4. サーバー / クラウドストレージ</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						On Screen Timerは現在、保存されたアプリケーションの状態をOn Screen Timerのアカウントやクラウド同期サービスに送信するのではなく、タイマー、タスク、および設定の状態をブラウザ内にローカルに保存します。サイトを読み込む際には、ウェブサイトのファイルを取得するための標準的なネットワークリクエストが自然に行われます。
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">5. ローカルデータの消去</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						アプリケーションデータはお客様のブラウザに保存されているため、On Screen Timerのブラウザのローカルストレージやサイトデータを消去することで、このローカルに保存された状態をいつでも削除できます。
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">6. 分析 / 広告 / 第三者</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2">
+						On Screen Timerには現在、アプリケーション内に広告や分析の統合は含まれていません。
+					</p>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						分析、広告、またはその他のデータ処理サービスが導入される場合は、このポリシーが更新されます。
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">7. 本ポリシーの変更</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						本プライバシーポリシーは、サービスの変更、機能の追加、または規制要件の変化に伴って更新される場合があります。
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">8. お問い合わせ</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						ご質問やフィードバックがある場合は、<a href="/ja/contact" class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 underline underline-offset-4">お問い合わせページ</a>をご覧ください。
+					</p>
+				</section>
+			</article>
+		</main>
+		<SiteFooter />
+	</div>
+</Layout>

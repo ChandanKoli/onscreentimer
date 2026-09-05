@@ -20,7 +20,7 @@ export const LOCALES = {
     lang: 'ja',
     prefix: '/ja',
     name: '日本語',
-    isActive: false,
+    isActive: true,
     isDefault: false,
   },
   fr: {

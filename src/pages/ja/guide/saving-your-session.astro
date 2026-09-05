@@ -1,0 +1,50 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="セッションの保存" 
+	description="On Screen Timerがブラウザ内にローカルで設定とアクティブなタスクを保存する仕組みについて学びます。"
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">ローカルブラウザストレージ</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			On Screen Timerは、<code class="font-mono text-zinc-800 dark:text-zinc-200 text-xs sm:text-sm bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-700">localStorage</code> を使用して、サポートされている状態をブラウザ内にローカルで保存します。
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			状態はブラウザに直接保存されるため、誤ってページを更新したり、タブを少し閉じたりしても、セッションは維持されます。アカウントや登録は必要ありません。
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">何が保存されるのか？</h2>
+		<ul class="list-disc pl-5 space-y-1.5 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li>アクティブなタイマーの状態と残り時間</li>
+			<li>ストップウォッチの状態と累積経過時間</li>
+			<li>ミニToDoのタスク、ステータス、記録された作業時間</li>
+			<li>選択した表示スタイル（モダン、デジタル、アナログ）</li>
+			<li>選択した表示サイズ（最小、標準、大、フル）</li>
+			<li>時計フォーマットの設定（12時間または24時間）</li>
+			<li>サウンドとテーマの設定</li>
+			<li>実行中の学習ブロックプリセットの進行状況</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">データプライバシーと制限事項</h2>
+		<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50 text-sm text-zinc-700 dark:text-zinc-300 space-y-3">
+			<p>
+				タイマー、タスク、および設定の状態は、デバイス上に厳格にローカル保存されます。On Screen Timerは、この保存された状態をアプリケーションサーバーに送信することはありません。
+			</p>
+			<p class="font-medium">
+				ローカルストレージの重要な制限事項：
+			</p>
+			<ul class="list-disc pl-5 space-y-1 text-zinc-600 dark:text-zinc-400">
+				<li>クラウド同期やデバイス間同期はありません。デスクトップのタスクをモバイルデバイスで見ることはできません。</li>
+				<li>サーバーのバックアップはありません。</li>
+				<li>ブラウザのサイトデータやローカルストレージをクリアすると、タスクが削除され、設定がリセットされます。</li>
+			</ul>
+		</div>
+	</section>
+
+</GuideArticleLayout>

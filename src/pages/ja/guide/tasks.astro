@@ -1,0 +1,82 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="ミニToDoと現在のタスクの時間計測" 
+	description="保留中、現在、完了済みのタスクがタイマーとどのように連携して機能するかを学びます。"
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">ミニToDo</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			ToDoパネルを使用すると、実行中のタイマーと並行して作業項目を管理できます。タスクは以下の3つの異なる状態を経て進行します：
+		</p>
+
+		<!-- Task States Grid -->
+		<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
+			<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center gap-2 mb-1.5">
+					<span class="w-2 h-2 rounded-full bg-rose-400 shrink-0" aria-hidden="true"></span>
+					<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">保留中</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">作業を待っているキューに入れられたタスク。</p>
+			</div>
+			<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center gap-2 mb-1.5">
+					<span class="w-2 h-2 rounded-full bg-amber-400 shrink-0" aria-hidden="true"></span>
+					<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">現在</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">時間が計測されているアクティブな作業項目（一度に最大2つまで）。</p>
+			</div>
+			<div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<div class="flex items-center gap-2 mb-1.5">
+					<span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0" aria-hidden="true"></span>
+					<span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">完了</span>
+				</div>
+				<p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">アクティブなタスクの下に並べ替えられた終了済みの項目。</p>
+			</div>
+		</div>
+
+		<ul class="space-y-3 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300 mt-6">
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">タスクの追加:</span>
+				<span>入力ボックスにタスクのタイトルを入力してEnterを押します。新しいタスクは「保留中」として追加されます。</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">現在のタスク:</span>
+				<span>保留中の項目の再生アイコンをクリックすることで、最大2つのタスクを同時に「現在」に昇格させることができます。</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">タスクの完了:</span>
+				<span>アクティブなタスクのチェックマークをクリックして、完了としてマークします。完了したタスクは、記録された作業時間を保持したまま、未完了のタスクの下に自動的に移動します。</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">タスクを戻す:</span>
+				<span>「現在」のタスクは、記録された時間を失うことなく、戻るボタンを使用して「保留中」に戻すことができます。</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">再開と削除:</span>
+				<span>完了したタスクは「保留中」に再開するか、完全に削除することができます。保留中のタスクも、不要になった場合は削除できます。</span>
+			</li>
+			<li class="flex items-start gap-2">
+				<span class="font-medium text-zinc-950 dark:text-zinc-50 shrink-0 mt-0.5">サマリーカウンター:</span>
+				<span>下部のサマリーバーでは、合計 <strong class="font-medium text-zinc-900 dark:text-zinc-100">完了 X &middot; 残り Y</strong> 項目を追跡します。</span>
+			</li>
+		</ul>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">現在のタスクの時間計測</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			各「現在」のタスクは、独自の経過作業時間を記録します。2つの「現在」のタスクが同時にアクティブな場合、両方が同時にアクティブな時間を記録しますが、それぞれが昇格されたタイミングに基づいて独自の独立した時間を保持します。
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			タスクの時間計測は、実行中のセッションと厳密に連動します：
+		</p>
+		<ul class="list-disc pl-5 space-y-2 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
+			<li>タスクは、タイマーまたはストップウォッチのセッションがアクティブに実行されている間のみ、時間を累積します。</li>
+			<li>タイマーまたはストップウォッチを一時停止すると、タスクの時間の累積もすぐに一時停止されます。</li>
+			<li>視覚的な表示スタイルや表示サイズを変更しても、タスクの時間計測が中断されたりリセットされたりすることはありません。</li>
+		</ul>
+	</section>
+</GuideArticleLayout>

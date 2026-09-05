@@ -1,0 +1,73 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="表示スタイル、サイズ、フルモード" 
+	description="視覚的なスタイル、タイマーのサイズ変更、集中するためのフルモードの活用について学びます。"
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">表示スタイル</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			右上の設定メニューから、タイマー、時計、ストップウォッチの3つの視覚的なスタイルを切り替えることができます：
+		</p>
+
+		<dl class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 my-4">
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">モダン</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">即座に、かつ目立つように読みやすく設計された、クリーンで大きな数字のタイポグラフィ。</dd>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">デジタル</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">クラシックなデジタル時計の文字盤を提供する、レトロな7セグメント風のレイアウト。</dd>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">アナログ</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">スムーズに動く針を備えた伝統的な円形の文字盤。12時間表示の時計モードではAM/PMバッジを表示します。</dd>
+			</div>
+		</dl>
+
+		<p class="text-sm text-zinc-600 dark:text-zinc-400">
+			表示スタイルを変更しても、時間がどのように表示されるかが変わるだけであり、実行中のセッションがリセットされたり中断されたりすることはありません。
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">表示サイズ</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			右下にあるサイズオプションを選択して、セットアップや集中環境に合わせてタイマーワークスペースのサイズを変更できます：
+		</p>
+
+		<dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 my-4">
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">最小</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">タイマーを他のウィンドウと並べて表示する際のコンパクトなサイズ。</dd>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">標準 <span class="text-xs font-normal text-zinc-400 dark:text-zinc-500">(デフォルト)</span></dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">通常のデスクやラップトップでの作業距離に適した、標準的でバランスの取れた表示。</dd>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">大</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">部屋の反対側からでも簡単に読み取れるように拡大されたサイズ。</dd>
+			</div>
+			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">フル</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">ヘッダー、フッター、サイドパネルを非表示にする、アプリレベルの集中表示。Escキーまたはサイズの切り替えで終了します。</dd>
+			</div>
+		</dl>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">フルモードを理解する</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			フルモードは、ナビゲーションバーやフッターなどの視覚的な気を散らすものを排除するように設計された、アプリ内の集中レイアウトです。基本的なタイマーのコントロールは画面上で引き続きアクセス可能です。
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			<strong class="font-medium text-zinc-900 dark:text-zinc-100">注:</strong> フルモードは、On Screen Timer内のレイアウト設定です。これはブラウザのネイティブなフルスクリーンAPI（多くのプラットフォームでF11）では<em>ありません</em>。これらを組み合わせることで、最も気が散らない体験を得ることができます。
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			フルモードを終了するには、キーボードの <kbd class="px-1.5 py-0.5 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded">Esc</kbd> を押すか、表示オプションから別のサイズを選択するだけです。
+		</p>
+	</section>
+</GuideArticleLayout>

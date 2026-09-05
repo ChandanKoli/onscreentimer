@@ -585,6 +585,153 @@ export const ui = {
     'timer.error.blank': 'Inserisci una durata',
     'timer.error.invalid': 'Formato non valido',
   },
+
+  ja: {
+    // Nav / Header
+    'nav.tool': 'ツール',
+    'nav.guide': 'ガイド',
+    'nav.faq': 'よくある質問',
+
+    // Workspace - Modes, Styles, Sizes
+    'mode.timer': 'タイマー',
+    'mode.clock': '時計',
+    'mode.stopwatch': 'ストップウォッチ',
+
+    'style.modern': 'モダン',
+    'style.digital': 'デジタル',
+    'style.analog': 'アナログ',
+
+    'size.full': '全画面',
+    'size.big': '大',
+    'size.mid': '中',
+    'size.tiny': '小',
+
+    'label.mode': 'モード',
+    'label.style': 'スタイル',
+    'label.size': 'サイズ',
+
+    // Controls
+    'timer.start': 'スタート',
+    'timer.pause': '一時停止',
+    'timer.resume': '再開',
+    'timer.reset': 'リセット',
+    'timer.stop': 'ストップ',
+    'timer.placeholder': '例: 5, 02:00, 01:30:00, 90s',
+
+    'stopwatch.start': 'スタート',
+    'stopwatch.pause': '一時停止',
+    'stopwatch.resume': '再開',
+    'stopwatch.reset': 'リセット',
+    'stopwatch.stop': 'ストップ',
+
+    'workspace.exitFull': '全画面表示を終了',
+
+    // Tasks
+    'tasks.todo': 'タスク',
+    'tasks.done': '完了',
+    'tasks.remaining': '残り',
+    'tasks.addPlaceholder': 'タスクを追加...',
+
+    // Accessibility / ARIA
+    'aria.home': 'On Screen Timer ホーム',
+    'aria.soundEnabled': '音声オン',
+    'aria.soundEnabledMute': '音声オン、クリックしてミュート',
+    'aria.soundMutedEnable': '音声ミュート、クリックしてオン',
+    'aria.toggleTheme': 'テーマを切り替える',
+    'aria.menu': '設定とメニュー',
+    'aria.menuTitle': 'メニュー',
+    'aria.primaryNav': 'メイン',
+    'aria.timerDisplay': 'タイマー',
+    'aria.digitalDisplay': 'デジタル表示',
+    'aria.analogDisplay': 'アナログ表示',
+    'aria.startTimer': 'タイマーを開始',
+    'aria.resetTimer': 'タイマーをリセット',
+    'aria.stopTimer': 'タイマーを停止',
+    'aria.startStopwatch': 'ストップウォッチを開始',
+    'aria.resetStopwatch': 'ストップウォッチをリセット',
+    'aria.stopStopwatch': 'ストップウォッチを停止',
+    'aria.exitFull': '全画面モードを終了',
+    'aria.selectMode': 'モードを選択',
+    'aria.selectStyle': 'スタイルを選択',
+    'aria.selectSize': 'サイズを選択',
+    'aria.currently': '現在',
+    'aria.setTimerDuration': 'タイマーの長さを設定',
+
+    'aria.reopenTodo': 'タスクを再開',
+    'aria.minimizeTodo': 'タスクを最小化',
+    'aria.minimize': '最小化',
+    'aria.addTask': 'タスクを追加',
+
+    'menu.settings': '設定',
+
+    'error.invalidFormat': 'タイマーの形式が無効です。',
+    'error.empty': 'タイマーの長さを指定してください。',
+
+    'tasks.allCompleted': '✓ 全てのタスクが完了しました',
+    'tasks.makeCurrent': '実行中にする',
+    'tasks.delete': '削除',
+    'tasks.restart': '再開',
+    'tasks.completeTask': '完了にする',
+    'tasks.returnPending': '保留に戻す',
+
+    // Clock
+    'clock.am': 'AM',
+    'clock.pm': 'PM',
+
+    // Study Blocks
+    'preset.preset-1.name': '学習 → 思い出す → 解く → 復習',
+    'preset.preset-2.name': '集中学習 → 練習',
+    'preset.preset-3.name': '学習 → 解く',
+    'preset.preset-4.name': '学習 → 解く → 復習',
+
+    'preset.phase.Learn': '学習',
+    'preset.phase.Recall': '思い出す',
+    'preset.phase.Solve': '解く',
+    'preset.phase.Review': '復習',
+    'preset.phase.Study': '勉強',
+    'preset.phase.Practice': '練習',
+    'preset.blockComplete': '完了',
+
+    // Guide Layout
+    'guide.allGuides': 'すべてのガイド',
+    'guide.breadcrumb': 'ガイド / ',
+    'guide.titleSuffix': ' — On Screen Timer ガイド',
+    'guide.openTimer': 'On Screen Timer を開く &rarr;',
+
+    // Footer
+    'footer.description': 'ブラウザで使えるシンプルなタイマー、時計、ストップウォッチ、タスク管理ツール。',
+    'footer.product': '製品情報',
+    'footer.learn': '学ぶ',
+    'footer.common': 'よく使われるタイマー',
+    'footer.legal': '法的情報',
+    'footer.guide': 'ガイド',
+    'footer.faq': 'よくある質問',
+    'footer.howItWorks': '使い方',
+    'footer.privacy': 'プライバシーポリシー',
+    'footer.terms': '利用規約',
+    'footer.contact': 'お問い合わせ',
+    'footer.5min': '5分 タイマー',
+    'footer.10min': '10分 タイマー',
+    'footer.20min': '20分 タイマー',
+    'footer.25min': '25分 タイマー',
+    'footer.free': '無料で利用できます。アカウント登録は不要です。',
+
+    // Parser Errors
+    'parser.empty': '長さを入力してください (例: 5, 02:00, 90s)',
+    'parser.invalidFormat': '無効な形式です。「5」、「02:00」、「90s」のように入力してください',
+    'parser.greaterThanZero': '0より大きい値を入力してください',
+    'parser.exceedsMax': '99時間を超えることはできません',
+    'parser.invalidMmSs': '無効な時間形式です。MM:SS (例: 02:00) を使用してください',
+    'parser.invalidSeconds': 'MM:SS形式の秒は0から59の間である必要があります',
+    'parser.invalidHhMmSs': '無効な時間形式です。HH:MM:SS (例: 01:30:00) を使用してください',
+    'parser.invalidMinSec': 'HH:MM:SS形式の分と秒は0から59の間である必要があります',
+    'parser.invalidColon': '無効な形式です。MM:SSまたはHH:MM:SSを使用してください',
+    'parser.unrecognizedUnit': '認識できない単位です。h、m、またはsを使用してください (例: 2mins, 90s)',
+
+    // Timer Error / Validation
+    'timer.error.blank': '長さを入力してください',
+    'timer.error.invalid': '無効な形式です',
+  },
 } as const;
 
 export function useTranslations(locale: string) {
