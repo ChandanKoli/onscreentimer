@@ -688,6 +688,23 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 	// --- Preset UI Logic ---
 	const presetChooserContainer = document.getElementById('preset-chooser-container');
 	const presetPhaseLabel = document.getElementById('preset-phase-label');
+	const presetDisclosureBtns = document.querySelectorAll('.preset-disclosure-btn');
+
+	presetDisclosureBtns.forEach(btn => {
+		btn.addEventListener('click', () => {
+			const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+			btn.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
+			if (presetChooserContainer) {
+				if (!isExpanded) {
+					presetChooserContainer.classList.remove('hidden');
+					presetChooserContainer.classList.add('flex');
+				} else {
+					presetChooserContainer.classList.add('hidden');
+					presetChooserContainer.classList.remove('flex');
+				}
+			}
+		});
+	});
 
 	if (presetChooserContainer) {
 		presetChooserContainer.innerHTML = STUDY_PRESETS.map(preset => {
