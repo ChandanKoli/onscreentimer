@@ -1,46 +1,69 @@
-# Astro Starter Kit: Basics
+# On Screen Timer
 
-```sh
-npm create astro@latest -- --template basics
-```
+On Screen Timer is a free browser-based timer, clock, stopwatch, and task utility with optional study block presets.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+**Live:** https://onscreentimer.com
 
-## 🚀 Project Structure
+## Features
 
-Inside of your Astro project, you'll see the following folders and files:
+- Timer
+- Clock
+- Stopwatch
+- Tasks
+- Study Block presets
+- Modern / Digital / Analog display styles
+- Tiny / Mid / Big / Full display sizes
+- Browser-local session persistence
+- No account required
+- Multilingual support
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+## Supported Languages
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+- English
+- Portuguese (Brazil)
+- French
+- Italian
+- Japanese
+- Spanish
+- German
+- Korean
 
-## 🧞 Commands
+## Tech Stack
 
-All commands are run from the root of the project, from a terminal:
+- Astro
+- Tailwind CSS
+- TypeScript / browser JavaScript
+- Cloudflare Pages
+- GitHub
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Local Development
 
-## 👀 Want to learn more?
+This project uses Node.js 22.22.2 (see `.node-version`).
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+Available commands:
+- `npm run dev`: Starts the local development server.
+- `npm run build`: Builds the project for production.
+- `npm run preview`: Previews the production build locally.
+- `npm run test`: Runs the test suite.
+
+## Deployment
+
+Production deployments are automatically triggered when approved changes are pushed to the main branch on GitHub, which is connected to Cloudflare Pages.
+
+## Privacy / Data
+
+The application stores session state locally in the user's browser using localStorage.
+
+## Project Status
+
+Production / Live
