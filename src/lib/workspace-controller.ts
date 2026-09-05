@@ -116,6 +116,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 					style: 'modern',
 					size: 'mid',
 					soundEnabled: false,
+					volume: 1,
 					timer: {
 						status: 'idle',
 						initialDurationSeconds: 0,
@@ -175,6 +176,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 		style: hydratedState?.style ?? 'modern',
 		size: hydratedState?.size ?? 'mid',
 		soundEnabled: hydratedState?.soundEnabled ?? false,
+		volume: hydratedState?.volume ?? 1,
 		timer: {
 			status: hydratedState?.timer.status ?? 'idle',
 			initialDurationSeconds: hydratedState?.timer.initialDurationSeconds ?? 0,
@@ -217,6 +219,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 				size: state.size,
 				previousNonFullSize,
 				soundEnabled: state.soundEnabled,
+				volume: state.volume,
 				timer: timerEngine.getSnapshot(),
 				stopwatch: stopwatchEngine.getSnapshot(),
 				tasks: state.tasks,
@@ -265,7 +268,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			setTimeout(() => {
 				modernTimeText?.classList.remove('text-blue-600', 'dark:text-blue-400');
 			}, 1500);
-			audioSystem.playCompletionSound(!store.getState().soundEnabled);
+			audioSystem.playCompletionSound(!store.getState().soundEnabled, store.getState().volume);
 			
 			// Preset Progression
 			const state = store.getState();
@@ -339,7 +342,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 
 		const state = store.getState();
 		if (action === 'complete' && state.tasks.length > 0 && state.tasks.every(t => t.status === 'completed')) {
-			audioSystem.playCompletionSound(!state.soundEnabled);
+			audioSystem.playCompletionSound(!state.soundEnabled, state.volume);
 			if (state.activeSessionEngine === 'timer') {
 				timerEngine.stop();
 			} else if (state.activeSessionEngine === 'stopwatch') {
@@ -576,19 +579,19 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			if (isPending) {
 				actions = `
 					<button type="button" data-task-action="make-current" data-task-id="${t.id}" class="hidden group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-amber-500 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-500" aria-label="${tMsg('tasks.makeCurrent')}" title="${tMsg('tasks.makeCurrent')}">
-						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+						<svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
 					</button>
 					<button type="button" data-task-action="delete" data-task-id="${t.id}" class="hidden group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-rose-500 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-rose-500" aria-label="${tMsg('tasks.delete')}" title="${tMsg('tasks.delete')}">
-						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+						<svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
 					</button>
 				`;
 			} else if (isCompleted) {
 				actions = `
 					<button type="button" data-task-action="restart" data-task-id="${t.id}" class="hidden group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-500" aria-label="${tMsg('tasks.restart')}" title="${tMsg('tasks.restart')}">
-						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+						<svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
 					</button>
 					<button type="button" data-task-action="delete" data-task-id="${t.id}" class="hidden group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-rose-500 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-rose-500" aria-label="${tMsg('tasks.delete')}" title="${tMsg('tasks.delete')}">
-						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+						<svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
 					</button>
 				`;
 			}
@@ -648,10 +651,10 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 						<span id="current-time-${t.id}" class="text-xs font-mono text-zinc-600 dark:text-zinc-400 tabular-nums"></span>
 						<div class="flex items-center gap-1">
 							<button type="button" data-task-action="complete" data-task-id="${t.id}" class="w-6 h-6 rounded flex items-center justify-center text-zinc-500 hover:text-emerald-600 dark:hover:text-emerald-500 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500" aria-label="${tMsg('tasks.completeTask')}" title="${tMsg('tasks.completeTask')}">
-								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+								<svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
 							</button>
 							<button type="button" data-task-action="return-pending" data-task-id="${t.id}" class="w-6 h-6 rounded flex items-center justify-center text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-500" aria-label="${tMsg('tasks.returnPending')}" title="${tMsg('tasks.returnPending')}">
-								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+								<svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
 							</button>
 						</div>
 					</div>
@@ -1374,6 +1377,36 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 
 	// 7.5 Sound Toggle & Keyboard Interactions
 	const btnSound = document.getElementById('btn-sound') as HTMLButtonElement | null;
+	const volumeSlider = document.getElementById('volume-slider') as HTMLInputElement | null;
+	const volumeDisplay = document.getElementById('volume-display');
+	const soundDisclosureBtns = document.querySelectorAll('.sound-disclosure-btn');
+
+	soundDisclosureBtns.forEach(btn => {
+		btn.addEventListener('click', () => {
+			const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+			btn.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
+			const container = document.getElementById('sound-chooser-container');
+			if (container) {
+				if (!isExpanded) {
+					container.classList.remove('hidden');
+					container.classList.add('flex');
+				} else {
+					container.classList.add('hidden');
+					container.classList.remove('flex');
+				}
+			}
+		});
+	});
+
+	if (volumeSlider) {
+		volumeSlider.addEventListener('input', (e) => {
+			const target = e.target as HTMLInputElement;
+			const newVolume = parseInt(target.value, 10);
+			store.setState({ volume: newVolume });
+			if (volumeDisplay) volumeDisplay.textContent = `${newVolume}%`;
+			persistState();
+		});
+	}
 	if (btnSound) {
 		btnSound.addEventListener('click', async () => {
 			const current = store.getState().soundEnabled;
@@ -1385,15 +1418,19 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 	
 	// Apply initial sound state UI immediately
 	store.subscribe((state) => {
+		if (volumeSlider && parseInt(volumeSlider.value, 10) !== state.volume) {
+			volumeSlider.value = String(state.volume);
+			if (volumeDisplay) volumeDisplay.textContent = `${state.volume}%`;
+		}
 		if (btnSound) {
 			if (state.soundEnabled) {
 				btnSound.setAttribute('aria-label', tMsg('aria.soundEnabledMute'));
 				btnSound.title = 'Mute sound';
-				btnSound.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>`;
+				btnSound.innerHTML = `<svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>`;
 			} else {
 				btnSound.setAttribute('aria-label', tMsg('aria.soundMutedEnable'));
 				btnSound.title = 'Enable sound';
-				btnSound.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /><line x1="17" y1="9" x2="23" y2="15" stroke-linecap="round" stroke-linejoin="round" /><line x1="23" y1="9" x2="17" y2="15" stroke-linecap="round" stroke-linejoin="round" /></svg>`;
+				btnSound.innerHTML = `<svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /><line x1="17" y1="9" x2="23" y2="15" stroke-linecap="round" stroke-linejoin="round" /><line x1="23" y1="9" x2="17" y2="15" stroke-linecap="round" stroke-linejoin="round" /></svg>`;
 			}
 		}
 	});

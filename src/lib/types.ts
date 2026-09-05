@@ -47,6 +47,7 @@ export interface AppState {
 	style: DisplayStyle;
 	size: DisplaySize;
 	soundEnabled: boolean;
+	volume: number;
 	timer: TimerState;
 	clock: ClockState;
 	stopwatch: StopwatchState;

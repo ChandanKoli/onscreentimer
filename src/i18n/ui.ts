@@ -78,6 +78,8 @@ export const ui = {
     'aria.addTask': 'Add task',
 
     'menu.settings': 'Settings',
+    'menu.sound': 'Sound',
+    'menu.volume': 'Volume',
 
     'error.invalidFormat': 'Invalid timer duration format.',
     'error.empty': 'Timer duration cannot be empty.',
@@ -224,6 +226,8 @@ export const ui = {
     'aria.addTask': 'Añadir tarea',
 
     'menu.settings': 'Configuración',
+    'menu.sound': 'Sonido',
+    'menu.volume': 'Volumen',
 
     'error.invalidFormat': 'Formato de duración no válido.',
     'error.empty': 'La duración no puede estar vacía.',
@@ -370,6 +374,8 @@ export const ui = {
     'aria.addTask': 'Adicionar tarefa',
 
     'menu.settings': 'Configurações',
+    'menu.sound': 'Som',
+    'menu.volume': 'Volume',
 
     'error.invalidFormat': 'Formato de duração inválido.',
     'error.empty': 'A duração não pode estar vazia.',
@@ -516,6 +522,8 @@ export const ui = {
     'aria.addTask': 'Ajouter une tâche',
 
     'menu.settings': 'Paramètres',
+    'menu.sound': 'Son',
+    'menu.volume': 'Volume',
 
     'error.invalidFormat': 'Format de durée invalide.',
     'error.empty': 'La durée ne peut pas être vide.',
@@ -662,6 +670,8 @@ export const ui = {
     'aria.addTask': 'Aggiungi attività',
 
     'menu.settings': 'Impostazioni',
+    'menu.sound': 'Audio',
+    'menu.volume': 'Volume',
 
     'error.invalidFormat': 'Formato di durata non valido.',
     'error.empty': 'La durata non può essere vuota.',
@@ -809,6 +819,8 @@ export const ui = {
     'aria.addTask': 'タスクを追加',
 
     'menu.settings': '設定',
+    'menu.sound': '音声',
+    'menu.volume': '音量',
 
     'error.invalidFormat': 'タイマーの形式が無効です。',
     'error.empty': 'タイマーの長さを指定してください。',
@@ -955,6 +967,8 @@ export const ui = {
     'aria.addTask': 'Aufgabe hinzufügen',
 
     'menu.settings': 'Einstellungen',
+    'menu.sound': 'Ton',
+    'menu.volume': 'Lautstärke',
 
     'error.invalidFormat': 'Ungültiges Format für die Dauer.',
     'error.empty': 'Die Dauer darf nicht leer sein.',
@@ -1102,6 +1116,8 @@ export const ui = {
     'aria.addTask': '작업 추가',
 
     'menu.settings': '설정',
+    'menu.sound': '소리',
+    'menu.volume': '볼륨',
 
     'error.invalidFormat': '잘못된 타이머 시간 형식입니다.',
     'error.empty': '타이머 시간을 입력해야 합니다.',

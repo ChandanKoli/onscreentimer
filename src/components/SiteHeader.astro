@@ -49,11 +49,11 @@ const prefixPath = (path: string) => getRelativeLocaleUrl(currentLocaleId, path)
 				<button
 					type="button"
 					id="btn-sound"
-					class="w-8 h-8 rounded-full border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
+					class="w-8 h-8 rounded-full border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none relative before:absolute before:-inset-1.5 before:content-['']"
 					aria-label={t("aria.soundEnabled")}
 					title={t("aria.soundEnabled")}
 				>
-					<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+					<svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
 					</svg>
 				</button>
