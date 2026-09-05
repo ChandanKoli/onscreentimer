@@ -4,11 +4,22 @@ import { LOCALES, ACTIVE_LOCALES } from '../i18n/config.ts';
 import { useTranslations } from '../i18n/ui.ts';
 
 const pathname = Astro.url.pathname;
-const isHome = pathname === '/';
-const isGuide = pathname.startsWith('/guide');
-
 const currentLocaleId = getLocaleFromUrl(Astro.url);
 const currentLocale = LOCALES[currentLocaleId];
+
+let cleanPath = pathname;
+if (currentLocale.prefix && cleanPath.startsWith(currentLocale.prefix)) {
+    cleanPath = cleanPath.slice(currentLocale.prefix.length);
+}
+if (!cleanPath.startsWith('/')) cleanPath = '/' + cleanPath;
+if (cleanPath !== '/' && cleanPath.endsWith('/')) {
+    cleanPath = cleanPath.slice(0, -1);
+}
+
+const isHome = cleanPath === '/';
+const isGuide = cleanPath.startsWith('/guide');
+const isFaq = cleanPath === '/faq';
+
 const t = useTranslations(currentLocaleId);
 const prefixPath = (path: string) => getRelativeLocaleUrl(currentLocaleId, path);
 ---
@@ -131,11 +142,11 @@ const prefixPath = (path: string) => getRelativeLocaleUrl(currentLocaleId, path)
 			<a
 				href={prefixPath("/faq")}
 				class={`text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm px-1 py-0.5 ${
-					pathname === '/faq'
+					isFaq
 					? 'text-blue-600 dark:text-blue-400'
 					: 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100'
 				}`}
-				aria-current={pathname === '/faq' ? 'page' : undefined}
+				aria-current={isFaq ? 'page' : undefined}
 			>
 				{t('nav.faq')}
 			</a>
