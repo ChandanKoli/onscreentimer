@@ -46,6 +46,7 @@ export const ui = {
     'tasks.done': 'Done',
     'tasks.remaining': 'Remaining',
     'tasks.addPlaceholder': 'Add a task...',
+    'tasks.endAll': 'End all',
 
     // Accessibility / ARIA
     'aria.home': 'On Screen Timer Home',
@@ -194,6 +195,7 @@ export const ui = {
     'tasks.done': 'Completadas',
     'tasks.remaining': 'Restantes',
     'tasks.addPlaceholder': 'Añadir una tarea...',
+    'tasks.endAll': 'Finalizar todo',
 
     // Accessibility / ARIA
     'aria.home': 'On Screen Timer — Inicio',
@@ -342,6 +344,7 @@ export const ui = {
     'tasks.done': 'Concluído',
     'tasks.remaining': 'Restantes',
     'tasks.addPlaceholder': 'Adicionar uma tarefa...',
+    'tasks.endAll': 'Finalizar tudo',
 
     // Accessibility / ARIA
     'aria.home': 'On Screen Timer - Início',
@@ -490,6 +493,7 @@ export const ui = {
     'tasks.done': 'Terminé',
     'tasks.remaining': 'Restantes',
     'tasks.addPlaceholder': 'Ajouter une tâche…',
+    'tasks.endAll': 'Tout terminer',
 
     // Accessibility / ARIA
     'aria.home': 'On Screen Timer — Accueil',
@@ -638,6 +642,7 @@ export const ui = {
     'tasks.done': 'Completate',
     'tasks.remaining': 'Rimanenti',
     'tasks.addPlaceholder': 'Aggiungi un\'attività...',
+    'tasks.endAll': 'Termina tutto',
 
     // Accessibility / ARIA
     'aria.home': 'On Screen Timer — Home',
@@ -787,6 +792,7 @@ export const ui = {
     'tasks.done': '完了',
     'tasks.remaining': '残り',
     'tasks.addPlaceholder': 'タスクを追加...',
+    'tasks.endAll': 'すべて完了',
 
     // Accessibility / ARIA
     'aria.home': 'On Screen Timer ホーム',
@@ -935,6 +941,7 @@ export const ui = {
     'tasks.done': 'Erledigt',
     'tasks.remaining': 'Verbleibend',
     'tasks.addPlaceholder': 'Aufgabe hinzufügen...',
+    'tasks.endAll': 'Alle beenden',
 
     // Accessibility / ARIA
     'aria.home': 'On Screen Timer Startseite',
@@ -1084,6 +1091,7 @@ export const ui = {
     'tasks.done': '완료',
     'tasks.remaining': '남음',
     'tasks.addPlaceholder': '작업 추가...',
+    'tasks.endAll': '모두 완료',
 
     // Accessibility / ARIA
     'aria.home': 'On Screen Timer 홈',

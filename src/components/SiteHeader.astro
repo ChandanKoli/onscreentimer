@@ -40,7 +40,7 @@ const prefixPath = (path: string) => getRelativeLocaleUrl(currentLocaleId, path)
 					<line x1="12" x2="15" y1="14" y2="11" />
 					<circle cx="12" cy="14" r="8" />
 				</svg>
-				<span class="text-base font-medium">On Screen Timer</span>
+				<span class="text-sm sm:text-base font-medium">On Screen Timer</span>
 			</a>
 
 			<!-- Header Controls -->
@@ -116,7 +116,7 @@ const prefixPath = (path: string) => getRelativeLocaleUrl(currentLocaleId, path)
 		</div>
 
 		<!-- ROW 2: Nav -->
-		<nav aria-label={t("aria.primaryNav")} class="flex items-center gap-4 sm:gap-6">
+		<nav aria-label={t("aria.primaryNav")} class="flex items-center gap-3 sm:gap-6">
 			<a
 				href={prefixPath("/") + "#tool"}
 				class={`text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm px-1 py-0.5 ${

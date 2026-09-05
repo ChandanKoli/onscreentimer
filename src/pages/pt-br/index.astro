@@ -19,13 +19,13 @@ const t = useTranslations(locale);
 		})} />
 	</Fragment>
 
-	<div class="min-h-dvh flex flex-col justify-between">
+	<!-- Viewport Wrapper --><div class="flex flex-col min-h-[100svh]">
 		<!-- Header -->
 		<SiteHeader />
 
 		<!-- Main Workspace Foundation -->
 		<main id="tool" class="scroll-mt-28 flex-1 lg:min-h-[calc(100dvh-3.5rem)] max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 lg:py-12 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-12 group-data-[size=full]/body:items-center">
-			
+
 			<!-- Reopen Button (Desktop Minimized State) -->
 			<button type="button" id="btn-desktop-todo-reopen" class="hidden fixed left-0 top-1/2 -translate-y-1/2 w-6 h-16 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 border-l-0 rounded-r-md shadow-sm items-center justify-center text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 group-data-[size=full]/body:!hidden transition-colors z-40" aria-label={t("aria.reopenTodo")} title={t("tasks.todo")}>
 				<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
@@ -38,12 +38,19 @@ const t = useTranslations(locale);
 
 			<!-- Mini To-do Panel (Left on Desktop, stacked below on Mobile) -->
 			<aside id="todo-panel" class="w-full max-w-md lg:w-72 lg:max-w-none flex flex-col border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-sm p-4 shrink-0 order-2 lg:order-1 group-data-[size=full]/body:hidden transition-all overflow-hidden lg:overflow-visible">
-				<!-- Mobile Toggle -->
-				<button type="button" id="btn-mobile-todo-toggle" aria-expanded="false" aria-controls="todo-content" class="lg:hidden flex items-center justify-between w-full text-left font-medium text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
-					<span class="text-sm">Tarefas <span id="todo-mobile-count" class="text-zinc-500 font-normal ml-2"></span></span>
-					<svg id="todo-mobile-chevron" class="w-5 h-5 text-zinc-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-				</button>
-				
+				<!-- Mobile Header -->
+					<div class="lg:hidden flex items-center justify-between w-full">
+						<button type="button" id="btn-mobile-todo-toggle" aria-expanded="false" aria-controls="todo-content" class="flex items-center text-left font-medium text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							<span class="text-sm mr-4">To-do <span id="todo-mobile-count" class="text-zinc-500 font-normal ml-2"></span></span>
+						</button>
+						<div class="flex items-center gap-3">
+							<button type="button" id="btn-end-all-mobile" class="text-xs font-medium text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 rounded transition-colors hidden">{t("tasks.endAll")}</button>
+							<button type="button" id="btn-mobile-todo-toggle-chevron" class="focus-visible:outline-none rounded-sm text-zinc-400" aria-label={t("aria.minimizeTodo")} tabindex="-1">
+								<svg id="todo-mobile-chevron" class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+							</button>
+						</div>
+					</div>
+
 				<!-- Desktop Header -->
 				<div class="hidden lg:flex items-center justify-between mb-4">
 					<h2 class="text-sm font-medium text-zinc-900 dark:text-zinc-100 text-left">
@@ -53,7 +60,7 @@ const t = useTranslations(locale);
 						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
 					</button>
 				</div>
-				
+
 				<!-- Expandable Content -->
 				<div id="todo-content" class="hidden lg:flex flex-col mt-4 lg:mt-0">
 					<form id="todo-form" class="relative flex items-center mb-4">
@@ -71,12 +78,12 @@ const t = useTranslations(locale);
 					</div>
 				</div>
 			</aside>
-		</main>
+		</main></div>
 
 		<!-- Como Funciona Section -->
 		<section id="how-it-works" class="w-full max-w-5xl mx-auto px-4 sm:px-6 py-12 lg:py-16 border-t border-zinc-200 dark:border-zinc-800 group-data-[size=full]/body:hidden">
 			<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-8 text-center sm:text-left">Como Funciona</h2>
-			
+
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
 				<!-- Card 1 -->
 				<div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm flex flex-col">
@@ -135,11 +142,11 @@ const t = useTranslations(locale);
 				</a>
 			</div>
 		</section>
-		
+
 		<!-- FAQ Preview Section -->
 		<section id="faq-preview" class="w-full max-w-3xl mx-auto px-4 sm:px-6 py-12 lg:py-16 border-t border-zinc-200 dark:border-zinc-800 group-data-[size=full]/body:hidden">
 			<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-8 text-center sm:text-left">Frequently Asked Questions</h2>
-			
+
 			<div class="space-y-3 mb-10">
 				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
 					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
@@ -150,7 +157,7 @@ const t = useTranslations(locale);
 						<p>Primeiro, certifique-se de que selecionou o modo Temporizador. Insira a duração desejada no campo usando formatos como <code>5</code>, <code>02:00</code> ou <code>01:30:00</code>. Em seguida, pressione Iniciar.</p>
 					</div>
 				</details>
-				
+
 				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
 					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
 						Preciso de uma conta para usar o On Screen Timer?
@@ -213,7 +220,7 @@ const t = useTranslations(locale);
 
 		<!-- Burger Menu Overlay -->
 		<div id="burger-menu-overlay" class="hidden fixed inset-0 bg-black/20 dark:bg-black/40 z-40 transition-opacity opacity-0 group-data-[size=full]/body:hidden"></div>
-		
+
 		<!-- Burger Menu Panel -->
 		<div id="burger-menu-panel" class="fixed right-0 top-0 bottom-0 w-64 bg-white dark:bg-zinc-900 border-l border-zinc-200 dark:border-zinc-800 shadow-xl z-50 transform translate-x-full transition-transform duration-300 group-data-[size=full]/body:hidden flex flex-col">
 			<div class="h-14 flex items-center justify-between px-4 border-b border-zinc-200 dark:border-zinc-800">
@@ -253,7 +260,7 @@ const t = useTranslations(locale);
 				</div>
 			</div>
 		</div>
-	</div>
+
 </Layout>
 
 <script>

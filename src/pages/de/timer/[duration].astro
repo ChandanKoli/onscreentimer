@@ -72,7 +72,7 @@ const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
 ---
 <Layout title={title} description={description}>
-	<div class="min-h-dvh flex flex-col justify-between">
+	<!-- Viewport Wrapper --><div class="flex flex-col min-h-[100svh]">
 		<!-- Header -->
 		<SiteHeader />
 
@@ -91,11 +91,18 @@ const t = useTranslations(locale);
 
 			<!-- Mini To-do Panel (Left on Desktop, stacked below on Mobile) -->
 			<aside id="todo-panel" class="w-full max-w-md lg:w-72 lg:max-w-none flex flex-col border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-sm p-4 shrink-0 order-2 lg:order-1 group-data-[size=full]/body:hidden transition-all overflow-hidden lg:overflow-visible">
-				<!-- Mobile Toggle -->
-				<button type="button" id="btn-mobile-todo-toggle" aria-expanded="false" aria-controls="todo-content" class="lg:hidden flex items-center justify-between w-full text-left font-medium text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
-					<span class="text-sm">Aufgaben <span id="todo-mobile-count" class="text-zinc-500 font-normal ml-2"></span></span>
-					<svg id="todo-mobile-chevron" class="w-5 h-5 text-zinc-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-				</button>
+				<!-- Mobile Header -->
+					<div class="lg:hidden flex items-center justify-between w-full">
+						<button type="button" id="btn-mobile-todo-toggle" aria-expanded="false" aria-controls="todo-content" class="flex items-center text-left font-medium text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							<span class="text-sm mr-4">To-do <span id="todo-mobile-count" class="text-zinc-500 font-normal ml-2"></span></span>
+						</button>
+						<div class="flex items-center gap-3">
+							<button type="button" id="btn-end-all-mobile" class="text-xs font-medium text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 rounded transition-colors hidden">{t("tasks.endAll")}</button>
+							<button type="button" id="btn-mobile-todo-toggle-chevron" class="focus-visible:outline-none rounded-sm text-zinc-400" aria-label={t("aria.minimizeTodo")} tabindex="-1">
+								<svg id="todo-mobile-chevron" class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+							</button>
+						</div>
+					</div>
 
 				<!-- Desktop Header -->
 				<div class="hidden lg:flex items-center justify-between mb-4">
@@ -124,7 +131,7 @@ const t = useTranslations(locale);
 					</div>
 				</div>
 			</aside>
-		</main>
+		</main></div>
 
 		<!-- Content Section -->
 		<section class="w-full max-w-3xl mx-auto px-4 sm:px-6 py-12 lg:py-16 border-t border-zinc-200 dark:border-zinc-800 group-data-[size=full]/body:hidden">
@@ -219,7 +226,7 @@ const t = useTranslations(locale);
 				</div>
 			</div>
 		</div>
-	</div>
+
 </Layout>
 
 <script define:vars={{ overrideTimerDuration: seconds }}>

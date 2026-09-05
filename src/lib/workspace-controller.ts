@@ -83,7 +83,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 	const todoSummary = document.getElementById('todo-summary');
 	const countDone = document.getElementById('count-done');
 	const countRemaining = document.getElementById('count-remaining');
-	
+
 	// Burger Menu Elements
 	const burgerMenuOverlay = document.getElementById('burger-menu-overlay');
 	const burgerMenuPanel = document.getElementById('burger-menu-panel');
@@ -255,10 +255,10 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			handleEngineStatusChange('timer', status);
 			store.setState((prev) => ({
 				...prev,
-				timer: { 
-					...prev.timer, 
-					status, 
-					initialDurationSeconds: timerEngine.getInitialDurationSeconds() 
+				timer: {
+					...prev.timer,
+					status,
+					initialDurationSeconds: timerEngine.getInitialDurationSeconds()
 				}
 			}));
 			persistState();
@@ -269,7 +269,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 				modernTimeText?.classList.remove('text-blue-600', 'dark:text-blue-400');
 			}, 1500);
 			audioSystem.playCompletionSound(!store.getState().soundEnabled, store.getState().volume);
-			
+
 			// Preset Progression
 			const state = store.getState();
 			if (state.activePresetId) {
@@ -356,7 +356,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 		e.preventDefault();
 		const raw = todoInput?.value.trim() ?? '';
 		if (!raw) return;
-		
+
 		const newTask = {
 			id: generateTaskId(),
 			text: raw,
@@ -364,11 +364,45 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			elapsedMs: 0,
 			startTime: null
 		};
-		
+
 		store.setState(prev => ({ tasks: [...prev.tasks, newTask] }));
 		if (todoInput) todoInput.value = '';
 		persistState();
 	});
+
+
+	// End All logic
+	function handleEndAll() {
+		const state = store.getState();
+		const unfinished = state.tasks.filter(t => t.status !== 'completed');
+		if (unfinished.length === 0) return;
+
+		const now = Date.now();
+		const nextTasks = state.tasks.map(t => {
+			if (t.status === 'completed') return t;
+			const elapsedMs = t.startTime !== null ? t.elapsedMs + (now - t.startTime) : t.elapsedMs;
+			return { ...t, status: 'completed', elapsedMs, startTime: null };
+		});
+
+		store.setState(prev => ({ ...prev, tasks: nextTasks, activeSessionEngine: null }));
+
+		audioSystem.playCompletionSound(!state.soundEnabled, state.volume);
+		if (state.activeSessionEngine === 'timer') {
+			timerEngine.stop();
+			// User requested: "Timer finishes at 00:00"
+			// stop() pauses it. To make it 00:00, maybe we don't have a direct API. We can just stop it.
+			// Actually, let's look at the existing complete logic in handleTaskAction:
+		} else if (state.activeSessionEngine === 'stopwatch') {
+			stopwatchEngine.stop();
+		}
+
+		persistState();
+		renderTodoList(store.getState().tasks);
+		updateCurrentTasks(store.getState());
+	}
+
+	document.getElementById('btn-end-all-desktop')?.addEventListener('click', handleEndAll);
+	document.getElementById('btn-end-all-mobile')?.addEventListener('click', handleEndAll);
 
 	// Task action delegation
 	todoList?.addEventListener('click', (e) => {
@@ -396,7 +430,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 		void burgerMenuPanel?.offsetWidth; // reflow
 		burgerMenuOverlay?.classList.remove('opacity-0');
 	}
-	
+
 	function closeMenu() {
 		burgerMenuOverlay?.classList.add('opacity-0');
 		burgerMenuPanel?.classList.add('translate-x-full');
@@ -404,7 +438,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			burgerMenuOverlay?.classList.add('hidden');
 		}, 300);
 	}
-	
+
 	btnMenu?.addEventListener('click', openMenu);
 	btnCloseMenu?.addEventListener('click', closeMenu);
 	burgerMenuOverlay?.addEventListener('click', closeMenu);
@@ -462,6 +496,12 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 	});
 
 	btnMobileTodoToggle?.addEventListener('click', () => {
+		const isMin = store.getState().todoMinimized;
+		store.setState(prev => ({ ...prev, todoMinimized: !isMin }));
+		persistState();
+	});
+
+	document.getElementById('btn-mobile-todo-toggle-chevron')?.addEventListener('click', () => {
 		const isMin = store.getState().todoMinimized;
 		store.setState(prev => ({ ...prev, todoMinimized: !isMin }));
 		persistState();
@@ -537,11 +577,11 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 
 	function renderTodoList(tasks: typeof store.getState extends () => { tasks: infer T } ? T : any[]) {
 		if (!todoList) return;
-		
+
 		const unfinished = tasks.filter(t => t.status !== 'completed');
 		const completed = tasks.filter(t => t.status === 'completed');
 		const displayTasks = [...unfinished, ...completed];
-		
+
 		// Update summary counts
 		const countDoneVal = completed.length;
 		const countRemVal = unfinished.length;
@@ -550,7 +590,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 		if (todoMobileCount) {
 			todoMobileCount.textContent = countRemVal > 0 ? `(${countRemVal})` : '';
 		}
-		
+
 		if (todoSummary) {
 			if (tasks.length === 0) {
 				todoSummary.classList.add('hidden');
@@ -563,7 +603,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			const isCurrent = t.status === 'current';
 			const isCompleted = t.status === 'completed';
 			const isPending = t.status === 'pending';
-			
+
 			let rowClass = "group flex items-center justify-between p-2 rounded-lg border text-sm transition-colors ";
 			if (isCurrent) {
 				rowClass += "bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 border-transparent shadow-sm";
@@ -574,23 +614,23 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			}
 
 			const indicatorColor = isCurrent ? "bg-amber-400" : isCompleted ? "bg-emerald-500" : "bg-rose-400";
-			
+
 			let actions = '';
 			if (isPending) {
 				actions = `
-					<button type="button" data-task-action="make-current" data-task-id="${t.id}" class="hidden group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-amber-500 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-500" aria-label="${tMsg('tasks.makeCurrent')}" title="${tMsg('tasks.makeCurrent')}">
+					<button type="button" data-task-action="make-current" data-task-id="${t.id}" class="flex lg:hidden lg:group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-amber-500 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-500" aria-label="${tMsg('tasks.makeCurrent')}" title="${tMsg('tasks.makeCurrent')}">
 						<svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
 					</button>
-					<button type="button" data-task-action="delete" data-task-id="${t.id}" class="hidden group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-rose-500 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-rose-500" aria-label="${tMsg('tasks.delete')}" title="${tMsg('tasks.delete')}">
+					<button type="button" data-task-action="delete" data-task-id="${t.id}" class="flex lg:hidden lg:group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-rose-500 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-rose-500" aria-label="${tMsg('tasks.delete')}" title="${tMsg('tasks.delete')}">
 						<svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
 					</button>
 				`;
 			} else if (isCompleted) {
 				actions = `
-					<button type="button" data-task-action="restart" data-task-id="${t.id}" class="hidden group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-500" aria-label="${tMsg('tasks.restart')}" title="${tMsg('tasks.restart')}">
+					<button type="button" data-task-action="restart" data-task-id="${t.id}" class="flex lg:hidden lg:group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-500" aria-label="${tMsg('tasks.restart')}" title="${tMsg('tasks.restart')}">
 						<svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
 					</button>
-					<button type="button" data-task-action="delete" data-task-id="${t.id}" class="hidden group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-rose-500 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-rose-500" aria-label="${tMsg('tasks.delete')}" title="${tMsg('tasks.delete')}">
+					<button type="button" data-task-action="delete" data-task-id="${t.id}" class="flex lg:hidden lg:group-hover:flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-rose-500 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-rose-500" aria-label="${tMsg('tasks.delete')}" title="${tMsg('tasks.delete')}">
 						<svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
 					</button>
 				`;
@@ -603,9 +643,9 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 
 			return `
 				<div class="${rowClass}">
-					<div class="flex items-center gap-2 overflow-hidden">
-						<span class="w-2 h-2 rounded-full shrink-0 ${indicatorColor}" aria-hidden="true"></span>
-						<span class="truncate ${isCompleted ? 'line-through' : ''}">${escapedText}</span>
+					<div class="flex items-start gap-2 overflow-hidden">
+						<span class="w-2 h-2 rounded-full shrink-0 mt-1.5 ${indicatorColor}" aria-hidden="true"></span>
+						<span class="break-words ${isCompleted ? 'line-through' : ''}">${escapedText}</span>
 					</div>
 					<div class="flex items-center gap-1 shrink-0 ml-2">
 						${durationStr ? `<span class="text-xs font-mono opacity-60 mr-1">${durationStr}</span>` : ''}
@@ -618,7 +658,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 
 	function updateCurrentTasks(state: any) {
 		if (!currentTaskContainer) return;
-		
+
 		if (state.tasks.length > 0 && state.tasks.every((t: any) => t.status === 'completed')) {
 			currentTaskContainer.innerHTML = `
 				<div class="text-sm font-medium text-emerald-600 dark:text-emerald-500 text-left py-1">
@@ -636,16 +676,16 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 
 		const currentTaskIds = currentTasks.map((t: any) => t.id).join(',');
 		const existingIds = currentTaskContainer.getAttribute('data-task-ids');
-		
+
 		if (currentTaskIds !== existingIds) {
 			currentTaskContainer.setAttribute('data-task-ids', currentTaskIds);
 			currentTaskContainer.innerHTML = currentTasks.map((t: any) => {
 				const escapedText = t.text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 				return `
 				<div class="group flex items-center justify-between py-1.5 px-3 rounded-lg bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 w-full max-w-sm text-sm shadow-sm transition-all motion-reduce:transition-none">
-					<div class="flex items-center gap-2 overflow-hidden">
-						<span class="w-2 h-2 rounded-full shrink-0 bg-amber-400 ${t.startTime ? 'animate-pulse motion-reduce:animate-none' : ''}" aria-hidden="true"></span>
-						<span class="truncate text-zinc-900 dark:text-zinc-100 font-medium">${escapedText}</span>
+					<div class="flex items-start gap-2 overflow-hidden">
+						<span class="w-2 h-2 rounded-full shrink-0 mt-1.5 bg-amber-400 ${t.startTime ? 'animate-pulse motion-reduce:animate-none' : ''}" aria-hidden="true"></span>
+						<span class="break-words text-zinc-900 dark:text-zinc-100 font-medium">${escapedText}</span>
 					</div>
 					<div class="flex items-center gap-3 shrink-0 ml-3">
 						<span id="current-time-${t.id}" class="text-xs font-mono text-zinc-600 dark:text-zinc-400 tabular-nums"></span>
@@ -670,7 +710,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 				const ms = t.startTime ? t.elapsedMs + (now - t.startTime) : t.elapsedMs;
 				el.textContent = formatTaskTime(ms);
 			}
-			
+
 			// Optional: sync pulse state if engine pauses/resumes without changing task id list
 			const dot = el?.parentElement?.parentElement?.querySelector('.bg-amber-400');
 			if (dot) {
@@ -728,14 +768,14 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 				const preset = STUDY_PRESETS.find(p => p.id === presetId);
 				if (preset) {
 					closeMenu();
-					
+
 					store.setState(prev => ({
 						...prev,
 						mode: 'timer',
 						activePresetId: presetId,
 						activeSegmentIndex: 0
 					}));
-					
+
 					timerEngine.setDuration(preset.segments[0].durationSeconds);
 					timerEngine.start();
 				}
@@ -1415,7 +1455,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			await audioSystem.init(); // Initialize audio context on user gesture
 		});
 	}
-	
+
 	// Apply initial sound state UI immediately
 	store.subscribe((state) => {
 		if (volumeSlider && parseInt(volumeSlider.value, 10) !== state.volume) {
@@ -1446,18 +1486,18 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 	document.addEventListener('keydown', (e) => {
 		const target = e.target as HTMLElement;
 		const isEditable = target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT' || target.isContentEditable;
-		
+
 		if (e.key === 'Escape') {
 			let dropdownOpen = false;
 			if (btnModeDropdown?.getAttribute('aria-expanded') === 'true') dropdownOpen = true;
 			if (btnStyleDropdown?.getAttribute('aria-expanded') === 'true') dropdownOpen = true;
 			if (btnSizeDropdown?.getAttribute('aria-expanded') === 'true') dropdownOpen = true;
-			
+
 			if (dropdownOpen) {
 				closeDropdowns();
 				return;
 			}
-			
+
 			if (store.getState().size === 'full') {
 				store.setState({ size: previousNonFullSize });
 				persistState();
@@ -1469,7 +1509,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			if (target.tagName === 'BUTTON') {
 				return;
 			}
-			
+
 			e.preventDefault();
 			const { mode } = store.getState();
 			if (mode === 'timer') {
