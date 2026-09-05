@@ -52,7 +52,7 @@ export const LOCALES = {
     lang: 'ko',
     prefix: '/ko',
     name: '한국어',
-    isActive: false,
+    isActive: true,
     isDefault: false,
   },
   it: {

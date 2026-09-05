@@ -1,0 +1,48 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="학습 블록 프리셋" 
+	description="사전 정의된 구조화된 블록을 사용하여 학습, 문제 풀이 및 복습을 번갈아 가며 진행하세요."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">프리셋의 작동 방식</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			학습 블록 프리셋을 사용하면 타이머가 구조화된 세션으로 변경됩니다. 하나의 시간을 입력하는 대신 타이머가 일련의 이름이 지정된 단계를 진행합니다.
+		</p>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			설정 패널(오른쪽 상단 메뉴)을 열고 프리셋을 선택하세요. 타이머는 각 단계를 로드하고, 하나의 단계가 완료되면 자동으로 다음 단계로 이동하며 필요에 따라 소리 알림을 보냅니다.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">현재 프리셋</h2>
+		
+		<div class="space-y-6 mt-4">
+			<div class="p-5 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-sm">
+				<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">학습 &rarr; 회상 &rarr; 풀이 &rarr; 복습</h3>
+				<p class="text-xs font-mono text-zinc-500 dark:text-zinc-400 mt-1">25m / 5m / 25m / 5m</p>
+				<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">1시간 분량의 세션으로, 새로운 자료를 접하고, 방금 읽은 내용을 떠올리고, 연습 문제를 풀고, 마지막으로 확인하는 순서로 이루어집니다.</p>
+			</div>
+
+			<div class="p-5 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-sm">
+				<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">집중 학습 &rarr; 연습</h3>
+				<p class="text-xs font-mono text-zinc-500 dark:text-zinc-400 mt-1">60m / 30m</p>
+				<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">자료를 깊이 있게 이해하기 위한 긴 시간 후 짧은 적용 시간이 이어집니다.</p>
+			</div>
+
+			<div class="p-5 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-sm">
+				<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">학습 &rarr; 풀이</h3>
+				<p class="text-xs font-mono text-zinc-500 dark:text-zinc-400 mt-1">30m / 30m</p>
+				<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">이론과 실제 연습에 균등한 시간을 할애하는 균형 잡힌 접근 방식입니다.</p>
+			</div>
+
+			<div class="p-5 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-sm">
+				<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">공부 &rarr; 풀이 &rarr; 복습</h3>
+				<p class="text-xs font-mono text-zinc-500 dark:text-zinc-400 mt-1">45m / 45m / 30m</p>
+				<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">다뤄야 할 자료가 많은 경우 장시간 진행되는 다단계 세션입니다.</p>
+			</div>
+		</div>
+	</section>
+</GuideArticleLayout>

@@ -1,0 +1,263 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLocaleFromUrl } from '../../i18n/utils.ts';
+import { useTranslations } from '../../i18n/ui.ts';
+import TimerWorkspace from '../../components/TimerWorkspace.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+---
+
+<Layout title="On Screen Timer — 온라인 타이머, 시계, 스톱워치">
+	<Fragment slot="head">
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "WebSite",
+			"name": "On Screen Timer",
+			"url": "https://onscreentimer.com/"
+		})} />
+	</Fragment>
+
+	<div class="min-h-dvh flex flex-col justify-between">
+		<!-- Header -->
+		<SiteHeader />
+
+		<!-- Main Workspace Foundation -->
+		<main id="tool" class="scroll-mt-28 flex-1 lg:min-h-[calc(100dvh-3.5rem)] max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 lg:py-12 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-12 group-data-[size=full]/body:items-center">
+			
+			<!-- Reopen Button (Desktop Minimized State) -->
+			<button type="button" id="btn-desktop-todo-reopen" class="hidden fixed left-0 top-1/2 -translate-y-1/2 w-6 h-16 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 border-l-0 rounded-r-md shadow-sm items-center justify-center text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 group-data-[size=full]/body:!hidden transition-colors z-40" aria-label={t("aria.reopenTodo")} title={t("tasks.todo")}>
+				<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+			</button>
+
+			<!-- Central Time Workspace -->
+			<div class="flex-1 flex flex-col items-center justify-center w-full min-w-0 order-1 lg:order-2">
+				<TimerWorkspace />
+			</div>
+
+			<!-- Mini To-do Panel (Left on Desktop, stacked below on Mobile) -->
+			<aside id="todo-panel" class="w-full max-w-md lg:w-72 lg:max-w-none flex flex-col border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-sm p-4 shrink-0 order-2 lg:order-1 group-data-[size=full]/body:hidden transition-all overflow-hidden lg:overflow-visible">
+				<!-- Mobile Toggle -->
+				<button type="button" id="btn-mobile-todo-toggle" aria-expanded="false" aria-controls="todo-content" class="lg:hidden flex items-center justify-between w-full text-left font-medium text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+					<span class="text-sm">할 일 <span id="todo-mobile-count" class="text-zinc-500 font-normal ml-2"></span></span>
+					<svg id="todo-mobile-chevron" class="w-5 h-5 text-zinc-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+				</button>
+				
+				<!-- Desktop Header -->
+				<div class="hidden lg:flex items-center justify-between mb-4">
+					<h2 class="text-sm font-medium text-zinc-900 dark:text-zinc-100 text-left">
+						할 일
+					</h2>
+					<button type="button" id="btn-desktop-todo-minimize" class="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 rounded p-0.5" aria-label={t("aria.minimizeTodo")} title={t("aria.minimize")}>
+						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+					</button>
+				</div>
+				
+				<!-- Expandable Content -->
+				<div id="todo-content" class="hidden lg:flex flex-col mt-4 lg:mt-0">
+					<form id="todo-form" class="relative flex items-center mb-4">
+						<input type="text" id="todo-input" placeholder={t("tasks.addPlaceholder")} class="w-full h-9 px-3 pr-9 text-sm rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors" autocomplete="off" />
+						<button type="submit" class="absolute right-1 w-7 h-7 flex items-center justify-center text-zinc-500 hover:text-blue-600 dark:hover:text-blue-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded" aria-label={t("aria.addTask")}>
+							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
+						</button>
+					</form>
+					<div id="todo-list" class="flex flex-col gap-2 overflow-y-auto max-h-[50vh] text-left">
+						<!-- Tasks will be rendered here -->
+					</div>
+					<!-- Task Summary -->
+					<div id="todo-summary" class="hidden mt-4 pt-3 border-t border-zinc-200/60 dark:border-zinc-800/80 text-[11px] text-zinc-500 dark:text-zinc-400 font-medium text-center">
+						Done <span id="count-done">0</span> &middot; Remaining <span id="count-remaining">0</span>
+					</div>
+				</div>
+			</aside>
+		</main>
+
+		<!-- 작동 방식 Section -->
+		<section id="how-it-works" class="w-full max-w-5xl mx-auto px-4 sm:px-6 py-12 lg:py-16 border-t border-zinc-200 dark:border-zinc-800 group-data-[size=full]/body:hidden">
+			<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-8 text-center sm:text-left">작동 방식</h2>
+			
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+				<!-- Card 1 -->
+				<div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm flex flex-col">
+					<div class="text-xs font-semibold text-blue-600 dark:text-blue-400 tracking-wider mb-2">01</div>
+					<h3 class="text-base font-medium text-zinc-900 dark:text-zinc-100 mb-3">모드 선택</h3>
+					<p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						카운트다운이 필요한지, 현재 시간을 확인하고 싶은지, 경과 시간을 측정하고 싶은지에 따라 타이머, 시계 또는 스톱워치를 사용하세요.
+					</p>
+				</div>
+				<!-- Card 2 -->
+				<div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm flex flex-col">
+					<div class="text-xs font-semibold text-blue-600 dark:text-blue-400 tracking-wider mb-2">02</div>
+					<h3 class="text-base font-medium text-zinc-900 dark:text-zinc-100 mb-3">설정 및 시작</h3>
+					<p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						<code>5</code>, <code>02:00</code>, <code>01:30:00</code> 또는 <code>90s</code>와 같이 시간을 입력한 다음 시작을 누르세요.
+					</p>
+				</div>
+				<!-- Card 3 -->
+				<div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm flex flex-col">
+					<div class="text-xs font-semibold text-blue-600 dark:text-blue-400 tracking-wider mb-2">03</div>
+					<h3 class="text-base font-medium text-zinc-900 dark:text-zinc-100 mb-3">작업 추가</h3>
+					<p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						미니 할 일을 사용하여 작업 중인 항목을 추가하세요. 작업은 대기 중, 현재 작업 및 완료 단계로 이동합니다.
+					</p>
+				</div>
+				<!-- Card 4 -->
+				<div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm flex flex-col">
+					<div class="text-xs font-semibold text-blue-600 dark:text-blue-400 tracking-wider mb-2">04</div>
+					<h3 class="text-base font-medium text-zinc-900 dark:text-zinc-100 mb-3">현재 작업 추적</h3>
+					<p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						한 번에 최대 두 개의 현재 작업을 유지할 수 있습니다. 타이머나 스톱워치 세션이 실행되는 동안 각 작업은 활성 작업 시간을 개별적으로 기록합니다.
+					</p>
+				</div>
+				<!-- Card 5 -->
+				<div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm flex flex-col">
+					<div class="text-xs font-semibold text-blue-600 dark:text-blue-400 tracking-wider mb-2">05</div>
+					<h3 class="text-base font-medium text-zinc-900 dark:text-zinc-100 mb-3">보기 변경</h3>
+					<p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						모던, 디지털 및 아날로그 중에서 전환하고, 화면의 크기나 집중도에 따라 작게, 중간, 크게 또는 전체화면 중에서 선택하세요.
+					</p>
+				</div>
+				<!-- Card 6 -->
+				<div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm flex flex-col">
+					<div class="text-xs font-semibold text-blue-600 dark:text-blue-400 tracking-wider mb-2">06</div>
+					<h3 class="text-base font-medium text-zinc-900 dark:text-zinc-100 mb-3">이어서 계속하기</h3>
+					<p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						On Screen Timer는 지원되는 세션 상태와 기본 설정을 브라우저 로컬에 저장하므로 새로고침해도 작업 내용이 자동으로 지워지지 않습니다.
+					</p>
+				</div>
+			</div>
+
+			<div class="flex justify-center sm:justify-start">
+				<a href="/guide" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-sm font-medium text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+					전체 가이드 읽기
+					<svg class="w-4 h-4 text-zinc-400 dark:text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+				</a>
+			</div>
+		</section>
+		
+		<!-- FAQ Preview Section -->
+		<section id="faq-preview" class="w-full max-w-3xl mx-auto px-4 sm:px-6 py-12 lg:py-16 border-t border-zinc-200 dark:border-zinc-800 group-data-[size=full]/body:hidden">
+			<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-8 text-center sm:text-left">자주 묻는 질문</h2>
+			
+			<div class="space-y-3 mb-10">
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+						How do I set an online timer?
+						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>먼저 타이머 모드가 선택되었는지 확인합니다. <code>5</code>, <code>02:00</code>, <code>01:30:00</code>, 또는 <code>90s</code>와 같이 입력란에 원하는 시간을 입력하세요. 그런 다음 시작을 누릅니다.</p>
+					</div>
+				</details>
+				
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+						On Screen Timer를 사용하려면 계정이 필요한가요?
+						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>일반적인 사용에는 계정이 필요하지 않습니다. 가입하지 않고 바로 사용할 수 있습니다.</p>
+					</div>
+				</details>
+
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+						페이지를 새로고침하면 어떻게 되나요?
+						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>타이머, 스톱워치, 작업, 설정 및 지원되는 학습 블록 상태는 브라우저 로컬에 저장되므로 다시 접속하거나 새로고침할 때 복원될 수 있습니다.</p>
+					</div>
+				</details>
+
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+						전체화면 모드는 무엇인가요?
+						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>전체화면 모드는 불필요한 페이지 요소를 숨겨 중요 제어 항목만 남기는 집중력 향상 보기입니다. 브라우저의 전체 화면 API가 아닙니다.</p>
+					</div>
+				</details>
+
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+						학습 블록 프리셋은 어떻게 작동하나요?
+						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>설정에서 프리셋을 선택하세요. 타이머는 지정된 단계(현재 작업과 무관함)를 사용하며, 마지막 단계가 끝날 때까지 각 구간을 자동으로 진행합니다.</p>
+					</div>
+				</details>
+
+				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+						On Screen Timer를 뽀모도로 타이머로 사용할 수 있나요?
+						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					</summary>
+					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+						<p>네, 타이머를 설정하여 뽀모도로 스타일(예: 25분 작업, 짧은 휴식)로 수동으로 사용하거나, 학습 블록 프리셋을 사용하여 체계적인 순서를 따를 수 있습니다.</p>
+					</div>
+				</details>
+			</div>
+
+			<div class="flex justify-center sm:justify-start">
+				<a href="/ko/faq" class="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm px-1 py-0.5">
+					모든 자주 묻는 질문 보기
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+				</a>
+			</div>
+		</section>
+		<SiteFooter />
+
+		<!-- Burger Menu Overlay -->
+		<div id="burger-menu-overlay" class="hidden fixed inset-0 bg-black/20 dark:bg-black/40 z-40 transition-opacity opacity-0 group-data-[size=full]/body:hidden"></div>
+		
+		<!-- Burger Menu Panel -->
+		<div id="burger-menu-panel" class="fixed right-0 top-0 bottom-0 w-64 bg-white dark:bg-zinc-900 border-l border-zinc-200 dark:border-zinc-800 shadow-xl z-50 transform translate-x-full transition-transform duration-300 group-data-[size=full]/body:hidden flex flex-col">
+			<div class="h-14 flex items-center justify-between px-4 border-b border-zinc-200 dark:border-zinc-800">
+				<span class="font-medium text-zinc-900 dark:text-zinc-100 text-sm">{t('menu.settings')}</span>
+				<button type="button" id="btn-close-menu" class="p-1 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+					<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+				</button>
+			</div>
+			<div class="p-4 flex-1 overflow-y-auto">
+				<div class="mb-6">
+					<h3 class="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-3">시계 형식</h3>
+					<div class="flex items-center gap-2">
+						<button type="button" id="btn-clock-12h" class="flex-1 py-1.5 text-sm rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors font-medium">12시간제</button>
+						<button type="button" id="btn-clock-24h" class="flex-1 py-1.5 text-sm rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors font-medium">24시간제</button>
+					</div>
+				</div>
+				<div class="mb-6">
+					<h3 class="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-3">학습 블록 프리셋</h3>
+					<div class="flex flex-col gap-2" id="preset-chooser-container">
+						<!-- Injected via workspace-controller -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<script>
+	import { initWorkspaceController } from '../../lib/workspace-controller';
+
+	// Foundational Theme Switcher Controller
+	const themeBtn = document.getElementById('btn-theme');
+	if (themeBtn) {
+		themeBtn.addEventListener('click', () => {
+			const isDark = document.documentElement.classList.toggle('dark');
+			try {
+				localStorage.setItem('ost_theme', isDark ? 'dark' : 'light');
+			} catch {
+				// Ignore quota/storage access errors
+			}
+		});
+	}
+
+	// Initialize Phase 3 Workspace Controller
+	initWorkspaceController();
+</script>
+

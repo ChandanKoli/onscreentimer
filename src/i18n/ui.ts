@@ -1025,6 +1025,153 @@ export const ui = {
     'timer.error.invalid': 'Ungültiges Format',
   },
 
+  ko: {
+    // Nav / Header
+    'nav.tool': '도구',
+    'nav.guide': '가이드',
+    'nav.faq': '자주 묻는 질문',
+
+    // Workspace - Modes, Styles, Sizes
+    'mode.timer': '타이머',
+    'mode.clock': '시계',
+    'mode.stopwatch': '스톱워치',
+
+    'style.modern': '모던',
+    'style.digital': '디지털',
+    'style.analog': '아날로그',
+
+    'size.full': '전체화면',
+    'size.big': '크게',
+    'size.mid': '중간',
+    'size.tiny': '작게',
+
+    'label.mode': '모드',
+    'label.style': '스타일',
+    'label.size': '크기',
+
+    // Controls
+    'timer.start': '시작',
+    'timer.pause': '일시정지',
+    'timer.resume': '계속',
+    'timer.reset': '초기화',
+    'timer.stop': '중지',
+    'timer.placeholder': '예: 5, 02:00, 01:30:00, 90s',
+
+    'stopwatch.start': '시작',
+    'stopwatch.pause': '일시정지',
+    'stopwatch.resume': '계속',
+    'stopwatch.reset': '초기화',
+    'stopwatch.stop': '중지',
+
+    'workspace.exitFull': '전체화면 종료',
+
+    // Tasks
+    'tasks.todo': '할 일',
+    'tasks.done': '완료',
+    'tasks.remaining': '남음',
+    'tasks.addPlaceholder': '작업 추가...',
+
+    // Accessibility / ARIA
+    'aria.home': 'On Screen Timer 홈',
+    'aria.soundEnabled': '소리 켜짐',
+    'aria.soundEnabledMute': '소리 켜짐, 클릭하여 음소거',
+    'aria.soundMutedEnable': '소리 꺼짐, 클릭하여 켜기',
+    'aria.toggleTheme': '테마 전환',
+    'aria.menu': '설정 및 메뉴',
+    'aria.menuTitle': '메뉴',
+    'aria.primaryNav': '주요 탐색',
+    'aria.timerDisplay': '타이머 표시',
+    'aria.digitalDisplay': '디지털 표시',
+    'aria.analogDisplay': '아날로그 표시',
+    'aria.startTimer': '타이머 시작',
+    'aria.resetTimer': '타이머 초기화',
+    'aria.stopTimer': '타이머 중지',
+    'aria.startStopwatch': '스톱워치 시작',
+    'aria.resetStopwatch': '스톱워치 초기화',
+    'aria.stopStopwatch': '스톱워치 중지',
+    'aria.exitFull': '전체화면 모드 종료',
+    'aria.selectMode': '모드 선택',
+    'aria.selectStyle': '스타일 선택',
+    'aria.selectSize': '크기 선택',
+    'aria.currently': '현재',
+    'aria.setTimerDuration': '타이머 시간 설정',
+
+    'aria.reopenTodo': '할 일 다시 열기',
+    'aria.minimizeTodo': '할 일 최소화',
+    'aria.minimize': '최소화',
+    'aria.addTask': '작업 추가',
+
+    'menu.settings': '설정',
+
+    'error.invalidFormat': '잘못된 타이머 시간 형식입니다.',
+    'error.empty': '타이머 시간을 입력해야 합니다.',
+
+    'tasks.allCompleted': '✓ 모든 작업 완료',
+    'tasks.makeCurrent': '현재 작업으로 설정',
+    'tasks.delete': '삭제',
+    'tasks.restart': '다시 시작',
+    'tasks.completeTask': '작업 완료',
+    'tasks.returnPending': '대기 중으로 되돌리기',
+
+    // Clock
+    'clock.am': '오전',
+    'clock.pm': '오후',
+
+    // Study Blocks
+    'preset.preset-1.name': '학습 → 회상 → 풀이 → 복습',
+    'preset.preset-2.name': '집중 학습 → 연습',
+    'preset.preset-3.name': '학습 → 풀이',
+    'preset.preset-4.name': '공부 → 풀이 → 복습',
+
+    'preset.phase.Learn': '학습',
+    'preset.phase.Recall': '회상',
+    'preset.phase.Solve': '풀이',
+    'preset.phase.Review': '복습',
+    'preset.phase.Study': '공부',
+    'preset.phase.Practice': '연습',
+    'preset.blockComplete': '블록 완료',
+
+    // Guide Layout
+    'guide.allGuides': '모든 가이드',
+    'guide.breadcrumb': '가이드 / ',
+    'guide.titleSuffix': ' — On Screen Timer 가이드',
+    'guide.openTimer': 'On Screen Timer 열기 &rarr;',
+
+    // Footer
+    'footer.description': '간편한 브라우저 타이머, 시계, 스톱워치, 작업 타이머 및 학습 도구입니다.',
+    'footer.product': '제품',
+    'footer.learn': '학습',
+    'footer.common': '공통',
+    'footer.legal': '법적 고지',
+    'footer.guide': '가이드',
+    'footer.faq': '자주 묻는 질문',
+    'footer.howItWorks': '작동 방식',
+    'footer.privacy': '개인정보처리방침',
+    'footer.terms': '이용약관',
+    'footer.contact': '연락처',
+    'footer.5min': '5분 타이머',
+    'footer.10min': '10분 타이머',
+    'footer.20min': '20분 타이머',
+    'footer.25min': '25분 타이머',
+    'footer.free': '무료 사용. 계정이 필요하지 않습니다.',
+
+    // Parser Errors
+    'parser.empty': '시간을 입력해 주세요 (예: 5, 02:00, 01:30:00, 90s)',
+    'parser.invalidFormat': '잘못된 형식입니다. "5", "02:00", "01:30:00" 또는 "90s"를 사용해 주세요.',
+    'parser.greaterThanZero': '시간은 0보다 커야 합니다.',
+    'parser.exceedsMax': '시간은 99시간을 초과할 수 없습니다.',
+    'parser.invalidMmSs': '잘못된 시간 형식입니다. MM:SS (예: 02:00)를 사용해 주세요.',
+    'parser.invalidSeconds': 'MM:SS 형식에서 초는 0에서 59 사이여야 합니다.',
+    'parser.invalidHhMmSs': '잘못된 시간 형식입니다. HH:MM:SS (예: 01:30:00)를 사용해 주세요.',
+    'parser.invalidMinSec': 'HH:MM:SS 형식에서 분과 초는 0에서 59 사이여야 합니다.',
+    'parser.invalidColon': '콜론 형식이 잘못되었습니다. MM:SS 또는 HH:MM:SS를 사용해 주세요.',
+    'parser.unrecognizedUnit': '인식할 수 없는 단위 "{unit}"입니다. h, m 또는 s를 사용해 주세요 (예: 2m, 90s).',
+
+    // Timer Error / Validation
+    'timer.error.blank': '시간을 입력해 주세요',
+    'timer.error.invalid': '잘못된 형식',
+  },
+
 } as const;
 
 export function useTranslations(locale: string) {

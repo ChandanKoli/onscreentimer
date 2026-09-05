@@ -1,0 +1,35 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="세션 저장" 
+	description="On Screen Timer가 로컬 저장소를 사용하여 새로고침 시에도 상태를 유지하는 방식을 알아보세요."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">로컬 브라우저 저장소</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			On Screen Timer는 계정이 필요하지 않습니다. 대신 브라우저의 내장 로컬 저장소를 사용하여 상태를 저장합니다.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">저장되는 항목은 무엇인가요?</h2>
+		<ul class="list-disc pl-5 space-y-2 text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300">
+			<li>현재 선택한 모드, 스타일 및 크기.</li>
+			<li>타이머 또는 스톱워치 진행 상태 (일시정지된 경우).</li>
+			<li>모든 할 일 목록 항목과 여기에 기록된 시간.</li>
+			<li>테마(라이트/다크 모드), 시계 형식 및 소리 기본 설정.</li>
+		</ul>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed mt-4">
+			페이지를 닫았다가 나중에 다시 열더라도 동일한 기기와 브라우저를 사용 중이고 사이트 데이터를 지우지 않았다면 세션이 복원됩니다.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">데이터 개인정보 및 제한 사항</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			모든 정보는 오직 기기에만 유지됩니다. 아무것도 서버로 전송되지 않으므로, 작업과 타이머 데이터는 비공개로 유지됩니다. 하지만 이는 브라우저 캐시를 지우거나 다른 기기를 사용하면 세션이 유지되지 않음을 의미하기도 합니다.
+		</p>
+	</section>
+</GuideArticleLayout>
