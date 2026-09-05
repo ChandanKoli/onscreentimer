@@ -1,0 +1,166 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+---
+
+<Layout title="On Screen Timer Anleitung — Timer, Aufgaben und Lernblöcke" description="Praktische Erklärungen zur effektiven Nutzung von On Screen Timer.">
+	<div class="min-h-dvh flex flex-col">
+		<!-- Header -->
+		<SiteHeader />
+
+		<!-- Hub Content -->
+		<main class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 text-zinc-800 dark:text-zinc-200">
+			<!-- Introductory Hero -->
+			<div class="mb-16 sm:mb-20">
+				<h1 class="text-3xl sm:text-4xl lg:text-[2.6rem] font-bold text-zinc-950 dark:text-zinc-50 tracking-tight leading-[1.15] mb-4">
+					Anleitungen
+				</h1>
+				<p class="text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl">
+					Praktische Erklärungen zur Nutzung von On Screen Timer und wie du Timer, Aufgaben, Lernblöcke und Anzeigeoptionen optimal einsetzt.
+				</p>
+			</div>
+
+			<!-- Guides List -->
+			<div class="space-y-12 sm:space-y-16">
+
+				<!-- Guide: Primeros pasos -->
+				<article class="flex flex-col items-start pb-12 sm:pb-16 border-b border-zinc-200 dark:border-zinc-800/80 last:border-0 last:pb-0">
+					<h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2 sm:mb-3">
+						<a href="/de/guide/getting-started" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							Erste Schritte mit On Screen Timer
+						</a>
+					</h2>
+					<p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 sm:mb-5 max-w-3xl">
+						Lerne die Grundlagen des Timers, der Uhr, der Stoppuhr und der wichtigsten Steuerelemente kennen.
+					</p>
+					<a href="/de/guide/getting-started" class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+						Anleitung lesen &rarr;
+					</a>
+				</article>
+
+				<!-- Guide: Entrada de duración -->
+				<article class="flex flex-col items-start pb-12 sm:pb-16 border-b border-zinc-200 dark:border-zinc-800/80 last:border-0 last:pb-0">
+					<h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2 sm:mb-3">
+						<a href="/de/guide/timer-inputs-and-controls" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							Dauer-Eingabe und Timer-Steuerung
+						</a>
+					</h2>
+					<p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 sm:mb-5 max-w-3xl">
+						Erfahre, wie du Zeiten eingibst und den aktiven Countdown des Timers steuerst.
+					</p>
+					<a href="/de/guide/timer-inputs-and-controls" class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+						Anleitung lesen &rarr;
+					</a>
+				</article>
+
+				<!-- Guide: Tareas -->
+				<article class="flex flex-col items-start pb-12 sm:pb-16 border-b border-zinc-200 dark:border-zinc-800/80 last:border-0 last:pb-0">
+					<h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2 sm:mb-3">
+						<a href="/de/guide/tasks" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							Aufgaben und Zeiterfassung
+						</a>
+					</h2>
+					<p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 sm:mb-5 max-w-3xl">
+						Entdecke, wie ausstehende, aktive und erledigte Aufgaben mit deinem Timer zusammenarbeiten.
+					</p>
+					<a href="/de/guide/tasks" class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+						Anleitung lesen &rarr;
+					</a>
+				</article>
+
+				<!-- Guide: Bloques de estudio -->
+				<article class="flex flex-col items-start pb-12 sm:pb-16 border-b border-zinc-200 dark:border-zinc-800/80 last:border-0 last:pb-0">
+					<h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2 sm:mb-3">
+						<a href="/de/guide/study-block-presets" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							Lernblock-Presets
+						</a>
+					</h2>
+					<p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 sm:mb-5 max-w-3xl">
+						Lerne, wie die vordefinierten Lernsequenzen von On Screen Timer eine Sitzung in benannte Phasen unterteilen.
+					</p>
+					<a href="/de/guide/study-block-presets" class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+						Anleitung lesen &rarr;
+					</a>
+				</article>
+
+				<!-- Guide: Estilos -->
+				<article class="flex flex-col items-start pb-12 sm:pb-16 border-b border-zinc-200 dark:border-zinc-800/80 last:border-0 last:pb-0">
+					<h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2 sm:mb-3">
+						<a href="/de/guide/display-modes" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							Anzeigestile, Größen und Vollbildmodus
+						</a>
+					</h2>
+					<p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 sm:mb-5 max-w-3xl">
+						Erfahre mehr über die visuellen Stile, wie man die Größe des Timers ändert und den fokussierten Vollbildmodus nutzt.
+					</p>
+					<a href="/de/guide/display-modes" class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+						Anleitung lesen &rarr;
+					</a>
+				</article>
+
+				<!-- Guide: Guardar -->
+				<article class="flex flex-col items-start pb-12 sm:pb-16 border-b border-zinc-200 dark:border-zinc-800/80 last:border-0 last:pb-0">
+					<h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2 sm:mb-3">
+						<a href="/de/guide/saving-your-session" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							Speichern deiner Sitzung
+						</a>
+					</h2>
+					<p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 sm:mb-5 max-w-3xl">
+						Entdecke, wie On Screen Timer deine Einstellungen und aktiven Aufgaben lokal im Browser speichert.
+					</p>
+					<a href="/de/guide/saving-your-session" class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+						Anleitung lesen &rarr;
+					</a>
+				</article>
+
+				<!-- Guide: Teclado y sonido -->
+				<article class="flex flex-col items-start pb-12 sm:pb-16 border-b border-zinc-200 dark:border-zinc-800/80 last:border-0 last:pb-0">
+					<h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2 sm:mb-3">
+						<a href="/de/guide/controls-and-settings" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							Tastenkürzel, Ton und Einstellungen
+						</a>
+					</h2>
+					<p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 sm:mb-5 max-w-3xl">
+						Entdecke nützliche Tastaturkürzel, Toneinstellungen und allgemeine Präferenzen.
+					</p>
+					<a href="/de/guide/controls-and-settings" class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+						Anleitung lesen &rarr;
+					</a>
+				</article>
+
+				<!-- Guide: Estudiar -->
+				<article class="flex flex-col items-start pb-12 sm:pb-16 border-b border-zinc-200 dark:border-zinc-800/80 last:border-0 last:pb-0">
+					<h2 class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight mb-2 sm:mb-3">
+						<a href="/de/guide/study-and-focus" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+							On Screen Timer für Lernen und Fokus nutzen
+						</a>
+					</h2>
+					<p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 sm:mb-5 max-w-3xl">
+						Praktische Tipps zur Nutzung von Timer, Aufgaben und Presets zur Strukturierung deiner Lernsitzungen.
+					</p>
+					<a href="/de/guide/study-and-focus" class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+						Anleitung lesen &rarr;
+					</a>
+				</article>
+
+			</div>
+		</main>
+		<SiteFooter />
+	</div>
+</Layout>
+
+<script>
+	// Theme Switcher
+	const themeBtn = document.getElementById('btn-theme');
+	if (themeBtn) {
+		themeBtn.addEventListener('click', () => {
+			const isDark = document.documentElement.classList.toggle('dark');
+			try {
+				localStorage.setItem('ost_theme', isDark ? 'dark' : 'light');
+			} catch {
+				// Ignore quota/storage access errors
+			}
+		});
+	}
+</script>

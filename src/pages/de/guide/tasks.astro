@@ -1,0 +1,26 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout
+	title="Aufgaben und Zeiterfassung"
+	description="Entdecke, wie ausstehende, aktive und erledigte Aufgaben mit deinem Timer zusammenarbeiten."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Aufgabenverwaltung</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Nutze das Aufgaben-Panel, um den Überblick über deine Arbeit zu behalten.
+		</p>
+		<ul class="list-disc list-outside ml-5 space-y-2 text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Ausstehend:</strong> Aufgaben, die noch bearbeitet werden müssen.</li>
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Als aktuell markieren:</strong> Setzt eine Aufgabe als deine aktive Aufgabe. Es können maximal zwei Aufgaben gleichzeitig aktiv sein.</li>
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Erledigt:</strong> Markiere Aufgaben als abgeschlossen, wenn du fertig bist.</li>
+		</ul>
+	</section>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Zeiterfassung</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Wenn eine Aufgabe "aktuell" ist und ein Timer oder eine Stoppuhr läuft, erfasst die Aufgabe automatisch die aufgebrachte Zeit. Wenn du den Timer pausierst, pausiert auch die Zeiterfassung der Aufgabe.
+		</p>
+	</section>
+</GuideArticleLayout>

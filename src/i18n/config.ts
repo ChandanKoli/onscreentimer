@@ -36,7 +36,7 @@ export const LOCALES = {
     lang: 'de',
     prefix: '/de',
     name: 'Deutsch',
-    isActive: false,
+    isActive: true,
     isDefault: false,
   },
   'pt-br': {

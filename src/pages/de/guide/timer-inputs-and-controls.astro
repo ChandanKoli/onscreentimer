@@ -1,0 +1,26 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout
+	title="Dauer-Eingabe und Timer-Steuerung"
+	description="Erfahre, wie du Zeiten eingibst und den aktiven Countdown des Timers steuerst."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Dauer eingeben</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Der Timer unterstützt verschiedene Eingabeformate. Nutze Formate wie <code class="font-mono text-zinc-800 dark:text-zinc-200">5</code>, <code class="font-mono text-zinc-800 dark:text-zinc-200">02:00</code> oder <code class="font-mono text-zinc-800 dark:text-zinc-200">90s</code>, um die gewünschte Dauer festzulegen.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Steuerelemente</h2>
+		<ul class="list-disc list-outside ml-5 space-y-2 text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Starten:</strong> Startet den Countdown.</li>
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Pause:</strong> Pausiert den Timer vorübergehend.</li>
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Fortsetzen:</strong> Setzt den pausierten Timer fort.</li>
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Zurücksetzen:</strong> Setzt den Timer auf die ursprünglich eingegebene Zeit zurück.</li>
+			<li><strong class="font-medium text-zinc-900 dark:text-zinc-100">Stoppen:</strong> Bricht den aktuellen Timer ab und bringt dich zur Eingabe zurück.</li>
+		</ul>
+	</section>
+</GuideArticleLayout>

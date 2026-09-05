@@ -878,6 +878,153 @@ export const ui = {
     'timer.error.blank': '長さを入力してください',
     'timer.error.invalid': '無効な形式です',
   },
+  de: {
+    // Nav / Header
+    'nav.tool': 'Tool',
+    'nav.guide': 'Anleitung',
+    'nav.faq': 'FAQ',
+
+    // Workspace - Modes, Styles, Sizes
+    'mode.timer': 'Timer',
+    'mode.clock': 'Uhr',
+    'mode.stopwatch': 'Stoppuhr',
+
+    'style.modern': 'Modern',
+    'style.digital': 'Digital',
+    'style.analog': 'Analog',
+
+    'size.full': 'Vollbild',
+    'size.big': 'Groß',
+    'size.mid': 'Mittel',
+    'size.tiny': 'Klein',
+
+    'label.mode': 'MODUS',
+    'label.style': 'STIL',
+    'label.size': 'GRÖSSE',
+
+    // Controls
+    'timer.start': 'Starten',
+    'timer.pause': 'Pause',
+    'timer.resume': 'Fortsetzen',
+    'timer.reset': 'Zurücksetzen',
+    'timer.stop': 'Stoppen',
+    'timer.placeholder': 'z. B.: 5, 02:00, 01:30:00, 90s',
+
+    'stopwatch.start': 'Starten',
+    'stopwatch.pause': 'Pause',
+    'stopwatch.resume': 'Fortsetzen',
+    'stopwatch.reset': 'Zurücksetzen',
+    'stopwatch.stop': 'Stoppen',
+
+    'workspace.exitFull': 'Vollbild verlassen',
+
+    // Tasks
+    'tasks.todo': 'Aufgaben',
+    'tasks.done': 'Erledigt',
+    'tasks.remaining': 'Verbleibend',
+    'tasks.addPlaceholder': 'Aufgabe hinzufügen...',
+
+    // Accessibility / ARIA
+    'aria.home': 'On Screen Timer Startseite',
+    'aria.soundEnabled': 'Ton an',
+    'aria.soundEnabledMute': 'Ton an, zum Stummschalten klicken',
+    'aria.soundMutedEnable': 'Ton aus, zum Einschalten klicken',
+    'aria.toggleTheme': 'Design umschalten',
+    'aria.menu': 'Einstellungen und Menü',
+    'aria.menuTitle': 'Menü',
+    'aria.primaryNav': 'Hauptmenü',
+    'aria.timerDisplay': 'Timer',
+    'aria.digitalDisplay': 'Digitale Anzeige',
+    'aria.analogDisplay': 'Analoge Anzeige',
+    'aria.startTimer': 'Timer starten',
+    'aria.resetTimer': 'Timer zurücksetzen',
+    'aria.stopTimer': 'Timer stoppen',
+    'aria.startStopwatch': 'Stoppuhr starten',
+    'aria.resetStopwatch': 'Stoppuhr zurücksetzen',
+    'aria.stopStopwatch': 'Stoppuhr stoppen',
+    'aria.exitFull': 'Vollbildmodus verlassen',
+    'aria.selectMode': 'Modus auswählen',
+    'aria.selectStyle': 'Stil auswählen',
+    'aria.selectSize': 'Größe auswählen',
+    'aria.currently': 'aktuell',
+    'aria.setTimerDuration': 'Timer-Dauer einstellen',
+
+    'aria.reopenTodo': 'Aufgaben erneut öffnen',
+    'aria.minimizeTodo': 'Aufgaben minimieren',
+    'aria.minimize': 'Minimieren',
+    'aria.addTask': 'Aufgabe hinzufügen',
+
+    'menu.settings': 'Einstellungen',
+
+    'error.invalidFormat': 'Ungültiges Format für die Dauer.',
+    'error.empty': 'Die Dauer darf nicht leer sein.',
+
+    'tasks.allCompleted': '✓ Alle Aufgaben erledigt',
+    'tasks.makeCurrent': 'Als aktuell markieren',
+    'tasks.delete': 'Löschen',
+    'tasks.restart': 'Neu starten',
+    'tasks.completeTask': 'Aufgabe abschließen',
+    'tasks.returnPending': 'Als ausstehend markieren',
+
+    // Clock
+    'clock.am': 'AM',
+    'clock.pm': 'PM',
+
+    // Study Blocks
+    'preset.preset-1.name': 'Lernen → Abrufen → Lösen → Wiederholen',
+    'preset.preset-2.name': 'Intensives Lernen → Üben',
+    'preset.preset-3.name': 'Lernen → Lösen',
+    'preset.preset-4.name': 'Lernen → Lösen → Wiederholen',
+
+    'preset.phase.Learn': 'Lernen',
+    'preset.phase.Recall': 'Abrufen',
+    'preset.phase.Solve': 'Lösen',
+    'preset.phase.Review': 'Wiederholen',
+    'preset.phase.Study': 'Lernen',
+    'preset.phase.Practice': 'Üben',
+    'preset.blockComplete': 'Block abgeschlossen',
+
+    // Guide Layout
+    'guide.allGuides': 'Alle Anleitungen',
+    'guide.breadcrumb': 'Anleitungen / ',
+    'guide.titleSuffix': ' — On Screen Timer Anleitung',
+    'guide.openTimer': 'On Screen Timer öffnen &rarr;',
+
+    // Footer
+    'footer.description': 'Ein einfacher Online-Timer, eine Uhr, eine Stoppuhr und ein Aufgaben-Tool – direkt in deinem Browser.',
+    'footer.product': 'Produkt',
+    'footer.learn': 'Lernen',
+    'footer.common': 'Häufig genutzt',
+    'footer.legal': 'Rechtliches',
+    'footer.guide': 'Anleitung',
+    'footer.faq': 'FAQ',
+    'footer.howItWorks': 'So funktioniert\'s',
+    'footer.privacy': 'Datenschutz',
+    'footer.terms': 'Nutzungsbedingungen',
+    'footer.contact': 'Kontakt',
+    'footer.5min': '5 Minuten Timer',
+    'footer.10min': '10 Minuten Timer',
+    'footer.20min': '20 Minuten Timer',
+    'footer.25min': '25 Minuten Timer',
+    'footer.free': 'Kostenlos nutzbar. Kein Konto erforderlich.',
+
+    // Parser Errors
+    'parser.empty': 'Bitte gib eine Dauer ein (z. B. 5, 02:00, 90s)',
+    'parser.invalidFormat': 'Ungültige Dauer. Versuche "5", "02:00" oder "90s"',
+    'parser.greaterThanZero': 'Die Dauer muss größer als 0 sein',
+    'parser.exceedsMax': 'Die Dauer darf 99 Stunden nicht überschreiten',
+    'parser.invalidMmSs': 'Ungültiges Format. Verwende MM:SS (z. B. 02:00)',
+    'parser.invalidSeconds': 'Sekunden müssen zwischen 0 und 59 liegen (MM:SS)',
+    'parser.invalidHhMmSs': 'Ungültiges Format. Verwende HH:MM:SS (z. B. 01:30:00)',
+    'parser.invalidMinSec': 'Minuten und Sekunden müssen zwischen 0 und 59 liegen',
+    'parser.invalidColon': 'Ungültiges Format. Verwende MM:SS oder HH:MM:SS',
+    'parser.unrecognizedUnit': 'Unerkannte Einheit "{unit}". Verwende h, m oder s (z. B. 2m, 90s)',
+
+    // Timer Error / Validation
+    'timer.error.blank': 'Bitte gib eine Dauer ein',
+    'timer.error.invalid': 'Ungültiges Format',
+  },
+
 } as const;
 
 export function useTranslations(locale: string) {

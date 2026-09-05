@@ -1,0 +1,78 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+---
+
+<Layout title="Datenschutz — On Screen Timer" description="Datenschutzerklärung für On Screen Timer">
+	<div class="min-h-dvh flex flex-col">
+		<SiteHeader />
+
+		<main class="flex-1 w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 text-zinc-800 dark:text-zinc-200">
+			<div class="mb-12">
+				<h1 class="text-3xl sm:text-4xl font-bold text-zinc-950 dark:text-zinc-50 tracking-tight mb-4">
+					Datenschutz
+				</h1>
+			</div>
+
+			<article class="prose prose-zinc dark:prose-invert prose-blue max-w-none space-y-8">
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">1. Lokale Speicherung</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						On Screen Timer speichert den Zustand deines Timers, deine laufenden Aufgaben und Benutzeroberflächen-Einstellungen (wie Design, Anzeigestil und Ton-Einstellungen) lokal in deinem Browser. Diese Daten verlassen dein Gerät nicht und werden nicht an unsere Server übertragen.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">2. Keine Konten</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Es sind keine Benutzerkonten erforderlich, und es werden keine profilierenden oder identifizierenden Kontoinformationen gesammelt.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">3. Website-Nutzung und Analytik</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Wir können Standard-Analysen oder grundlegende Serverprotokolldaten (wie Browsertyp, besuchte Seiten und Zeitstempel) verwenden, um die Nutzung der Website zu verstehen, technische Probleme zu diagnostizieren und den Service zu verbessern. Dies geschieht in aggregierter Form, ohne Benutzer individuell über das Internet zu verfolgen.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">4. Cookies</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Der Service kann Cookies (oder gleichwertige Technologien wie <code>localStorage</code>) verwenden, ausschließlich um deinen Anwendungsstatus, deine Einstellungen oder Präferenzen zu speichern.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">5. Dienste von Drittanbietern</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Wir können auf Hosting-Dienste und Standardinfrastruktur von Drittanbietern zurückgreifen. Diese Anbieter können standardmäßige Netzwerk-Analysen und Leistungsmetriken erfassen.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">6. E-Mail-Interaktionen</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Wenn du uns über die Support-E-Mail kontaktierst, verwenden wir deine Nachricht und E-Mail-Adresse nur zur Beantwortung deiner Anfrage.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">7. Änderungen</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Diese Datenschutzrichtlinie kann aktualisiert werden, wenn sich der Service weiterentwickelt, neue Funktionen hinzugefügt werden oder rechtliche Anforderungen entstehen.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">8. Kontakt</h2>
+					<p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+						Bei Fragen oder Anregungen wende dich bitte an unsere <a href="/de/contact" class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 underline underline-offset-4">Kontaktseite</a>.
+					</p>
+				</section>
+			</article>
+		</main>
+		<SiteFooter />
+	</div>
+</Layout>
