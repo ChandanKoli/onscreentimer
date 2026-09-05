@@ -4,72 +4,72 @@ import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
 
 <GuideArticleLayout 
 	title="Modelos de Bloco de Estudo" 
-	description="Learn how On Screen Timer's preset study sequences divide a Timer session into named phases."
+	description="Aprenda como as sequências de estudo predefinidas do On Screen Timer dividem uma sessão do Cronômetro em fases nomeadas."
 >
 	<section class="space-y-4">
-		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">How Presets Work</h2>
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Como Funcionam os Modelos</h2>
 		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			Modelos de Bloco de Estudo are optional predefined Timer sequences intended to help structure a study session. Selecting a preset from the Settings menu switches to Timer mode and starts the first segment automatically.
+			Os Modelos de Bloco de Estudo são sequências opcionais predefinidas do Cronômetro destinadas a ajudar a estruturar uma sessão de estudo. Selecionar um modelo no menu de Configurações alterna para o modo Cronômetro e inicia o primeiro segmento automaticamente.
 		</p>
 		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			Each segment displays an active phase label (such as <em class="text-zinc-900 dark:text-zinc-100">Learn</em>, <em class="text-zinc-900 dark:text-zinc-100">Recall</em>, <em class="text-zinc-900 dark:text-zinc-100">Solve</em>, <em class="text-zinc-900 dark:text-zinc-100">Review</em>, <em class="text-zinc-900 dark:text-zinc-100">Study</em>, or <em class="text-zinc-900 dark:text-zinc-100">Practice</em>) directly underneath the Timer display.
+			Cada segmento exibe um rótulo de fase ativa (como <em class="text-zinc-900 dark:text-zinc-100">Aprender</em>, <em class="text-zinc-900 dark:text-zinc-100">Recordar</em>, <em class="text-zinc-900 dark:text-zinc-100">Resolver</em>, <em class="text-zinc-900 dark:text-zinc-100">Revisar</em>, <em class="text-zinc-900 dark:text-zinc-100">Estudar</em>, ou <em class="text-zinc-900 dark:text-zinc-100">Praticar</em>) diretamente abaixo da exibição do Cronômetro.
 		</p>
 		<ul class="list-disc pl-5 space-y-2 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
 			<li>O rótulo da fase indica o segmento atual do bloco de estudo; não é uma Tarefa Atual e não é adicionado ao painel de Tarefas.</li>
-			<li>Segments automatically advance to the next phase when the countdown finishes.</li>
-			<li>The Timer completes and stops after the final preset segment finishes (presets do not loop).</li>
-			<li>Pause, Resume, Reset, and Stop controls work normally throughout a preset session.</li>
+			<li>Os segmentos avançam automaticamente para a próxima fase quando a contagem regressiva termina.</li>
+			<li>O Cronômetro é concluído e para após o término do último segmento do modelo (os modelos não se repetem).</li>
+			<li>Os controles de Pausar, Retomar, Redefinir e Parar funcionam normalmente durante toda a sessão do modelo.</li>
 		</ul>
 	</section>
 
 	<section class="space-y-4">
-		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Current Presets</h2>
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Modelos Atuais</h2>
 		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			On Screen Timer provides the following optional study structures:
+			O On Screen Timer fornece as seguintes estruturas de estudo opcionais:
 		</p>
 
-		<!-- Existing Presets Grid -->
+		<!-- Grade de Modelos Existentes -->
 		<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 my-4">
 			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
 				<div class="flex items-center justify-between gap-2 mb-1.5">
-					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Learn &rarr; Recall &rarr; Solve &rarr; Review</h3>
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Aprender &rarr; Recordar &rarr; Resolver &rarr; Revisar</h3>
 					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">60m total</span>
 				</div>
 				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
-					25m Learn &rarr; 5m Recall &rarr; 25m Solve &rarr; 5m Review
+					25m Aprender &rarr; 5m Recordar &rarr; 25m Resolver &rarr; 5m Revisar
 				</p>
 			</div>
 			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
 				<div class="flex items-center justify-between gap-2 mb-1.5">
-					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Deep Study &rarr; Practice</h3>
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Estudo Profundo &rarr; Praticar</h3>
 					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">90m total</span>
 				</div>
 				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
-					60m Study &rarr; 30m Practice
+					60m Estudar &rarr; 30m Praticar
 				</p>
 			</div>
 			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
 				<div class="flex items-center justify-between gap-2 mb-1.5">
-					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Learn &rarr; Solve</h3>
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Aprender &rarr; Resolver</h3>
 					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">60m total</span>
 				</div>
 				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
-					30m Learn &rarr; 30m Solve
+					30m Aprender &rarr; 30m Resolver
 				</p>
 			</div>
 			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
 				<div class="flex items-center justify-between gap-2 mb-1.5">
-					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Study &rarr; Solve &rarr; Review</h3>
+					<h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Estudar &rarr; Resolver &rarr; Revisar</h3>
 					<span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">120m total</span>
 				</div>
 				<p class="text-xs text-zinc-600 dark:text-zinc-400 font-mono leading-relaxed">
-					45m Study &rarr; 45m Solve &rarr; 30m Review
+					45m Estudar &rarr; 45m Resolver &rarr; 30m Revisar
 				</p>
 			</div>
 		</div>
 
 		<p class="text-xs text-zinc-500 dark:text-zinc-400">
-			Modelos de Bloco de Estudo are simply optional study structures. They do not claim medical or productivity guarantees.
+			Os Modelos de Bloco de Estudo são simplesmente estruturas de estudo opcionais. Eles não reivindicam garantias médicas ou de produtividade.
 		</p>
 	</section>
 </GuideArticleLayout>

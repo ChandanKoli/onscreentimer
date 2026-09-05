@@ -2,72 +2,72 @@
 import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
 ---
 
-<GuideArticleLayout 
-	title="Estilos de Exibição, Sizes & Full Mode" 
-	description="Learn about visual styling, resizing the timer, and utilizing focused Full mode."
+<GuideArticleLayout
+	title="Estilos de Exibição, Tamanhos e Modo Tela cheia"
+	description="Aprenda sobre o estilo visual, o redimensionamento do cronômetro e a utilização do Modo Tela cheia."
 >
 	<section class="space-y-4">
 		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Estilos de Exibição</h2>
 		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			You can switch between three visual styles for Timer, Clock, and Stopwatch from the top right Settings menu:
+			Você pode alternar entre três estilos visuais para o Cronômetro, Relógio e Cronômetro progressivo no menu de Configurações no canto superior direito:
 		</p>
 
 		<dl class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 my-4">
 			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
 				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Moderno</dt>
-				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Clean, large numeric typography designed for immediate, prominent legibility.</dd>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Tipografia numérica grande e limpa, projetada para uma legibilidade imediata e proeminente.</dd>
 			</div>
 			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
 				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Digital</dt>
-				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Retro seven-segment inspired layout providing a classic digital clock face.</dd>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Layout retrô inspirado em sete segmentos, proporcionando uma face clássica de relógio digital.</dd>
 			</div>
 			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
 				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Analógico</dt>
-				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Traditional circular dial with sweeping hands. Shows an AM/PM badge in 12-hour Clock mode.</dd>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Mostrador circular tradicional com ponteiros contínuos. Mostra um selo AM/PM no modo Relógio de 12 horas.</dd>
 			</div>
 		</dl>
 
 		<p class="text-sm text-zinc-600 dark:text-zinc-400">
-			Changing the display style modifies only how the time is shown; it never resets or interrupts your active session.
+			Alterar o estilo de exibição modifica apenas como o tempo é mostrado; isso nunca redefine ou interrompe sua sessão ativa.
 		</p>
 	</section>
 
 	<section class="space-y-4">
 		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Tamanhos de Exibição</h2>
 		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			Scale the timer workspace to match your setup or focus environment by selecting a size option near the bottom right:
+			Dimensione o espaço de trabalho do cronômetro para corresponder à sua configuração ou ambiente de foco, selecionando uma opção de tamanho no canto inferior direito:
 		</p>
 
 		<dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 my-4">
 			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Tiny</dt>
-				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Compact footprint when keeping the timer alongside other windows.</dd>
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Pequeno</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Espaço compacto ao manter o cronômetro ao lado de outras janelas.</dd>
 			</div>
 			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Mid <span class="text-xs font-normal text-zinc-400 dark:text-zinc-500">(Default)</span></dt>
-				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Standard balanced view for normal desk and laptop working distances.</dd>
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Médio <span class="text-xs font-normal text-zinc-400 dark:text-zinc-500">(Padrão)</span></dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Visualização padrão equilibrada para distâncias normais de trabalho em mesa e laptop.</dd>
 			</div>
 			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Big</dt>
-				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Expanded scale that remains easily readable from across the room.</dd>
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Grande</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Escala expandida que permanece facilmente legível do outro lado da sala.</dd>
 			</div>
 			<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50">
-				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Full</dt>
-				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">App-level focused view hiding header, footer, and side panels. Exit with Esc or size toggle.</dd>
+				<dt class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Modo Tela cheia</dt>
+				<dd class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Visualização focada no nível do aplicativo, ocultando cabeçalho, rodapé e painéis laterais. Saia com Esc ou alternando o tamanho.</dd>
 			</div>
 		</dl>
 	</section>
 
 	<section class="space-y-4">
-		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Understanding Full Mode</h2>
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Entendendo o Modo Tela cheia</h2>
 		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			Full mode is an in-app focused layout designed to eliminate visual distractions like the navigation bar and footer. Essential timer controls remain accessible on screen.
+			O Modo Tela cheia é um layout focado no aplicativo, projetado para eliminar distrações visuais como a barra de navegação e o rodapé. Os controles essenciais do cronômetro permanecem acessíveis na tela.
 		</p>
 		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			<strong class="font-medium text-zinc-900 dark:text-zinc-100">Note:</strong> Full mode is a layout setting within On Screen Timer. It is <em>not</em> the browser's native Fullscreen API (F11 on most platforms). You can combine both for the most distraction-free experience.
+			<strong class="font-medium text-zinc-900 dark:text-zinc-100">Nota:</strong> O Modo Tela cheia é uma configuração de layout dentro do On Screen Timer. <em>Não</em> é a API de Tela cheia nativa do navegador (F11 na maioria das plataformas). Você pode combinar ambos para uma experiência com menos distrações.
 		</p>
 		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			To exit Full mode, simply press <kbd class="px-1.5 py-0.5 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded">Esc</kbd> on your keyboard or select a different size from the display options.
+			Para sair do Modo Tela cheia, basta pressionar <kbd class="px-1.5 py-0.5 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded">Esc</kbd> no seu teclado ou selecionar um tamanho diferente nas opções de exibição.
 		</p>
 	</section>
 </GuideArticleLayout>

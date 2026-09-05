@@ -48,23 +48,23 @@ if (minutes === 1) {
 	];
 } else if (minutes === 20) {
 	content = [
-		"A 20 minute timer can be useful for a short study or work sprint, or a reading and practice session.",
-		"When you press Start, the timer will count down from 20 minutes."
+		"Um temporizador de 20 minutos pode ser útil para um curto sprint de estudo ou trabalho, ou uma sessão de leitura e prática.",
+		"Ao pressionar Iniciar, o temporizador fará uma contagem regressiva a partir de 20 minutos."
 	];
 } else if (minutes === 25) {
 	content = [
-		"A 25 minute timer is a common duration for Pomodoro-style focus blocks.",
-		"When you press Start, the timer will count down from 25 minutes. Note that On Screen Timer does not automatically run a Pomodoro break after this timer unless you configure it using Modelos de Bloco de Estudo."
+		"Um temporizador de 25 minutos é uma duração comum para blocos de foco no estilo Pomodoro.",
+		"Ao pressionar Iniciar, o temporizador fará uma contagem regressiva a partir de 25 minutos. Observe que o On Screen Timer não executa automaticamente uma pausa Pomodoro após esse temporizador, a menos que você configure isso usando os Modelos de Bloco de Estudo."
 	];
 } else if (minutes === 30) {
 	content = [
-		"A 30 minute timer is useful for a half-hour study, work, or practice session.",
+		"Um temporizador de 30 minutos é útil para uma sessão de meia hora de estudo, trabalho ou prática.",
 		"Ao pressionar Iniciar, o temporizador fará uma contagem regressiva a partir de 30 minutos. Você pode usar a lista de Tarefas para acompanhar o que deseja alcançar nesta meia hora."
 	];
 } else if (minutes === 60) {
 	content = [
-		"A 60 minute (1 hour) timer can be useful for an extended study or work session.",
-		"When you press Start, the 1 hour timer will count down. If you need a more structured session with built-in breaks, consider reading the Study & Focus guide or checking out our Modelos de Bloco de Estudo in the settings."
+		"Um temporizador de 60 minutos (1 hora) pode ser útil para uma sessão prolongada de estudo ou trabalho.",
+		"Ao pressionar Iniciar, o temporizador de 1 hora fará a contagem regressiva. Se você precisar de uma sessão mais estruturada com pausas integradas, considere ler o guia de Estudo e Foco ou dar uma olhada em nossos Modelos de Bloco de Estudo nas configurações."
 	];
 }
 
@@ -94,7 +94,7 @@ const t = useTranslations(locale);
 				<!-- Mobile Header -->
 					<div class="lg:hidden flex items-center justify-between w-full">
 						<button type="button" id="btn-mobile-todo-toggle" aria-expanded="false" aria-controls="todo-content" class="flex items-center text-left font-medium text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
-							<span class="text-sm mr-4">To-do <span id="todo-mobile-count" class="text-zinc-500 font-normal ml-2"></span></span>
+							<span class="text-sm mr-4">Tarefas <span id="todo-mobile-count" class="text-zinc-500 font-normal ml-2"></span></span>
 						</button>
 						<div class="flex items-center gap-3">
 							<button type="button" id="btn-end-all-mobile" class="text-xs font-medium text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 rounded transition-colors hidden">{t("tasks.endAll")}</button>

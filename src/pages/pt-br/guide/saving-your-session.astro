@@ -4,45 +4,45 @@ import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
 
 <GuideArticleLayout 
 	title="Salvando Sua Sessão" 
-	description="Learn how On Screen Timer saves your preferences and active tasks locally in your browser."
+	description="Aprenda como o On Screen Timer salva suas preferências e tarefas ativas localmente em seu navegador."
 >
 	<section class="space-y-4">
-		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Local Browser Storage</h2>
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Armazenamento Local do Navegador</h2>
 		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			On Screen Timer saves supported state locally inside your browser using <code class="font-mono text-zinc-800 dark:text-zinc-200 text-xs sm:text-sm bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-700">localStorage</code>.
+			O On Screen Timer salva o estado suportado localmente no seu navegador usando <code class="font-mono text-zinc-800 dark:text-zinc-200 text-xs sm:text-sm bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-700">localStorage</code>.
 		</p>
 		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
-			Because state is stored directly in your browser, your session can survive an accidental page refresh or closing the tab briefly. No account or registration is required.
+			Como o estado é armazenado diretamente no seu navegador, sua sessão pode sobreviver a uma atualização acidental da página ou ao fechar a aba brevemente. Nenhuma conta ou registro é necessário.
 		</p>
 	</section>
 
 	<section class="space-y-4">
 		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">O que é salvo?</h2>
 		<ul class="list-disc pl-5 space-y-1.5 text-sm sm:text-[15px] text-zinc-700 dark:text-zinc-300">
-			<li>Active Timer state and remaining duration</li>
-			<li>Stopwatch state and accumulated elapsed time</li>
+			<li>Estado do Timer ativo e duração restante</li>
+			<li>Estado do Cronômetro e tempo decorrido acumulado</li>
 			<li>Tarefas, status e durações de trabalho registradas no painel de Tarefas</li>
-			<li>Selected visual style (Modern, Digital, Analog)</li>
-			<li>Selected display size (Tiny, Mid, Big, Full)</li>
-			<li>Clock format preference (12-hour or 24-hour)</li>
-			<li>Sound and theme preferences</li>
-			<li>Active Study Block Preset progression</li>
+			<li>Estilo visual selecionado (Moderno, Digital, Analógico)</li>
+			<li>Tamanho de exibição selecionado (Minúsculo, Médio, Grande, Completo)</li>
+			<li>Preferência de formato de relógio (12 horas ou 24 horas)</li>
+			<li>Preferências de som e tema</li>
+			<li>Progressão ativa do Preset de Bloco de Estudo</li>
 		</ul>
 	</section>
 
 	<section class="space-y-4">
-		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Data Privacy & Limitations</h2>
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Privacidade de Dados & Limitações</h2>
 		<div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/50 text-sm text-zinc-700 dark:text-zinc-300 space-y-3">
 			<p>
-				Your Timer, task, and preference state is strictly stored locally on your device. On Screen Timer does not send this saved state to any application server.
+				Seu Timer, tarefas e estado de preferências são estritamente armazenados localmente em seu dispositivo. O On Screen Timer não envia esse estado salvo para nenhum servidor de aplicativo.
 			</p>
 			<p class="font-medium">
-				Important limitations of local storage:
+				Limitações importantes do armazenamento local:
 			</p>
 			<ul class="list-disc pl-5 space-y-1 text-zinc-600 dark:text-zinc-400">
-				<li>There is no cloud sync or cross-device sync. You won't see your desktop tasks on your mobile device.</li>
-				<li>There is no server backup.</li>
-				<li>Clearing your browser's site data or local storage will delete your tasks and reset your preferences.</li>
+				<li>Não há sincronização em nuvem ou sincronização entre dispositivos. Você não verá as tarefas do seu desktop no seu dispositivo móvel.</li>
+				<li>Não há backup em servidor.</li>
+				<li>Limpar os dados do site ou o armazenamento local do seu navegador excluirá suas tarefas e redefinirá suas preferências.</li>
 			</ul>
 		</div>
 	</section>

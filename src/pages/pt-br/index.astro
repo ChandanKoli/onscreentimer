@@ -10,14 +10,6 @@ const t = useTranslations(locale);
 ---
 
 <Layout title="On Screen Timer — Temporizador, Relógio e Cronômetro Online" description="Um temporizador, relógio e cronômetro online gratuito em tela cheia com rastreamento de tarefas integrado. Sem distrações, fácil de usar e funciona diretamente no seu navegador.">
-	<Fragment slot="head">
-		<script type="application/ld+json" set:html={JSON.stringify({
-			"@context": "https://schema.org",
-			"@type": "WebSite",
-			"name": "On Screen Timer",
-			"url": "https://onscreentimer.com/"
-		})} />
-	</Fragment>
 
 	<!-- Viewport Wrapper --><div class="flex flex-col min-h-[100svh]">
 		<!-- Header -->
@@ -41,7 +33,7 @@ const t = useTranslations(locale);
 				<!-- Mobile Header -->
 					<div class="lg:hidden flex items-center justify-between w-full">
 						<button type="button" id="btn-mobile-todo-toggle" aria-expanded="false" aria-controls="todo-content" class="flex items-center text-left font-medium text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
-							<span class="text-sm mr-4">To-do <span id="todo-mobile-count" class="text-zinc-500 font-normal ml-2"></span></span>
+							<span class="text-sm mr-4">Tarefas <span id="todo-mobile-count" class="text-zinc-500 font-normal ml-2"></span></span>
 						</button>
 						<div class="flex items-center gap-3">
 							<button type="button" id="btn-end-all-mobile" class="text-xs font-medium text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 rounded transition-colors hidden">{t("tasks.endAll")}</button>
@@ -145,7 +137,7 @@ const t = useTranslations(locale);
 
 		<!-- FAQ Preview Section -->
 		<section id="faq-preview" class="w-full max-w-3xl mx-auto px-4 sm:px-6 py-12 lg:py-16 border-t border-zinc-200 dark:border-zinc-800 group-data-[size=full]/body:hidden">
-			<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-8 text-center sm:text-left">Frequently Asked Questions</h2>
+			<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-8 text-center sm:text-left">Perguntas Frequentes</h2>
 
 			<div class="space-y-3 mb-10">
 				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
