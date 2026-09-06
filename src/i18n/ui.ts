@@ -134,6 +134,13 @@ export const ui = {
     'footer.25min': '25 Minute Timer',
     'footer.free': 'Free to use. No account required.',
 
+    // Analytics Consent
+    'consent.message': 'On Screen Timer uses optional Google Analytics to understand how the site is used.',
+    'consent.accept': 'Accept',
+    'consent.reject': 'Reject',
+    'consent.privacy': 'Privacy',
+    'footer.analytics': 'Analytics preferences',
+
     // Parser Errors
     'parser.empty': 'Please enter a duration (e.g. 5, 2mins, 02:00, 90s)',
     'parser.invalidFormat': 'Invalid duration. Try "5", "2mins", "02:00", or "90s"',
@@ -282,6 +289,13 @@ export const ui = {
     'footer.20min': 'Temporizador de 20 minutos',
     'footer.25min': 'Temporizador de 25 minutos',
     'footer.free': 'Uso gratuito. No se requiere cuenta.',
+
+    // Analytics Consent
+    'consent.message': 'On Screen Timer utiliza Google Analytics opcional para entender cómo se usa el sitio.',
+    'consent.accept': 'Aceptar',
+    'consent.reject': 'Rechazar',
+    'consent.privacy': 'Privacidad',
+    'footer.analytics': 'Preferencias de Analytics',
 
     // Parser Errors
     'parser.empty': 'Introduce una duración (ej. 5, 02:00, 90s)',
@@ -432,6 +446,13 @@ export const ui = {
     'footer.25min': 'Temporizador de 25 Minutos',
     'footer.free': 'Gratuito para usar. Nenhuma conta é necessária.',
 
+    // Analytics Consent
+    'consent.message': 'On Screen Timer usa o Google Analytics opcional para entender como o site é usado.',
+    'consent.accept': 'Aceitar',
+    'consent.reject': 'Rejeitar',
+    'consent.privacy': 'Privacidade',
+    'footer.analytics': 'Preferências do Analytics',
+
     // Parser Errors
     'parser.empty': 'Insira uma duração (ex.: 5, 02:00, 90s)',
     'parser.invalidFormat': 'Duração inválida. Tente "5", "02:00" ou "90s"',
@@ -581,6 +602,13 @@ export const ui = {
     'footer.25min': 'Minuteur 25 minutes',
     'footer.free': 'Gratuit. Aucun compte requis.',
 
+    // Analytics Consent
+    'consent.message': 'On Screen Timer utilise Google Analytics optionnel pour comprendre comment le site est utilisé.',
+    'consent.accept': 'Accepter',
+    'consent.reject': 'Refuser',
+    'consent.privacy': 'Confidentialité',
+    'footer.analytics': 'Préférences Analytics',
+
     // Parser Errors
     'parser.empty': 'Veuillez saisir une durée (ex. : 5, 02:00, 90s)',
     'parser.invalidFormat': 'Durée invalide. Essayez « 5 », « 02:00 » ou « 90s »',
@@ -729,6 +757,13 @@ export const ui = {
     'footer.20min': 'Timer da 20 minuti',
     'footer.25min': 'Timer da 25 minuti',
     'footer.free': 'Gratuito. Nessun account richiesto.',
+
+    // Analytics Consent
+    'consent.message': 'On Screen Timer utilizza Google Analytics opzionale per capire come viene utilizzato il sito.',
+    'consent.accept': 'Accetta',
+    'consent.reject': 'Rifiuta',
+    'consent.privacy': 'Privacy',
+    'footer.analytics': 'Preferenze Analytics',
 
     // Parser Errors
     'parser.empty': 'Inserisci una durata (es: 5, 02:00, 90s)',
@@ -880,6 +915,13 @@ export const ui = {
     'footer.25min': '25分 タイマー',
     'footer.free': '無料で利用できます。アカウント登録は不要です。',
 
+    // Analytics Consent
+    'consent.message': 'On Screen Timerは、サイトの利用状況を把握するために、オプションでGoogle Analyticsを使用しています。',
+    'consent.accept': '同意する',
+    'consent.reject': '拒否する',
+    'consent.privacy': 'プライバシー',
+    'footer.analytics': 'Analytics の設定',
+
     // Parser Errors
     'parser.empty': '長さを入力してください (例: 5, 02:00, 90s)',
     'parser.invalidFormat': '無効な形式です。「5」、「02:00」、「90s」のように入力してください',
@@ -1028,6 +1070,13 @@ export const ui = {
     'footer.20min': '20 Minuten Timer',
     'footer.25min': '25 Minuten Timer',
     'footer.free': 'Kostenlos nutzbar. Kein Konto erforderlich.',
+
+    // Analytics Consent
+    'consent.message': 'On Screen Timer verwendet optionales Google Analytics, um zu verstehen, wie die Website genutzt wird.',
+    'consent.accept': 'Akzeptieren',
+    'consent.reject': 'Ablehnen',
+    'consent.privacy': 'Datenschutz',
+    'footer.analytics': 'Analytics-Einstellungen',
 
     // Parser Errors
     'parser.empty': 'Bitte gib eine Dauer ein (z. B. 5, 02:00, 90s)',
@@ -1178,6 +1227,13 @@ export const ui = {
     'footer.20min': '20분 타이머',
     'footer.25min': '25분 타이머',
     'footer.free': '무료 사용. 계정이 필요하지 않습니다.',
+
+    // Analytics Consent
+    'consent.message': 'On Screen Timer는 사이트 이용 현황을 파악하기 위해 선택적으로 Google Analytics를 사용합니다.',
+    'consent.accept': '수락',
+    'consent.reject': '거부',
+    'consent.privacy': '개인정보 보호',
+    'footer.analytics': 'Analytics 환경설정',
 
     // Parser Errors
     'parser.empty': '시간을 입력해 주세요 (예: 5, 02:00, 01:30:00, 90s)',

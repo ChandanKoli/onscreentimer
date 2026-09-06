@@ -1,0 +1,155 @@
+---
+import { getLocaleFromUrl, getRelativeLocaleUrl } from '../i18n/utils.ts';
+import { useTranslations } from '../i18n/ui.ts';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+const prefixPath = (path: string) => getRelativeLocaleUrl(locale, path);
+---
+
+<div id="analytics-consent-banner" class="hidden fixed bottom-0 left-0 right-0 md:bottom-4 md:left-4 md:right-auto md:max-w-sm bg-white dark:bg-zinc-900 border-t md:border border-zinc-200 dark:border-zinc-800 shadow-lg p-4 md:rounded-xl z-50 transition-transform duration-300 transform translate-y-full data-[visible]=true:translate-y-0" aria-live="polite">
+  <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-4 leading-relaxed">
+    {t('consent.message')}
+  </p>
+  <div class="flex flex-wrap items-center gap-2">
+    <button id="btn-consent-accept" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+      {t('consent.accept')}
+    </button>
+    <button id="btn-consent-reject" class="px-4 py-2 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-900 dark:text-zinc-100 text-sm font-medium rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+      {t('consent.reject')}
+    </button>
+    <a href={prefixPath('/privacy')} class="ml-auto text-xs text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 underline decoration-zinc-300 dark:decoration-zinc-700 underline-offset-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+      {t('consent.privacy')}
+    </a>
+  </div>
+</div>
+
+<script is:inline>
+  (function() {
+    const MEASUREMENT_ID = 'G-6T6C1RCFCW';
+    const CONSENT_KEY = 'ost_analytics_consent';
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+
+    let scriptLoaded = false;
+
+    function loadGA() {
+      if (scriptLoaded) return;
+      scriptLoaded = true;
+
+      if (window.location.hostname !== 'onscreentimer.com') return;
+
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
+      document.head.appendChild(script);
+
+      gtag('js', new Date());
+      gtag('config', MEASUREMENT_ID);
+    }
+
+    function removeCookies() {
+      const cookies = document.cookie.split(';');
+      const domain = window.location.hostname;
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i];
+        const eqPos = cookie.indexOf('=');
+        const name = eqPos > -1 ? cookie.substring(0, eqPos).trim() : cookie.trim();
+        if (name.startsWith('_ga')) {
+          document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+          document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=${domain}`;
+          document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=.onscreentimer.com`;
+        }
+      }
+    }
+
+    function initConsent() {
+      const choice = localStorage.getItem(CONSENT_KEY);
+      const banner = document.getElementById('analytics-consent-banner');
+
+      if (choice === 'accepted') {
+        gtag('consent', 'update', {
+          analytics_storage: 'granted',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied'
+        });
+        loadGA();
+      } else if (choice === 'rejected') {
+        // do not load
+      } else {
+        if (banner) {
+          banner.classList.remove('hidden');
+          setTimeout(() => {
+            banner.classList.remove('translate-y-full');
+          }, 10);
+        }
+      }
+    }
+
+    function handleAccept() {
+      localStorage.setItem(CONSENT_KEY, 'accepted');
+      const banner = document.getElementById('analytics-consent-banner');
+      if (banner) {
+        banner.classList.add('translate-y-full');
+        setTimeout(() => banner.classList.add('hidden'), 300);
+      }
+
+      gtag('consent', 'update', {
+        analytics_storage: 'granted',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+      loadGA();
+    }
+
+    function handleReject() {
+      const previousChoice = localStorage.getItem(CONSENT_KEY);
+      localStorage.setItem(CONSENT_KEY, 'rejected');
+      const banner = document.getElementById('analytics-consent-banner');
+      if (banner) {
+        banner.classList.add('translate-y-full');
+        setTimeout(() => banner.classList.add('hidden'), 300);
+      }
+
+      if (previousChoice === 'accepted') {
+        gtag('consent', 'update', { analytics_storage: 'denied' });
+        removeCookies();
+        window.location.reload();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const btnAccept = document.getElementById('btn-consent-accept');
+      const btnReject = document.getElementById('btn-consent-reject');
+
+      if (btnAccept) btnAccept.addEventListener('click', handleAccept);
+      if (btnReject) btnReject.addEventListener('click', handleReject);
+
+      const btnPref = document.getElementById('btn-analytics-preferences');
+      if (btnPref) {
+        btnPref.addEventListener('click', () => {
+          const banner = document.getElementById('analytics-consent-banner');
+          if (banner) {
+            banner.classList.remove('hidden');
+            setTimeout(() => {
+              banner.classList.remove('translate-y-full');
+            }, 10);
+          }
+        });
+      }
+    });
+
+    initConsent();
+  })();
+</script>

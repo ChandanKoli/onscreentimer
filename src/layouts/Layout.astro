@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { SITE_CONFIG } from '../site.config';
 import { getLocaleFromUrl } from '../i18n/utils';
 import { LOCALES, ACTIVE_LOCALES } from '../i18n/config';
+import AnalyticsConsent from '../components/AnalyticsConsent.astro';
 
 interface Props {
 	title?: string;
@@ -91,5 +92,6 @@ const xDefaultUrl = new URL(xDefaultPath.replace(/\/{2,}/g, '/'), SITE_CONFIG.ur
 	</head>
 	<body data-size="mid" class="group/body min-h-dvh bg-zinc-50 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50 font-sans antialiased selection:bg-blue-500/20 selection:text-blue-700 dark:selection:text-blue-300 flex flex-col">
 		<slot />
+		<AnalyticsConsent />
 	</body>
 </html>
