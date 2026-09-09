@@ -1,0 +1,17 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import SiteHeader from '../../../../components/SiteHeader.astro';
+import SiteFooter from '../../../../components/SiteFooter.astro';
+import WeeklistWorkspace from '../../../../components/WeeklistWorkspace.astro';
+---
+
+<Layout 
+	title="Weeklist — 주간 계획 및 작업 시간 관리"
+	description="온스크린 타이머에 직접 연결되는 간단한 주간 플래너입니다. 하루를 계획하고 집중할 준비가 되면 타이머로 작업을 보내세요."
+>
+	<SiteHeader />
+	<main class="flex-grow bg-white dark:bg-zinc-950 transition-colors">
+		<WeeklistWorkspace />
+	</main>
+	<SiteFooter />
+</Layout>

@@ -1,0 +1,17 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import SiteHeader from '../../../../components/SiteHeader.astro';
+import SiteFooter from '../../../../components/SiteFooter.astro';
+import WeeklistWorkspace from '../../../../components/WeeklistWorkspace.astro';
+---
+
+<Layout 
+	title="Weeklist — 週の予定を立ててタスクを時間管理"
+	description="タイマーに直接リンクするシンプルな週間プランナー。予定を立てて、集中する準備ができたらタイマーにタスクを送信します。"
+>
+	<SiteHeader />
+	<main class="flex-grow bg-white dark:bg-zinc-950 transition-colors">
+		<WeeklistWorkspace />
+	</main>
+	<SiteFooter />
+</Layout>

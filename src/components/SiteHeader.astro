@@ -17,6 +17,7 @@ if (cleanPath !== '/' && cleanPath.endsWith('/')) {
 }
 
 const isHome = cleanPath === '/';
+const isWeeklist = cleanPath.startsWith('/tools/weeklist');
 const isGuide = cleanPath.startsWith('/guide');
 const isFaq = cleanPath === '/faq';
 
@@ -68,9 +69,6 @@ const prefixPath = (path: string) => getRelativeLocaleUrl(currentLocaleId, path)
 						aria-expanded="false"
 					>
 						<span>{currentLocale.name}</span>
-						<svg class="w-3 h-3 text-zinc-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-						</svg>
 					</button>
 					<div id="language-menu" class="hidden absolute right-0 mt-1 w-32 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-md shadow-lg overflow-hidden z-50">
 						{ACTIVE_LOCALES.map(loc => (
@@ -117,17 +115,37 @@ const prefixPath = (path: string) => getRelativeLocaleUrl(currentLocaleId, path)
 
 		<!-- ROW 2: Nav -->
 		<nav aria-label={t("aria.primaryNav")} class="flex items-center gap-3 sm:gap-6">
-			<a
-				href={prefixPath("/") + "#tool"}
-				class={`text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm px-1 py-0.5 ${
-					isHome
-					? 'text-blue-600 dark:text-blue-400'
-					: 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100'
-				}`}
-				aria-current={isHome ? 'page' : undefined}
-			>
-				{t('nav.tool')}
-			</a>
+			<div class="relative group">
+				<button
+					type="button"
+					id="btn-tools"
+					class={`flex items-center gap-1 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm px-1 py-0.5 ${
+						(isHome || isWeeklist)
+						? 'text-blue-600 dark:text-blue-400'
+						: 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100'
+					}`}
+					aria-expanded="false"
+					aria-controls="tools-menu"
+				>
+					<span>{t('nav.tools')}</span>
+				</button>
+				<div id="tools-menu" class="hidden absolute left-0 mt-2 w-48 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-md shadow-lg overflow-hidden z-50 py-1">
+					<a
+						href={prefixPath("/")}
+						class={`block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors ${isHome ? 'font-medium text-blue-600 dark:text-blue-400 bg-zinc-50 dark:bg-zinc-800/50' : 'text-zinc-700 dark:text-zinc-300'}`}
+						aria-current={isHome ? 'page' : undefined}
+					>
+						On Screen Timer
+					</a>
+					<a
+						href={prefixPath("/tools/weeklist/")}
+						class={`block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors ${isWeeklist ? 'font-medium text-blue-600 dark:text-blue-400 bg-zinc-50 dark:bg-zinc-800/50' : 'text-zinc-700 dark:text-zinc-300'}`}
+						aria-current={isWeeklist ? 'page' : undefined}
+					>
+						Weeklist
+					</a>
+				</div>
+			</div>
 			<a
 				href={prefixPath("/guide")}
 				class={`text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm px-1 py-0.5 ${
@@ -155,6 +173,40 @@ const prefixPath = (path: string) => getRelativeLocaleUrl(currentLocaleId, path)
 </header>
 
 <script>
+	const btnTools = document.getElementById('btn-tools');
+	const menuTools = document.getElementById('tools-menu');
+
+	if (btnTools && menuTools) {
+		btnTools.addEventListener('click', (e) => {
+			e.stopPropagation();
+			const isExpanded = btnTools.getAttribute('aria-expanded') === 'true';
+			btnTools.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
+			menuTools.classList.toggle('hidden');
+			
+			// Close language menu if open
+			const btnLang = document.getElementById('btn-language');
+			const menuLang = document.getElementById('language-menu');
+			if (btnLang && menuLang) {
+				btnLang.setAttribute('aria-expanded', 'false');
+				menuLang.classList.add('hidden');
+			}
+		});
+
+		document.addEventListener('click', (e) => {
+			if (!menuTools.contains(e.target)) {
+				btnTools.setAttribute('aria-expanded', 'false');
+				menuTools.classList.add('hidden');
+			}
+		});
+
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape') {
+				btnTools.setAttribute('aria-expanded', 'false');
+				menuTools.classList.add('hidden');
+			}
+		});
+	}
+
 	const btn = document.getElementById('btn-language');
 	const menu = document.getElementById('language-menu');
 	if (btn && menu) {

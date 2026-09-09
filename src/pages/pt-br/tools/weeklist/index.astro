@@ -1,0 +1,17 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import SiteHeader from '../../../../components/SiteHeader.astro';
+import SiteFooter from '../../../../components/SiteFooter.astro';
+import WeeklistWorkspace from '../../../../components/WeeklistWorkspace.astro';
+---
+
+<Layout 
+	title="Weeklist — Planeje sua semana e cronometre suas tarefas"
+	description="Um planejador semanal simples que se vincula diretamente ao On Screen Timer. Planeje seus dias e envie tarefas ao cronômetro quando estiver pronto para se concentrar."
+>
+	<SiteHeader />
+	<main class="flex-grow bg-white dark:bg-zinc-950 transition-colors">
+		<WeeklistWorkspace />
+	</main>
+	<SiteFooter />
+</Layout>

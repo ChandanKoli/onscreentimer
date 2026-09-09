@@ -18,6 +18,7 @@ export async function GET() {
 		'privacy',
 		'terms',
 		'contact',
+		'tools/weeklist',
 	];
 
 	// Duration pages

@@ -1,0 +1,110 @@
+---
+import { getLocaleFromUrl } from '../i18n/utils';
+import { useTranslations } from '../i18n/ui';
+
+const localeId = getLocaleFromUrl(Astro.url);
+const t = useTranslations(localeId);
+---
+
+<div id="weeklist-app" class="w-full max-w-4xl mx-auto px-4 py-8 flex flex-col gap-8 min-h-[80vh]">
+	<header class="flex flex-col items-center gap-2 text-center">
+		<h1 class="text-3xl font-bold text-zinc-900 dark:text-zinc-100">Weeklist</h1>
+		<p class="text-zinc-600 dark:text-zinc-400">{t('weeklist.subtitle')}</p>
+	</header>
+
+	<div class="flex justify-center">
+		<button
+			id="btn-swap-weeks"
+			class="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 rounded-md font-medium transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
+		>
+			<span class="flex items-center gap-2">
+				<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>
+				{t('weeklist.swapWeeks')}
+			</span>
+		</button>
+	</div>
+
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+		<!-- Current Week -->
+		<div class="week-card bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden shadow-sm" data-week="current">
+			<div class="bg-zinc-50 dark:bg-zinc-800/50 border-b border-zinc-200 dark:border-zinc-800 px-4 py-3">
+				<h2 class="font-semibold text-zinc-800 dark:text-zinc-200">{t('weeklist.currentWeek')}</h2>
+			</div>
+			<div class="divide-y divide-zinc-100 dark:divide-zinc-800" id="current-week-days">
+				<!-- Rendered by JS -->
+			</div>
+		</div>
+
+		<!-- Next Week -->
+		<div class="week-card bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden shadow-sm" data-week="next">
+			<div class="bg-zinc-50 dark:bg-zinc-800/50 border-b border-zinc-200 dark:border-zinc-800 px-4 py-3">
+				<h2 class="font-semibold text-zinc-800 dark:text-zinc-200">{t('weeklist.nextWeek')}</h2>
+			</div>
+			<div class="divide-y divide-zinc-100 dark:divide-zinc-800" id="next-week-days">
+				<!-- Rendered by JS -->
+			</div>
+		</div>
+	</div>
+</div>
+
+
+	<div id="weeklist-toast" class="fixed top-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-900 text-sm font-medium rounded-full shadow-lg transition-opacity duration-300 opacity-0 pointer-events-none z-50">
+		{t('weeklist.sentToast')}
+	</div>
+
+<template id="tpl-day">
+	<div class="day-row px-4 py-3 flex flex-col gap-2 group/day" data-day-index="">
+		<div class="flex items-center justify-between">
+			<h3 class="text-sm font-medium text-zinc-700 dark:text-zinc-300 day-title"></h3>
+			<button class="btn-send-day opacity-0 focus:opacity-100 group-hover/day:opacity-100 transition-opacity text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm" aria-label={t('weeklist.aria.sendDay')} title={t('weeklist.aria.sendDay')}>
+				<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+			</button>
+		</div>
+		<div class="tasks-container flex flex-col gap-1.5">
+		</div>
+		<form class="add-task-form mt-2 hidden relative items-center">
+			<input type="text" class="w-full h-9 px-3 pr-9 text-sm rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors" placeholder={t('weeklist.addTask')} maxlength="80" />
+			<button type="submit" class="absolute right-1 w-7 h-7 flex items-center justify-center text-zinc-500 hover:text-blue-600 dark:hover:text-blue-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">
+				<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
+			</button>
+		</form>
+	</div>
+</template>
+
+<template id="tpl-task">
+	<div class="task-item flex items-center justify-between gap-2 p-1.5 -mx-1.5 rounded-md hover:bg-zinc-50 dark:hover:bg-zinc-800/50 group/task" data-task-id="">
+		<div class="flex items-center gap-2 min-w-0 flex-1">
+			<div class="status-dot w-2 h-2 rounded-full shrink-0"></div>
+			<span class="task-text text-sm text-zinc-800 dark:text-zinc-200 truncate"></span>
+		</div>
+		<span class="task-duration font-mono text-[11px] text-zinc-500 dark:text-zinc-400 opacity-70 tracking-wider shrink-0 mr-1 hidden"></span>
+		<div class="flex items-center gap-1 opacity-0 focus-within:opacity-100 group-hover/task:opacity-100 transition-opacity shrink-0">
+			<!-- Send / Redo -->
+			<button class="btn-task-action w-6 h-6 flex items-center justify-center rounded text-zinc-400 hover:text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/30 transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none">
+				<svg class="w-4 h-4 icon-send pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+				<svg class="w-3.5 h-3.5 icon-redo hidden" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+			</button>
+			<!-- Delete -->
+			<button class="btn-task-delete w-6 h-6 flex items-center justify-center rounded text-zinc-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none" aria-label={t('weeklist.aria.delete')} title={t('weeklist.aria.delete')}>
+				<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+			</button>
+		</div>
+	</div>
+</template>
+
+<script>
+	import { initWeeklist } from '../lib/weeklist.ts';
+	initWeeklist();
+
+	const themeBtn = document.getElementById('btn-theme');
+	if (themeBtn) {
+		themeBtn.addEventListener('click', () => {
+			const isDark = document.documentElement.classList.toggle('dark');
+			try {
+				localStorage.setItem('ost_theme', isDark ? 'dark' : 'light');
+			} catch {}
+		});
+	}
+
+
+</script>
