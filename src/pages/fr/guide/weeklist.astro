@@ -1,0 +1,36 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="Weeklist" 
+	description="Découvrez comment planifier votre semaine et synchroniser les tâches avec le minuteur."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Objectif :</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Un planificateur relatif sur 14 jours (Semaine Actuelle et Semaine Prochaine) pour organiser jusqu'à 3 tâches prioritaires par jour.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Ajouter &amp; Envoyer :</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Saisissez une tâche et cliquez sur le bouton <code class="font-mono text-zinc-800 dark:text-zinc-200">+</code>. Cliquez sur <code class="font-mono text-zinc-800 dark:text-zinc-200">▶</code> pour envoyer une seule tâche au On Screen Timer, ou sur <code class="font-mono text-zinc-800 dark:text-zinc-200">→</code> pour envoyer toutes les tâches de cette journée.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Points d'état :</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Rouge signifie en attente/non envoyé. Jaune signifie qu'elle est actuellement active dans le minuteur. Vert signifie qu'elle est terminée.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Échanger les Semaines :</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Cliquez sur <code class="font-mono text-zinc-800 dark:text-zinc-200">⇄ Échanger les Semaines</code> pour faire pivoter vos listes de la semaine actuelle et de la semaine prochaine.
+		</p>
+	</section>
+</GuideArticleLayout>

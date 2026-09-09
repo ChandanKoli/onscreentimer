@@ -1,0 +1,36 @@
+---
+import GuideArticleLayout from '../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="Weeklist" 
+	description="Learn how to plan your week and sync tasks to the timer."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Purpose</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			A relative 14-day planner (Current Week and Next Week) to organize up to 3 priority tasks per day.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Adding &amp; Sending</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Type a task and click the <code class="font-mono text-zinc-800 dark:text-zinc-200">+</code> button. Click <code class="font-mono text-zinc-800 dark:text-zinc-200">▶</code> to send a single task to the On Screen Timer, or <code class="font-mono text-zinc-800 dark:text-zinc-200">→</code> to send all tasks for that day.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Status Dots</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Red means pending/unsent. Yellow means it is currently active in the Timer. Green means it is completed.
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Swap Weeks</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Click <code class="font-mono text-zinc-800 dark:text-zinc-200">⇄ Swap Weeks</code> to rotate your current and next week arrays.
+		</p>
+	</section>
+</GuideArticleLayout>

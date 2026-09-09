@@ -1,0 +1,36 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="Weeklist" 
+	description="1週間の計画を立て、タスクをタイマーと同期させる方法を学びます。"
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">目的：</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			1日あたり最大3つの優先タスクを整理するための、相対的な14日間プランナー（今週と来週）。
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">追加と送信：</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			タスクを入力して<code class="font-mono text-zinc-800 dark:text-zinc-200">+</code>ボタンをクリックします。<code class="font-mono text-zinc-800 dark:text-zinc-200">▶</code>をクリックして単一のタスクをOn Screen Timerに送信するか、<code class="font-mono text-zinc-800 dark:text-zinc-200">→</code>をクリックしてその日のすべてのタスクを送信します。
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">ステータスドット：</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			赤は保留/未送信を意味します。黄色は現在タイマーでアクティブであることを意味します。緑は完了したことを意味します。
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">週を入れ替える：</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			<code class="font-mono text-zinc-800 dark:text-zinc-200">⇄ 週を入れ替える</code>をクリックして、今週と来週のリストを入れ替えます。
+		</p>
+	</section>
+</GuideArticleLayout>
