@@ -114,7 +114,7 @@ export const ui = {
     'guide.allGuides': 'All Guides',
     'guide.breadcrumb': 'Guides / ',
     'guide.titleSuffix': ' — On Screen Timer Guide',
-    'guide.openTimer': 'Open On Screen Timer &rarr;',
+    'guide.openTimer': 'Open On Screen Timer →',
 
     // Footer
     'footer.description': 'A simple browser timer, clock, stopwatch, task timer, and study utility.',
@@ -306,7 +306,7 @@ export const ui = {
     'guide.allGuides': 'Todas las guías',
     'guide.breadcrumb': 'Guías / ',
     'guide.titleSuffix': ' — Guía de On Screen Timer',
-    'guide.openTimer': 'Abrir On Screen Timer &rarr;',
+    'guide.openTimer': 'Abrir On Screen Timer →',
 
     // Footer
     'footer.description': 'Un temporizador, reloj, cronómetro y herramienta de tareas online, directamente en tu navegador.',
@@ -498,7 +498,7 @@ export const ui = {
     'guide.allGuides': 'Todos os Guias',
     'guide.breadcrumb': 'Guias / ',
     'guide.titleSuffix': ' — Guia do On Screen Timer',
-    'guide.openTimer': 'Abrir On Screen Timer &rarr;',
+    'guide.openTimer': 'Abrir On Screen Timer →',
 
     // Footer
     'footer.description': 'Um simples utilitário de navegador com temporizador, relógio, cronômetro, tarefas e foco.',
@@ -671,7 +671,7 @@ export const ui = {
     'guide.allGuides': 'Tous les guides',
     'guide.breadcrumb': 'Guides / ',
     'guide.titleSuffix': ' — Guide On Screen Timer',
-    'guide.openTimer': 'Ouvrir On Screen Timer &rarr;',
+    'guide.openTimer': 'Ouvrir On Screen Timer →',
 
     // Footer
     'footer.description': 'Un minuteur en ligne gratuit, une horloge, un chronomètre et un outil de gestion des tâches — directement dans votre navigateur.',
@@ -863,7 +863,7 @@ export const ui = {
     'guide.allGuides': 'Tutte le guide',
     'guide.breadcrumb': 'Guide / ',
     'guide.titleSuffix': ' — Guida di On Screen Timer',
-    'guide.openTimer': 'Apri On Screen Timer &rarr;',
+    'guide.openTimer': 'Apri On Screen Timer →',
 
     // Footer
     'footer.description': 'Un timer online, orologio, cronometro e strumento per la gestione delle attività, direttamente nel tuo browser.',
@@ -1056,7 +1056,7 @@ export const ui = {
     'guide.allGuides': 'すべてのガイド',
     'guide.breadcrumb': 'ガイド / ',
     'guide.titleSuffix': ' — On Screen Timer ガイド',
-    'guide.openTimer': 'On Screen Timer を開く &rarr;',
+    'guide.openTimer': 'On Screen Timer を開く →',
 
     // Footer
     'footer.description': 'ブラウザで使えるシンプルなタイマー、時計、ストップウォッチ、タスク管理ツール。',
@@ -1247,7 +1247,7 @@ export const ui = {
     'guide.allGuides': 'Alle Anleitungen',
     'guide.breadcrumb': 'Anleitungen / ',
     'guide.titleSuffix': ' — On Screen Timer Anleitung',
-    'guide.openTimer': 'On Screen Timer öffnen &rarr;',
+    'guide.openTimer': 'On Screen Timer öffnen →',
 
     // Footer
     'footer.description': 'Ein einfacher Online-Timer, eine Uhr, eine Stoppuhr und ein Aufgaben-Tool – direkt in deinem Browser.',
@@ -1440,7 +1440,7 @@ export const ui = {
     'guide.allGuides': '모든 가이드',
     'guide.breadcrumb': '가이드 / ',
     'guide.titleSuffix': ' — On Screen Timer 가이드',
-    'guide.openTimer': 'On Screen Timer 열기 &rarr;',
+    'guide.openTimer': 'On Screen Timer 열기 →',
 
     // Footer
     'footer.description': '간편한 브라우저 타이머, 시계, 스톱워치, 작업 타이머 및 학습 도구입니다.',
