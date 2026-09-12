@@ -89,7 +89,71 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 	const btnClock12h = document.getElementById('btn-clock-12h');
 	const btnClock24h = document.getElementById('btn-clock-24h');
 
-	if (!displayModern || !btnTimerPrimary || !btnTimerReset || !btnTimerStop || !timerInput) {
+	
+	// 4b. Burger Menu & Settings
+	function openMenu() {
+		burgerMenuOverlay?.classList.remove('hidden');
+		burgerMenuPanel?.classList.remove('translate-x-full');
+		void burgerMenuPanel?.offsetWidth; // reflow
+		burgerMenuOverlay?.classList.remove('opacity-0');
+	}
+
+	function closeMenu() {
+		burgerMenuOverlay?.classList.add('opacity-0');
+		burgerMenuPanel?.classList.add('translate-x-full');
+		setTimeout(() => {
+			burgerMenuOverlay?.classList.add('hidden');
+		}, 300);
+	}
+
+	btnMenu?.addEventListener('click', openMenu);
+	btnCloseMenu?.addEventListener('click', closeMenu);
+	burgerMenuOverlay?.addEventListener('click', closeMenu);
+
+
+	// --- Accordion UI Logic ---
+	const presetDisclosureBtns = document.querySelectorAll('.preset-disclosure-btn');
+
+	presetDisclosureBtns.forEach(btn => {
+		btn.addEventListener('click', () => {
+			const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+			btn.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
+			const targetId = btn.getAttribute('aria-controls');
+			const container = document.getElementById(targetId);
+			if (container) {
+				if (!isExpanded) {
+					container.classList.remove('hidden');
+					container.classList.add('flex');
+				} else {
+					container.classList.add('hidden');
+					container.classList.remove('flex');
+				}
+			}
+		});
+	});
+
+
+	const soundDisclosureBtns = document.querySelectorAll('.sound-disclosure-btn');
+
+	soundDisclosureBtns.forEach(btn => {
+		btn.addEventListener('click', () => {
+			const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+			btn.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
+			const container = document.getElementById('sound-chooser-container');
+			if (container) {
+				if (!isExpanded) {
+					container.classList.remove('hidden');
+					container.classList.add('flex');
+				} else {
+					container.classList.add('hidden');
+					container.classList.remove('flex');
+				}
+			}
+		});
+	});
+
+
+if (!displayModern || !btnTimerPrimary || !btnTimerReset || !btnTimerStop || !timerInput) {
 		// Elements not yet in DOM
 		return;
 	}
@@ -420,26 +484,6 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 		}
 	});
 
-	// 4b. Burger Menu & Settings
-	function openMenu() {
-		burgerMenuOverlay?.classList.remove('hidden');
-		burgerMenuPanel?.classList.remove('translate-x-full');
-		void burgerMenuPanel?.offsetWidth; // reflow
-		burgerMenuOverlay?.classList.remove('opacity-0');
-	}
-
-	function closeMenu() {
-		burgerMenuOverlay?.classList.add('opacity-0');
-		burgerMenuPanel?.classList.add('translate-x-full');
-		setTimeout(() => {
-			burgerMenuOverlay?.classList.add('hidden');
-		}, 300);
-	}
-
-	btnMenu?.addEventListener('click', openMenu);
-	btnCloseMenu?.addEventListener('click', closeMenu);
-	burgerMenuOverlay?.addEventListener('click', closeMenu);
-
 	btnClock12h?.addEventListener('click', () => {
 		store.setState(prev => ({ ...prev, clockFormat: '12h' }));
 		clockEngine.setFormat('12h');
@@ -727,26 +771,6 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 
 	// --- Preset UI Logic ---
 	const presetPhaseLabel = document.getElementById('preset-phase-label');
-	const presetDisclosureBtns = document.querySelectorAll('.preset-disclosure-btn');
-
-	presetDisclosureBtns.forEach(btn => {
-		btn.addEventListener('click', () => {
-			const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-			btn.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
-			const targetId = btn.getAttribute('aria-controls');
-			const container = document.getElementById(targetId);
-			if (container) {
-				if (!isExpanded) {
-					container.classList.remove('hidden');
-					container.classList.add('flex');
-				} else {
-					container.classList.add('hidden');
-					container.classList.remove('flex');
-				}
-			}
-		});
-	});
-
 	function populatePresetContainer(containerId, presetsData) {
 		const container = document.getElementById(containerId);
 		if (!container) return;
@@ -1438,25 +1462,6 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 	const btnSound = document.getElementById('btn-sound') as HTMLButtonElement | null;
 	const volumeSlider = document.getElementById('volume-slider') as HTMLInputElement | null;
 	const volumeDisplay = document.getElementById('volume-display');
-	const soundDisclosureBtns = document.querySelectorAll('.sound-disclosure-btn');
-
-	soundDisclosureBtns.forEach(btn => {
-		btn.addEventListener('click', () => {
-			const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-			btn.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
-			const container = document.getElementById('sound-chooser-container');
-			if (container) {
-				if (!isExpanded) {
-					container.classList.remove('hidden');
-					container.classList.add('flex');
-				} else {
-					container.classList.add('hidden');
-					container.classList.remove('flex');
-				}
-			}
-		});
-	});
-
 	if (volumeSlider) {
 		volumeSlider.addEventListener('input', (e) => {
 			const target = e.target as HTMLInputElement;
