@@ -65,4 +65,22 @@ export const COOKING_PRESETS: SequencePreset[] = [
 			{ phase: 'Simmer', durationSeconds: 300, themeColor: 'green' },
 		]
 	}
+,
+	{
+		id: 'cook-preset-4',
+		name: 'Boil Milk',
+		segments: [
+			{ phase: 'warmUp', durationSeconds: 240, themeColor: 'yellow' },
+			{ phase: 'watchClosely', durationSeconds: 120, themeColor: 'red' },
+		]
+	},
+	{
+		id: 'cook-preset-5',
+		name: 'Pasta',
+		segments: [
+			{ phase: 'boilWater', durationSeconds: 300, themeColor: 'blue' },
+			{ phase: 'cookPasta', durationSeconds: 600, themeColor: 'yellow' },
+		]
+	}
 ];
+

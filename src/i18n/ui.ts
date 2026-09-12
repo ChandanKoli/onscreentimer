@@ -120,6 +120,12 @@ export const ui = {
     'preset.phase.Boil Water': 'Boil Water',
     'preset.phase.Cook': 'Cook',
     'preset.phase.Simmer': 'Simmer',
+    'preset.cook-preset-4.name': 'Boil Milk',
+    'preset.cook-preset-5.name': 'Pasta',
+    'preset.phase.warmUp': 'Warm Up',
+    'preset.phase.watchClosely': 'Watch Closely!',
+    'preset.phase.boilWater': 'Boil Water',
+    'preset.phase.cookPasta': 'Cook Pasta',
 
     // Guide Layout
     'guide.allGuides': 'All Guides',
@@ -323,6 +329,12 @@ export const ui = {
     'preset.phase.Boil Water': 'Hervir agua',
     'preset.phase.Cook': 'Cocinar',
     'preset.phase.Simmer': 'Fuego lento',
+    'preset.cook-preset-4.name': 'Hervir leche',
+    'preset.cook-preset-5.name': 'Pasta',
+    'preset.phase.warmUp': 'Calentar',
+    'preset.phase.watchClosely': '¡Vigilar de cerca!',
+    'preset.phase.boilWater': 'Hervir agua',
+    'preset.phase.cookPasta': 'Cocinar pasta',
 
     // Guide Layout
     'guide.allGuides': 'Todas las guías',
@@ -526,6 +538,12 @@ export const ui = {
     'preset.phase.Boil Water': 'Ferver água',
     'preset.phase.Cook': 'Cozinhar',
     'preset.phase.Simmer': 'Fogo baixo',
+    'preset.cook-preset-4.name': 'Ferver Leite',
+    'preset.cook-preset-5.name': 'Macarrão',
+    'preset.phase.warmUp': 'Aquecer',
+    'preset.phase.watchClosely': 'Fique de olho!',
+    'preset.phase.boilWater': 'Ferver água',
+    'preset.phase.cookPasta': 'Cozinhar macarrão',
 
     // Guide Layout
     'guide.allGuides': 'Todos os Guias',
@@ -710,6 +728,12 @@ export const ui = {
     'preset.phase.Boil Water': 'Bouillir l\'eau',
     'preset.phase.Cook': 'Cuire',
     'preset.phase.Simmer': 'Mijoter',
+    'preset.cook-preset-4.name': 'Bouillir du lait',
+    'preset.cook-preset-5.name': 'Pâtes',
+    'preset.phase.warmUp': 'Réchauffer',
+    'preset.phase.watchClosely': 'Surveiller de près !',
+    'preset.phase.boilWater': 'Bouillir de l\'eau',
+    'preset.phase.cookPasta': 'Cuire les pâtes',
 
     // Guide Layout
     'guide.allGuides': 'Tous les guides',
@@ -913,6 +937,12 @@ export const ui = {
     'preset.phase.Boil Water': 'Bollire acqua',
     'preset.phase.Cook': 'Cucinare',
     'preset.phase.Simmer': 'Sobbollire',
+    'preset.cook-preset-4.name': 'Bollire il latte',
+    'preset.cook-preset-5.name': 'Pasta',
+    'preset.phase.warmUp': 'Riscaldare',
+    'preset.phase.watchClosely': 'Guardare a vista!',
+    'preset.phase.boilWater': 'Bollire l\'acqua',
+    'preset.phase.cookPasta': 'Cuocere la pasta',
 
     // Guide Layout
     'guide.allGuides': 'Tutte le guide',
@@ -1117,6 +1147,12 @@ export const ui = {
     'preset.phase.Boil Water': 'お湯を沸かす',
     'preset.phase.Cook': '調理',
     'preset.phase.Simmer': '煮込む',
+    'preset.cook-preset-4.name': 'ミルクを沸かす',
+    'preset.cook-preset-5.name': 'パスタ',
+    'preset.phase.warmUp': '温める',
+    'preset.phase.watchClosely': '目を離さない！',
+    'preset.phase.boilWater': 'お湯を沸かす',
+    'preset.phase.cookPasta': 'パスタを茹でる',
 
     // Guide Layout
     'guide.allGuides': 'すべてのガイド',
@@ -1319,6 +1355,12 @@ export const ui = {
     'preset.phase.Boil Water': 'Wasser kochen',
     'preset.phase.Cook': 'Kochen',
     'preset.phase.Simmer': 'Köcheln',
+    'preset.cook-preset-4.name': 'Milch kochen',
+    'preset.cook-preset-5.name': 'Pasta',
+    'preset.phase.warmUp': 'Aufwärmen',
+    'preset.phase.watchClosely': 'Gut aufpassen!',
+    'preset.phase.boilWater': 'Wasser kochen',
+    'preset.phase.cookPasta': 'Pasta kochen',
 
     // Guide Layout
     'guide.allGuides': 'Alle Anleitungen',
@@ -1523,6 +1565,12 @@ export const ui = {
     'preset.phase.Boil Water': '물 끓이기',
     'preset.phase.Cook': '조리',
     'preset.phase.Simmer': '끓이기',
+    'preset.cook-preset-4.name': '우유 끓이기',
+    'preset.cook-preset-5.name': '파스타',
+    'preset.phase.warmUp': '데우기',
+    'preset.phase.watchClosely': '주의해서 보기!',
+    'preset.phase.boilWater': '물 끓이기',
+    'preset.phase.cookPasta': '파스타 삶기',
 
     // Guide Layout
     'guide.allGuides': '모든 가이드',
