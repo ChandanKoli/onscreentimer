@@ -3,12 +3,7 @@ import { TimerEngine } from './timer-engine.ts';
 import { StopwatchEngine } from './stopwatch-engine.ts';
 import { ClockEngine } from './clock-engine.ts';
 import { parseDuration, formatDuration } from './parser.ts';
-import {
-	renderDigitalSvg,
-	calculateClockAngles,
-	calculateDurationAngles,
-	calculateStopwatchAngles
-} from './renderers.ts';
+import { renderDigitalSvg, renderAdjustableModernHtml, renderAdjustableDigitalHtml, calculateDurationAngles, calculateClockAngles, calculateStopwatchAngles } from './renderers.ts';
 import { taskActionReducer, engineStatusReducer } from './task-logic.ts';
 import { serializeState, hydrateState } from './persistence.ts';
 import { AudioSystem } from './audio.ts';
@@ -911,14 +906,14 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			}
 
 			// Modern
-			if (modernTimeText) modernTimeText.textContent = formatted;
+			if (modernTimeText) modernTimeText.innerHTML = renderAdjustableModernHtml(formatted, timer.status === 'running');
 			if (modernTimePeriod) modernTimePeriod.classList.add('hidden');
 			displayModern?.setAttribute('aria-label', `${tMsg('aria.timerDisplay')}: ${formatted}`);
 
 			// Digital
 			if (digitalAmPmBadge) digitalAmPmBadge.classList.add('hidden');
 			if (digitalSvgContainer && style === 'digital') {
-				digitalSvgContainer.innerHTML = renderDigitalSvg(formatted);
+				digitalSvgContainer.innerHTML = renderAdjustableDigitalHtml(formatted, timer.status === 'running');
 			}
 
 			// Analog
@@ -948,14 +943,14 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			}
 
 			// Modern
-			if (modernTimeText) modernTimeText.textContent = formatted;
+			if (modernTimeText) modernTimeText.innerHTML = renderAdjustableModernHtml(formatted, timer.status === 'running');
 			if (modernTimePeriod) modernTimePeriod.classList.add('hidden');
 			displayModern?.setAttribute('aria-label', `${tMsg('mode.stopwatch')}: ${formatted}`);
 
 			// Digital
 			if (digitalAmPmBadge) digitalAmPmBadge.classList.add('hidden');
 			if (digitalSvgContainer && style === 'digital') {
-				digitalSvgContainer.innerHTML = renderDigitalSvg(formatted);
+				digitalSvgContainer.innerHTML = renderAdjustableDigitalHtml(formatted, timer.status === 'running');
 			}
 
 			// Analog (Strictly clockwise with increasing elapsed duration)
@@ -1536,6 +1531,92 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 
 	// Initial size sync (handled by subscriber now, but kept for safety if needed before paint)
 	document.body.dataset.size = store.getState().size;
+
+	
+	// --- Adjust Timer Digits ---
+	document.addEventListener('pointerdown', (e) => {
+		const btn = (e.target as Element).closest('.adjust-btn');
+		if (!btn) return;
+		const state = store.getState();
+		if (state.mode !== 'timer' || state.timer.status === 'running') return;
+
+		const digit = btn.getAttribute('data-digit');
+		const dir = btn.getAttribute('data-adjust');
+		if (!digit || !dir) return;
+
+		let remaining = state.timer.remainingSeconds;
+		let h = Math.floor(remaining / 3600);
+		let m = Math.floor((remaining % 3600) / 60);
+		let s = remaining % 60;
+
+		// If the timer is formatted as MM:SS (e.g. 59:00), M can be > 59 internally?
+		// formatDuration converts it to HH:MM:SS if >= 3600.
+		// However, if it's strictly MM:SS but users dial M up to say 90? We restricted m1 to 0-5.
+		// Wait, if it was formatted as MM:SS, h is 0, m is < 60.
+
+		let h1 = Math.floor(h / 10);
+		let h2 = h % 10;
+		let m1 = Math.floor(m / 10);
+		let m2 = m % 10;
+		let s1 = Math.floor(s / 10);
+		let s2 = s % 10;
+
+		const delta = dir === 'up' ? 1 : -1;
+
+		if (digit === 'h1') {
+			h1 = h1 + delta;
+			if (h1 > 9) h1 = 0;
+			if (h1 < 0) h1 = 9;
+		} else if (digit === 'h2') {
+			h2 = h2 + delta;
+			if (h2 > 9) h2 = 0;
+			if (h2 < 0) h2 = 9;
+		} else if (digit === 'm1') {
+			m1 = m1 + delta;
+			if (m1 > 5) m1 = 0;
+			if (m1 < 0) m1 = 5;
+		} else if (digit === 'm2') {
+			m2 = m2 + delta;
+			if (m2 > 9) m2 = 0;
+			if (m2 < 0) m2 = 9;
+		} else if (digit === 's1') {
+			s1 = s1 + delta;
+			if (s1 > 5) s1 = 0;
+			if (s1 < 0) s1 = 5;
+		} else if (digit === 's2') {
+			s2 = s2 + delta;
+			if (s2 > 9) s2 = 0;
+			if (s2 < 0) s2 = 9;
+		}
+
+		const newH = h1 * 10 + h2;
+		const newM = m1 * 10 + m2;
+		const newS = s1 * 10 + s2;
+		const newRemaining = newH * 3600 + newM * 60 + newS;
+		const newFormatted = formatDuration(newRemaining);
+
+		if (state.timer.status === 'paused') {
+			timerEngine.reset();
+		}
+		
+		store.setState((prev) => ({
+			...prev,
+			timer: {
+				...prev.timer,
+				initialDurationSeconds: newRemaining,
+				rawInput: newFormatted, // Sync state with visual
+				inputError: null // Clear any errors
+			}
+		}));
+		
+		if (timerInput) {
+			timerInput.value = newFormatted;
+			timerInput.removeAttribute('aria-invalid');
+		}
+		
+		timerEngine.setDuration(newRemaining);
+	});
+
 
 	return {
 		store,

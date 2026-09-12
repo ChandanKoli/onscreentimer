@@ -34,7 +34,12 @@ class MockDOM {
 				value: '',
 				textContent: '',
 				style: {},
-				innerHTML: '',
+				get innerHTML() { return this._innerHTML || ''; },
+				set innerHTML(val) {
+					this._innerHTML = val;
+					// Strip tags and whitespace to match expected textContent in tests
+					this.textContent = val.replace(/<[^>]+>/g, '').replace(/\s+/g, '').trim();
+				},
 				...overrides
 			};
 			this.elements[id] = el;

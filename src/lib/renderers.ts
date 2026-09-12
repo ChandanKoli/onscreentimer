@@ -181,3 +181,74 @@ export function generateDialTicks(): Array<{ isHour: boolean; x1: number; y1: nu
 
 	return ticks;
 }
+
+export function renderAdjustableModernHtml(text: string, isRunning: boolean): string {
+	if (text.length !== 5 && text.length !== 8) return text;
+	
+		const types = text.length === 8 ? ['h1', 'h2', '', 'm1', 'm2', '', 's1', 's2'] : ['m1', 'm2', '', 's1', 's2'];
+	const isSixDigit = text.length === 8;
+	const textScaleClass = isSixDigit ? 'text-[clamp(2.5rem,8vw,5.5rem)] group-data-[size=tiny]/body:text-[clamp(1.8rem,5vw,3rem)] group-data-[size=big]/body:text-[clamp(3rem,11vw,8rem)] group-data-[size=full]/body:text-[clamp(3.5rem,14vw,11rem)]' : '';
+	const btnPad = isSixDigit ? 'p-1 sm:p-2 md:p-4' : 'p-4';
+	const svgSize = isSixDigit ? 'w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8' : 'w-6 h-6 sm:w-8 sm:h-8';
+	let html = `<span class="flex items-center pointer-events-none ${textScaleClass}">`;
+	for (let i = 0; i < text.length; i++) {
+		const char = text[i];
+		if (char === ':') {
+			html += '<span class="flex flex-col items-center justify-center mx-1 pointer-events-none"><span class="leading-none">:</span></span>';
+		} else {
+			const type = types[i];
+			const visibility = isRunning ? 'opacity-0 pointer-events-none' : 'opacity-50 hover:opacity-100 cursor-pointer';
+			const upPoly = '18 15 12 9 6 15';
+			const downPoly = '6 9 12 15 18 9';
+			html += `<span class="flex flex-col items-center pointer-events-none">
+				<button type="button" class="adjust-btn relative z-50 pointer-events-auto ${btnPad} bg-transparent outline-none flex items-center justify-center transition-opacity ${visibility}" data-adjust="up" data-digit="${type}" tabindex="-1" aria-hidden="true">
+					<svg class="pointer-events-none ${svgSize} text-zinc-800 dark:text-zinc-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="${upPoly}"></polyline></svg>
+				</button>
+				<span class="leading-none">${char}</span>
+				<button type="button" class="adjust-btn relative z-50 pointer-events-auto ${btnPad} bg-transparent outline-none flex items-center justify-center transition-opacity ${visibility}" data-adjust="down" data-digit="${type}" tabindex="-1" aria-hidden="true">
+					<svg class="pointer-events-none ${svgSize} text-zinc-800 dark:text-zinc-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="${downPoly}"></polyline></svg>
+				</button>
+			</span>`;
+		}
+	}
+	html += '</span>';
+	return html;
+}
+
+export function renderAdjustableDigitalHtml(text: string, isRunning: boolean): string {
+	if (text.length !== 5 && text.length !== 8) return renderDigitalSvg(text);
+	
+		const types = text.length === 8 ? ['h1', 'h2', '', 'm1', 'm2', '', 's1', 's2'] : ['m1', 'm2', '', 's1', 's2'];
+	const isSixDigit = text.length === 8;
+	const btnPad = isSixDigit ? 'p-1 sm:p-2 md:p-4' : 'p-4';
+	const svgSize = isSixDigit ? 'w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8' : 'w-6 h-6 sm:w-8 sm:h-8';
+	let html = '<div class="flex items-center justify-center w-full max-w-full pointer-events-none">';
+	for (let i = 0; i < text.length; i++) {
+		const char = text[i];
+		if (char === ':') {
+			html += `<div class="flex flex-col items-center justify-center pointer-events-none" style="flex: 16;">
+				<div style="width: 100%; height: auto; aspect-ratio: 16/66;">
+					<svg viewBox="0 0 16 66" class="w-full h-full select-none" fill="currentColor" aria-hidden="true">${renderColon(0)}</svg>
+				</div>
+			</div>`;
+		} else {
+			const type = types[i];
+			const visibility = isRunning ? 'opacity-0 pointer-events-none' : 'opacity-50 hover:opacity-100 cursor-pointer';
+			const upPoly = '18 15 12 9 6 15';
+			const downPoly = '6 9 12 15 18 9';
+			html += `<div class="flex flex-col items-center pointer-events-none" style="flex: 42;">
+				<button type="button" class="adjust-btn relative z-50 pointer-events-auto ${btnPad} bg-transparent outline-none flex items-center justify-center transition-opacity ${visibility}" data-adjust="up" data-digit="${type}" tabindex="-1" aria-hidden="true">
+					<svg class="pointer-events-none ${svgSize} text-zinc-800 dark:text-zinc-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="${upPoly}"></polyline></svg>
+				</button>
+				<div style="width: 100%; height: auto; aspect-ratio: 42/66;">
+					<svg viewBox="0 0 42 66" class="w-full h-full select-none" fill="currentColor" aria-hidden="true">${renderSegmentDigit(char, 0)}</svg>
+				</div>
+				<button type="button" class="adjust-btn relative z-50 pointer-events-auto ${btnPad} bg-transparent outline-none flex items-center justify-center transition-opacity ${visibility}" data-adjust="down" data-digit="${type}" tabindex="-1" aria-hidden="true">
+					<svg class="pointer-events-none ${svgSize} text-zinc-800 dark:text-zinc-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="${downPoly}"></polyline></svg>
+				</button>
+			</div>`;
+		}
+	}
+	html += '</div>';
+	return html;
+}
