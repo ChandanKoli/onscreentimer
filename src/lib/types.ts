@@ -61,3 +61,15 @@ export interface AppState {
 
 export type StateListener<T> = (state: T, prevState: T) => void;
 export type Unsubscribe = () => void;
+
+export interface SequenceItem {
+	durationSeconds: number;
+	phase: string;
+	themeColor?: 'blue' | 'yellow' | 'green' | 'red';
+}
+
+export interface SequencePreset {
+	id: string;
+	name: string;
+	segments: SequenceItem[];
+}

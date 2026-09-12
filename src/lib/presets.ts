@@ -1,15 +1,6 @@
-export interface StudySegment {
-	durationSeconds: number;
-	phase: string;
-}
+import type { SequenceItem, SequencePreset } from './types.ts';
 
-export interface StudyBlockPreset {
-	id: string;
-	name: string;
-	segments: StudySegment[];
-}
-
-export const STUDY_PRESETS: StudyBlockPreset[] = [
+export const STUDY_PRESETS: SequencePreset[] = [
 	{
 		id: 'preset-1',
 		name: 'Learn → Recall → Solve → Review',
@@ -43,6 +34,35 @@ export const STUDY_PRESETS: StudyBlockPreset[] = [
 			{ durationSeconds: 45 * 60, phase: 'Study' },
 			{ durationSeconds: 45 * 60, phase: 'Solve' },
 			{ durationSeconds: 30 * 60, phase: 'Review' },
+		]
+	}
+];
+
+export const COOKING_PRESETS: SequencePreset[] = [
+	{
+		id: 'cook-preset-1',
+		name: 'Perfect Egg',
+		segments: [
+			{ phase: 'Gooey', durationSeconds: 420, themeColor: 'yellow' },
+			{ phase: 'Soft Boil', durationSeconds: 180, themeColor: 'green' },
+			{ phase: 'Hard Boil', durationSeconds: 180, themeColor: 'green' },
+			{ phase: 'Overcooked', durationSeconds: 120, themeColor: 'red' },
+		]
+	},
+	{
+		id: 'cook-preset-2',
+		name: 'Instant Noodles',
+		segments: [
+			{ phase: 'Boil Water', durationSeconds: 120, themeColor: 'yellow' },
+			{ phase: 'Cook', durationSeconds: 180, themeColor: 'green' },
+		]
+	},
+	{
+		id: 'cook-preset-3',
+		name: 'Sweet Corn',
+		segments: [
+			{ phase: 'Boil Water', durationSeconds: 300, themeColor: 'yellow' },
+			{ phase: 'Simmer', durationSeconds: 300, themeColor: 'green' },
 		]
 	}
 ];

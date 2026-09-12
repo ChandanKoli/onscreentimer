@@ -110,6 +110,17 @@ export const ui = {
     'preset.phase.Practice': 'Practice',
     'preset.blockComplete': 'Block complete',
 
+    'preset.cook-preset-1.name': 'Perfect Egg',
+    'preset.cook-preset-2.name': 'Instant Noodles',
+    'preset.cook-preset-3.name': 'Sweet Corn',
+    'preset.phase.Gooey': 'Gooey',
+    'preset.phase.Soft Boil': 'Soft Boil',
+    'preset.phase.Hard Boil': 'Hard Boil',
+    'preset.phase.Overcooked': 'Overcooked',
+    'preset.phase.Boil Water': 'Boil Water',
+    'preset.phase.Cook': 'Cook',
+    'preset.phase.Simmer': 'Simmer',
+
     // Guide Layout
     'guide.allGuides': 'All Guides',
     'guide.breadcrumb': 'Guides / ',
@@ -301,6 +312,17 @@ export const ui = {
     'preset.phase.Study': 'Estudiar',
     'preset.phase.Practice': 'Practicar',
     'preset.blockComplete': 'Bloque completado',
+
+    'preset.cook-preset-1.name': 'Huevo Perfecto',
+    'preset.cook-preset-2.name': 'Fideos Instantáneos',
+    'preset.cook-preset-3.name': 'Maíz Dulce',
+    'preset.phase.Gooey': 'Poco hecho',
+    'preset.phase.Soft Boil': 'Pasado por agua',
+    'preset.phase.Hard Boil': 'Duro',
+    'preset.phase.Overcooked': 'Muy hecho',
+    'preset.phase.Boil Water': 'Hervir agua',
+    'preset.phase.Cook': 'Cocinar',
+    'preset.phase.Simmer': 'Fuego lento',
 
     // Guide Layout
     'guide.allGuides': 'Todas las guías',
@@ -494,6 +516,17 @@ export const ui = {
     'preset.phase.Practice': 'Praticar',
     'preset.blockComplete': 'Bloco concluído',
 
+    'preset.cook-preset-1.name': 'Ovo Perfeito',
+    'preset.cook-preset-2.name': 'Macarrão Instantâneo',
+    'preset.cook-preset-3.name': 'Milho Verde',
+    'preset.phase.Gooey': 'Gema mole',
+    'preset.phase.Soft Boil': 'Cozido mole',
+    'preset.phase.Hard Boil': 'Cozido duro',
+    'preset.phase.Overcooked': 'Muito cozido',
+    'preset.phase.Boil Water': 'Ferver água',
+    'preset.phase.Cook': 'Cozinhar',
+    'preset.phase.Simmer': 'Fogo baixo',
+
     // Guide Layout
     'guide.allGuides': 'Todos os Guias',
     'guide.breadcrumb': 'Guias / ',
@@ -666,6 +699,17 @@ export const ui = {
     'preset.phase.Study': 'Étudier',
     'preset.phase.Practice': 'Pratiquer',
     'preset.blockComplete': 'Bloc terminé',
+
+    'preset.cook-preset-1.name': 'Œuf Parfait',
+    'preset.cook-preset-2.name': 'Nouilles Instantanées',
+    'preset.cook-preset-3.name': 'Maïs Doux',
+    'preset.phase.Gooey': 'Coulant',
+    'preset.phase.Soft Boil': 'Mollet',
+    'preset.phase.Hard Boil': 'Dur',
+    'preset.phase.Overcooked': 'Trop cuit',
+    'preset.phase.Boil Water': 'Bouillir l\'eau',
+    'preset.phase.Cook': 'Cuire',
+    'preset.phase.Simmer': 'Mijoter',
 
     // Guide Layout
     'guide.allGuides': 'Tous les guides',
@@ -858,6 +902,17 @@ export const ui = {
     'preset.phase.Study': 'Studia',
     'preset.phase.Practice': 'Pratica',
     'preset.blockComplete': 'Blocco completato',
+
+    'preset.cook-preset-1.name': 'Uovo Perfetto',
+    'preset.cook-preset-2.name': 'Noodles Istantanei',
+    'preset.cook-preset-3.name': 'Mais Dolce',
+    'preset.phase.Gooey': 'Colante',
+    'preset.phase.Soft Boil': 'Bazzotto',
+    'preset.phase.Hard Boil': 'Sodo',
+    'preset.phase.Overcooked': 'Troppo cotto',
+    'preset.phase.Boil Water': 'Bollire acqua',
+    'preset.phase.Cook': 'Cucinare',
+    'preset.phase.Simmer': 'Sobbollire',
 
     // Guide Layout
     'guide.allGuides': 'Tutte le guide',
@@ -1052,6 +1107,17 @@ export const ui = {
     'preset.phase.Practice': '練習',
     'preset.blockComplete': '完了',
 
+    'preset.cook-preset-1.name': '完璧なゆで卵',
+    'preset.cook-preset-2.name': 'インスタントラーメン',
+    'preset.cook-preset-3.name': 'スイートコーン',
+    'preset.phase.Gooey': 'とろとろ',
+    'preset.phase.Soft Boil': '半熟',
+    'preset.phase.Hard Boil': '固茹で',
+    'preset.phase.Overcooked': '茹ですぎ',
+    'preset.phase.Boil Water': 'お湯を沸かす',
+    'preset.phase.Cook': '調理',
+    'preset.phase.Simmer': '煮込む',
+
     // Guide Layout
     'guide.allGuides': 'すべてのガイド',
     'guide.breadcrumb': 'ガイド / ',
@@ -1242,6 +1308,17 @@ export const ui = {
     'preset.phase.Study': 'Lernen',
     'preset.phase.Practice': 'Üben',
     'preset.blockComplete': 'Block abgeschlossen',
+
+    'preset.cook-preset-1.name': 'Perfektes Ei',
+    'preset.cook-preset-2.name': 'Instant-Nudeln',
+    'preset.cook-preset-3.name': 'Zuckermais',
+    'preset.phase.Gooey': 'Flüssig',
+    'preset.phase.Soft Boil': 'Weichgekocht',
+    'preset.phase.Hard Boil': 'Hartgekocht',
+    'preset.phase.Overcooked': 'Verkocht',
+    'preset.phase.Boil Water': 'Wasser kochen',
+    'preset.phase.Cook': 'Kochen',
+    'preset.phase.Simmer': 'Köcheln',
 
     // Guide Layout
     'guide.allGuides': 'Alle Anleitungen',
@@ -1435,6 +1512,17 @@ export const ui = {
     'preset.phase.Study': '공부',
     'preset.phase.Practice': '연습',
     'preset.blockComplete': '블록 완료',
+
+    'preset.cook-preset-1.name': '완벽한 계란',
+    'preset.cook-preset-2.name': '인스턴트 라면',
+    'preset.cook-preset-3.name': '스위트콘',
+    'preset.phase.Gooey': '촉촉한 반숙',
+    'preset.phase.Soft Boil': '반숙',
+    'preset.phase.Hard Boil': '완숙',
+    'preset.phase.Overcooked': '과조리',
+    'preset.phase.Boil Water': '물 끓이기',
+    'preset.phase.Cook': '조리',
+    'preset.phase.Simmer': '끓이기',
 
     // Guide Layout
     'guide.allGuides': '모든 가이드',

@@ -8,9 +8,11 @@ import { taskActionReducer, engineStatusReducer } from './task-logic.ts';
 import { serializeState, hydrateState } from './persistence.ts';
 import { AudioSystem } from './audio.ts';
 import type { AppState, AppMode, DisplayStyle, TimerStatus, StopwatchStatus, Task } from './types.ts';
-import { STUDY_PRESETS } from './presets.ts';
+import { STUDY_PRESETS, COOKING_PRESETS } from './presets.ts';
 import { getLocaleFromUrl } from '../i18n/utils.ts';
 import { useTranslations } from '../i18n/ui.ts';
+
+const ALL_PRESETS = [...STUDY_PRESETS, ...COOKING_PRESETS];
 
 export function initWorkspaceController(config?: { overrideTimerDuration?: number }) {
 	const currentLocale = (typeof window !== 'undefined' && window.location && window.location.href)
@@ -268,7 +270,7 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 			// Preset Progression
 			const state = store.getState();
 			if (state.activePresetId) {
-				const preset = STUDY_PRESETS.find(p => p.id === state.activePresetId);
+				const preset = ALL_PRESETS.find(p => p.id === state.activePresetId);
 				if (preset && state.activeSegmentIndex < preset.segments.length - 1) {
 					// Advance to next segment immediately
 					const nextIndex = state.activeSegmentIndex + 1;
@@ -724,7 +726,6 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 
 
 	// --- Preset UI Logic ---
-	const presetChooserContainer = document.getElementById('preset-chooser-container');
 	const presetPhaseLabel = document.getElementById('preset-phase-label');
 	const presetDisclosureBtns = document.querySelectorAll('.preset-disclosure-btn');
 
@@ -732,35 +733,39 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 		btn.addEventListener('click', () => {
 			const isExpanded = btn.getAttribute('aria-expanded') === 'true';
 			btn.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
-			if (presetChooserContainer) {
+			const targetId = btn.getAttribute('aria-controls');
+			const container = document.getElementById(targetId);
+			if (container) {
 				if (!isExpanded) {
-					presetChooserContainer.classList.remove('hidden');
-					presetChooserContainer.classList.add('flex');
+					container.classList.remove('hidden');
+					container.classList.add('flex');
 				} else {
-					presetChooserContainer.classList.add('hidden');
-					presetChooserContainer.classList.remove('flex');
+					container.classList.add('hidden');
+					container.classList.remove('flex');
 				}
 			}
 		});
 	});
 
-	if (presetChooserContainer) {
-		presetChooserContainer.innerHTML = STUDY_PRESETS.map(preset => {
+	function populatePresetContainer(containerId, presetsData) {
+		const container = document.getElementById(containerId);
+		if (!container) return;
+		container.innerHTML = presetsData.map(preset => {
 			const totalMins = preset.segments.reduce((acc, s) => acc + s.durationSeconds / 60, 0);
 			const segmentsStr = preset.segments.map(s => s.durationSeconds / 60).join(' · ');
 			return `
 				<button type="button" data-preset-id="${preset.id}" class="w-full text-left p-3 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
-					<div class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-1">${tMsg(`preset.${preset.id}.name` as any) || preset.name}</div>
+					<div class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-1">${tMsg(`preset.${preset.id}.name`) || preset.name}</div>
 					<div class="text-xs text-zinc-500 dark:text-zinc-400">${totalMins} min (${segmentsStr})</div>
 				</button>
 			`;
 		}).join('');
 
-		presetChooserContainer.addEventListener('click', (e) => {
+		container.addEventListener('click', (e) => {
 			const target = e.target.closest('button[data-preset-id]');
 			if (target) {
 				const presetId = target.getAttribute('data-preset-id');
-				const preset = STUDY_PRESETS.find(p => p.id === presetId);
+				const preset = ALL_PRESETS.find(p => p.id === presetId);
 				if (preset) {
 					closeMenu();
 
@@ -778,13 +783,32 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 		});
 	}
 
+	populatePresetContainer('preset-chooser-container', STUDY_PRESETS);
+	populatePresetContainer('cooking-preset-chooser-container', COOKING_PRESETS);
+
 	function updatePresetLabel(state) {
 		if (presetPhaseLabel) {
 			if (state.mode === 'timer' && state.activePresetId) {
-				const preset = STUDY_PRESETS.find(p => p.id === state.activePresetId);
+				const preset = ALL_PRESETS.find(p => p.id === state.activePresetId);
 				if (preset && preset.segments[state.activeSegmentIndex]) {
-					const rawPhase = preset.segments[state.activeSegmentIndex].phase;
-					presetPhaseLabel.textContent = tMsg(`preset.phase.${rawPhase}` as any) || rawPhase;
+					const segment = preset.segments[state.activeSegmentIndex];
+					const rawPhase = segment.phase;
+					presetPhaseLabel.textContent = tMsg(`preset.phase.${rawPhase}` ) || rawPhase;
+					
+					// Clear old color classes
+					presetPhaseLabel.classList.remove('border-blue-500', 'text-blue-500', 'border-yellow-500', 'text-yellow-500', 'border-emerald-500', 'text-emerald-500', 'border-red-500', 'text-red-500');
+					
+					// Apply new color classes
+					if (segment.themeColor === 'yellow') {
+						presetPhaseLabel.classList.add('border-yellow-500', 'text-yellow-500');
+					} else if (segment.themeColor === 'green') {
+						presetPhaseLabel.classList.add('border-emerald-500', 'text-emerald-500');
+					} else if (segment.themeColor === 'red') {
+						presetPhaseLabel.classList.add('border-red-500', 'text-red-500');
+					} else {
+						presetPhaseLabel.classList.add('border-blue-500', 'text-blue-500');
+					}
+					
 					presetPhaseLabel.classList.remove('hidden');
 				} else {
 					presetPhaseLabel.classList.add('hidden');
