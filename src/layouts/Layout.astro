@@ -9,12 +9,14 @@ interface Props {
 	title?: string;
 	description?: string;
 	ogType?: string;
+	ogImage?: string;
 }
 
 const {
 	title = 'Online Timer, Clock & Stopwatch — On Screen Timer',
 	description = 'A free, full-screen online timer, clock, and stopwatch with built-in task tracking. Distraction-free, easy to use, and works directly in your browser.',
-	ogType = 'website'
+	ogType = 'website',
+	ogImage = '/web-app-manifest-512x512.png'
 } = Astro.props;
 
 const currentLocaleId = getLocaleFromUrl(Astro.url);
@@ -71,7 +73,7 @@ const xDefaultUrl = new URL(xDefaultPath.replace(/\/{2,}/g, '/'), SITE_CONFIG.ur
 		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:type" content={ogType} />
 		<meta property="og:site_name" content={SITE_CONFIG.name} />
-		<!-- <meta property="og:image" content={new URL("/og-image.png", SITE_CONFIG.url)} /> -->
+		<meta property="og:image" content={new URL(ogImage, SITE_CONFIG.url)} />
 
 		<slot name="head" />
 
