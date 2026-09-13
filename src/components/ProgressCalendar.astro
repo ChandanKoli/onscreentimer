@@ -1,0 +1,151 @@
+---
+// ProgressCalendar.astro
+---
+
+<div class="hidden md:block w-full p-2.5 bg-transparent">
+  <div class="flex items-center justify-between mb-2">
+    <h3 class="text-xs font-medium text-zinc-500 dark:text-zinc-400" id="progress-month-label">Progress</h3>
+    <div class="flex items-center gap-1">
+      <button type="button" id="btn-progress-expand" class="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 rounded p-0.5" aria-label="Expand Calendar" title="Expand">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+      </button>
+      <button type="button" id="btn-progress-collapse" class="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 rounded p-0.5" aria-label="Collapse Calendar" title="Collapse">
+        <svg id="icon-progress-collapse" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+      </button>
+    </div>
+  </div>
+  <div id="progress-calendar-wrapper">
+    <!-- 7 column grid for days -->
+    <div class="grid grid-cols-7 gap-1 justify-items-center" id="progress-calendar-grid">
+    <!-- Day headers -->
+    <div class="text-[10px] text-center text-zinc-500 font-medium">S</div>
+    <div class="text-[10px] text-center text-zinc-500 font-medium">M</div>
+    <div class="text-[10px] text-center text-zinc-500 font-medium">T</div>
+    <div class="text-[10px] text-center text-zinc-500 font-medium">W</div>
+    <div class="text-[10px] text-center text-zinc-500 font-medium">T</div>
+    <div class="text-[10px] text-center text-zinc-500 font-medium">F</div>
+    <div class="text-[10px] text-center text-zinc-500 font-medium">S</div>
+    <!-- Cells injected via JS -->
+  </div>
+  </div>
+</div>
+
+<script>
+  function renderCalendar() {
+    const grid = document.getElementById('progress-calendar-grid');
+    const label = document.getElementById('progress-month-label');
+    if (!grid || !label) return;
+
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    label.textContent = monthNames[month];
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    // Load data
+    let data = {};
+    try {
+      const stored = localStorage.getItem('ost_progress_data');
+      if (stored) data = JSON.parse(stored);
+    } catch (e) {}
+
+    // Clear existing cells (keep headers)
+    const headers = grid.querySelectorAll('div');
+    const nodesToKeep = [];
+    for (let i = 0; i < 7; i++) {
+        if (headers[i]) nodesToKeep.push(headers[i]);
+    }
+    grid.innerHTML = '';
+    nodesToKeep.forEach(n => grid.appendChild(n));
+
+    // Empty cells before start of month
+    for (let i = 0; i < firstDay; i++) {
+      const empty = document.createElement('div');
+      empty.className = 'w-4 h-4 rounded-sm';
+      grid.appendChild(empty);
+    }
+
+    // Days
+    for (let day = 1; day <= daysInMonth; day++) {
+      const cell = document.createElement('div');
+      
+      const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+      const count = data[dateStr] || 0;
+      
+      let bgClass = 'bg-zinc-100 dark:bg-slate-800'; // 0 tasks
+      if (count === 1) bgClass = 'bg-blue-200 dark:bg-blue-900';
+      else if (count === 2) bgClass = 'bg-blue-400 dark:bg-blue-700';
+      else if (count >= 3) bgClass = 'bg-blue-600 dark:bg-blue-500';
+
+      cell.className = `w-4 h-4 rounded-sm ${bgClass} transition-colors`;
+      cell.title = `${dateStr}: ${count} task${count === 1 ? '' : 's'}`;
+      cell.setAttribute('data-date', dateStr);
+      
+      grid.appendChild(cell);
+    }
+  }
+
+  // Initial render
+  renderCalendar();
+
+  // Expose global increment
+  // @ts-ignore
+  window.incrementDailyProgress = function() {
+    const now = new Date();
+    const dateStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    
+    let data = {};
+    try {
+      const stored = localStorage.getItem('ost_progress_data');
+      if (stored) data = JSON.parse(stored);
+    } catch (e) {}
+
+    data[dateStr] = (data[dateStr] || 0) + 1;
+    localStorage.setItem('ost_progress_data', JSON.stringify(data));
+
+    // Update UI instantly
+    const cell = document.querySelector(`[data-date="${dateStr}"]`);
+    if (cell) {
+      const count = data[dateStr];
+      let bgClass = 'bg-zinc-100 dark:bg-slate-800';
+      if (count === 1) bgClass = 'bg-blue-200 dark:bg-blue-900';
+      else if (count === 2) bgClass = 'bg-blue-400 dark:bg-blue-700';
+      else if (count >= 3) bgClass = 'bg-blue-600 dark:bg-blue-500';
+      
+      cell.className = `w-4 h-4 rounded-sm ${bgClass} transition-colors`;
+      cell.title = `${dateStr}: ${count} task${count === 1 ? '' : 's'}`;
+    }
+  };
+
+  // Header controls
+  const btnExpand = document.getElementById('btn-progress-expand');
+  if (btnExpand) {
+    btnExpand.addEventListener('click', () => {
+      const modalOverlay = document.getElementById('progress-modal-overlay');
+      if (modalOverlay) {
+        modalOverlay.classList.remove('hidden');
+      }
+    });
+  }
+
+  const btnCollapse = document.getElementById('btn-progress-collapse');
+  const iconCollapse = document.getElementById('icon-progress-collapse');
+  const calendarWrapper = document.getElementById('progress-calendar-wrapper');
+
+  if (btnCollapse && calendarWrapper && iconCollapse) {
+    btnCollapse.addEventListener('click', () => {
+      const isHidden = calendarWrapper.classList.contains('hidden');
+      if (isHidden) {
+        calendarWrapper.classList.remove('hidden');
+        iconCollapse.classList.remove('-rotate-90');
+      } else {
+        calendarWrapper.classList.add('hidden');
+        iconCollapse.classList.add('-rotate-90');
+      }
+    });
+  }
+</script>

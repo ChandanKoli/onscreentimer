@@ -1,0 +1,28 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="Monitoraggio dei progressi" 
+	description="Scopri come vengono monitorate le sessioni di focus quotidiane e il completamento delle attività."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Archiviazione locale</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			I tuoi progressi quotidiani vengono monitorati automaticamente e salvati localmente nel tuo browser (privato, offline, nessun account richiesto).
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Scala di colori</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Completare attività o sessioni di focus colora la tua griglia giornaliera:
+		</p>
+		<ul class="list-disc pl-5 space-y-1 text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			<li><strong>0 Attività:</strong> Non contato / vuoto</li>
+			<li><strong>1 Attività:</strong> Blu scuro</li>
+			<li><strong>2 Attività:</strong> Blu medio</li>
+			<li><strong>3+ Attività:</strong> Blu acceso</li>
+		</ul>
+	</section>
+</GuideArticleLayout>

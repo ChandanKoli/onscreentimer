@@ -1,0 +1,28 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="進捗トラッキング" 
+	description="毎日のフォーカスセッションとタスク完了がどのように追跡されるかを学びます。"
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">ローカルストレージ</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			毎日の進捗は自動的に追跡され、ブラウザにローカル保存されます（プライベート、オフライン対応、アカウント不要）。
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">カラースケール</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			タスクやフォーカスセッションを完了すると、毎日のグリッドに色が付きます。
+		</p>
+		<ul class="list-disc pl-5 space-y-1 text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			<li><strong>0 タスク:</strong> カウントなし / 空</li>
+			<li><strong>1 タスク:</strong> 濃い青</li>
+			<li><strong>2 タスク:</strong> 中くらいの青</li>
+			<li><strong>3+ タスク:</strong> 明るい青</li>
+		</ul>
+	</section>
+</GuideArticleLayout>

@@ -1,0 +1,28 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="Acompanhamento de progresso" 
+	description="Saiba como as sessões de foco diárias e a conclusão de tarefas são monitoradas."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Armazenamento local</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Seu progresso diário é monitorado automaticamente e salvo localmente no seu navegador (privado, offline, sem necessidade de conta).
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Escala de cores</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Concluir tarefas ou sessões de foco colore sua grade diária:
+		</p>
+		<ul class="list-disc pl-5 space-y-1 text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			<li><strong>0 Tarefas:</strong> Não contado / vazio</li>
+			<li><strong>1 Tarefa:</strong> Azul escuro</li>
+			<li><strong>2 Tarefas:</strong> Azul médio</li>
+			<li><strong>3+ Tarefas:</strong> Azul claro</li>
+		</ul>
+	</section>
+</GuideArticleLayout>

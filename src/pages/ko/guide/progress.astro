@@ -1,0 +1,28 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="진행률 추적" 
+	description="일일 집중 세션 및 작업 완료가 어떻게 추적되는지 알아보세요."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">로컬 저장소</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			일일 진행률은 자동으로 추적되어 브라우저에 로컬로 저장됩니다(비공개, 오프라인 우선, 계정 필요 없음).
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">색상 기준표</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			작업 또는 집중 세션을 완료하면 일일 그리드에 색상이 표시됩니다.
+		</p>
+		<ul class="list-disc pl-5 space-y-1 text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			<li><strong>0개 작업:</strong> 계산되지 않음 / 비어 있음</li>
+			<li><strong>1개 작업:</strong> 진한 파란색</li>
+			<li><strong>2개 작업:</strong> 중간 파란색</li>
+			<li><strong>3개 이상 작업:</strong> 밝은 파란색</li>
+		</ul>
+	</section>
+</GuideArticleLayout>

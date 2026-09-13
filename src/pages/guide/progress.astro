@@ -1,0 +1,28 @@
+---
+import GuideArticleLayout from '../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="Progress Tracking" 
+	description="Learn how daily focus sessions and task completions are tracked."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Local Storage</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Your daily progress is tracked automatically and stored locally in your browser (private, offline-first, no account required).
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Color Scaling</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Completing tasks or focus sessions colors your daily grid:
+		</p>
+		<ul class="list-disc pl-5 space-y-1 text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			<li><strong>0 Tasks:</strong> Not counted / empty</li>
+			<li><strong>1 Task:</strong> Dark Blue</li>
+			<li><strong>2 Tasks:</strong> Medium Blue</li>
+			<li><strong>3+ Tasks:</strong> Bright Blue</li>
+		</ul>
+	</section>
+</GuideArticleLayout>

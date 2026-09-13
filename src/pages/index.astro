@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import { getLocaleFromUrl } from '../i18n/utils.ts';
 import { useTranslations } from '../i18n/ui.ts';
 import TimerWorkspace from '../components/TimerWorkspace.astro';
+import ProgressCalendar from '../components/ProgressCalendar.astro';
+import ProgressModal from '../components/ProgressModal.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 const locale = getLocaleFromUrl(Astro.url);
@@ -37,8 +39,12 @@ const t = useTranslations(locale);
 				<TimerWorkspace />
 			</div>
 
-			<!-- Mini To-do Panel (Left on Desktop, stacked below on Mobile) -->
-			<aside id="todo-panel" class="w-full max-w-md lg:w-72 lg:max-w-none flex flex-col border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-sm p-4 shrink-0 order-2 lg:order-1 group-data-[size=full]/body:hidden transition-all overflow-hidden lg:overflow-visible">
+			<!-- Left Column (Progress & To-do) -->
+			<div class="w-full max-w-md lg:w-72 lg:max-w-none flex flex-col gap-4 shrink-0 order-2 lg:order-1 group-data-[size=full]/body:hidden">
+				<ProgressCalendar />
+
+				<!-- Mini To-do Panel (Left on Desktop, stacked below on Mobile) -->
+				<aside id="todo-panel" class="w-full flex flex-col border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-sm p-4 transition-all overflow-hidden lg:overflow-visible">
 				<!-- Mobile Header -->
 					<div class="lg:hidden flex items-center justify-between w-full">
 						<button type="button" id="btn-mobile-todo-toggle" aria-expanded="false" aria-controls="todo-content" class="flex items-center text-left font-medium text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
@@ -80,6 +86,7 @@ const t = useTranslations(locale);
 					</div>
 				</div>
 			</aside>
+			</div>
 		</main></div>
 
 		<!-- How It Works Section -->
@@ -275,6 +282,7 @@ const t = useTranslations(locale);
 			</div>
 		</div>
 
+		<ProgressModal />
 </Layout>
 
 <script>

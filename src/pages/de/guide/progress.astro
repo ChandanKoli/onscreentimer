@@ -1,0 +1,28 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="Fortschrittsverfolgung" 
+	description="Erfahre, wie tägliche Fokus-Sitzungen und Aufgabenabschlüsse verfolgt werden."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Lokale Speicherung</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Dein täglicher Fortschritt wird automatisch erfasst und lokal in deinem Browser gespeichert (privat, offline-fähig, kein Konto erforderlich).
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Farbskala</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Der Abschluss von Aufgaben oder Fokus-Sitzungen färbt dein tägliches Raster:
+		</p>
+		<ul class="list-disc pl-5 space-y-1 text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			<li><strong>0 Aufgaben:</strong> Nicht gezählt / leer</li>
+			<li><strong>1 Aufgabe:</strong> Dunkelblau</li>
+			<li><strong>2 Aufgaben:</strong> Mittelblau</li>
+			<li><strong>3+ Aufgaben:</strong> Hellblau</li>
+		</ul>
+	</section>
+</GuideArticleLayout>

@@ -1,0 +1,28 @@
+---
+import GuideArticleLayout from '../../../layouts/GuideArticleLayout.astro';
+---
+
+<GuideArticleLayout 
+	title="Seguimiento del progreso" 
+	description="Aprende cómo se registran las sesiones diarias de enfoque y la finalización de tareas."
+>
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Almacenamiento local</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Tu progreso diario se rastrea automáticamente y se guarda localmente en tu navegador (privado, funcional sin conexión, no requiere cuenta).
+		</p>
+	</section>
+
+	<section class="space-y-4">
+		<h2 class="text-2xl sm:text-[1.65rem] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">Escala de colores</h2>
+		<p class="text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			Completar tareas o sesiones de enfoque colorea tu cuadrícula diaria:
+		</p>
+		<ul class="list-disc pl-5 space-y-1 text-base sm:text-[16px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+			<li><strong>0 Tareas:</strong> No contado / vacío</li>
+			<li><strong>1 Tarea:</strong> Azul oscuro</li>
+			<li><strong>2 Tareas:</strong> Azul medio</li>
+			<li><strong>3+ Tareas:</strong> Azul claro</li>
+		</ul>
+	</section>
+</GuideArticleLayout>
