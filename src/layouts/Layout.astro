@@ -30,21 +30,18 @@ if (localeConfig.prefix && basePath.startsWith(localeConfig.prefix)) {
 if (!basePath.startsWith('/')) basePath = '/' + basePath;
 const cleanPath = basePath.startsWith('/') ? basePath.slice(1) : basePath;
 
-// Ensure trailing slash logic is consistent or just rely on Astro's pathname
-// Astro.url.pathname often has a trailing slash for the root, e.g. '/'
-const canonicalPath = localeConfig.prefix === '' ? `/${cleanPath}` : `${localeConfig.prefix}/${cleanPath}`;
-const canonicalURL = new URL(canonicalPath.replace(/\/{2,}/g, '/'), SITE_CONFIG.url).href;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 
 const activeHreflangs = ACTIVE_LOCALES.map(loc => {
     const altPath = loc.prefix === '' ? `/${cleanPath}` : `${loc.prefix}/${cleanPath}`;
     return {
         lang: loc.lang,
-        url: new URL(altPath.replace(/\/{2,}/g, '/'), SITE_CONFIG.url).href
+        url: new URL(altPath.replace(/\/{2,}/g, '/'), Astro.site).href
     };
 });
 
 const xDefaultPath = LOCALES['en'].prefix === '' ? `/${cleanPath}` : `${LOCALES['en'].prefix}/${cleanPath}`;
-const xDefaultUrl = new URL(xDefaultPath.replace(/\/{2,}/g, '/'), SITE_CONFIG.url).href;
+const xDefaultUrl = new URL(xDefaultPath.replace(/\/{2,}/g, '/'), Astro.site).href;
 ---
 <!doctype html>
 <html lang={localeConfig.lang}>
@@ -70,7 +67,7 @@ const xDefaultUrl = new URL(xDefaultPath.replace(/\/{2,}/g, '/'), SITE_CONFIG.ur
 		<!-- Open Graph -->
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:url" content="https://onscreentimer.com" />
 		<meta property="og:type" content={ogType} />
 		<meta property="og:site_name" content={SITE_CONFIG.name} />
 		<meta property="og:image" content={new URL(ogImage, SITE_CONFIG.url)} />

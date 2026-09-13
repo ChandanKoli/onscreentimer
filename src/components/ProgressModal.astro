@@ -21,7 +21,7 @@
     </div>
     
     <!-- Grid UI Container -->
-    <div class="border border-slate-700/50 rounded-lg p-5 mt-4 w-max mx-auto">
+    <div class="border border-slate-700/50 rounded-lg p-5 mt-4 w-full overflow-x-auto pb-4 md:w-max md:overflow-hidden md:mx-auto">
       <div class="w-max mx-auto flex gap-2">
         <!-- Y-Axis -->
         <div class="flex flex-col gap-1 pt-5 text-xs text-slate-400 leading-3 text-right">
@@ -93,10 +93,10 @@
 
     const currentTheme = localStorage.getItem('ost_progress_theme') || 'blue';
     const themeColors: Record<string, string[]> = {
-      blue: ['bg-zinc-100 dark:bg-slate-800', 'bg-blue-200 dark:bg-blue-900', 'bg-blue-400 dark:bg-blue-700', 'bg-blue-600 dark:bg-blue-500'],
-      emerald: ['bg-zinc-100 dark:bg-slate-800', 'bg-emerald-200 dark:bg-emerald-900', 'bg-emerald-400 dark:bg-emerald-700', 'bg-emerald-600 dark:bg-emerald-500'],
-      violet: ['bg-zinc-100 dark:bg-slate-800', 'bg-violet-200 dark:bg-violet-900', 'bg-violet-400 dark:bg-violet-700', 'bg-violet-600 dark:bg-violet-500'],
-      rose: ['bg-zinc-100 dark:bg-slate-800', 'bg-rose-200 dark:bg-rose-900', 'bg-rose-400 dark:bg-rose-700', 'bg-rose-600 dark:bg-rose-500']
+      blue: ['bg-slate-100 dark:bg-slate-800', 'bg-blue-300 dark:bg-blue-900', 'bg-blue-500 dark:bg-blue-700', 'bg-blue-600 dark:bg-blue-500'],
+      emerald: ['bg-slate-100 dark:bg-slate-800', 'bg-emerald-300 dark:bg-emerald-900', 'bg-emerald-500 dark:bg-emerald-700', 'bg-emerald-600 dark:bg-emerald-500'],
+      violet: ['bg-slate-100 dark:bg-slate-800', 'bg-violet-300 dark:bg-violet-900', 'bg-violet-500 dark:bg-violet-700', 'bg-violet-600 dark:bg-violet-500'],
+      rose: ['bg-slate-100 dark:bg-slate-800', 'bg-rose-300 dark:bg-rose-900', 'bg-rose-500 dark:bg-rose-700', 'bg-rose-600 dark:bg-rose-500']
     };
 
     for (let i = 364; i >= 0; i--) {

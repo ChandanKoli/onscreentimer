@@ -747,11 +747,11 @@ if (!displayModern || !btnTimerPrimary || !btnTimerReset || !btnTimerStop || !ti
 					<div class="flex items-center gap-3 shrink-0 ml-3">
 						<span id="current-time-${t.id}" class="text-xs font-mono text-zinc-600 dark:text-zinc-400 tabular-nums"></span>
 						<div class="flex items-center gap-1">
-							<button type="button" data-task-action="complete" data-task-id="${t.id}" class="w-6 h-6 rounded flex items-center justify-center text-zinc-500 hover:text-emerald-600 dark:hover:text-emerald-500 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500" aria-label="${tMsg('tasks.completeTask')}" title="${tMsg('tasks.completeTask')}">
-								<svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+							<button type="button" data-task-action="complete" data-task-id="${t.id}" class="w-6 h-6 shrink-0 rounded flex items-center justify-center text-zinc-500 hover:text-emerald-600 dark:hover:text-emerald-500 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500" aria-label="${tMsg('tasks.completeTask')}" title="${tMsg('tasks.completeTask')}">
+								<svg class="w-4 h-4 pointer-events-none shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
 							</button>
-							<button type="button" data-task-action="return-pending" data-task-id="${t.id}" class="w-6 h-6 rounded flex items-center justify-center text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-500" aria-label="${tMsg('tasks.returnPending')}" title="${tMsg('tasks.returnPending')}">
-								<svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+							<button type="button" data-task-action="return-pending" data-task-id="${t.id}" class="w-6 h-6 shrink-0 rounded flex items-center justify-center text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-500" aria-label="${tMsg('tasks.returnPending')}" title="${tMsg('tasks.returnPending')}">
+								<svg class="w-4 h-4 pointer-events-none shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
 							</button>
 						</div>
 					</div>
