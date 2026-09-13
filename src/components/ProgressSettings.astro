@@ -1,0 +1,155 @@
+---
+---
+<div class="mb-6 flex flex-col">
+	<button type="button" aria-expanded="false" aria-controls="progress-settings-container" class="progress-disclosure-btn flex items-center justify-between w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm group mb-3">
+		<span class="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider pointer-events-none">Progress Settings</span>
+		<svg class="w-4 h-4 text-zinc-400 group-aria-expanded:rotate-180 transition-transform pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+	</button>
+	
+	<div class="hidden flex-col gap-6" id="progress-settings-container">
+		<!-- COLOR THEME -->
+		<div>
+			<h4 class="text-[10px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mb-2">Color Theme</h4>
+			<div class="flex items-center gap-3">
+				<button type="button" data-theme="blue" class="theme-swatch w-6 h-6 rounded-full cursor-pointer bg-blue-500 hover:ring-2 hover:ring-offset-2 hover:ring-blue-500 dark:hover:ring-offset-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 dark:focus-visible:ring-offset-zinc-900" aria-label="Blue theme"></button>
+				<button type="button" data-theme="emerald" class="theme-swatch w-6 h-6 rounded-full cursor-pointer bg-emerald-500 hover:ring-2 hover:ring-offset-2 hover:ring-emerald-500 dark:hover:ring-offset-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-emerald-500 dark:focus-visible:ring-offset-zinc-900" aria-label="Emerald theme"></button>
+				<button type="button" data-theme="violet" class="theme-swatch w-6 h-6 rounded-full cursor-pointer bg-violet-500 hover:ring-2 hover:ring-offset-2 hover:ring-violet-500 dark:hover:ring-offset-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-violet-500 dark:focus-visible:ring-offset-zinc-900" aria-label="Violet theme"></button>
+				<button type="button" data-theme="rose" class="theme-swatch w-6 h-6 rounded-full cursor-pointer bg-rose-500 hover:ring-2 hover:ring-offset-2 hover:ring-rose-500 dark:hover:ring-offset-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-rose-500 dark:focus-visible:ring-offset-zinc-900" aria-label="Rose theme"></button>
+			</div>
+		</div>
+
+		<!-- DATA RESET -->
+		<div>
+			<h4 class="text-[10px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mb-2">Data Reset</h4>
+			<div class="flex flex-col gap-2">
+				<button type="button" id="btn-reset-today" class="text-sm px-3 py-1.5 rounded-md bg-zinc-100 hover:bg-zinc-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-zinc-600 dark:text-zinc-300 transition-colors font-medium text-left">Reset Today</button>
+				<div class="flex items-center gap-2">
+					<button type="button" id="btn-reset-date" class="text-sm px-3 py-1.5 rounded-md bg-zinc-100 hover:bg-zinc-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-zinc-600 dark:text-zinc-300 transition-colors font-medium text-left flex-shrink-0">Reset Date</button>
+					<input type="date" id="input-reset-date" class="flex-1 min-w-0 h-8 px-2 text-sm rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" />
+				</div>
+				<button type="button" id="btn-reset-all" class="text-sm px-3 py-1.5 rounded-md bg-red-50 hover:bg-red-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-red-600 dark:text-red-400 transition-colors font-medium text-left">Clear All Data</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	// --- Accordion Logic ---
+	const disclosureBtn = document.querySelector('.progress-disclosure-btn');
+	const container = document.getElementById('progress-settings-container');
+	if (disclosureBtn && container) {
+		disclosureBtn.addEventListener('click', () => {
+			const isExpanded = disclosureBtn.getAttribute('aria-expanded') === 'true';
+			disclosureBtn.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
+			if (!isExpanded) {
+				container.classList.remove('hidden');
+				container.classList.add('flex');
+			} else {
+				container.classList.add('hidden');
+				container.classList.remove('flex');
+			}
+		});
+	}
+
+	// --- Theme Logic ---
+	const swatches = document.querySelectorAll('.theme-swatch');
+	swatches.forEach(swatch => {
+		swatch.addEventListener('click', () => {
+			const theme = swatch.getAttribute('data-theme');
+			if (theme) {
+				localStorage.setItem('ost_progress_theme', theme);
+				window.location.reload();
+			}
+		});
+	});
+
+	// --- Double-Tap Security Logic ---
+	function setupDoubleTap(btnId: string, onConfirm: () => void) {
+		const btn = document.getElementById(btnId);
+		if (!btn) return;
+		
+		let clickTimeout: ReturnType<typeof setTimeout>;
+		let clickedOnce = false;
+		
+		const originalText = btn.textContent || '';
+		
+		btn.addEventListener('click', () => {
+			if (!clickedOnce) {
+				clickedOnce = true;
+				btn.textContent = 'Tap again to confirm';
+				
+				if (btnId === 'btn-reset-all') {
+					btn.classList.add('text-red-700', 'dark:text-red-500');
+					btn.classList.remove('text-red-600', 'dark:text-red-400');
+				} else {
+					btn.classList.add('text-amber-600', 'dark:text-amber-500');
+					btn.classList.remove('text-zinc-600', 'dark:text-zinc-300');
+				}
+
+				clickTimeout = setTimeout(() => {
+					clickedOnce = false;
+					btn.textContent = originalText;
+					
+					if (btnId === 'btn-reset-all') {
+						btn.classList.remove('text-red-700', 'dark:text-red-500');
+						btn.classList.add('text-red-600', 'dark:text-red-400');
+					} else {
+						btn.classList.remove('text-amber-600', 'dark:text-amber-500');
+						btn.classList.add('text-zinc-600', 'dark:text-zinc-300');
+					}
+				}, 3000);
+			} else {
+				clearTimeout(clickTimeout);
+				onConfirm();
+			}
+		});
+	}
+
+	function updateStorageAndReload(updater: (data: Record<string, number>) => boolean) {
+		try {
+			const data = JSON.parse(localStorage.getItem('ost_progress_data') || '{}');
+			if (updater(data)) {
+				localStorage.setItem('ost_progress_data', JSON.stringify(data));
+			}
+			window.location.reload();
+		} catch (e) {
+			console.error(e);
+		}
+	}
+
+	const resetDateInput = document.getElementById('input-reset-date') as HTMLInputElement;
+
+	setupDoubleTap('btn-reset-today', () => {
+		const d = new Date();
+		const year = d.getFullYear();
+		const month = String(d.getMonth() + 1).padStart(2, '0');
+		const day = String(d.getDate()).padStart(2, '0');
+		const todayStr = `${year}-${month}-${day}`;
+		
+		updateStorageAndReload((data) => {
+			if (data[todayStr] !== undefined) {
+				delete data[todayStr];
+				return true;
+			}
+			return true;
+		});
+	});
+
+	setupDoubleTap('btn-reset-date', () => {
+		if (!resetDateInput) return;
+		const dateStr = resetDateInput.value;
+		if (!dateStr) return;
+		updateStorageAndReload((data) => {
+			if (data[dateStr] !== undefined) {
+				delete data[dateStr];
+				return true;
+			}
+			return true;
+		});
+	});
+
+	setupDoubleTap('btn-reset-all', () => {
+		localStorage.removeItem('ost_progress_data');
+		window.location.reload();
+	});
+</script>

@@ -331,6 +331,10 @@ if (!displayModern || !btnTimerPrimary || !btnTimerReset || !btnTimerStop || !ti
 			}, 1500);
 			audioSystem.playCompletionSound(!store.getState().soundEnabled, store.getState().volume);
 
+			if (typeof (window as any).incrementDailyProgress === 'function') {
+				(window as any).incrementDailyProgress();
+			}
+
 			// Preset Progression
 			const state = store.getState();
 			if (state.activePresetId) {
@@ -401,6 +405,12 @@ if (!displayModern || !btnTimerPrimary || !btnTimerReset || !btnTimerStop || !ti
 		const nextState = taskActionReducer(store.getState(), action, taskId, Date.now());
 		store.setState(nextState);
 
+		if (action === 'complete') {
+			if (typeof (window as any).incrementDailyProgress === 'function') {
+				(window as any).incrementDailyProgress();
+			}
+		}
+
 		const state = store.getState();
 		if (action === 'complete' && state.tasks.length > 0 && state.tasks.every(t => t.status === 'completed')) {
 			audioSystem.playCompletionSound(!state.soundEnabled, state.volume);
@@ -444,6 +454,12 @@ if (!displayModern || !btnTimerPrimary || !btnTimerReset || !btnTimerStop || !ti
 			const elapsedMs = t.startTime !== null ? t.elapsedMs + (now - t.startTime) : t.elapsedMs;
 			return { ...t, status: 'completed', elapsedMs, startTime: null };
 		});
+
+		if (typeof (window as any).incrementDailyProgress === 'function') {
+			for (let i = 0; i < unfinished.length; i++) {
+				(window as any).incrementDailyProgress();
+			}
+		}
 
 		store.setState(prev => ({ ...prev, tasks: nextTasks, activeSessionEngine: null }));
 

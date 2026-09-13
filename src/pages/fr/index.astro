@@ -5,6 +5,7 @@ import { useTranslations } from '../../i18n/ui.ts';
 import TimerWorkspace from '../../components/TimerWorkspace.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
+import ProgressSettings from '../../components/ProgressSettings.astro';
 const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
 ---
@@ -262,6 +263,7 @@ const t = useTranslations(locale);
 						</div>
 					</div>
 				</div>
+				<ProgressSettings />
 			</div>
 		</div>
 
