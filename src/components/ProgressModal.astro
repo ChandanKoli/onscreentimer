@@ -188,7 +188,9 @@
       mutations.forEach((mutation) => {
         if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
           if (!modalOverlay.classList.contains('hidden')) {
-            renderYearlyHeatmap();
+            setTimeout(() => {
+              renderYearlyHeatmap();
+            }, 0);
           }
         }
       });
