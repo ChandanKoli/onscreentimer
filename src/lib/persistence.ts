@@ -14,6 +14,8 @@ export interface PersistedStopwatch {
 	status: StopwatchStatus;
 	accumulatedMs: number;
 	startTime: number | null;
+	laps: import('./types').LapRecord[];
+	lastLapMs: number;
 }
 
 export interface PersistedState {
@@ -138,17 +140,20 @@ export function hydrateState(json: string | null, now: number): Omit<PersistedSt
 			}
 		}
 
-		// Stopwatch hydration logic
 		let stopwatch: PersistedStopwatch = {
 			status: 'idle',
 			accumulatedMs: 0,
-			startTime: null
+			startTime: null,
+			laps: [],
+			lastLapMs: 0
 		};
 		
 		if (parsed.stopwatch && typeof parsed.stopwatch === 'object') {
 			stopwatch.accumulatedMs = Math.max(0, Number(parsed.stopwatch.accumulatedMs) || 0);
 			stopwatch.startTime = parsed.stopwatch.startTime ? Number(parsed.stopwatch.startTime) : null;
 			stopwatch.status = ['idle', 'running', 'paused', 'stopped'].includes(parsed.stopwatch.status) ? parsed.stopwatch.status : 'idle';
+			stopwatch.laps = Array.isArray(parsed.stopwatch.laps) ? parsed.stopwatch.laps : [];
+			stopwatch.lastLapMs = Math.max(0, Number(parsed.stopwatch.lastLapMs) || 0);
 		}
 
 		// Task hydration logic

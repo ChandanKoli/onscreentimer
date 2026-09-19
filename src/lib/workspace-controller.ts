@@ -14,7 +14,7 @@ import { useTranslations } from '../i18n/ui.ts';
 
 const ALL_PRESETS = [...STUDY_PRESETS, ...COOKING_PRESETS];
 
-export function initWorkspaceController(config?: { overrideTimerDuration?: number }) {
+export function initWorkspaceController(config?: { overrideTimerDuration?: number, overrideMode?: import('./types.ts').AppMode, overrideSize?: import('./types.ts').DisplaySize }) {
 	const currentLocale = (typeof window !== 'undefined' && window.location && window.location.href)
 		? getLocaleFromUrl(new URL(window.location.href))
 		: 'en';
@@ -53,8 +53,10 @@ export function initWorkspaceController(config?: { overrideTimerDuration?: numbe
 
 	// Stopwatch Controls
 	const btnStopwatchPrimary = document.getElementById('btn-stopwatch-primary') as HTMLButtonElement | null;
+	const btnStopwatchLap = document.getElementById('btn-stopwatch-lap') as HTMLButtonElement | null;
 	const btnStopwatchReset = document.getElementById('btn-stopwatch-reset') as HTMLButtonElement | null;
 	const btnStopwatchStop = document.getElementById('btn-stopwatch-stop') as HTMLButtonElement | null;
+	const stopwatchLapsContainer = document.getElementById('stopwatch-laps-container');
 
 	// Dropdown Controls
 	const btnModeDropdown = document.getElementById('btn-mode-dropdown') as HTMLButtonElement | null;
@@ -233,9 +235,9 @@ if (!displayModern || !btnTimerPrimary || !btnTimerReset || !btnTimerStop || !ti
 	}
 
 	const initialState: AppState = {
-		mode: hydratedState?.mode ?? 'timer',
+		mode: config?.overrideMode ?? hydratedState?.mode ?? 'timer',
 		style: hydratedState?.style ?? 'modern',
-		size: hydratedState?.size ?? 'mid',
+		size: config?.overrideSize ?? hydratedState?.size ?? 'mid',
 		soundEnabled: hydratedState?.soundEnabled ?? false,
 		volume: hydratedState?.volume ?? 1,
 		timer: {
@@ -257,7 +259,9 @@ if (!displayModern || !btnTimerPrimary || !btnTimerReset || !btnTimerStop || !ti
 		stopwatch: {
 			status: hydratedState?.stopwatch.status ?? 'idle',
 			elapsedSeconds: Math.floor((hydratedState?.stopwatch.accumulatedMs ?? 0) / 1000),
-			elapsedMs: hydratedState?.stopwatch.accumulatedMs ?? 0
+			elapsedMs: hydratedState?.stopwatch.accumulatedMs ?? 0,
+			laps: hydratedState?.stopwatch.laps ?? [],
+			lastLapMs: hydratedState?.stopwatch.lastLapMs ?? 0
 		},
 		tasks: hydratedState?.tasks ?? [],
 		activeSessionEngine: hydratedState?.activeSessionEngine ?? null,
@@ -282,7 +286,11 @@ if (!displayModern || !btnTimerPrimary || !btnTimerReset || !btnTimerStop || !ti
 				soundEnabled: state.soundEnabled,
 				volume: state.volume,
 				timer: timerEngine.getSnapshot(),
-				stopwatch: stopwatchEngine.getSnapshot(),
+				stopwatch: {
+					...stopwatchEngine.getSnapshot(),
+					laps: state.stopwatch.laps,
+					lastLapMs: state.stopwatch.lastLapMs
+				},
 				tasks: state.tasks,
 				activeSessionEngine: state.activeSessionEngine,
 				todoMinimized: state.todoMinimized,
@@ -1148,6 +1156,10 @@ if (!displayModern || !btnTimerPrimary || !btnTimerReset || !btnTimerStop || !ti
 			btnStopwatchReset.disabled = stopwatch.status === 'idle' && stopwatch.elapsedSeconds === 0;
 		}
 
+		if (btnStopwatchLap) {
+			btnStopwatchLap.disabled = stopwatch.status !== 'running';
+		}
+
 		if (btnStopwatchStop) {
 			btnStopwatchStop.disabled = stopwatch.status !== 'running' && stopwatch.status !== 'paused';
 		}
@@ -1316,6 +1328,34 @@ if (!displayModern || !btnTimerPrimary || !btnTimerReset || !btnTimerStop || !ti
 	});
 
 	// 6. Stopwatch Controls Listeners
+	function formatLapTime(ms: number) {
+		const totalSeconds = Math.floor(ms / 1000);
+		const fractional = Math.floor((ms % 1000) / 10);
+		const m = Math.floor(totalSeconds / 60);
+		const s = totalSeconds % 60;
+		const mStr = String(m).padStart(2, '0');
+		const sStr = String(s).padStart(2, '0');
+		const fStr = String(fractional).padStart(2, '0');
+		if (m >= 60) {
+			const h = Math.floor(m / 60);
+			const mm = m % 60;
+			return `${String(h).padStart(2, '0')}:${String(mm).padStart(2, '0')}:${sStr}.${fStr}`;
+		}
+		return `${mStr}:${sStr}.${fStr}`;
+	}
+
+	function renderLaps(laps: import('./types').LapRecord[]) {
+		if (!stopwatchLapsContainer) return;
+		stopwatchLapsContainer.innerHTML = laps.map(lap => `
+			<div class="flex justify-between items-center py-2 pr-4 border-b border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300 text-sm md:text-base">
+				<span class="w-12 font-medium">Lap ${lap.lapNumber}</span>
+				<span class="flex-1 text-center font-mono tabular-nums">+${formatLapTime(lap.splitMs)}</span>
+				<span class="flex-1 text-right font-mono tabular-nums text-zinc-900 dark:text-zinc-100">${formatLapTime(lap.totalMs)}</span>
+			</div>
+		`).join('');
+	}
+	renderLaps(store.getState().stopwatch.laps);
+
 	btnStopwatchPrimary?.addEventListener('click', () => {
 		const status = stopwatchEngine.getStatus();
 		if (status === 'running') {
@@ -1323,12 +1363,59 @@ if (!displayModern || !btnTimerPrimary || !btnTimerReset || !btnTimerStop || !ti
 		} else if (status === 'paused') {
 			stopwatchEngine.resume();
 		} else {
+			if (status === 'stopped' || status === 'idle') {
+				store.setState(prev => ({
+					...prev,
+					stopwatch: {
+						...prev.stopwatch,
+						laps: [],
+						lastLapMs: 0
+					}
+				}));
+				renderLaps([]);
+			}
 			stopwatchEngine.start();
 		}
 	});
 
+	btnStopwatchLap?.addEventListener('click', () => {
+		const status = stopwatchEngine.getStatus();
+		if (status !== 'running') return;
+		const state = store.getState();
+		const currentMs = stopwatchEngine.getElapsedMs();
+		const splitMs = currentMs - state.stopwatch.lastLapMs;
+		
+		const newLap = {
+			lapNumber: state.stopwatch.laps.length + 1,
+			splitMs,
+			totalMs: currentMs
+		};
+
+		const nextLaps = [newLap, ...state.stopwatch.laps];
+		store.setState(prev => ({
+			...prev,
+			stopwatch: {
+				...prev.stopwatch,
+				laps: nextLaps,
+				lastLapMs: currentMs
+			}
+		}));
+		renderLaps(nextLaps);
+		persistState();
+	});
+
 	btnStopwatchReset?.addEventListener('click', () => {
 		stopwatchEngine.reset();
+		store.setState(prev => ({
+			...prev,
+			stopwatch: {
+				...prev.stopwatch,
+				laps: [],
+				lastLapMs: 0
+			}
+		}));
+		renderLaps([]);
+		persistState();
 	});
 
 	btnStopwatchStop?.addEventListener('click', () => {

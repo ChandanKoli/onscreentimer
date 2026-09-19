@@ -249,8 +249,18 @@ const ticks = generateDialTicks();
 			</button>
 
 
-				<!-- Group 2: Reset + Stop -->
+				<!-- Group 2: Laps + Reset + Stop -->
 				<div class="flex items-center gap-1.5 min-[400px]:gap-2 sm:gap-3">
+					<!-- Lap Button -->
+			<button
+				type="button"
+				id="btn-stopwatch-lap"
+				class="h-10 sm:h-11 px-2.5 min-[400px]:px-3.5 sm:px-4 rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-950 flex items-center justify-center cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white dark:disabled:hover:bg-zinc-900"
+				aria-label="Record Lap"
+			>
+				Lap
+			</button>
+
 					<!-- Reset Button -->
 			<button
 				type="button"
@@ -274,6 +284,13 @@ const ticks = generateDialTicks();
 			</button>
 		</div>
 	</div>
+
+		<!-- Lap List Container -->
+		<div class="max-h-64 overflow-y-auto w-full max-w-md mx-auto mt-2">
+			<div id="stopwatch-laps-container" class="flex flex-col">
+				<!-- Laps rendered here -->
+			</div>
+		</div>
 			</div>
 
 	<!-- 3. Clock Controls Row (Clean passive display, no timer controls) -->

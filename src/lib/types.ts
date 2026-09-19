@@ -15,10 +15,18 @@ export interface TimerState {
 
 export type StopwatchStatus = 'idle' | 'running' | 'paused' | 'stopped';
 
+export interface LapRecord {
+	lapNumber: number;
+	splitMs: number;
+	totalMs: number;
+}
+
 export interface StopwatchState {
 	status: StopwatchStatus;
 	elapsedSeconds: number;
 	elapsedMs: number;
+	laps: LapRecord[];
+	lastLapMs: number;
 }
 
 export type ClockFormat = '12h' | '24h';
