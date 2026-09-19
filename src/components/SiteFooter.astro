@@ -51,7 +51,7 @@ const prefixPath = (path: string) => getRelativeLocaleUrl(locale, path);
 					<ul class="flex flex-col gap-2.5">
 						<li><a href={prefixPath("/timer/5-minutes")} class="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">{t("footer.5min")}</a></li>
 						<li><a href={prefixPath("/timer/10-minutes")} class="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">{t("footer.10min")}</a></li>
-						<li><a href={prefixPath("/timer/20-minutes")} class="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">{t("footer.20min")}</a></li>
+						<li><a href={prefixPath("/timer/15-minutes")} class="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">15 Minute Timer</a></li>
 						<li><a href={prefixPath("/timer/25-minutes")} class="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">{t("footer.25min")}</a></li>
 					</ul>
 				</div>
@@ -60,7 +60,7 @@ const prefixPath = (path: string) => getRelativeLocaleUrl(locale, path);
 				<div class="flex flex-col gap-3">
 					<h3 class="text-xs font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">{t("footer.legal")}</h3>
 					<ul class="flex flex-col gap-2.5">
-						<li><a href={prefixPath("/privacy")} class="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">{t("footer.privacy")}</a></li>
+						<li><a href={prefixPath("/privacy-policy")} class="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">{t("footer.privacy")}</a></li>
 						<li><a href={prefixPath("/terms")} class="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">{t("footer.terms")}</a></li>
 						<li><a href={prefixPath("/contact")} class="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">{t("footer.contact")}</a></li>
 						<li><button id="btn-analytics-preferences" class="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm text-left">{t("footer.analytics")}</button></li>

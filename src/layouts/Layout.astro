@@ -72,6 +72,19 @@ const xDefaultUrl = new URL(xDefaultPath.replace(/\/{2,}/g, '/'), Astro.site).hr
 		<meta property="og:site_name" content={SITE_CONFIG.name} />
 		<meta property="og:image" content={new URL(ogImage, SITE_CONFIG.url)} />
 
+		<script type="application/ld+json" set:html={JSON.stringify({
+		  "@context": "https://schema.org",
+		  "@type": "WebApplication",
+		  "name": "OnScreen Timer",
+		  "url": "https://onscreentimer.com",
+		  "applicationCategory": "UtilitiesApplication",
+		  "operatingSystem": "All",
+		  "offers": {
+		    "@type": "Offer",
+		    "price": "0"
+		  }
+		})} />
+
 		<slot name="head" />
 
 		<script is:inline>
