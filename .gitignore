@@ -24,3 +24,13 @@ pnpm-debug.log*
 .idea/
 
 PRODUCT_CONTEXT.md
+
+
+# Agent & local workflow configs
+CLAUDE.md
+AGENTS.md
+.agents/
+skills-lock.json
+
+# Editor settings
+.vscode/
