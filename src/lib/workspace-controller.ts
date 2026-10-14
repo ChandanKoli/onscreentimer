@@ -1346,9 +1346,20 @@ if (!displayModern || !btnTimerPrimary || !btnTimerReset || !btnTimerStop || !ti
 
 	function renderLaps(laps: import('./types').LapRecord[]) {
 		if (!stopwatchLapsContainer) return;
-		stopwatchLapsContainer.innerHTML = laps.map(lap => `
+		if (laps.length === 0) {
+			stopwatchLapsContainer.innerHTML = '';
+			return;
+		}
+		const headerHtml = `
+			<div class="flex justify-between items-center py-1.5 pr-4 border-b border-zinc-200 dark:border-zinc-800 text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">
+				<span class="w-16">${tMsg('stopwatch.lap') || 'Lap'}</span>
+				<span class="flex-1 text-center">${tMsg('stopwatch.split') || 'Split'}</span>
+				<span class="flex-1 text-right">${tMsg('stopwatch.total') || 'Total'}</span>
+			</div>
+		`;
+		stopwatchLapsContainer.innerHTML = headerHtml + laps.map(lap => `
 			<div class="flex justify-between items-center py-2 pr-4 border-b border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300 text-sm md:text-base">
-				<span class="w-12 font-medium">Lap ${lap.lapNumber}</span>
+				<span class="w-16 font-medium">${tMsg('stopwatch.lap') || 'Lap'} ${lap.lapNumber}</span>
 				<span class="flex-1 text-center font-mono tabular-nums">+${formatLapTime(lap.splitMs)}</span>
 				<span class="flex-1 text-right font-mono tabular-nums text-zinc-900 dark:text-zinc-100">${formatLapTime(lap.totalMs)}</span>
 			</div>

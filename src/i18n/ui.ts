@@ -6,6 +6,7 @@ export const ui = {
     'nav.tools': 'Tools',
     'nav.guide': 'Guide',
     'nav.faq': 'FAQ',
+    'nav.stopwatch': 'Online Stopwatch',
 
     // Workspace - Modes, Styles, Sizes
     'mode.timer': 'Timer',
@@ -38,6 +39,12 @@ export const ui = {
     'stopwatch.resume': 'Resume',
     'stopwatch.reset': 'Reset',
     'stopwatch.stop': 'Stop',
+    'stopwatch.lap': 'Lap',
+    'stopwatch.recordLap': 'Record Lap',
+    'stopwatch.split': 'Split',
+    'stopwatch.total': 'Total',
+
+    'timers.popularTitle': 'Popular Countdown Timers',
 
     'workspace.exitFull': 'Exit Full',
 
@@ -215,6 +222,7 @@ export const ui = {
     'nav.tools': 'Herramientas',
     'nav.guide': 'Guía',
     'nav.faq': 'Preguntas frecuentes',
+    'nav.stopwatch': 'Cronómetro Online',
 
     // Workspace - Modes, Styles, Sizes
     'mode.timer': 'Temporizador',
@@ -247,6 +255,12 @@ export const ui = {
     'stopwatch.resume': 'Reanudar',
     'stopwatch.reset': 'Reiniciar',
     'stopwatch.stop': 'Detener',
+    'stopwatch.lap': 'Vuelta',
+    'stopwatch.recordLap': 'Registrar vuelta',
+    'stopwatch.split': 'Parcial',
+    'stopwatch.total': 'Total',
+
+    'timers.popularTitle': 'Temporizadores populares',
 
     'workspace.exitFull': 'Salir de pantalla completa',
 
@@ -424,6 +438,7 @@ export const ui = {
     'nav.tools': 'Ferramentas',
     'nav.guide': 'Guia',
     'nav.faq': 'FAQ',
+    'nav.stopwatch': 'Cronômetro Online',
 
     // Workspace - Modes, Styles, Sizes
     'mode.timer': 'Temporizador',
@@ -456,6 +471,12 @@ export const ui = {
     'stopwatch.resume': 'Retomar',
     'stopwatch.reset': 'Reiniciar',
     'stopwatch.stop': 'Parar',
+    'stopwatch.lap': 'Volta',
+    'stopwatch.recordLap': 'Gravar volta',
+    'stopwatch.split': 'Parcial',
+    'stopwatch.total': 'Total',
+
+    'timers.popularTitle': 'Temporizadores populares',
 
     'workspace.exitFull': 'Sair da tela cheia',
 
@@ -614,6 +635,7 @@ export const ui = {
     'nav.tools': 'Outils',
     'nav.guide': 'Guide',
     'nav.faq': 'FAQ',
+    'nav.stopwatch': 'Chronomètre en ligne',
 
     // Workspace - Modes, Styles, Sizes
     'mode.timer': 'Minuteur',
@@ -646,6 +668,12 @@ export const ui = {
     'stopwatch.resume': 'Reprendre',
     'stopwatch.reset': 'Réinitialiser',
     'stopwatch.stop': 'Arrêter',
+    'stopwatch.lap': 'Tour',
+    'stopwatch.recordLap': 'Enregistrer un tour',
+    'stopwatch.split': 'Temps au tour',
+    'stopwatch.total': 'Temps total',
+
+    'timers.popularTitle': 'Minuteurs populaires',
 
     'workspace.exitFull': 'Quitter plein écran',
 
@@ -823,6 +851,7 @@ export const ui = {
     'nav.tools': 'Strumenti',
     'nav.guide': 'Guida',
     'nav.faq': 'FAQ',
+    'nav.stopwatch': 'Cronometro Online',
 
     // Workspace - Modes, Styles, Sizes
     'mode.timer': 'Timer',
@@ -855,6 +884,12 @@ export const ui = {
     'stopwatch.resume': 'Riprendi',
     'stopwatch.reset': 'Azzera',
     'stopwatch.stop': 'Ferma',
+    'stopwatch.lap': 'Giro',
+    'stopwatch.recordLap': 'Registra giro',
+    'stopwatch.split': 'Tempo giro',
+    'stopwatch.total': 'Tempo totale',
+
+    'timers.popularTitle': 'Timer popolari',
 
     'workspace.exitFull': 'Esci da schermo intero',
 
@@ -1033,6 +1068,7 @@ export const ui = {
     'nav.tools': 'ツール',
     'nav.guide': 'ガイド',
     'nav.faq': 'よくある質問',
+    'nav.stopwatch': 'オンラインストップウォッチ',
 
     // Workspace - Modes, Styles, Sizes
     'mode.timer': 'タイマー',
@@ -1065,6 +1101,12 @@ export const ui = {
     'stopwatch.resume': '再開',
     'stopwatch.reset': 'リセット',
     'stopwatch.stop': 'ストップ',
+    'stopwatch.lap': 'ラップ',
+    'stopwatch.recordLap': 'ラップを記録',
+    'stopwatch.split': 'スプリット',
+    'stopwatch.total': '合計',
+
+    'timers.popularTitle': '人気のカウントダウンタイマー',
 
     'workspace.exitFull': '全画面表示を終了',
 
@@ -1241,6 +1283,7 @@ export const ui = {
     'nav.tools': 'Werkzeuge',
     'nav.guide': 'Anleitung',
     'nav.faq': 'FAQ',
+    'nav.stopwatch': 'Online-Stoppuhr',
 
     // Workspace - Modes, Styles, Sizes
     'mode.timer': 'Timer',
@@ -1273,6 +1316,12 @@ export const ui = {
     'stopwatch.resume': 'Fortsetzen',
     'stopwatch.reset': 'Zurücksetzen',
     'stopwatch.stop': 'Stoppen',
+    'stopwatch.lap': 'Runde',
+    'stopwatch.recordLap': 'Runde erfassen',
+    'stopwatch.split': 'Zwischenzeit',
+    'stopwatch.total': 'Gesamtzeit',
+
+    'timers.popularTitle': 'Beliebte Countdown-Timer',
 
     'workspace.exitFull': 'Vollbild verlassen',
 
@@ -1451,6 +1500,7 @@ export const ui = {
     'nav.tools': '도구',
     'nav.guide': '가이드',
     'nav.faq': '자주 묻는 질문',
+    'nav.stopwatch': '온라인 스톱워치',
 
     // Workspace - Modes, Styles, Sizes
     'mode.timer': '타이머',
@@ -1483,6 +1533,12 @@ export const ui = {
     'stopwatch.resume': '계속',
     'stopwatch.reset': '초기화',
     'stopwatch.stop': '중지',
+    'stopwatch.lap': '랩',
+    'stopwatch.recordLap': '랩 기록',
+    'stopwatch.split': '구간 기록',
+    'stopwatch.total': '총 시간',
+
+    'timers.popularTitle': '인기 카운트다운 타이머',
 
     'workspace.exitFull': '전체화면 종료',
 

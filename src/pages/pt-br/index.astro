@@ -6,6 +6,7 @@ import TimerWorkspace from '../../components/TimerWorkspace.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import ProgressSettings from '../../components/ProgressSettings.astro';
+import PopularTimers from '../../components/PopularTimers.astro';
 const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
 ---
@@ -73,6 +74,9 @@ const t = useTranslations(locale);
 				</div>
 			</aside>
 		</div>
+
+		<!-- Popular Countdown Timers Hub -->
+		<PopularTimers />
 
 		<!-- Como Funciona Section -->
 		<section id="how-it-works" class="w-full max-w-5xl mx-auto px-4 sm:px-6 py-12 lg:py-16 border-t border-zinc-200 dark:border-zinc-800 group-data-[size=full]/body:hidden">

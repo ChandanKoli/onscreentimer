@@ -1,0 +1,58 @@
+---
+import { getLocaleFromUrl, getRelativeLocaleUrl } from '../i18n/utils.ts';
+import { useTranslations } from '../i18n/ui.ts';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+const prefixPath = (path: string) => getRelativeLocaleUrl(locale, path);
+
+const timers = [
+	{ slug: '1-minute', minutes: 1 },
+	{ slug: '5-minutes', minutes: 5 },
+	{ slug: '10-minutes', minutes: 10 },
+	{ slug: '15-minutes', minutes: 15 },
+	{ slug: '20-minutes', minutes: 20 },
+	{ slug: '25-minutes', minutes: 25 },
+	{ slug: '30-minutes', minutes: 30 },
+	{ slug: '60-minutes', minutes: 60 },
+];
+
+function getLabel(minutes: number, loc: string) {
+	if (loc === 'ja' || loc === 'ko') {
+		const unit = loc === 'ja' ? '分' : '분';
+		return `${minutes}${unit}`;
+	}
+	if (loc === 'de') {
+		return `${minutes} Min.`;
+	}
+	return `${minutes} min`;
+}
+
+function getAriaLabel(minutes: number, loc: string) {
+	if (loc === 'de') return `${minutes}-Minuten-Timer`;
+	if (loc === 'es') return `Temporizador de ${minutes} minutos`;
+	if (loc === 'fr') return `Minuteur de ${minutes} minutes`;
+	if (loc === 'it') return `Timer da ${minutes} minuti`;
+	if (loc === 'ja') return `${minutes}分カウントダウンタイマー`;
+	if (loc === 'ko') return `${minutes}분 카운트다운 타이머`;
+	if (loc === 'pt-br') return `Temporizador de ${minutes} minutos`;
+	return `${minutes} minute countdown timer`;
+}
+---
+
+<section id="popular-timers" class="w-full max-w-5xl mx-auto px-4 sm:px-6 py-8 border-t border-zinc-200 dark:border-zinc-800 group-data-[size=full]/body:hidden">
+	<h2 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider mb-4 text-center sm:text-left">
+		{t('timers.popularTitle')}
+	</h2>
+	<div class="flex flex-wrap items-center justify-center sm:justify-start gap-2.5">
+		{timers.map((timer) => (
+			<a
+				href={prefixPath(`/timer/${timer.slug}/`)}
+				class="bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900/60 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 text-sm px-3 py-1.5 rounded-lg transition-colors font-medium inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+				aria-label={getAriaLabel(timer.minutes, locale)}
+			>
+				{getLabel(timer.minutes, locale)}
+			</a>
+		))}
+	</div>
+</section>

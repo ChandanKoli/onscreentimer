@@ -42,9 +42,8 @@ if (!canonicalPath.endsWith('/') && !lastCanonicalSegment.includes('.')) {
 }
 const canonicalURL = new URL(canonicalPath, Astro.site).href;
 
-const isStopwatch = basePath === '/stopwatch' || basePath === '/stopwatch/';
 const isErrorPage = basePath === '/404' || basePath === '/404/' || basePath.endsWith('/404.html') || basePath === '/500' || basePath === '/500/' || basePath.endsWith('/500.html');
-const shouldDisableHreflang = disableHreflang || isStopwatch || isErrorPage;
+const shouldDisableHreflang = disableHreflang || isErrorPage;
 const shouldNoindex = noindex || isErrorPage;
 
 const activeHreflangs = ACTIVE_LOCALES.map(loc => {

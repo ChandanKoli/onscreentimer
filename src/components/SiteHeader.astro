@@ -146,11 +146,11 @@ const prefixPath = (path: string) => getRelativeLocaleUrl(currentLocaleId, path)
 						Weeklist
 					</a>
 					<a
-						href="/stopwatch/"
+						href={prefixPath("/stopwatch/")}
 						class={`block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors ${isStopwatch ? 'font-medium text-blue-600 dark:text-blue-400 bg-zinc-50 dark:bg-zinc-800/50' : 'text-zinc-700 dark:text-zinc-300'}`}
 						aria-current={isStopwatch ? 'page' : undefined}
 					>
-						Online Stopwatch
+						{t('nav.stopwatch') || 'Online Stopwatch'}
 					</a>
 				</div>
 			</div>

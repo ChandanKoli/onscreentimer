@@ -13,6 +13,7 @@ export async function GET() {
 	// Defined static pages
 	const staticPages = [
 		'',
+		'stopwatch',
 		'guide',
 		'faq',
 		'privacy',
