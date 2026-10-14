@@ -2,74 +2,98 @@
 import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
+
+interface FAQItem {
+	question: string;
+	answer: string;
+}
+
+const faqs: FAQItem[] = [
+	{
+		question: "온라인 타이머는 어떻게 설정하나요?",
+		answer: "먼저 상단 툴바에서 타이머 모드가 선택되었는지 확인합니다. <code>5</code>, <code>02:00</code>, <code>25m</code> 또는 <code>01:30:00</code>과 같이 입력란에 원하는 시간을 입력한 후 시작 버튼을 누르거나 스페이스바를 누릅니다."
+	},
+	{
+		question: "On Screen Timer를 사용하려면 계정이 필요한가요?",
+		answer: "일반적인 사용에 계정이나 로그인은 전혀 필요하지 않습니다. 별도의 회원가입이나 결제, 사용자 추적 없이 페이지 접속 즉시 완전 무료로 사용할 수 있습니다."
+	},
+	{
+		question: "페이지를 새로고침하거나 브라우저를 닫으면 어떻게 되나요?",
+		answer: "진행 중인 타이머 상태, 스톱워치 랩 기록, 할 일 목록, 맞춤 학습 블록, 알림음 설정 및 테마 설정은 브라우저의 <code>localStorage</code>에 자동으로 저장되어 다시 접속했을 때 완벽하게 복원됩니다."
+	},
+	{
+		question: "전체 모드(Full Mode)란 무엇인가요?",
+		answer: "전체 모드는 불필요한 내비게이션과 사이드바를 숨기고 크고 선명한 시간 표시에만 집중할 수 있는 깔끔한 뷰를 제공합니다. 키보드의 <code>F</code> 키를 눌러 손쉽게 전체 화면 모드로 전환할 수 있습니다."
+	},
+	{
+		question: "학습 블록(Study Block) 프리셋은 어떻게 작동하나요?",
+		answer: "설정에서 클래식 뽀모도로(25/5) 또는 50/10 깊은 몰입 블록과 같은 프리셋을 선택하세요. 타이머가 지정된 집중 시간과 휴식 시간을 자동으로 전환하며, 각 단계마다 알림음으로 알려줍니다."
+	},
+	{
+		question: "뽀모도로(Pomodoro) 타이머로 사용할 수 있나요?",
+		answer: "네, 수동으로 25분 집중과 5분 휴식을 설정하거나 설정 메뉴의 뽀모도로 프리셋을 활성화하여 자동 전환되는 집중 사이클을 실행할 수 있습니다."
+	},
+	{
+		question: "화면 꺼짐 방지(Screen Wake Lock) 기능은 카운트다운 중에 어떻게 작동하나요?",
+		answer: "On Screen Timer는 브라우저 내장 Screen Wake Lock API를 활용하여 타이머나 스톱워치가 작동하는 동안 화면이 어두워지거나 절전 모드로 들어가는 것을 방지합니다. 타이머 시작 시 자동으로 활성화되며, 일시정지하거나 종료되면 해제됩니다. 시험 감독, 프레젠테이션, 요리, 운동 중에도 화면이 꺼지지 않고 켜진 상태를 유지합니다 (타이머 탭을 열어두세요)."
+	},
+	{
+		question: "시험이나 발표 시 사용할 수 있는 키보드 단축키와 전체 화면 기능은 무엇인가요?",
+		answer: "편리한 키보드 단축키를 지원합니다: <code>스페이스바</code>로 시작 및 일시정지, <code>R</code> 키로 초기 시간 리셋, <code>F</code> 키로 전체 화면 및 집중 모드를 전환할 수 있습니다. 전체 모드에서는 불필요한 내비게이션 요소가 숨겨지고 대형 폰트로 시간이 표시되어 교실이나 회의실 멀리서도 시간을 선명하게 확인할 수 있습니다."
+	},
+	{
+		question: "브라우저 로컬 저장은 할 일 목록과 랩 타임의 개인정보를 어떻게 보호하나요?",
+		answer: "할 일 목록, 완료된 작업 수, 맞춤 학습 프리셋, 알림음 설정, 스톱워치 랩 기록 등 모든 세션 데이터는 오직 사용자의 브라우저 로컬 저장소(<code>localStorage</code>)에만 저장됩니다. 외부 서버나 클라우드로 어떤 데이터도 전송되지 않으므로 완벽한 프라이버시가 보장되며 오프라인에서도 작동합니다."
+	},
+	{
+		question: "집중력을 극대화하기 위해 뽀모도로(25/5) 및 50/10 인터벌을 어떻게 활용하나요?",
+		answer: "50/10 기법은 50분간의 깊은 몰입과 10분의 휴식을 결합하여 지속적인 학습 효과를 제공합니다. 설정에서 뽀모도로(25/5) 또는 50/10 프리셋을 선택하면 집중 단계와 휴식 단계가 자동으로 전환되며, 각 단계가 끝날 때마다 명확한 알림음이 울립니다."
+	},
+	{
+		question: "브라우저 탭이 백그라운드에 있을 때 알림음이 울리지 않는 이유는 무엇인가요?",
+		answer: "최신 웹 브라우저는 백그라운드 탭의 무단 소리 재생을 제한하는 자동 재생 정책을 적용합니다. 안정적인 알림음 재생을 위해: 1) 페이지를 연 후 화면을 클릭하거나 키를 눌러 브라우저에 오디오 권한을 부여하세요. 2) 브라우저 탭이 음소거 상태가 아닌지 확인하세요. 3) 기기의 전체 볼륨과 무음/진동 스위치 상태를 확인하세요."
+	},
+	{
+		question: "카운트다운 타이머, 디지털 시계, 랩 스톱워치의 차이점은 무엇인가요?",
+		answer: "On Screen Timer는 세 가지 필수 시간 도구를 하나로 통합했습니다: 1) <strong>카운트다운 타이머:</strong> 설정한 시간에서 0까지 거꾸로 측정하며 종료 시 알림음을 울립니다 (시험, 발표, 요리에 적합); 2) <strong>디지털 시계:</strong> 초 단위까지 실시간 현지 시각을 12시간/24시간 형식으로 표시합니다; 3) <strong>랩 스톱워치:</strong> 밀리초 단위로 시간을 측정하며 구간별 랩 타임과 누적 기록을 표로 관리할 수 있습니다 (운동, 업무 속도 측정에 적합)."
+	}
+];
+
+const faqSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	"mainEntity": faqs.map((faq) => ({
+		"@type": "Question",
+		"name": faq.question,
+		"acceptedAnswer": {
+			"@type": "Answer",
+			"text": faq.answer.replace(/<[^>]*>?/gm, '')
+		}
+	}))
+};
 ---
 
-<Layout title="On Screen Timer FAQ — 타이머, 작업 및 설정" description="온라인 타이머 사용, 작업 관리, 전체화면 모드 사용, 세션 저장 등 On Screen Timer에 대해 자주 묻는 질문입니다.">
+<Layout title="자주 묻는 질문 — On Screen Timer" description="온라인 타이머 사용법, 작업 관리, 전체화면 모드, 화면 꺼짐 방지, 세션 저장 등 On Screen Timer에 대해 자주 묻는 질문입니다.">
+	<Fragment slot="head">
+		<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+	</Fragment>
 	<div class="min-h-dvh flex flex-col justify-between">
 		<SiteHeader />
 		<main class="flex-1 w-full max-w-3xl mx-auto px-4 sm:px-6 py-12 lg:py-16">
 			<h1 class="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-8">자주 묻는 질문</h1>
 			
 			<div class="space-y-4">
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900" open>
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						온라인 타이머는 어떻게 설정하나요?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>먼저 타이머 모드가 선택되었는지 확인합니다. <code>5</code>, <code>02:00</code>, <code>01:30:00</code>, 또는 <code>90s</code>와 같이 입력란에 원하는 시간을 입력하세요. 그런 다음 시작을 누릅니다.</p>
-					</div>
-				</details>
-				
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						On Screen Timer를 사용하려면 계정이 필요한가요?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>일반적인 사용에는 계정이 필요하지 않습니다. 가입하지 않고 바로 사용할 수 있습니다.</p>
-					</div>
-				</details>
-
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						페이지를 새로고침하면 어떻게 되나요?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>타이머, 스톱워치, 작업, 설정 및 지원되는 학습 블록 상태는 브라우저 로컬에 저장되므로 다시 접속하거나 새로고침할 때 복원될 수 있습니다.</p>
-					</div>
-				</details>
-
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						전체화면 모드는 무엇인가요?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>전체화면 모드는 불필요한 페이지 요소를 숨겨 중요 제어 항목만 남기는 집중력 향상 보기입니다. 브라우저의 전체 화면 API가 아닙니다.</p>
-					</div>
-				</details>
-
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						학습 블록 프리셋은 어떻게 작동하나요?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>설정에서 프리셋을 선택하세요. 타이머는 지정된 단계(현재 작업과 무관함)를 사용하며, 마지막 단계가 끝날 때까지 각 구간을 자동으로 진행합니다.</p>
-					</div>
-				</details>
-
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						On Screen Timer를 뽀모도로 타이머로 사용할 수 있나요?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>네, 타이머를 설정하여 뽀모도로 스타일(예: 25분 작업, 짧은 휴식)로 수동으로 사용하거나, 학습 블록 프리셋을 사용하여 체계적인 순서를 따를 수 있습니다.</p>
-					</div>
-				</details>
+				{faqs.map((faq, index) => (
+					<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900" open={index === 0}>
+						<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+							{faq.question}
+							<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+						</summary>
+						<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+							<p set:html={faq.answer} />
+						</div>
+					</details>
+				))}
 			</div>
 		</main>
 		<SiteFooter />

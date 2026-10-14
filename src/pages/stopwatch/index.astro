@@ -13,7 +13,7 @@ const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
 ---
 
-<Layout title="Online Stopwatch — Free Full-Screen Stopwatch & Lap Timer">
+<Layout title="Online Stopwatch — Free Full-Screen Stopwatch & Lap Timer" disableHreflang={true}>
 	<Fragment slot="head">
 		<meta name="description" content="A free, full-screen online stopwatch for tracking laps, split times, and sports or study timing. Works directly in your browser with private local storage." />
 		<script type="application/ld+json" set:html={JSON.stringify({
@@ -31,91 +31,94 @@ const t = useTranslations(locale);
 		<!-- Header -->
 		<SiteHeader />
 
-		<!-- Main Workspace Foundation -->
-		<main id="tool" class="scroll-mt-28 flex-1 lg:min-h-[calc(100dvh-3.5rem)] max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 lg:py-12 flex flex-col lg:flex-row items-center justify-start lg:justify-center gap-6 lg:gap-12 group-data-[size=full]/body:items-center">
+		<main id="main-content" class="flex-1 flex flex-col">
+			<!-- Main Workspace Foundation -->
+			<div id="tool" class="scroll-mt-28 flex-1 lg:min-h-[calc(100dvh-3.5rem)] max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 lg:py-12 flex flex-col lg:flex-row items-center justify-start lg:justify-center gap-6 lg:gap-12 group-data-[size=full]/body:items-center">
 
-			<!-- Reopen Button (Desktop Minimized State) -->
-			<button type="button" id="btn-desktop-todo-reopen" class="hidden fixed left-0 top-1/2 -translate-y-1/2 w-6 h-16 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 border-l-0 rounded-r-md shadow-sm items-center justify-center text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 group-data-[size=full]/body:!hidden transition-colors z-40" aria-label={t("aria.reopenTodo")} title={t("tasks.todo")}>
-				<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-			</button>
+				<!-- Reopen Button (Desktop Minimized State) -->
+				<button type="button" id="btn-desktop-todo-reopen" class="hidden fixed left-0 top-1/2 -translate-y-1/2 w-6 h-16 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 border-l-0 rounded-r-md shadow-sm items-center justify-center text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 group-data-[size=full]/body:!hidden transition-colors z-40" aria-label={t("aria.reopenTodo")} title={t("tasks.todo")}>
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+				</button>
 
-			<!-- Central Time Workspace -->
-			<div class="flex-1 flex flex-col items-center justify-center w-full min-w-0 order-1 lg:order-2">
-				<TimerWorkspace />
-			</div>
+				<!-- Central Time Workspace -->
+				<div class="flex-1 flex flex-col items-center justify-center w-full min-w-0 order-1 lg:order-2">
+					<TimerWorkspace />
+				</div>
 
-			<!-- Left Column (Progress & To-do) -->
-			<div class="w-full max-w-md lg:w-72 lg:max-w-none flex flex-col gap-4 shrink-0 order-2 lg:order-1 group-data-[size=full]/body:hidden">
-				<ProgressCalendar />
+				<!-- Left Column (Progress & To-do) -->
+				<div class="w-full max-w-md lg:w-72 lg:max-w-none flex flex-col gap-4 shrink-0 order-2 lg:order-1 group-data-[size=full]/body:hidden">
+					<ProgressCalendar />
 
-				<!-- Mini To-do Panel (Left on Desktop, stacked below on Mobile) -->
-				<aside id="todo-panel" class="w-full flex flex-col border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-sm p-4 transition-all overflow-hidden lg:overflow-visible">
-				<!-- Mobile Header -->
-					<div class="lg:hidden flex items-center justify-between w-full">
-						<button type="button" id="btn-mobile-todo-toggle" aria-expanded="false" aria-controls="todo-content" class="flex items-center text-left font-medium text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
-							<span class="text-sm mr-4">To-do <span id="todo-mobile-count" class="text-zinc-500 font-normal ml-2"></span></span>
-						</button>
-						<div class="flex items-center gap-3">
-							<button type="button" id="btn-end-all-mobile" class="text-xs font-medium text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 rounded transition-colors hidden">{t("tasks.endAll")}</button>
-							<button type="button" id="btn-mobile-todo-toggle-chevron" class="focus-visible:outline-none rounded-sm text-zinc-400" aria-label={t("aria.minimizeTodo")} tabindex="-1">
-								<svg id="todo-mobile-chevron" class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+					<!-- Mini To-do Panel (Left on Desktop, stacked below on Mobile) -->
+					<aside id="todo-panel" class="w-full flex flex-col border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-sm p-4 transition-all overflow-hidden lg:overflow-visible">
+					<!-- Mobile Header -->
+						<div class="lg:hidden flex items-center justify-between w-full">
+							<button type="button" id="btn-mobile-todo-toggle" aria-expanded="false" aria-controls="todo-content" class="flex items-center text-left font-medium text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+								<span class="text-sm mr-4">To-do <span id="todo-mobile-count" class="text-zinc-500 font-normal ml-2"></span></span>
 							</button>
+							<div class="flex items-center gap-3">
+								<button type="button" id="btn-end-all-mobile" class="text-xs font-medium text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 rounded transition-colors hidden">{t("tasks.endAll")}</button>
+								<button type="button" id="btn-mobile-todo-toggle-chevron" class="focus-visible:outline-none rounded-sm text-zinc-400" aria-label={t("aria.minimizeTodo")} tabindex="-1">
+									<svg id="todo-mobile-chevron" class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+								</button>
+							</div>
+						</div>
+
+					<!-- Desktop Header -->
+					<div class="hidden lg:flex items-center justify-between mb-4">
+						<h2 class="text-sm font-medium text-zinc-900 dark:text-zinc-100 text-left flex items-center gap-3">
+								To-do
+								<button type="button" id="btn-end-all-desktop" class="text-xs font-medium text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 rounded transition-colors hidden">{t("tasks.endAll")}</button>
+							</h2>
+						<button type="button" id="btn-desktop-todo-minimize" class="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 rounded p-0.5" aria-label={t("aria.minimizeTodo")} title={t("aria.minimize")}>
+							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+						</button>
+					</div>
+
+					<!-- Expandable Content -->
+					<div id="todo-content" class="flex flex-col mt-4 lg:mt-0">
+						<form id="todo-form" class="relative flex items-center mb-4">
+							<input type="text" id="todo-input" placeholder={t("tasks.addPlaceholder")} class="w-full h-9 px-3 pr-9 text-sm rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors" autocomplete="off" />
+							<button type="submit" class="absolute right-1 w-7 h-7 flex items-center justify-center text-zinc-500 hover:text-blue-600 dark:hover:text-blue-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded" aria-label={t("aria.addTask")}>
+								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
+							</button>
+						</form>
+						<div id="todo-list" class="flex flex-col gap-2 overflow-y-auto max-h-[50vh] text-left">
+							<!-- Tasks will be rendered here -->
+						</div>
+						<!-- Task Summary -->
+						<div id="todo-summary" class="hidden mt-4 pt-3 border-t border-zinc-200/60 dark:border-zinc-800/80 text-[11px] text-zinc-500 dark:text-zinc-400 font-medium text-center">
+							Done <span id="count-done">0</span> &middot; Remaining <span id="count-remaining">0</span>
 						</div>
 					</div>
-
-				<!-- Desktop Header -->
-				<div class="hidden lg:flex items-center justify-between mb-4">
-					<h2 class="text-sm font-medium text-zinc-900 dark:text-zinc-100 text-left flex items-center gap-3">
-							To-do
-							<button type="button" id="btn-end-all-desktop" class="text-xs font-medium text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 rounded transition-colors hidden">{t("tasks.endAll")}</button>
-						</h2>
-					<button type="button" id="btn-desktop-todo-minimize" class="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 rounded p-0.5" aria-label={t("aria.minimizeTodo")} title={t("aria.minimize")}>
-						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-					</button>
+				</aside>
 				</div>
+			</div>
 
-				<!-- Expandable Content -->
-				<div id="todo-content" class="flex flex-col mt-4 lg:mt-0">
-					<form id="todo-form" class="relative flex items-center mb-4">
-						<input type="text" id="todo-input" placeholder={t("tasks.addPlaceholder")} class="w-full h-9 px-3 pr-9 text-sm rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors" autocomplete="off" />
-						<button type="submit" class="absolute right-1 w-7 h-7 flex items-center justify-center text-zinc-500 hover:text-blue-600 dark:hover:text-blue-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded" aria-label={t("aria.addTask")}>
-							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
-						</button>
-					</form>
-					<div id="todo-list" class="flex flex-col gap-2 overflow-y-auto max-h-[50vh] text-left">
-						<!-- Tasks will be rendered here -->
-					</div>
-					<!-- Task Summary -->
-					<div id="todo-summary" class="hidden mt-4 pt-3 border-t border-zinc-200/60 dark:border-zinc-800/80 text-[11px] text-zinc-500 dark:text-zinc-400 font-medium text-center">
-						Done <span id="count-done">0</span> &middot; Remaining <span id="count-remaining">0</span>
+			<!-- Stopwatch-Specific SEO Content Section (Below the Fold) -->
+			<section class="w-full max-w-3xl mx-auto px-4 sm:px-6 group-data-[size=full]/body:hidden">
+				<div class="bg-white/40 dark:bg-zinc-900/40 border border-zinc-200/50 dark:border-zinc-800/50 rounded-2xl p-6 md:p-8 mt-24 mb-12 shadow-sm">
+					<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-200 mb-4">Free Full-Screen Online Stopwatch</h2>
+					<div class="text-zinc-600 dark:text-zinc-400 leading-relaxed space-y-4">
+						<p>
+							Whether you are tracking workout times, measuring study intervals, or timing a presentation, this dedicated online stopwatch provides a massive, highly visible full-screen display. The large digits make it incredibly easy to see from across the room, ensuring you never lose track of your progress during intense activities.
+						</p>
+						<p>
+							Our tool is designed for absolute simplicity and privacy. It operates entirely within your browser without requiring any downloads, installations, or user accounts. You can rely on our stopwatch for:
+						</p>
+						<ul class="list-disc list-inside space-y-2 mb-4 ml-1">
+							<li class="mb-2"><strong>Workout & Fitness Tracking:</strong> Easily measure your sets, rests, or high-intensity interval training (HIIT) sessions with precision.</li>
+							<li class="mb-2"><strong>Study & Focus Intervals:</strong> Keep a running clock of how much time you have dedicated to your reading or assignments.</li>
+							<li class="mb-2"><strong>Event & Sports Timing:</strong> Use the immersive display to track sports events or any activity requiring a highly legible timer.</li>
+						</ul>
+						<p>
+							Because all data—including your active sessions and interface preferences—is stored locally in your browser through our "Private by Design" architecture, your tracking remains entirely private. None of your data is sent to external servers, and your sessions safely resume even if you refresh the page.
+						</p>
 					</div>
 				</div>
-			</aside>
-			</div>
-		</main></div>
-
-	<!-- Stopwatch-Specific SEO Content Section (Below the Fold) -->
-	<section class="w-full max-w-3xl mx-auto px-4 sm:px-6 group-data-[size=full]/body:hidden">
-		<div class="bg-white/40 dark:bg-zinc-900/40 border border-zinc-200/50 dark:border-zinc-800/50 rounded-2xl p-6 md:p-8 mt-24 mb-12 shadow-sm">
-			<h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-200 mb-4">Free Full-Screen Online Stopwatch</h2>
-			<div class="text-zinc-600 dark:text-zinc-400 leading-relaxed space-y-4">
-				<p>
-					Whether you are tracking workout times, measuring study intervals, or timing a presentation, this dedicated online stopwatch provides a massive, highly visible full-screen display. The large digits make it incredibly easy to see from across the room, ensuring you never lose track of your progress during intense activities. 
-				</p>
-				<p>
-					Our tool is designed for absolute simplicity and privacy. It operates entirely within your browser without requiring any downloads, installations, or user accounts. You can rely on our stopwatch for:
-				</p>
-				<ul class="list-disc list-inside space-y-2 mb-4 ml-1">
-					<li class="mb-2"><strong>Workout & Fitness Tracking:</strong> Easily measure your sets, rests, or high-intensity interval training (HIIT) sessions with precision.</li>
-					<li class="mb-2"><strong>Study & Focus Intervals:</strong> Keep a running clock of how much time you have dedicated to your reading or assignments.</li>
-					<li class="mb-2"><strong>Event & Sports Timing:</strong> Use the immersive display to track sports events or any activity requiring a highly legible timer.</li>
-				</ul>
-				<p>
-					Because all data—including your active sessions and interface preferences—is stored locally in your browser through our "Private by Design" architecture, your tracking remains entirely private. None of your data is sent to external servers, and your sessions safely resume even if you refresh the page.
-				</p>
-			</div>
-		</div>
-	</section>
+			</section>
+		</main>
+	</div>
 
 	<SiteFooter />
 

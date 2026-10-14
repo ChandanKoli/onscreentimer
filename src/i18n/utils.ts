@@ -17,21 +17,42 @@ export function getLocaleFromUrl(url: URL): LocaleId {
   return DEFAULT_LOCALE;
 }
 
-/**
- * Generate a path for a specific locale based on an English/base route.
- * Assumes path input does not already have a locale prefix.
- */
 export function getRelativeLocaleUrl(localeId: LocaleId, path: string): string {
   const localeConfig = LOCALES[localeId] || LOCALES[DEFAULT_LOCALE];
   
   // Clean leading slash for consistent joining
-  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  
-  if (localeConfig.prefix === '') {
-    return `/${cleanPath}`;
+  let cleanPath = path.startsWith('/') ? path.slice(1) : path;
+
+  // Handle hash and query strings if present in path input
+  let hashOrQuery = '';
+  const hashIdx = cleanPath.indexOf('#');
+  const queryIdx = cleanPath.indexOf('?');
+  const splitIdx = (hashIdx !== -1 && queryIdx !== -1)
+    ? Math.min(hashIdx, queryIdx)
+    : (hashIdx !== -1 ? hashIdx : queryIdx);
+
+  if (splitIdx !== -1) {
+    hashOrQuery = cleanPath.slice(splitIdx);
+    cleanPath = cleanPath.slice(0, splitIdx);
   }
   
-  const joined = `${localeConfig.prefix}/${cleanPath}`;
-  // Clean up potential trailing slash if path was empty
-  return joined === `${localeConfig.prefix}/` ? localeConfig.prefix + '/' : joined;
+  let joined: string;
+  if (localeConfig.prefix === '') {
+    joined = cleanPath ? `/${cleanPath}` : '/';
+  } else {
+    joined = cleanPath ? `${localeConfig.prefix}/${cleanPath}` : `${localeConfig.prefix}/`;
+  }
+
+  // Normalize double slashes
+  joined = joined.replace(/\/{2,}/g, '/');
+
+  // Check if filename has an extension (e.g. file.xml, file.png)
+  const lastSegment = joined.split('/').pop() || '';
+  if (!lastSegment.includes('.')) {
+    if (!joined.endsWith('/')) {
+      joined = `${joined}/`;
+    }
+  }
+  
+  return joined + hashOrQuery;
 }

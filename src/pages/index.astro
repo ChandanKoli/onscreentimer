@@ -28,7 +28,8 @@ const t = useTranslations(locale);
 		<SiteHeader />
 
 		<!-- Main Workspace Foundation -->
-		<main id="tool" class="scroll-mt-28 flex-1 lg:min-h-[calc(100dvh-3.5rem)] max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 lg:py-12 flex flex-col lg:flex-row items-center justify-start lg:justify-center gap-6 lg:gap-12 group-data-[size=full]/body:items-center">
+		<main id="main-content" class="flex-1 flex flex-col">
+			<div id="tool" class="scroll-mt-28 flex-1 lg:min-h-[calc(100dvh-3.5rem)] max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 lg:py-12 flex flex-col lg:flex-row items-center justify-start lg:justify-center gap-6 lg:gap-12 group-data-[size=full]/body:items-center">
 
 			<!-- Reopen Button (Desktop Minimized State) -->
 			<button type="button" id="btn-desktop-todo-reopen" class="hidden fixed left-0 top-1/2 -translate-y-1/2 w-6 h-16 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 border-l-0 rounded-r-md shadow-sm items-center justify-center text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 group-data-[size=full]/body:!hidden transition-colors z-40" aria-label={t("aria.reopenTodo")} title={t("tasks.todo")}>
@@ -88,7 +89,7 @@ const t = useTranslations(locale);
 				</div>
 			</aside>
 			</div>
-		</main></div>
+		</div>
 
 		<!-- How It Works Section -->
 		<section id="how-it-works" class="w-full max-w-5xl mx-auto px-4 sm:px-6 py-12 lg:py-16 border-t border-zinc-200 dark:border-zinc-800 group-data-[size=full]/body:hidden">
@@ -146,7 +147,7 @@ const t = useTranslations(locale);
 			</div>
 
 			<div class="flex justify-center sm:justify-start">
-				<a href="/guide" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-sm font-medium text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+				<a href="/guide/" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-sm font-medium text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
 					Read the full Guide
 					<svg class="w-4 h-4 text-zinc-400 dark:text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
 				</a>
@@ -220,7 +221,7 @@ const t = useTranslations(locale);
 			</div>
 
 			<div class="flex justify-center sm:justify-start">
-				<a href="/faq" class="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm px-1 py-0.5">
+				<a href="/faq/" class="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm px-1 py-0.5">
 					View all FAQs
 					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
 				</a>
@@ -243,8 +244,10 @@ const t = useTranslations(locale);
 				</p>
 			</div>
 		</section>
+		</main>
 
 		<SiteFooter />
+	</div>
 
 		<!-- Burger Menu Overlay -->
 		<div id="burger-menu-overlay" class="hidden fixed inset-0 bg-black/20 dark:bg-black/40 z-40 transition-opacity opacity-0 group-data-[size=full]/body:hidden"></div>

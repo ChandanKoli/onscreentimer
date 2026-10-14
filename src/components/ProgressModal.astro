@@ -1,5 +1,8 @@
 ---
 // ProgressModal.astro
+import { getLocaleFromUrl, getRelativeLocaleUrl } from '../i18n/utils.ts';
+const locale = getLocaleFromUrl(Astro.url);
+const prefixPath = (path: string) => getRelativeLocaleUrl(locale, path);
 ---
 
 <div id="progress-modal-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden">
@@ -47,7 +50,7 @@
 
       <!-- Footer Legend -->
       <div class="flex justify-between items-center mt-4 text-[11px] text-slate-400 w-full">
-        <a href="/guide/progress" class="hover:text-slate-300">Learn how we count progress</a>
+        <a href={prefixPath("/guide/progress/")} class="hover:text-slate-300">Learn how we count progress</a>
         <div class="flex items-center gap-1">
           <span>Less</span>
           <div id="progress-legend-container" class="flex items-center gap-1"></div>

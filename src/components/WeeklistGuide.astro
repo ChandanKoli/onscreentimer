@@ -1,0 +1,177 @@
+---
+import { getLocaleFromUrl } from '../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+
+interface GuideContent {
+  title: string;
+  subtitle: string;
+  h1: string;
+  p1: string;
+  p2: string;
+  h2: string;
+  p3: string;
+  p4: string;
+  h3: string;
+  p5: string;
+  p6: string;
+}
+
+const guides: Record<string, GuideContent> = {
+  en: {
+    title: "How to Plan Your Week with Timed Focus Sessions",
+    subtitle: "A private, distraction-free 14-day task planner that bridges weekly scheduling with timed deep work.",
+    h1: "Structuring Weekly Study Blocks and Work Deliverables",
+    p1: "Effective productivity begins with setting manageable boundaries. Weeklist offers a streamlined two-week window—Current Week and Next Week—designed to eliminate the overwhelm common to complex project management software. Instead of endless backlogs, each day provides three dedicated priority slots. Research in cognitive psychology shows that limiting daily commitments to three core deliverables prevents fatigue, sharpens daily intent, and dramatically increases completion rates.",
+    p2: "By mapping out upcoming exam preparation, research reading, client milestones, or sprint tickets across the fourteen-day grid, you create a realistic timeline that balances intense work days with lighter recovery periods. When Sunday arrives, the 'Swap Weeks' feature effortlessly advances your upcoming commitments into the current active view, making weekly planning an intuitive habit rather than an administrative chore.",
+    h2: "Private, Local-First Task Tracking",
+    p3: "Unlike cloud-hosted productivity platforms that demand email logins, track browsing habits, or sell subscription upgrades, Weeklist is built entirely on a 'Private by Design' architecture. All daily tasks, priority markers, status indicators, and completion histories are written directly to your browser's local HTML5 storage.",
+    p4: "This local-first approach guarantees absolute data privacy: no task titles or academic project details ever leave your machine or reach external servers. Furthermore, it operates reliably offline without requiring an active internet connection. Your agenda remains instantly available whenever you open your browser, without authentication hurdles or tracking cookies.",
+    h3: "Seamless Synchronization with Active Countdown Timers",
+    p5: "The core advantage of Weeklist is its direct connection to the On Screen Timer. Planning tasks is only half the battle; executing them with undivided attention is what drives results. With a single click on the play icon (▶), any scheduled task is instantly transferred into the active timer workspace as your Current Task.",
+    p6: "While your countdown or stopwatch runs, the system automatically records your active focus duration against that specific item. Visual status indicators keep you informed at a glance: red denotes unstarted items, yellow indicates an active timer session, and green celebrates completion. Combining structured weekly roadmaps with precision countdown intervals transforms abstract to-do lists into focused, tangible progress."
+  },
+  de: {
+    title: "Wochenplanung mit fokussierten Timer-Sitzungen",
+    subtitle: "Ein privater, ablenkungsfreier 14-Tage-Planer, der Wochenstruktur mit gezielter Timer-Konzentration verbindet.",
+    h1: "Lernblöcke und Aufgaben für die Woche strukturieren",
+    p1: "Effektive Produktivität beginnt mit klaren Grenzen. Weeklist bietet ein übersichtliches Zwei-Wochen-Fenster – Aktuelle Woche und Nächste Woche –, das die Überforderung herkömmlicher Projektmanagement-Tools vermeidet. Statt endloser Listen stehen dir pro Tag drei feste Prioritätsplätze zur Verfügung. Untersuchungen zeigen, dass die Beschränkung auf drei Kernaufgaben pro Tag Erschöpfung verhindert und die Erfolgsquote spürbar erhöht.",
+    p2: "Indem du anstehende Prüfungsvorbereitungen, Recherchearbeiten oder berufliche Meilensteine über die 14 Tage verteilst, entsteht ein realistischer Arbeitsplan mit ausgewogenen Arbeits- und Erholungsphasen. Am Ende der Woche verschiebt die Funktion 'Wochen tauschen' deine vorbereiteten Aufgaben nahtlos in die aktive Ansicht.",
+    h2: "Datenschutz durch lokale Speicherung",
+    p3: "Im Gegensatz zu Cloud-Diensten, die Registrierungen verlangen und Nutzerdaten sammeln, basiert Weeklist auf einer strikten 'Private by Design'-Architektur. Alle Aufgaben, Notizen und Statusdaten werden ausschließlich im lokalen Speicher deines Webbrowsers gesichert.",
+    p4: "Dieser Ansatz garantiert absolute Privatsphäre: Keine deiner Notizen oder Aufgaben verlässt jemals dein Gerät. Zudem funktioniert das System vollständig offline und erfordert weder ein Benutzerkonto noch Tracking-Cookies.",
+    h3: "Direkte Verbindung zum On Screen Timer",
+    p5: "Die besondere Stärke von Weeklist liegt in der direkten Verknüpfung mit dem Timer. Aufgaben zu planen ist nur der erste Schritt – sie mit ungeteilter Aufmerksamkeit umzusetzen, bringt den Fortschritt. Mit einem Klick auf das Startsymbol (▶) wird jede Aufgabe direkt als aktive Aufgabe in den Timer geladen.",
+    p6: "Während der Countdown läuft, wird deine Arbeitszeit präzise erfasst. Farbige Statuspunkte zeigen dir auf einen Blick den Fortschritt: Rot für ausstehende Aufgaben, Gelb für aktive Sitzungen und Grün für erledigte Meilensteine."
+  },
+  es: {
+    title: "Cómo planificar tu semana con sesiones de temporizador",
+    subtitle: "Un planificador semanal privado de 14 días que combina la organización con sesiones de concentración.",
+    h1: "Estructuración de bloques de estudio y entregas semanales",
+    p1: "La productividad efectiva comienza estableciendo límites realistas. Weeklist ofrece una ventana de dos semanas —Semana Actual y Semana Próxima— diseñada para eliminar el estrés de las aplicaciones complejas. En lugar de listas interminables, cada día cuenta con tres espacios prioritarios. Limitar los compromisos diarios a tres tareas clave previene el agotamiento y asegura un avance constante.",
+    p2: "Al distribuir el estudio para exámenes, lecturas o entregas laborales en la cuadrícula de catorce días, creas un calendario equilibrado. La función 'Cambiar Semanas' te permite rotar tus tareas preparadas hacia la semana activa de forma inmediata cada domingo.",
+    h2: "Gestión de tareas privada y 100% local",
+    p3: "A diferencia de las plataformas en la nube que exigen cuentas y rastrean tu actividad, Weeklist funciona bajo una arquitectura 'Privada por Diseño'. Todas las tareas, prioridades e historiales se guardan exclusivamente en el almacenamiento local de tu navegador.",
+    p4: "Tus datos nunca salen de tu ordenador o teléfono hacia servidores externos. Además, la herramienta funciona sin conexión a internet y sin necesidad de registros ni cookies publicitarias.",
+    h3: "Sincronización directa con el temporizador",
+    p5: "La gran ventaja de Weeklist es su enlace directo con On Screen Timer. Con solo presionar el botón de inicio (▶), cualquier tarea se transfiere automáticamente al temporizador como tu tarea en curso.",
+    p6: "Mientras el temporizador cuenta hacia atrás, el sistema registra el tiempo dedicado a esa actividad concreta. Los indicadores de color te muestran el estado al instante: rojo para pendientes, amarillo para sesiones activas y verde para tareas completadas."
+  },
+  fr: {
+    title: "Planifier votre semaine avec des sessions de concentration",
+    subtitle: "Un planificateur privé de 14 jours qui allie organisation hebdomadaire et sessions de travail minutées.",
+    h1: "Structurer ses blocs d'étude et ses priorités hebdomadaires",
+    p1: "Une productivité durable commence par des limites claires. Weeklist propose un calendrier simple sur deux semaines — Semaine Actuelle et Semaine Prochaine — évitant la surcharge des outils complexes. Chaque jour dispose de trois créneaux prioritaires. Limiter ses objectifs quotidiens à trois livrables essentiels évite la fatigue mentale et optimise la concentration.",
+    p2: "En répartissant vos révisions d'examens ou vos livrables professionnels sur quatorze jours, vous construisez un rythme de travail équilibré. La fonction 'Échanger les Semaines' fait basculer vos tâches préparées dans la vue active en un instant.",
+    h2: "Une gestion locale et totalement privée",
+    p3: "Contrairement aux plateformes distantes qui exigent une inscription et analysent vos données, Weeklist fonctionne selon une approche 'Privée par Conception'. Toutes vos tâches et progressions sont stockées exclusivement dans la mémoire locale de votre navigateur.",
+    p4: "Aucune information ne quitte votre appareil. Weeklist fonctionne également hors ligne, sans compte utilisateur et sans aucun cookie publicitaire.",
+    h3: "Synchronisation immédiate avec le minuteur",
+    p5: "L'atout majeur de Weeklist est sa liaison directe avec On Screen Timer. D'un simple clic sur le bouton de lecture (▶), votre tâche planifiée devient la tâche active dans le minuteur.",
+    p6: "Pendant que le compte à rebours défile, votre temps de travail effectif est enregistré avec exactitude. Des repères visuels colorés facilitent le suivi : rouge pour les tâches en attente, jaune pour une session en cours et vert pour une tâche achevée."
+  },
+  it: {
+    title: "Pianifica la tua settimana con sessioni di studio a tempo",
+    subtitle: "Un pianificatore a 14 giorni privato e senza distrazioni per gestire i tuoi impegni con il timer.",
+    h1: "Organizzare blocchi di studio e obiettivi settimanali",
+    p1: "Una produttività sostenibile richiede limiti precisi. Weeklist offre una visuale a due settimane — Settimana Corrente e Prossima Settimana — pensata per evitare la dispersione delle app di gestione complesse. Con un massimo di tre compiti prioritari al giorno, mantieni alta la concentrazione ed eviti il sovraccarico mentale.",
+    p2: "Distribuire esami universitari, scadenze lavorative o sessioni di lettura sui quattordici giorni ti aiuta a mantenere un ritmo bilanciato. La funzione 'Scambia Settimane' permette di far avanzare rapidamente la pianificazione.",
+    h2: "Tracciamento locale e massima privacy",
+    p3: "A differenza dei servizi cloud che richiedono login e raccolgono dati personali, Weeklist adotta un'architettura 'Private by Design'. Tutte le informazioni vengono salvate esclusivamente nella memoria locale del tuo browser.",
+    p4: "Nessun dato viene inviato a server esterni. Lo strumento funziona anche senza connessione internet, senza account e senza cookie di profilazione.",
+    h3: "Collegamento immediato con il timer",
+    p5: "Il punto di forza di Weeklist è il collegamento continuo con On Screen Timer. Cliccando sull'icona play (▶), l'attività pianificata passa direttamente al timer come compito attivo.",
+    p6: "Mentre il conto alla rovescia prosegue, il tempo effettivo di lavoro viene conteggiato. Gli indicatori di stato colorati (rosso per da iniziare, giallo per in corso, verde per completato) offrono una visione immediata dei tuoi risultati."
+  },
+  ja: {
+    title: "タイマー集中セッションを活用した週間タスク計画ガイド",
+    subtitle: "毎日の集中と長期的なスケジュールを直感的に結びつける、完全プライベートな14日間タスクプランナー。",
+    h1: "学習ブロックと重要タスクの週間スケジューリング",
+    p1: "生産性を最大化するための秘訣は、無理のない明確な制約を設けることです。Weeklistは「今週」と「来週」の2週間分の枠組みを提供し、過密なスケジュールによる燃え尽き症候群を防ぎます。各日に設定できるタスクを厳選された3つに制限することで、認知的負荷を軽減し、日々の最優先事項に確実に注力できるよう設計されています。",
+    p2: "資格試験の勉強、研究論文の執筆、プロジェクトの納期などを14日間のグリッドに分散配置することで、高負荷な作業日と休息日のバランスを的確に保てます。「週を入れ替える」ボタンを使えば、翌週のために準備したタスクリストをワンクリックで現在の週へと繰り上げることができます。",
+    h2: "クラウド不要・ブラウザ完結のプライベート設計",
+    p3: "一般的なタスク管理クラウドサービスとは異なり、Weeklistはアカウント作成や個人情報の登録を一切要求しません。すべてのタスク名、進行状況、ステータス履歴はお使いのブラウザのローカルストレージ（HTML5 localStorage）にのみ安全に保存されます。",
+    p4: "入力したタスクデータが外部サーバーへ送信されることは一切ありません。オフライン環境でも完全に動作し、トラッキングクッキーに悩まされることなく、ブラウザを開くだけでいつでも計画を再開できます。",
+    h3: "On Screen Timerとのシームレスな連携",
+    p5: "Weeklistの真価は、On Screen Timerとの直接連携にあります。タスクの計画を立てるだけでなく、再生アイコン（▶）をクリックするだけで、その日のタスクが瞬時にタイマーの「進行中のタスク」へと同期されます。",
+    p6: "タイマーやストップウォッチがカウントダウンする間、作業時間が自動的に記録されます。未着手（赤）、実行中（黄）、完了（緑）の色分けドットにより、1日の達成度がひと目で把握でき、高い集中力を維持できます。"
+  },
+  ko: {
+    title: "타이머 집중 세션을 활용한 주간 계획 및 시간 관리 가이드",
+    subtitle: "주간 일정 계획과 실시간 집중 타이머를 자연스럽게 연결하는 비공개 로컬 14일 플래너.",
+    h1: "주간 학습 블록 및 업무 목표 구조화",
+    p1: "효율적인 생산성은 명확하고 관리 가능한 경계를 설정하는 것에서 출발합니다. Weeklist는 '이번 주'와 '다음 주'의 2주 단위 창을 제공하여 복잡한 프로젝트 도구에서 오는 피로감을 없애줍니다. 하루 최대 3개의 핵심 과제만을 배치하도록 설계되어 있어, 작업 과부하를 방지하고 가장 중요한 목표에 집중할 수 있도록 돕습니다.",
+    p2: "시험 대비, 논문 작성, 업무 프로젝트 마감일을 14일 일정표에 나누어 배치하면 무리 없는 실행 계획이 완성됩니다. 주말에는 '주 교환' 기능을 통해 다음 주에 적어둔 계획을 손쉽게 이번 주 화면으로 전환할 수 있습니다.",
+    h2: "서버 전송 없는 브라우저 로컬 개인정보 보호",
+    p3: "회원가입과 클라우드 저장을 요구하는 일반적인 생산성 도구와 달리, Weeklist는 'Private by Design' 원칙을 준수합니다. 모든 작업 데이터와 상태값은 오직 사용자의 브라우저 로컬 저장소(localStorage)에만 안전하게 기록됩니다.",
+    p4: "작성한 일정과 과제 내용은 외부 서버로 전송되지 않으며, 인터넷 연결이 없는 오프라인 상태에서도 완벽하게 작동합니다. 번거로운 로그인 절차나 추적 쿠키 없이 언제든 브라우저를 열어 계획을 점검할 수 있습니다.",
+    h3: "On Screen Timer와의 유기적인 동기화",
+    p5: "Weeklist의 가장 큰 장점은 On Screen Timer와의 원클릭 연동입니다. 재생 아이콘(▶)을 누르면 해당 작업이 타이머의 '현재 진행 중인 작업'으로 즉시 전송됩니다.",
+    p6: "카운트다운이 진행되는 동안 실제 작업 시간이 정확히 누적 기록됩니다. 대기 중(빨강), 진행 중(노랑), 완료(초록)의 직관적인 상태 표시를 통해 하루의 달성도를 한눈에 파악하며 지속적인 몰입을 유지할 수 있습니다."
+  },
+  'pt-br': {
+    title: "Como planejar sua semana com sessões de foco cronometradas",
+    subtitle: "Um planejador semanal privado de 14 dias que une organização diária e sessões de concentração no timer.",
+    h1: "Estruturação de blocos de estudo e metas semanais",
+    p1: "A produtividade sustentável começa com limites claros. O Weeklist oferece uma janela de duas semanas — Semana Atual e Próxima Semana — projetada para evitar a sobrecarga de ferramentas complexas. Cada dia possui três espaços prioritários para tarefas. Limitar o foco diário a três itens essenciais previne a exaustão mental e aumenta a taxa de conclusão dos seus objetivos.",
+    p2: "Ao distribuir revisões para provas, leituras e entregas de projetos pela grade de 14 dias, você constrói um cronograma realista que equilibra dias intensos e períodos de recuperação. O recurso 'Trocar Semanas' transfere suas tarefas planejadas para a semana ativa com um único clique.",
+    h2: "Privacidade absoluta com armazenamento local",
+    p3: "Diferente de serviços em nuvem que exigem cadastro e monitoram suas atividades, o Weeklist segue a arquitetura 'Privado por Design'. Todas as tarefas e status são gravados diretamente no armazenamento local (localStorage) do seu navegador.",
+    p4: "Nenhum dado pessoal ou título de tarefa é enviado para servidores externos. A ferramenta funciona perfeitamente sem internet e não utiliza cookies de rastreamento.",
+    h3: "Sincronização direta com o On Screen Timer",
+    p5: "O grande diferencial do Weeklist é a integração com o timer. Ao clicar no ícone de reprodução (▶), a tarefa planejada é enviada instantaneamente para o On Screen Timer como sua tarefa ativa.",
+    p6: "Enquanto o cronômetro ou contagem regressiva avança, seu tempo de dedicação é registrado. Os marcadores visuais (vermelho para pendente, amarelo para em andamento e verde para concluído) mostram o seu progresso em tempo real."
+  }
+};
+
+const guide = guides[locale] || guides.en;
+---
+
+<section class="w-full max-w-4xl mx-auto px-4 py-12 md:py-16 border-t border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300">
+  <div class="mb-10 text-center md:text-left">
+    <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-3">
+      {guide.title}
+    </h2>
+    <p class="text-base md:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-3xl">
+      {guide.subtitle}
+    </p>
+  </div>
+
+  <div class="space-y-8 leading-relaxed text-sm md:text-base">
+    <div class="p-6 md:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/60 shadow-xs">
+      <h3 class="text-lg md:text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
+        {guide.h1}
+      </h3>
+      <p class="mb-4 text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        {guide.p1}
+      </p>
+      <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        {guide.p2}
+      </p>
+    </div>
+
+    <div class="p-6 md:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/60 shadow-xs">
+      <h3 class="text-lg md:text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
+        {guide.h2}
+      </h3>
+      <p class="mb-4 text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        {guide.p3}
+      </p>
+      <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        {guide.p4}
+      </p>
+    </div>
+
+    <div class="p-6 md:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/60 shadow-xs">
+      <h3 class="text-lg md:text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
+        {guide.h3}
+      </h3>
+      <p class="mb-4 text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        {guide.p5}
+      </p>
+      <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        {guide.p6}
+      </p>
+    </div>
+  </div>
+</section>

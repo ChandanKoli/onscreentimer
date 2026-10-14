@@ -2,74 +2,98 @@
 import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
+
+interface FAQItem {
+	question: string;
+	answer: string;
+}
+
+const faqs: FAQItem[] = [
+	{
+		question: "Como configuro um temporizador online?",
+		answer: "Primeiro, certifique-se de selecionar o modo Temporizador na barra superior. Insira a duração desejada no campo usando formatos usuais como <code>5</code>, <code>02:00</code>, <code>25m</code> ou <code>01:30:00</code>. Depois, clique em Iniciar ou pressione a Barra de espaço."
+	},
+	{
+		question: "Preciso de uma conta para usar o On Screen Timer?",
+		answer: "Nenhuma conta ou cadastro é necessário para o uso normal. O On Screen Timer é totalmente gratuito para uso imediato, sem restrições, logins ou rastreamento."
+	},
+	{
+		question: "O que acontece se eu atualizar a página ou fechar o navegador?",
+		answer: "Seu temporizador ativo, tempos de volta do cronômetro, listas de tarefas, blocos de estudo personalizados e preferências de som e tema são salvos localmente no <code>localStorage</code> do seu navegador e restaurados automaticamente ao retornar."
+	},
+	{
+		question: "O que é o modo Tela cheia (Full mode)?",
+		answer: "O modo Tela cheia oferece uma interface limpa e sem distrações ao ocultar menus e cabeçalhos secundários, destacando apenas a contagem em números grandes. Pressione a tecla <code>F</code> para alternar o modo tela cheia."
+	},
+	{
+		question: "Como funcionam os Blocos de estudo (Study Blocks)?",
+		answer: "Escolha um modelo nas Configurações — como o Pomodoro clássico (25/5) ou blocos de imersão 50/10. O temporizador alternará automaticamente entre os intervalos de foco e descanso, emitindo avisos sonoros a cada etapa."
+	},
+	{
+		question: "Posso usar o On Screen Timer como um temporizador Pomodoro?",
+		answer: "Sim. Você pode configurar manualmente 25 minutos de trabalho e 5 minutos de intervalo, ou ativar o modelo Pomodoro pré-configurado nas Configurações para rodar ciclos contínuos automáticos."
+	},
+	{
+		question: "Como o Bloqueio de suspensão de tela (Screen Wake Lock) impede que o visor desligue durante a contagem?",
+		answer: "O On Screen Timer utiliza a API nativa Screen Wake Lock do navegador para evitar que a tela escureça, bloqueie ou entre em modo de suspensão enquanto o temporizador ou cronômetro estiver em execução. O bloqueio é ativado automaticamente ao iniciar e liberado ao pausar ou concluir. Manter a aba visível garante iluminação contínua durante provas, apresentações, culinária e treinos."
+	},
+	{
+		question: "Quais atalhos de teclado e controles em tela cheia estão disponíveis para apresentações e exames?",
+		answer: "Você pode controlar o On Screen Timer rapidamente pelo teclado: pressione a <code>Barra de espaço</code> para iniciar ou pausar, <code>R</code> para reiniciar o tempo inicial e <code>F</code> para alternar o modo tela cheia. O modo completo oculta distrações da página, exibindo números grandes de alto contraste visíveis à distância em salas de aula e auditórios."
+	},
+	{
+		question: "Como o armazenamento local do navegador mantém minhas tarefas e tempos de volta em privacidade?",
+		answer: "Todos os dados da sua sessão — listas de afazeres, tarefas concluídas, blocos de estudo, preferências de som e registros de voltas do cronômetro — são salvos exclusivamente no armazenamento local do seu navegador (<code>localStorage</code>). Nenhum dado pessoal é enviado a servidores remotos ou bancos de dados na nuvem, garantindo privacidade total e funcionamento offline."
+	},
+	{
+		question: "Como utilizar intervalos Pomodoro e 50/10 para sessões de estudo profundo?",
+		answer: "A técnica 50/10 combina 50 minutos de concentração contínua com 10 minutos de descanso revigorante, ideal para estudos exigentes e trabalhos complexos. Escolha o preset Pomodoro (25/5) ou 50/10 nas Configurações: o temporizador avançará automaticamente entre as etapas de foco e descanso, emitindo avisos sonoros a cada transição."
+	},
+	{
+		question: "Por que o alerta sonoro não tocou quando a aba estava em segundo plano?",
+		answer: "Os navegadores modernos implementam políticas restritas de reprodução automática para abas em segundo plano. Para garantir que os alarmes soem perfeitamente: 1) Clique na página ou pressione uma tecla após abrir o site para conceder permissão de áudio; 2) Verifique se a aba não está silenciada no navegador; 3) Confira o volume geral do dispositivo e se a chave de silêncio físico não está ativada."
+	},
+	{
+		question: "Qual é a diferença entre Temporizador, Relógio digital e Cronômetro com voltas?",
+		answer: "O On Screen Timer reúne três ferramentas de precisão em um único aplicativo: 1) <strong>Temporizador regressivo:</strong> Faz a contagem decrescente a partir de um tempo determinado até zero com alarmes sonoros, perfeito para prazos, culinária e provas; 2) <strong>Relógio digital:</strong> Mostra o horário local exato em formato de 12 ou 24 horas com segundos em tempo real; 3) <strong>Cronômetro com voltas:</strong> Mede o tempo decorrido com precisão de milissegundos e tabela para gravar tempos parciais e voltas para esportes e medição de desempenho."
+	}
+];
+
+const faqSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	"mainEntity": faqs.map((faq) => ({
+		"@type": "Question",
+		"name": faq.question,
+		"acceptedAnswer": {
+			"@type": "Answer",
+			"text": faq.answer.replace(/<[^>]*>?/gm, '')
+		}
+	}))
+};
 ---
 
-<Layout title="Perguntas Frequentes sobre o On Screen Timer — Temporizador, Tarefas e Configurações" description="Perguntas frequentes sobre o On Screen Timer, incluindo como usar o temporizador online, gerenciar tarefas, usar o modo Tela cheia e salvar o estado da sua sessão.">
+<Layout title="Perguntas frequentes — On Screen Timer" description="Perguntas frequentes sobre o On Screen Timer: temporizador online, gestão de tarefas, tela cheia, bloqueio de suspensão e salvamento de sessão.">
+	<Fragment slot="head">
+		<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+	</Fragment>
 	<div class="min-h-dvh flex flex-col justify-between">
 		<SiteHeader />
 		<main class="flex-1 w-full max-w-3xl mx-auto px-4 sm:px-6 py-12 lg:py-16">
-			<h1 class="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-8">Perguntas Frequentes</h1>
+			<h1 class="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-8">Perguntas frequentes</h1>
 			
 			<div class="space-y-4">
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900" open>
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						Como configuro um temporizador online?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>Primeiro, certifique-se de que selecionou o modo Temporizador. Insira a duração desejada no campo usando formatos como <code>5</code>, <code>02:00</code> ou <code>01:30:00</code>. Depois, pressione Iniciar.</p>
-					</div>
-				</details>
-				
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						Preciso de uma conta para usar o On Screen Timer?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>Nenhuma conta é necessária para o uso normal. Ele está pronto para uso imediato sem precisar de cadastro.</p>
-					</div>
-				</details>
-
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						O que acontece se eu atualizar a página?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>Seu Temporizador, Cronômetro, tarefas, preferências e o estado do Bloco de Estudo podem ser restaurados quando você retorna ou atualiza a página, pois são salvos localmente no seu navegador.</p>
-					</div>
-				</details>
-
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						O que é o modo Tela cheia?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>O modo Tela cheia oferece uma visão focada no aplicativo, escondendo elementos não essenciais da página e mantendo apenas os controles importantes disponíveis. Não se trata da API de Tela Cheia do navegador.</p>
-					</div>
-				</details>
-
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						Como funcionam os Blocos de Estudo?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>Escolha um modelo nas Configurações. O Temporizador usará fases nomeadas (independentes da sua Tarefa Atual) e progredirá automaticamente por cada segmento até o fim do último.</p>
-					</div>
-				</details>
-
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						Posso usar o On Screen Timer como um temporizador Pomodoro?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>Sim, você pode usá-lo manualmente para sessões no estilo Pomodoro (como 25 minutos de trabalho, pausa curta) configurando o temporizador, ou usar os Blocos de Estudo para seguir sequências estruturadas.</p>
-					</div>
-				</details>
+				{faqs.map((faq, index) => (
+					<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900" open={index === 0}>
+						<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+							{faq.question}
+							<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+						</summary>
+						<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+							<p set:html={faq.answer} />
+						</div>
+					</details>
+				))}
 			</div>
 		</main>
 		<SiteFooter />

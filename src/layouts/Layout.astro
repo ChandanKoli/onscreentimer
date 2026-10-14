@@ -10,13 +10,17 @@ interface Props {
 	description?: string;
 	ogType?: string;
 	ogImage?: string;
+	noindex?: boolean;
+	disableHreflang?: boolean;
 }
 
 const {
 	title = 'Online Timer, Clock & Stopwatch — On Screen Timer',
 	description = 'A free, full-screen online timer, clock, and stopwatch with built-in task tracking. Distraction-free, easy to use, and works directly in your browser.',
 	ogType = 'website',
-	ogImage = '/web-app-manifest-512x512.png'
+	ogImage = '/web-app-manifest-512x512.png',
+	noindex = false,
+	disableHreflang = false
 } = Astro.props;
 
 const currentLocaleId = getLocaleFromUrl(Astro.url);
@@ -30,18 +34,37 @@ if (localeConfig.prefix && basePath.startsWith(localeConfig.prefix)) {
 if (!basePath.startsWith('/')) basePath = '/' + basePath;
 const cleanPath = basePath.startsWith('/') ? basePath.slice(1) : basePath;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
+// Ensure canonical URL has trailing slash
+let canonicalPath = Astro.url.pathname;
+const lastCanonicalSegment = canonicalPath.split('/').pop() || '';
+if (!canonicalPath.endsWith('/') && !lastCanonicalSegment.includes('.')) {
+    canonicalPath = `${canonicalPath}/`;
+}
+const canonicalURL = new URL(canonicalPath, Astro.site).href;
+
+const isStopwatch = basePath === '/stopwatch' || basePath === '/stopwatch/';
+const isErrorPage = basePath === '/404' || basePath === '/404/' || basePath.endsWith('/404.html') || basePath === '/500' || basePath === '/500/' || basePath.endsWith('/500.html');
+const shouldDisableHreflang = disableHreflang || isStopwatch || isErrorPage;
+const shouldNoindex = noindex || isErrorPage;
 
 const activeHreflangs = ACTIVE_LOCALES.map(loc => {
-    const altPath = loc.prefix === '' ? `/${cleanPath}` : `${loc.prefix}/${cleanPath}`;
+    let altPath = loc.prefix === '' ? `/${cleanPath}` : `${loc.prefix}/${cleanPath}`;
+    altPath = altPath.replace(/\/{2,}/g, '/');
+    if (!altPath.endsWith('/') && !altPath.split('/').pop()?.includes('.')) {
+        altPath = `${altPath}/`;
+    }
     return {
         lang: loc.lang,
-        url: new URL(altPath.replace(/\/{2,}/g, '/'), Astro.site).href
+        url: new URL(altPath, Astro.site).href
     };
 });
 
-const xDefaultPath = LOCALES['en'].prefix === '' ? `/${cleanPath}` : `${LOCALES['en'].prefix}/${cleanPath}`;
-const xDefaultUrl = new URL(xDefaultPath.replace(/\/{2,}/g, '/'), Astro.site).href;
+let xDefaultPath = LOCALES['en'].prefix === '' ? `/${cleanPath}` : `${LOCALES['en'].prefix}/${cleanPath}`;
+xDefaultPath = xDefaultPath.replace(/\/{2,}/g, '/');
+if (!xDefaultPath.endsWith('/') && !xDefaultPath.split('/').pop()?.includes('.')) {
+    xDefaultPath = `${xDefaultPath}/`;
+}
+const xDefaultUrl = new URL(xDefaultPath, Astro.site).href;
 ---
 <!doctype html>
 <html lang={localeConfig.lang}>
@@ -57,12 +80,19 @@ const xDefaultUrl = new URL(xDefaultPath.replace(/\/{2,}/g, '/'), Astro.site).hr
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		{shouldNoindex && (
+			<meta name="robots" content="noindex, nofollow" />
+		)}
 		<link rel="canonical" href={canonicalURL} />
 		
-		{activeHreflangs.map(({ lang, url }) => (
-			<link rel="alternate" hreflang={lang} href={url} />
-		))}
-		<link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
+		{!shouldDisableHreflang && (
+			<>
+				{activeHreflangs.map(({ lang, url }) => (
+					<link rel="alternate" hreflang={lang} href={url} />
+				))}
+				<link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
+			</>
+		)}
 
 		<!-- Open Graph -->
 		<meta property="og:title" content={title} />

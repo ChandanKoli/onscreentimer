@@ -4,7 +4,7 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 ---
 
-<Layout title="404: Page Not Found — On Screen Timer" description="The page you're looking for doesn't exist.">
+<Layout title="404: Page Not Found — On Screen Timer" description="The page you're looking for doesn't exist." noindex={true} disableHreflang={true}>
 	<div class="min-h-dvh flex flex-col">
 		<SiteHeader />
 
@@ -26,11 +26,11 @@ import SiteFooter from '../components/SiteFooter.astro';
 			</a>
 			
 			<div class="flex items-center gap-6 text-sm">
-				<a href="/guide" class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+				<a href="/guide/" class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
 					Guide
 				</a>
 				<span class="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-700" aria-hidden="true"></span>
-				<a href="/faq" class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+				<a href="/faq/" class="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
 					FAQ
 				</a>
 			</div>

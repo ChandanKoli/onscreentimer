@@ -2,74 +2,98 @@
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+
+interface FAQItem {
+	question: string;
+	answer: string;
+}
+
+const faqs: FAQItem[] = [
+	{
+		question: "How do I set an online timer?",
+		answer: "First, ensure you have selected Timer mode from the top toolbar. Enter your desired duration into the input field using natural formats like <code>5</code>, <code>02:00</code>, <code>25m</code>, or <code>01:30:00</code>. Then click Start or press the Spacebar to begin counting down immediately."
+	},
+	{
+		question: "Do I need an account to use On Screen Timer?",
+		answer: "No account, email, or registration is required. On Screen Timer is completely free to use immediately with zero paywalls, logins, or user tracking."
+	},
+	{
+		question: "What happens if I refresh the page or close the browser?",
+		answer: "Your active timer, stopwatch lap records, to-do tasks, custom study block presets, audio alerts, and theme preferences are saved locally in your browser's <code>localStorage</code>. When you return or refresh the page, your workspace restores automatically."
+	},
+	{
+		question: "What is Full mode?",
+		answer: "Full mode provides a clean, distraction-free view by hiding nonessential navigation chrome and sidebars, keeping only the large time readout and essential controls visible. Press <code>F</code> to toggle full-screen presentation mode."
+	},
+	{
+		question: "How do Study Block Presets work?",
+		answer: "Choose a preset from Settings—such as classic 25/5 Pomodoro or 50/10 deep focus blocks. The timer automatically progresses through named focus and rest intervals, alerting you with chimes at each phase transition."
+	},
+	{
+		question: "Can I use On Screen Timer as a Pomodoro timer?",
+		answer: "Yes. You can manually enter 25-minute work and 5-minute break durations, or choose the built-in Pomodoro Study Block Preset in Settings to run automated 25/5 focus cycles with automatic phase switching and audible alerts."
+	},
+	{
+		question: "How does Screen Wake Lock prevent my display from sleeping during long countdowns?",
+		answer: "On Screen Timer utilizes the browser-native Screen Wake Lock API to keep your display awake while a countdown timer or stopwatch is actively running. This ensures that your screen does not dim or turn off during long presentations, exams, cooking, or workout sessions. The wake lock automatically activates when you start the timer and releases when paused, finished, or when the tab is closed. To ensure uninterrupted wake lock operation, keep the timer tab visible in your active browser window."
+	},
+	{
+		question: "What keyboard shortcuts and full-screen controls are available for presentations and exams?",
+		answer: "You can control On Screen Timer quickly using intuitive keyboard shortcuts: press <code>Spacebar</code> to start or pause the active timer, <code>R</code> to reset back to initial duration, and <code>F</code> to toggle full-screen presentation mode. In Full mode, all nonessential page elements and distraction triggers are minimized, leaving only the large time readout and essential controls. This makes On Screen Timer ideal for classroom teachers, conference speakers, boardrooms, exam proctors, and gym intervals where legibility from across the room is essential."
+	},
+	{
+		question: "How does local browser storage keep my task lists, presets, and lap times private?",
+		answer: "All of your session data—including task lists, completed items, custom study block presets, sound preferences, theme choices, and stopwatch lap times—is saved strictly in your browser's local storage (<code>localStorage</code>). No personal productivity data or timer logs are ever transmitted to external servers, cloud databases, or third-party tracking services. Your data remains completely private on your personal device, works offline once loaded, and persists automatically across page reloads and browser restarts without requiring an account or login."
+	},
+	{
+		question: "How do I use Pomodoro (25/5) and 50/10 intervals for deep focus and study blocks?",
+		answer: "On Screen Timer offers built-in Study Block Presets tailored for structured interval training and deep work. You can select classic 25-minute work / 5-minute break Pomodoro intervals or 50-minute focus / 10-minute restorative intervals from the presets menu. When activated, the timer seamlessly transitions between named focus phases and break periods, triggering audible alerts at each milestone. Combining structured time blocks with our integrated daily task list helps eliminate cognitive fatigue and maintain sustained mental clarity throughout long study or work days."
+	},
+	{
+		question: "Why did my timer sound not play when the browser tab was backgrounded?",
+		answer: "Modern web browsers (including Chrome, Safari, Edge, and Firefox) implement strict autoplay policies to prevent unwanted media playback. To ensure audio alerts fire reliably when the timer finishes: 1) Interact with the page (click or press a key) at least once after loading so the browser grants audio playback permission; 2) Ensure the tab is not muted in your browser's tab strip; 3) Check your device's master volume and hardware silent switches (especially on mobile devices); 4) Note that some operating systems heavily throttle background tabs in battery-saver mode, so keeping the timer window open or un-minimized ensures optimal audio chime precision."
+	},
+	{
+		question: "What is the difference between Countdown Timer, Digital Clock, and Lap Stopwatch modes?",
+		answer: "On Screen Timer combines three essential timekeeping tools into a single lightweight utility: 1) <strong>Countdown Timer:</strong> Counts down from a specified duration (hours, minutes, seconds) to zero, triggering sound alerts and optional auto-repeat loops upon completion. Best for cooking, tests, presentations, and timeboxed tasks. 2) <strong>Digital Clock:</strong> Displays the current local real-time in 12-hour or 24-hour format with live seconds, making it an elegant desktop standby clock or wall display. 3) <strong>Lap Stopwatch:</strong> Counts upward from zero with millisecond precision, featuring a dedicated split/lap recording table that tracks individual lap times and cumulative splits. Best for athletic training, speed tasks, productivity benchmarking, and scientific experiments."
+	}
+];
+
+const faqSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	"mainEntity": faqs.map((faq) => ({
+		"@type": "Question",
+		"name": faq.question,
+		"acceptedAnswer": {
+			"@type": "Answer",
+			"text": faq.answer.replace(/<[^>]*>?/gm, '')
+		}
+	}))
+};
 ---
 
 <Layout title="On Screen Timer FAQ — Timer, Tasks & Settings" description="Frequently asked questions about On Screen Timer, including how to use the online timer, manage tasks, use Full mode, and save your session state.">
+	<Fragment slot="head">
+		<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+	</Fragment>
 	<div class="min-h-dvh flex flex-col justify-between">
 		<SiteHeader />
 		<main class="flex-1 w-full max-w-3xl mx-auto px-4 sm:px-6 py-12 lg:py-16">
 			<h1 class="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-8">Frequently Asked Questions</h1>
 			
 			<div class="space-y-4">
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900" open>
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						How do I set an online timer?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>First, ensure you have selected Timer mode. Enter your desired duration in the input field using natural formats like <code>5</code>, <code>02:00</code>, or <code>01:30:00</code>. Then press Start.</p>
-					</div>
-				</details>
-				
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						Do I need an account to use On Screen Timer?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>No account is required for normal use. It is ready to use immediately without signing up.</p>
-					</div>
-				</details>
-
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						What happens if I refresh the page?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>Your Timer, Stopwatch, tasks, preferences and supported Study Block state may restore when you return or refresh, as they are stored locally in your browser.</p>
-					</div>
-				</details>
-
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						What is Full mode?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>Full mode provides a focused app-level view by hiding nonessential page chrome, keeping only important controls available. It is not the browser Fullscreen API.</p>
-					</div>
-				</details>
-
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						How do Study Block Presets work?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>Choose a preset from Settings. The Timer will use named phases (independent of your Current Task) and progress automatically through each segment until the final one ends.</p>
-					</div>
-				</details>
-
-				<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-					<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
-						Can I use On Screen Timer as a Pomodoro timer?
-						<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-					</summary>
-					<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
-						<p>Yes, you can manually use it for Pomodoro-style sessions (like 25 minutes work, short break) by setting the timer, or you can use Study Block Presets to follow structured sequences.</p>
-					</div>
-				</details>
+				{faqs.map((faq, index) => (
+					<details class="group border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900" open={index === 0}>
+						<summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-sm text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl">
+							{faq.question}
+							<svg class="w-4 h-4 text-zinc-400 group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+						</summary>
+						<div class="p-4 pt-0 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed space-y-2">
+							<p set:html={faq.answer} />
+						</div>
+					</details>
+				))}
 			</div>
 		</main>
 		<SiteFooter />
