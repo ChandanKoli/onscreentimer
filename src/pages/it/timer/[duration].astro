@@ -6,18 +6,10 @@ import TimerWorkspace from '../../../components/TimerWorkspace.astro';
 import SiteHeader from '../../../components/SiteHeader.astro';
 import SiteFooter from '../../../components/SiteFooter.astro';
 import ProgressSettings from '../../../components/ProgressSettings.astro';
+import { getTimerStaticPaths } from '../../../utils/timers.ts';
 
 export function getStaticPaths() {
-	return [
-		{ params: { duration: '1-minute' }, props: { seconds: 60, minutes: 1 } },
-		{ params: { duration: '5-minutes' }, props: { seconds: 300, minutes: 5 } },
-		{ params: { duration: '10-minutes' }, props: { seconds: 600, minutes: 10 } },
-		{ params: { duration: '15-minutes' }, props: { seconds: 900, minutes: 15 } },
-		{ params: { duration: '20-minutes' }, props: { seconds: 1200, minutes: 20 } },
-		{ params: { duration: '25-minutes' }, props: { seconds: 1500, minutes: 25 } },
-		{ params: { duration: '30-minutes' }, props: { seconds: 1800, minutes: 30 } },
-		{ params: { duration: '60-minutes' }, props: { seconds: 3600, minutes: 60 } },
-	];
+	return getTimerStaticPaths();
 }
 
 const { duration } = Astro.params;
@@ -66,6 +58,11 @@ if (minutes === 1) {
 	content = [
 		"Un timer da 60 minuti (1 ora) può essere utile per una sessione di studio o di lavoro prolungata.",
 		"Premendo Avvia, il timer da un'ora effettuerà il conto alla rovescia. Se hai bisogno di una sessione più strutturata con pause integrate, consulta la guida Studio e Concentrazione o i preset dei Blocchi di Studio nelle impostazioni."
+	];
+} else {
+	content = [
+		`Un timer da ${minutes} minuti può essere utile per attività a tempo, una sessione concentrata di studio o lavoro, oppure una pausa.`,
+		`Premendo Avvia, il timer effettua un conto alla rovescia da ${minutes} minuti. Ti avviserà quando raggiunge lo zero.`
 	];
 }
 

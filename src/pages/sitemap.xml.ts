@@ -1,5 +1,6 @@
 import { SITE_CONFIG } from '../site.config';
 import { ACTIVE_LOCALES } from '../i18n/config';
+import { TIMER_PRESETS } from '../utils/timers';
 
 export async function GET() {
 	// Discover guide pages by reading the directory during build/runtime
@@ -23,17 +24,7 @@ export async function GET() {
 	];
 
 	// Duration pages
-	const durations = [
-		'1-minute',
-		'5-minutes',
-		'10-minutes',
-		'15-minutes',
-		'20-minutes',
-		'25-minutes',
-		'30-minutes',
-		'60-minutes'
-	];
-	const durationPages = durations.map(d => `timer/${d}`);
+	const durationPages = TIMER_PRESETS.map(d => `timer/${d.slug}`);
 
 	// Combine all paths for English base
 	const basePaths = [...staticPages, ...guideSlugs, ...durationPages];

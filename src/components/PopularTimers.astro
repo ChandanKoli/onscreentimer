@@ -1,21 +1,13 @@
 ---
 import { getLocaleFromUrl, getRelativeLocaleUrl } from '../i18n/utils.ts';
 import { useTranslations } from '../i18n/ui.ts';
+import { TIMER_PRESETS } from '../utils/timers.ts';
 
 const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
 const prefixPath = (path: string) => getRelativeLocaleUrl(locale, path);
 
-const timers = [
-	{ slug: '1-minute', minutes: 1 },
-	{ slug: '5-minutes', minutes: 5 },
-	{ slug: '10-minutes', minutes: 10 },
-	{ slug: '15-minutes', minutes: 15 },
-	{ slug: '20-minutes', minutes: 20 },
-	{ slug: '25-minutes', minutes: 25 },
-	{ slug: '30-minutes', minutes: 30 },
-	{ slug: '60-minutes', minutes: 60 },
-];
+const timers = TIMER_PRESETS;
 
 function getLabel(minutes: number, loc: string) {
 	if (loc === 'ja' || loc === 'ko') {
@@ -30,12 +22,12 @@ function getLabel(minutes: number, loc: string) {
 
 function getAriaLabel(minutes: number, loc: string) {
 	if (loc === 'de') return `${minutes}-Minuten-Timer`;
-	if (loc === 'es') return `Temporizador de ${minutes} minutos`;
-	if (loc === 'fr') return `Minuteur de ${minutes} minutes`;
-	if (loc === 'it') return `Timer da ${minutes} minuti`;
+	if (loc === 'es') return `Temporizador de ${minutes} minuto${minutes === 1 ? '' : 's'}`;
+	if (loc === 'fr') return `Minuteur de ${minutes} minute${minutes === 1 ? '' : 's'}`;
+	if (loc === 'it') return `Timer da ${minutes} minut${minutes === 1 ? 'o' : 'i'}`;
 	if (loc === 'ja') return `${minutes}分カウントダウンタイマー`;
 	if (loc === 'ko') return `${minutes}분 카운트다운 타이머`;
-	if (loc === 'pt-br') return `Temporizador de ${minutes} minutos`;
+	if (loc === 'pt-br') return `Temporizador de ${minutes} minuto${minutes === 1 ? '' : 's'}`;
 	return `${minutes} minute countdown timer`;
 }
 ---

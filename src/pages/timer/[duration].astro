@@ -6,18 +6,10 @@ import TimerWorkspace from '../../components/TimerWorkspace.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import ProgressSettings from '../../components/ProgressSettings.astro';
+import { getTimerStaticPaths } from '../../utils/timers.ts';
 
 export function getStaticPaths() {
-	return [
-		{ params: { duration: '1-minute' }, props: { seconds: 60, minutes: 1 } },
-		{ params: { duration: '5-minutes' }, props: { seconds: 300, minutes: 5 } },
-		{ params: { duration: '10-minutes' }, props: { seconds: 600, minutes: 10 } },
-		{ params: { duration: '15-minutes' }, props: { seconds: 900, minutes: 15 } },
-		{ params: { duration: '20-minutes' }, props: { seconds: 1200, minutes: 20 } },
-		{ params: { duration: '25-minutes' }, props: { seconds: 1500, minutes: 25 } },
-		{ params: { duration: '30-minutes' }, props: { seconds: 1800, minutes: 30 } },
-		{ params: { duration: '60-minutes' }, props: { seconds: 3600, minutes: 60 } },
-	];
+	return getTimerStaticPaths();
 }
 
 const { duration } = Astro.params;
@@ -66,6 +58,11 @@ if (minutes === 1) {
 	content = [
 		"A 60 minute (1 hour) timer can be useful for an extended study or work session.",
 		"When you press Start, the 1 hour timer will count down. If you need a more structured session with built-in breaks, consider reading the Study & Focus guide or checking out our Study Block Presets in the settings."
+	];
+} else {
+	content = [
+		`A ${minutes} minute timer can be useful for timed tasks, a focused study or work session, or a timed break.`,
+		`When you press Start, the timer will count down from ${minutes} minutes. It will alert you when it reaches zero.`
 	];
 }
 
